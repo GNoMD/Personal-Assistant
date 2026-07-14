@@ -1,0 +1,156 @@
+/* ===== 治愈系 × 科技风 设计令牌 ===== */
+
+:root,
+[data-theme='light'] {
+  color-scheme: light;
+
+  --bg-base: #f2f9fd;
+  --bg-gradient: linear-gradient(145deg, #eaf7ff 0%, #f7fbff 38%, #edf9f8 72%, #f9fcff 100%);
+  --ambient-1: rgba(14, 165, 233, 0.13);
+  --ambient-2: rgba(45, 212, 191, 0.09);
+  --ambient-3: rgba(125, 211, 252, 0.08);
+
+  --surface: rgba(255, 255, 255, 0.86);
+  --surface-solid: #ffffff;
+  --surface-2: rgba(244, 250, 253, 0.92);
+  --surface-glass: rgba(255, 255, 255, 0.72);
+  --bg-muted: rgba(226, 241, 248, 0.72);
+  --border: rgba(103, 166, 196, 0.2);
+  --border-strong: rgba(73, 145, 180, 0.36);
+
+  --text: #173249;
+  --text-muted: #587489;
+  --text-soft: #8aa6b8;
+
+  --accent: #1597d4;
+  --accent-2: #62c9f4;
+  --accent-gradient: linear-gradient(135deg, #0ea5e9 0%, #56c7f2 52%, #5fd4c4 100%);
+  --accent-soft: rgba(14, 165, 233, 0.11);
+  --accent-glow: 0 10px 34px rgba(14, 165, 233, 0.17);
+
+  --success: #10b981;
+  --success-soft: rgba(16, 185, 129, 0.15);
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --danger-soft: rgba(239, 68, 68, 0.1);
+
+  --shadow-sm: 0 3px 12px rgba(30, 111, 148, 0.05);
+  --shadow: 0 12px 36px rgba(30, 111, 148, 0.09);
+  --shadow-lg: 0 24px 64px rgba(30, 111, 148, 0.13);
+  --shadow-glow: 0 0 0 1px rgba(255, 255, 255, 0.8) inset;
+
+  --demo-skin: #f5d0b5;
+  --demo-skin-light: #fde8d5;
+  --demo-hair: #4a3728;
+  --demo-zone: rgba(91, 110, 245, 0.35);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    color-scheme: dark;
+
+    --bg-base: #071722;
+    --bg-gradient: linear-gradient(155deg, #081b29 0%, #0b2232 46%, #09262d 100%);
+    --ambient-1: rgba(14, 165, 233, 0.17);
+    --ambient-2: rgba(45, 212, 191, 0.1);
+    --ambient-3: rgba(125, 211, 252, 0.06);
+
+    --surface: rgba(22, 30, 48, 0.75);
+    --surface-solid: #1a2332;
+    --surface-2: rgba(30, 41, 59, 0.6);
+    --surface-glass: rgba(22, 30, 48, 0.55);
+    --bg-muted: rgba(28, 55, 71, 0.68);
+    --border: rgba(148, 163, 184, 0.12);
+    --border-strong: rgba(148, 163, 184, 0.25);
+
+    --text: #eef2f8;
+    --text-muted: #94a3b8;
+    --text-soft: #64748b;
+
+    --accent: #5cc8f5;
+    --accent-2: #8bdefb;
+    --accent-gradient: linear-gradient(135deg, #38bdf8 0%, #7dd3fc 50%, #5eead4 100%);
+    --accent-soft: rgba(56, 189, 248, 0.16);
+    --accent-glow: 0 10px 40px rgba(56, 189, 248, 0.2);
+
+    --success: #34d399;
+    --success-soft: rgba(52, 211, 153, 0.15);
+    --shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+    --shadow-lg: 0 24px 64px rgba(0, 0, 0, 0.45);
+    --shadow-glow: 0 0 0 1px rgba(255, 255, 255, 0.06) inset;
+
+    --demo-skin: #c9a07a;
+    --demo-skin-light: #ddb896;
+    --demo-hair: #2d1f14;
+    --demo-zone: rgba(129, 140, 248, 0.45);
+  }
+}
+
+[data-theme='dark'] {
+  color-scheme: dark;
+
+  --bg-base: #071722;
+  --bg-gradient: linear-gradient(155deg, #081b29 0%, #0b2232 46%, #09262d 100%);
+  --ambient-1: rgba(14, 165, 233, 0.17);
+  --ambient-2: rgba(45, 212, 191, 0.1);
+  --ambient-3: rgba(125, 211, 252, 0.06);
+
+  --surface: rgba(22, 30, 48, 0.75);
+  --surface-solid: #1a2332;
+  --surface-2: rgba(30, 41, 59, 0.6);
+  --surface-glass: rgba(22, 30, 48, 0.55);
+  --bg-muted: rgba(28, 55, 71, 0.68);
+  --border: rgba(148, 163, 184, 0.12);
+  --border-strong: rgba(148, 163, 184, 0.25);
+
+  --text: #eef2f8;
+  --text-muted: #94a3b8;
+  --text-soft: #64748b;
+
+  --accent: #5cc8f5;
+  --accent-2: #8bdefb;
+  --accent-gradient: linear-gradient(135deg, #38bdf8 0%, #7dd3fc 50%, #5eead4 100%);
+  --accent-soft: rgba(56, 189, 248, 0.16);
+  --accent-glow: 0 10px 40px rgba(56, 189, 248, 0.2);
+
+  --success: #34d399;
+  --success-soft: rgba(52, 211, 153, 0.15);
+  --shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 24px 64px rgba(0, 0, 0, 0.45);
+  --shadow-glow: 0 0 0 1px rgba(255, 255, 255, 0.06) inset;
+
+  --demo-skin: #c9a07a;
+  --demo-skin-light: #ddb896;
+  --demo-hair: #2d1f14;
+  --demo-zone: rgba(129, 140, 248, 0.45);
+}
+
+/* 共享布局令牌 */
+:root {
+  --radius: 18px;
+  --radius-sm: 10px;
+  --radius-lg: 28px;
+  --app-max-width: 1400px;
+  --sidebar-width: clamp(280px, 28vw, 360px);
+  --touch-min: 44px;
+
+  --space-xs: clamp(0.25rem, 0.5vw, 0.5rem);
+  --space-sm: clamp(0.5rem, 1vw, 0.75rem);
+  --space-md: clamp(0.75rem, 1.5vw, 1.25rem);
+  --space-lg: clamp(1rem, 2vw, 1.5rem);
+  --space-xl: clamp(1.25rem, 3vw, 2rem);
+
+  --text-xs: clamp(0.65rem, 2vw, 0.75rem);
+  --text-sm: clamp(0.75rem, 2.2vw, 0.875rem);
+  --text-base: clamp(0.875rem, 2.5vw, 1rem);
+  --text-lg: clamp(1rem, 3vw, 1.25rem);
+  --text-xl: clamp(1.125rem, 3.5vw, 1.5rem);
+
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+
+  --ease-spring: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+}
