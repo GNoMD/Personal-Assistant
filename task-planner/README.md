@@ -85,39 +85,73 @@ cd task-planner/frontend && npm install && npm run dev
 
 ## 部署到服务器
 
-生产环境由后端同时提供 API 与前端静态资源（构建后的 `frontend/dist`），默认端口 **3001**。
+生产环境由后端同时提供 API 与前端静态资源（构建后的 `frontend/dist`），默认端口 **3001**。推荐直接在服务器上 `git clone` 源码后构建启动（无需本地打 zip）。
 
-### 1. 打发布包（在开发机）
+### 环境要求
+
+- Node.js **≥ 18**（推荐 20 LTS），npm **≥ 9**
+- Git
+- Linux 上编译 `better-sqlite3` 可能需要：`build-essential`（或等价的 gcc/make/python3）
+
+### 方式一：Git 源码部署（推荐）
 
 ```bash
-cd task-planner
+# 1. 拉取仓库
+git clone https://github.com/GNoMD/Personal-Assistant.git
+cd Personal-Assistant/task-planner
+
+# 2. 安装依赖并构建前端（生成 frontend/dist）
 npm run install:all
-npm run pack
-```
+npm run build
 
-生成 `release/task-planner.zip`（含后端、前端构建产物、启动脚本与 `DEPLOY.md`）。
-
-### 2. 上传并启动
-
-**Linux**
-
-```bash
-unzip task-planner.zip
-cd task-planner
+# 3. 配置环境变量（生产务必修改 JWT_SECRET）
 cp .env.example .env
-# 编辑 .env，务必修改 JWT_SECRET
+nano .env   # 或 vim / vi
+
+# 4. 启动（后端会托管前端静态页 + API，默认 :3001）
 chmod +x start.sh
 ./start.sh
 ```
 
-**Windows**
+Windows Server 可用：
 
 ```bat
-解压 task-planner.zip
-cd task-planner
+git clone https://github.com/GNoMD/Personal-Assistant.git
+cd Personal-Assistant\task-planner
+npm run install:all
+npm run build
 copy .env.example .env
 REM 编辑 .env，修改 JWT_SECRET
 start.bat
+```
+
+首次启动会自动建库、写入共享食谱，并创建管理员账号 `gnomd`（也可自行注册）。
+
+#### 更新到最新代码
+
+```bash
+cd Personal-Assistant
+git pull
+cd task-planner
+npm run install:all
+npm run build
+# 若用 PM2：
+pm2 restart task-planner
+# 若用前台脚本：停掉旧进程后重新 ./start.sh
+```
+
+> `data/tasks.db` 在仓库外本地生成，`git pull` 不会覆盖用户数据；更新前仍建议备份数据库。
+
+#### 后台常驻（PM2）
+
+在完成上面的 `install:all`、`build`、配置 `.env` 之后：
+
+```bash
+npm install -g pm2
+cd /path/to/Personal-Assistant/task-planner
+pm2 start backend/src/index.js --name task-planner --cwd backend
+pm2 save
+pm2 startup
 ```
 
 访问：
@@ -128,7 +162,29 @@ start.bat
 | 局域网 / 公网 | http://\<服务器IP\>:3001 |
 | 健康检查 | `GET /api/health` |
 
-### 3. 环境变量
+云服务器请在安全组放行 **3001**（或下方 Nginx 的 80/443）。
+
+### 方式二：发布包部署（可选）
+
+在开发机打包后上传 zip（服务器可不装 Git / 可不编译前端）：
+
+```bash
+# 开发机
+cd task-planner
+npm run install:all
+npm run pack
+# 得到 release/task-planner.zip
+
+# 服务器
+unzip task-planner.zip
+cd task-planner
+cp .env.example .env
+# 编辑 .env，务必修改 JWT_SECRET
+chmod +x start.sh
+./start.sh
+```
+
+### 环境变量
 
 | 变量 | 说明 | 默认 |
 |------|------|------|
@@ -138,7 +194,9 @@ start.bat
 | `ADMIN_USERNAMES` | 系统管理员用户名（逗号分隔） | `gnomd` |
 | `DB_PATH` | SQLite 路径 | `data/tasks.db` |
 
-### 4. Nginx 反向代理（推荐）
+> 私密项只写在服务器本地的 `.env`（已 gitignore），不要写进仓库或 `.env.example`。
+
+### Nginx 反向代理（推荐）
 
 ```nginx
 server {
@@ -156,21 +214,9 @@ server {
 }
 ```
 
-WebSocket（`/socket.io`）依赖上述 Upgrade 头。云服务器请在安全组放行 80/443 或 3001。
+WebSocket（`/socket.io`）依赖上述 Upgrade 头。
 
-### 5. 后台常驻（PM2）
-
-```bash
-npm install -g pm2
-cd task-planner/backend
-npm install --omit=dev
-cd ..
-pm2 start backend/src/index.js --name task-planner --cwd backend
-pm2 save
-pm2 startup
-```
-
-### 6. 数据备份
+### 数据备份
 
 定期备份 `data/tasks.db`。更细的部署说明见同目录 [DEPLOY.md](./DEPLOY.md)。
 
