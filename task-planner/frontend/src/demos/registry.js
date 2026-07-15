@@ -11,7 +11,7 @@ const DEMO_MATCHERS = [
   },
   {
     id: 'finasteride-spray',
-    test: (t) => /非那雄胺/.test(t.title) && !/按摩/.test(t.title),
+    test: (t) => /非那雄胺|外用非那/.test(t.title) && !/按摩/.test(t.title),
   },
   {
     id: 'finasteride-massage',

@@ -12,6 +12,7 @@ describe('demo registry', () => {
 
   it('resolves finasteride spray', () => {
     expect(resolveDemoId({ title: '非那雄胺喷雾', category: '用药', description: '' })).toBe('finasteride-spray');
+    expect(resolveDemoId({ title: '外用非那雄胺（午）', category: '用药', description: '' })).toBe('finasteride-spray');
   });
 
   it('falls back to generic', () => {

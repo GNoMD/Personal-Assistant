@@ -31,6 +31,42 @@ export const api = {
   login: (username, password) =>
     request('/auth/login', { method: 'POST', body: JSON.stringify({ username, password }) }),
   me: () => request('/auth/me'),
+  changePassword: (currentPassword, newPassword) =>
+    request('/auth/password', {
+      method: 'PATCH',
+      body: JSON.stringify({ currentPassword, newPassword }),
+    }),
+  getProfile: () => request('/profile/me'),
+  updateProfile: (data) =>
+    request('/profile/me', { method: 'PATCH', body: JSON.stringify(data) }),
+  clearProfile: () => request('/profile/me', { method: 'DELETE' }),
+  uploadAvatar: (dataUrl) =>
+    request('/profile/me/avatar', {
+      method: 'PUT',
+      body: JSON.stringify({ dataUrl }),
+    }),
+  deleteAvatar: () => request('/profile/me/avatar', { method: 'DELETE' }),
+  async fetchAvatarBlob() {
+    const res = await fetch(`${API_BASE}/profile/me/avatar`, {
+      headers: { ...getAuthHeaders() },
+    });
+    if (res.status === 404) return null;
+    if (res.status === 401) {
+      const err = new Error('未登录或登录已过期');
+      err.code = 'UNAUTHORIZED';
+      throw err;
+    }
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.error || `HTTP ${res.status}`);
+    }
+    return res.blob();
+  },
+  adminUserProfile: (id) => request(`/admin/users/${id}/profile`),
+  adminUpdateUserProfile: (id, data) =>
+    request(`/admin/users/${id}/profile`, { method: 'PATCH', body: JSON.stringify(data) }),
+  adminClearUserProfile: (id) =>
+    request(`/admin/users/${id}/profile`, { method: 'DELETE' }),
   joinTeam: (inviteCode) =>
     request('/teams/join', { method: 'POST', body: JSON.stringify({ inviteCode }) }),
   createTeam: (name) =>
@@ -56,6 +92,12 @@ export const api = {
   updateRecipe: (id, data) =>
     request(`/recipes/${id}`, { method: 'PATCH', body: JSON.stringify(data) }),
   deleteRecipe: (id) => request(`/recipes/${id}`, { method: 'DELETE' }),
+  getFitnessFavorites: () => request('/fitness/favorites'),
+  setFitnessFavorite: (itemId, isFavorite) =>
+    request(`/fitness/favorites/${encodeURIComponent(itemId)}`, {
+      method: 'PUT',
+      body: JSON.stringify({ isFavorite }),
+    }),
   adminOverview: () => request('/admin/overview'),
   adminUsers: () => request('/admin/users'),
   adminUser: (id) => request(`/admin/users/${id}`),

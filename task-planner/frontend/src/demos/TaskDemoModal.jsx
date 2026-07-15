@@ -39,6 +39,7 @@ export default function TaskDemoModal({ task, open, onClose }) {
         aria-modal="true"
         aria-labelledby="demo-title"
       >
+        <div className="modal-sheet-handle demo-sheet-handle" aria-hidden="true" />
         <header className="demo-header">
           <div>
             <span className="demo-badge">场景演示</span>

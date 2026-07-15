@@ -3,7 +3,10 @@ import path from 'path';
 import fs from 'fs';
 import { fileURLToPath } from 'url';
 import { inferDuration } from './seed/durationMap.js';
-import { BREAKFAST_DESCRIPTIONS } from './seed/breakfastRecipes.js';
+import {
+  buildBreakfastTaskContent,
+  getPlanBreakfastRecipe,
+} from './seed/breakfastRecipes.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -74,6 +77,9 @@ function migrateSchema(database) {
   if (!cols.includes('team_id')) {
     database.exec(`ALTER TABLE tasks ADD COLUMN team_id INTEGER DEFAULT NULL`);
   }
+  if (!cols.includes('template_key')) {
+    database.exec(`ALTER TABLE tasks ADD COLUMN template_key TEXT DEFAULT NULL`);
+  }
 
   const recipeCols = database.prepare('PRAGMA table_info(recipes)').all().map((c) => c.name);
   if (recipeCols.length && !recipeCols.includes('source')) {
@@ -81,6 +87,9 @@ function migrateSchema(database) {
   }
   if (recipeCols.length && !recipeCols.includes('template_key')) {
     database.exec(`ALTER TABLE recipes ADD COLUMN template_key TEXT DEFAULT NULL`);
+  }
+  if (recipeCols.length && !recipeCols.includes('series')) {
+    database.exec(`ALTER TABLE recipes ADD COLUMN series TEXT NOT NULL DEFAULT ''`);
   }
 
   const userCols = database.prepare('PRAGMA table_info(users)').all().map((c) => c.name);
@@ -98,6 +107,40 @@ function migrateSchema(database) {
       FOREIGN KEY (recipe_id) REFERENCES recipes(id)
     );
     CREATE INDEX IF NOT EXISTS idx_recipe_favorites_user ON recipe_favorites(user_id);
+
+    CREATE TABLE IF NOT EXISTS fitness_favorites (
+      user_id INTEGER NOT NULL,
+      item_id TEXT NOT NULL,
+      created_at TEXT DEFAULT (datetime('now')),
+      PRIMARY KEY (user_id, item_id),
+      FOREIGN KEY (user_id) REFERENCES users(id)
+    );
+    CREATE INDEX IF NOT EXISTS idx_fitness_favorites_user ON fitness_favorites(user_id);
+
+    CREATE TABLE IF NOT EXISTS user_profiles (
+      user_id INTEGER PRIMARY KEY,
+      profile_json TEXT NOT NULL DEFAULT '{}',
+      completeness_score INTEGER NOT NULL DEFAULT 0,
+      personalization_consent INTEGER NOT NULL DEFAULT 0,
+      personalization_consent_at TEXT,
+      created_at TEXT DEFAULT (datetime('now')),
+      updated_at TEXT DEFAULT (datetime('now')),
+      FOREIGN KEY (user_id) REFERENCES users(id)
+    );
+    CREATE INDEX IF NOT EXISTS idx_user_profiles_updated ON user_profiles(updated_at);
+
+    CREATE TABLE IF NOT EXISTS user_profile_audit_log (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      user_id INTEGER NOT NULL,
+      actor_user_id INTEGER NOT NULL,
+      actor_role TEXT,
+      changed_fields TEXT NOT NULL DEFAULT '[]',
+      created_at TEXT DEFAULT (datetime('now')),
+      FOREIGN KEY (user_id) REFERENCES users(id),
+      FOREIGN KEY (actor_user_id) REFERENCES users(id)
+    );
+    CREATE INDEX IF NOT EXISTS idx_user_profile_audit_user
+      ON user_profile_audit_log(user_id, created_at DESC);
   `);
 }
 
@@ -148,117 +191,51 @@ export function backfillDurations(database) {
   return rows.length;
 }
 
-function migrateBreakfastTasks(database) {
-  const legacyBreakfasts = [
-    '原味黑豆浆 + 全麦吐司 + 核桃仁15g + 苹果',
-    '黄豆豆浆燕麦 + 纯燕麦40g + 巴旦木12g + 香蕉',
-    '黑豆豆浆 + 蒸紫薯150g + 腰果南瓜子 + 蓝莓',
-    '双豆豆浆 + 小米南瓜粥 + 松子10g + 橙子',
-    '豆浆 + 玉米 + 糙米饭团 + 混合坚果 + 猕猴桃',
-    '豆浆+鸡蛋 + 荞麦面80g + 夏威夷果10g + 梨（周末08:00）',
-    '五红豆浆 + 杂粮饭团 + 榛子奇亚籽 + 柚子草莓（周末08:00）',
-  ];
-  // Current + previous system titles so renames still refresh.
-  const recipeTitlePatterns = [
-    ['莲子百合燕麦饮活力早餐'],
-    ['白扁豆山药鸡蛋早餐'],
-    ['无乳糖酸奶燕麦莓果碗', '希腊酸奶燕麦莓果碗'],
-    ['四神燕麦饮鸡肉全麦早餐'],
-    ['小份黄豆浆紫薯训练早餐'],
-    ['绿豆百合无乳糖奶恢复早餐', '绿豆百合低脂奶恢复早餐'],
-    ['无豆山药莲子荞麦早餐'],
-  ];
-  const updateLegacy = database.prepare(`
+/**
+ * 将计划中的早餐任务绑定到食谱库（low-purine-dN），并同步标题/详情。
+ * 仅覆盖系统计划早餐：营养早餐 / 已挂 low-purine-* / 与计划日食谱同名。
+ */
+export function syncPlanBreakfastTasksFromRecipes(database = getDb()) {
+  const cols = database.prepare('PRAGMA table_info(tasks)').all().map((c) => c.name);
+  if (!cols.includes('template_key')) return 0;
+
+  const update = database.prepare(`
     UPDATE tasks
-    SET description = ?, updated_at = datetime('now')
-    WHERE category = '早餐' AND title = '营养早餐'
-      AND plan_day = ? AND description = ?
+    SET title = @title,
+        description = @description,
+        template_key = @templateKey,
+        duration_label = @durationLabel,
+        duration_minutes = @durationMinutes,
+        updated_at = datetime('now')
+    WHERE category = '早餐'
+      AND plan_day = @planDay
+      AND (
+        title = '营养早餐'
+        OR template_key IS NULL
+        OR template_key = ''
+        OR template_key = @templateKey
+        OR title = @title
+      )
   `);
-  // Refresh system blurbs only; leave user-edited descriptions alone.
-  const refreshSystem = database.prepare(`
-    UPDATE tasks
-    SET description = ?, updated_at = datetime('now')
-    WHERE category = '早餐' AND title = '营养早餐' AND plan_day = ?
-      AND description LIKE ?
-  `);
+
+  let updated = 0;
   database.transaction(() => {
     for (let day = 1; day <= 7; day += 1) {
-      updateLegacy.run(BREAKFAST_DESCRIPTIONS[day], day, legacyBreakfasts[day - 1]);
-      for (const title of recipeTitlePatterns[day - 1]) {
-        refreshSystem.run(BREAKFAST_DESCRIPTIONS[day], day, `${title}%`);
-      }
+      const recipe = getPlanBreakfastRecipe(day);
+      if (!recipe) continue;
+      const content = buildBreakfastTaskContent(recipe);
+      const result = update.run({
+        title: content.title,
+        description: content.description,
+        templateKey: content.templateKey,
+        durationLabel: content.durationLabel || '',
+        durationMinutes: content.durationMinutes,
+        planDay: day,
+      });
+      updated += result.changes || 0;
     }
   })();
-}
-
-/** Remove minoxidil / finasteride / scalp-massage system tasks from existing users. */
-function migrateRemoveMedicationTasks(database) {
-  database.prepare(`
-    DELETE FROM tasks
-    WHERE category IN ('用药', '按摩')
-       OR title IN (
-         '确认头皮干燥',
-         '米诺地尔（晨）',
-         '米诺地尔按摩（晨）',
-         '米诺地尔（午）',
-         '米诺地尔按摩（午）',
-         '非那雄胺喷雾',
-         '非那雄胺促渗按摩',
-         'SSM标准化头皮按摩'
-       )
-       OR title LIKE '米诺%'
-       OR title LIKE '非那%'
-       OR title LIKE 'SSM%'
-  `).run();
-
-  database.prepare(`
-    UPDATE tasks
-    SET description = '放松就寝，保证充足睡眠',
-        updated_at = datetime('now')
-    WHERE title = '入睡'
-      AND (
-        description LIKE '%非那%'
-        OR description LIKE '%米诺%'
-      )
-  `).run();
-
-  database.prepare(`
-    UPDATE tasks
-    SET description = '起床，饮水200mL',
-        updated_at = datetime('now')
-    WHERE title = '起床饮水'
-      AND description LIKE '%不洗发%'
-  `).run();
-
-  // Refresh day checklist blurbs that still mention medication.
-  const checklistUpdates = [
-    [1, 1, '记录今日精力与睡眠感受'],
-    [2, 1, '完成有氧训练后适度补水'],
-    [3, 1, '力量训练注意动作标准，避免受伤'],
-    [4, 1, '训练后做好拉伸放松'],
-    [5, 1, '检查本周运动完成情况'],
-    [7, 1, '本周运动与早餐复盘'],
-  ];
-  const updateChecklist = database.prepare(`
-    UPDATE tasks
-    SET description = ?, updated_at = datetime('now')
-    WHERE category = '清单' AND plan_day = ? AND title = ?
-  `);
-  database.transaction(() => {
-    for (const [planDay, index, description] of checklistUpdates) {
-      updateChecklist.run(description, planDay, `完成项 ${index}`);
-    }
-    // Day 7 used to have two checklist items; drop the scalp-photo one if still present.
-    database.prepare(`
-      DELETE FROM tasks
-      WHERE category = '清单' AND plan_day = 7 AND title = '完成项 2'
-        AND (
-          description LIKE '%头顶%'
-          OR description LIKE '%发际线%'
-          OR description LIKE '%用药%'
-        )
-    `).run();
-  })();
+  return updated;
 }
 
 export function getDb() {
@@ -272,8 +249,7 @@ export function getDb() {
     ensureRecipeLibraryUser(db);
     ensureSystemAdmins(db);
     backfillDurations(db);
-    migrateBreakfastTasks(db);
-    migrateRemoveMedicationTasks(db);
+    syncPlanBreakfastTasksFromRecipes(db);
   }
   return db;
 }
@@ -321,6 +297,7 @@ function initSchema(database) {
       description TEXT DEFAULT '',
       duration_label TEXT DEFAULT '',
       duration_minutes INTEGER DEFAULT NULL,
+      template_key TEXT DEFAULT NULL,
       completed INTEGER DEFAULT 0,
       sort_order INTEGER DEFAULT 0,
       created_at TEXT DEFAULT (datetime('now')),
@@ -353,6 +330,7 @@ function initSchema(database) {
       is_favorite INTEGER NOT NULL DEFAULT 0,
       source TEXT NOT NULL DEFAULT 'custom',
       template_key TEXT,
+      series TEXT NOT NULL DEFAULT '',
       created_at TEXT DEFAULT (datetime('now')),
       updated_at TEXT DEFAULT (datetime('now')),
       FOREIGN KEY (user_id) REFERENCES users(id)
@@ -366,10 +344,95 @@ function initSchema(database) {
       FOREIGN KEY (user_id) REFERENCES users(id),
       FOREIGN KEY (recipe_id) REFERENCES recipes(id)
     );
+
+    CREATE TABLE IF NOT EXISTS fitness_favorites (
+      user_id INTEGER NOT NULL,
+      item_id TEXT NOT NULL,
+      created_at TEXT DEFAULT (datetime('now')),
+      PRIMARY KEY (user_id, item_id),
+      FOREIGN KEY (user_id) REFERENCES users(id)
+    );
+
+    CREATE TABLE IF NOT EXISTS assistant_openclaw_windows (
+      user_id INTEGER PRIMARY KEY,
+      window_gen INTEGER NOT NULL DEFAULT 1,
+      previous_response_id TEXT,
+      approx_chars INTEGER NOT NULL DEFAULT 0,
+      created_at TEXT DEFAULT (datetime('now')),
+      updated_at TEXT DEFAULT (datetime('now')),
+      rotated_at TEXT,
+      FOREIGN KEY (user_id) REFERENCES users(id)
+    );
+
+    CREATE TABLE IF NOT EXISTS assistant_sessions (
+      id TEXT PRIMARY KEY,
+      user_id INTEGER NOT NULL,
+      title TEXT NOT NULL DEFAULT '新对话',
+      previous_response_id TEXT,
+      created_at TEXT DEFAULT (datetime('now')),
+      updated_at TEXT DEFAULT (datetime('now')),
+      FOREIGN KEY (user_id) REFERENCES users(id)
+    );
+
+    CREATE TABLE IF NOT EXISTS assistant_messages (
+      id TEXT PRIMARY KEY,
+      session_id TEXT NOT NULL,
+      user_id INTEGER NOT NULL,
+      role TEXT NOT NULL,
+      content TEXT NOT NULL DEFAULT '',
+      action_json TEXT,
+      error TEXT,
+      created_at TEXT DEFAULT (datetime('now')),
+      FOREIGN KEY (session_id) REFERENCES assistant_sessions(id),
+      FOREIGN KEY (user_id) REFERENCES users(id)
+    );
+
+    CREATE TABLE IF NOT EXISTS assistant_actions (
+      id TEXT PRIMARY KEY,
+      user_id INTEGER NOT NULL,
+      session_id TEXT,
+      tool_name TEXT NOT NULL,
+      arguments TEXT NOT NULL,
+      call_id TEXT NOT NULL,
+      response_id TEXT,
+      status TEXT NOT NULL DEFAULT 'pending',
+      result TEXT,
+      expires_at TEXT NOT NULL,
+      created_at TEXT DEFAULT (datetime('now')),
+      resolved_at TEXT,
+      FOREIGN KEY (user_id) REFERENCES users(id)
+    );
+
+    CREATE TABLE IF NOT EXISTS user_profiles (
+      user_id INTEGER PRIMARY KEY,
+      profile_json TEXT NOT NULL DEFAULT '{}',
+      completeness_score INTEGER NOT NULL DEFAULT 0,
+      personalization_consent INTEGER NOT NULL DEFAULT 0,
+      personalization_consent_at TEXT,
+      created_at TEXT DEFAULT (datetime('now')),
+      updated_at TEXT DEFAULT (datetime('now')),
+      FOREIGN KEY (user_id) REFERENCES users(id)
+    );
+
+    CREATE TABLE IF NOT EXISTS user_profile_audit_log (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      user_id INTEGER NOT NULL,
+      actor_user_id INTEGER NOT NULL,
+      actor_role TEXT,
+      changed_fields TEXT NOT NULL DEFAULT '[]',
+      created_at TEXT DEFAULT (datetime('now')),
+      FOREIGN KEY (user_id) REFERENCES users(id),
+      FOREIGN KEY (actor_user_id) REFERENCES users(id)
+    );
   `);
 
   migrateSchema(database);
   migrateLegacyTasksTable(database);
+
+  const actionCols = database.prepare('PRAGMA table_info(assistant_actions)').all().map((c) => c.name);
+  if (actionCols.length && !actionCols.includes('session_id')) {
+    database.exec('ALTER TABLE assistant_actions ADD COLUMN session_id TEXT');
+  }
 
   database.exec(`
     CREATE INDEX IF NOT EXISTS idx_tasks_user_date ON tasks(user_id, date);
@@ -378,6 +441,16 @@ function initSchema(database) {
     CREATE INDEX IF NOT EXISTS idx_audit_user ON task_audit_log(user_id);
     CREATE INDEX IF NOT EXISTS idx_recipes_user ON recipes(user_id);
     CREATE INDEX IF NOT EXISTS idx_recipe_favorites_user ON recipe_favorites(user_id);
+    CREATE INDEX IF NOT EXISTS idx_fitness_favorites_user ON fitness_favorites(user_id);
+    CREATE INDEX IF NOT EXISTS idx_assistant_actions_user_status
+      ON assistant_actions(user_id, status, expires_at);
+    CREATE INDEX IF NOT EXISTS idx_assistant_sessions_user_updated
+      ON assistant_sessions(user_id, updated_at DESC);
+    CREATE INDEX IF NOT EXISTS idx_assistant_messages_session
+      ON assistant_messages(session_id, created_at);
+    CREATE INDEX IF NOT EXISTS idx_user_profiles_updated ON user_profiles(updated_at);
+    CREATE INDEX IF NOT EXISTS idx_user_profile_audit_user
+      ON user_profile_audit_log(user_id, created_at DESC);
   `);
 }
 

@@ -116,4 +116,36 @@ router.get('/me', requireAuth, (req, res) => {
   });
 });
 
+/** PATCH /api/auth/password — change own password */
+router.patch('/password', requireAuth, async (req, res) => {
+  try {
+    const currentPassword = String(req.body?.currentPassword || '');
+    const newPassword = String(req.body?.newPassword || '');
+    if (!currentPassword || !newPassword) {
+      return res.status(400).json({ error: '当前密码和新密码都必填' });
+    }
+    if (newPassword.length < 6) {
+      return res.status(400).json({ error: '新密码至少6位' });
+    }
+    if (currentPassword === newPassword) {
+      return res.status(400).json({ error: '新密码不能与当前密码相同' });
+    }
+
+    const row = getDb().prepare(
+      'SELECT id, password_hash FROM users WHERE id = ?'
+    ).get(req.user.id);
+    if (!row) return res.status(404).json({ error: '用户不存在' });
+
+    const ok = await comparePassword(currentPassword, row.password_hash);
+    if (!ok) return res.status(400).json({ error: '当前密码不正确' });
+
+    const passwordHash = await hashPassword(newPassword);
+    getDb().prepare('UPDATE users SET password_hash = ? WHERE id = ?').run(passwordHash, req.user.id);
+    res.json({ updated: true });
+  } catch (err) {
+    console.error('[change-password]', err);
+    res.status(500).json({ error: '修改密码失败，请稍后重试' });
+  }
+});
+
 export default router;

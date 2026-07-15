@@ -106,7 +106,7 @@ export const DEMO_CONFIGS = {
             <div className="spray-bursts">
               <span className={`burst ${stepProgress > 0.2 ? 'on' : ''}`}>💨</span>
               <span className={`burst ${stepProgress > 0.6 ? 'on' : ''}`}>💨</span>
-              <p>每日仅 2 喷，当晚不再涂米诺</p>
+              <p>一日一次；与早晚米诺各间隔 ≥4 小时</p>
             </div>
           )}
           {step.id === 'wash' && <p className="demo-action-text">🚿 温和洗发 → 完全吹干后用药</p>}

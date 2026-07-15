@@ -34,12 +34,15 @@ const SHARED_STEPS = [
   '所有养发、安神、控压、控糖食材均匀分散在七天，营养均衡不扎堆；',
 ].join('\n');
 
-function buildNotes(effect, calories) {
+function buildNotes(effect, calories, extra = {}) {
+  const efficacy = String(effect || '').replace(/^功效\s*[:：]\s*/, '').trim();
   return [
-    effect,
-    `参考热量：约 ${calories} 千卡/份（按所列干料制成一杯 ≤250ml 估算，实际因过滤与留渣略有浮动）。`,
+    `功效：${efficacy}`,
+    extra.nutrients ? `补什么：${extra.nutrients}` : '补什么：杂粮豆类植物蛋白、健脾食材与养发相关微量营养',
+    extra.effects ? `作用：${extra.effects}` : `作用：${efficacy}`,
+    `营养：参考热量约 ${calories} 千卡/份（按所列干料制成一杯 ≤250ml 估算，实际因过滤与留渣略有浮动）。`,
     '',
-    '全套饮用统一须知',
+    '全套饮用统一须知：',
     SOY_MILK_DRINKING_NOTES,
   ].join('\n');
 }

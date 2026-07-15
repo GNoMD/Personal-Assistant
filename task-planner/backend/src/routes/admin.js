@@ -3,6 +3,14 @@ import { getDb, LIBRARY_USERNAME } from '../db.js';
 import { requireAdmin, toPublicUser } from '../middleware/auth.js';
 import { hashPassword } from '../auth/password.js';
 import { seedUserTasks } from '../seed/seed.js';
+import {
+  clearUserProfile,
+  getProfileDto,
+  listProfileAudit,
+  saveUserProfile,
+} from '../services/userProfile.js';
+import { profileToPlanningContext } from '../services/profilePlanningContext.js';
+import { deleteUserAvatar } from '../services/userAvatar.js';
 
 const router = Router();
 
@@ -161,6 +169,58 @@ router.patch('/users/:id', async (req, res) => {
   }
 });
 
+/** GET /api/admin/users/:id/profile — load only when entering a specific user */
+router.get('/users/:id/profile', (req, res) => {
+  const id = Number(req.params.id);
+  if (!getUserRow(id)) return res.status(404).json({ error: '用户不存在' });
+  try {
+    const profile = getProfileDto(id);
+    res.json({
+      profile,
+      planningPreview: profileToPlanningContext(profile),
+      audit: listProfileAudit(id, 20),
+    });
+  } catch (error) {
+    res.status(error.status || 500).json({ error: error.message || '读取画像失败' });
+  }
+});
+
+/** PATCH /api/admin/users/:id/profile — assist edit */
+router.patch('/users/:id/profile', (req, res) => {
+  const id = Number(req.params.id);
+  if (!getUserRow(id)) return res.status(404).json({ error: '用户不存在' });
+  try {
+    const profile = saveUserProfile(id, req.body || {}, {
+      id: req.user.id,
+      role: req.user.role,
+    });
+    res.json({
+      profile,
+      planningPreview: profileToPlanningContext(profile),
+    });
+  } catch (error) {
+    const status = error.status || (error.message?.includes('无效') || error.message?.includes('超出')
+      ? 400
+      : 500);
+    res.status(status).json({ error: error.message || '保存画像失败' });
+  }
+});
+
+/** DELETE /api/admin/users/:id/profile — clear profile only */
+router.delete('/users/:id/profile', (req, res) => {
+  const id = Number(req.params.id);
+  if (!getUserRow(id)) return res.status(404).json({ error: '用户不存在' });
+  try {
+    const profile = clearUserProfile(id, {
+      id: req.user.id,
+      role: req.user.role,
+    });
+    res.json({ cleared: true, profile });
+  } catch (error) {
+    res.status(error.status || 500).json({ error: error.message || '清空画像失败' });
+  }
+});
+
 /** DELETE /api/admin/users/:id */
 router.delete('/users/:id', (req, res) => {
   const id = Number(req.params.id);
@@ -177,7 +237,15 @@ router.delete('/users/:id', (req, res) => {
 
   const db = getDb();
   const remove = db.transaction(() => {
+    db.prepare('DELETE FROM user_profile_audit_log WHERE user_id = ?').run(id);
+    db.prepare('DELETE FROM user_profiles WHERE user_id = ?').run(id);
+    deleteUserAvatar(id);
+    db.prepare('DELETE FROM assistant_actions WHERE user_id = ?').run(id);
+    db.prepare('DELETE FROM assistant_messages WHERE user_id = ?').run(id);
+    db.prepare('DELETE FROM assistant_sessions WHERE user_id = ?').run(id);
+    db.prepare('DELETE FROM assistant_openclaw_windows WHERE user_id = ?').run(id);
     db.prepare('DELETE FROM recipe_favorites WHERE user_id = ?').run(id);
+    db.prepare('DELETE FROM fitness_favorites WHERE user_id = ?').run(id);
     db.prepare('DELETE FROM recipes WHERE user_id = ?').run(id);
     db.prepare('DELETE FROM task_audit_log WHERE user_id = ?').run(id);
     db.prepare('DELETE FROM tasks WHERE user_id = ?').run(id);

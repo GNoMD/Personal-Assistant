@@ -1,5 +1,5 @@
 /**
- * 健身房器械图鉴
+ * 健身运动图鉴：健身器械 + 运动
  * 教学视频使用 B 站公开教程嵌入，仅作动作参考。
  * 图片 ?v= 用于强刷浏览器缓存。
  */
@@ -8,13 +8,23 @@ function bilibiliEmbed(bvid) {
   return `https://player.bilibili.com/player.html?bvid=${bvid}&page=1&high_quality=1&danmaku=0`;
 }
 
-const IMG_V = '20260713b';
+const IMG_V = '20260715a';
 
 function equipmentImage(file) {
   return `/equipment/${file}?v=${IMG_V}`;
 }
 
-export const EQUIPMENT_LIST = [
+/** @typedef {'equipment' | 'sport'} FitnessKind */
+
+/**
+ * @param {object} item
+ * @returns {object}
+ */
+function withKind(item, kind) {
+  return { ...item, kind };
+}
+
+const EQUIPMENT_CORE = [
   {
     id: 'bench-press-rack',
     name: '卧推架',
@@ -260,6 +270,336 @@ export const EQUIPMENT_LIST = [
   },
 ];
 
+/** 新增常用器械 */
+const EQUIPMENT_EXTRA = [
+  {
+    id: 'leg-press',
+    name: '腿举机',
+    englishName: 'Leg Press',
+    image: equipmentImage('leg-press.png'),
+    coverTone: 'leg',
+    summary: '坐姿/斜卧推蹬器械，可安全上较大重量练股四头与臀腿。',
+    muscles: ['股四头肌', '臀大肌', '腘绳肌'],
+    level: '入门～进阶',
+    intro: [
+      '腿举机让你在靠背支撑下蹬起配重，比自由深蹲更容易加大负荷。',
+      '脚的位置影响刺激：偏上更练臀与腘绳，偏下更练股四头。',
+      '下放勿过深导致骨盆卷起或腰椎离开靠垫。',
+    ],
+    howTo: [
+      '背部、臀部贴紧靠垫，双脚约与肩同宽踩在踏板上。',
+      '解锁后屈膝下放，膝与脚尖方向一致，底部有控制。',
+      '呼气蹬起至接近伸直，不要猛锁死膝盖。',
+      '力竭时及时挂回安全销。',
+    ],
+    tips: [
+      '腰离开靠垫时减幅度或减重。',
+      '初学先熟悉全程再逐步加重。',
+    ],
+    videos: [
+      {
+        title: '腿举机标准动作讲解',
+        bvid: 'BV1FJ411W7sL',
+        embedUrl: bilibiliEmbed('BV1FJ411W7sL'),
+        pageUrl: 'https://www.bilibili.com/video/BV1FJ411W7sL/',
+      },
+    ],
+  },
+  {
+    id: 'pec-deck',
+    name: '蝴蝶夹胸机',
+    englishName: 'Pec Deck',
+    image: equipmentImage('pec-deck.png'),
+    coverTone: 'chest',
+    summary: '固定轨迹夹胸，专注胸大肌内侧与中缝，入门友好。',
+    muscles: ['胸大肌', '三角肌前束（辅助）'],
+    level: '入门',
+    intro: [
+      '蝴蝶机（器械飞鸟）在坐姿下完成夹胸轨迹，稳定易学。',
+      '适合胸部训练日的雕刻或力竭收尾。',
+      '肘部保持微屈，避免关节过度伸直。',
+    ],
+    howTo: [
+      '调节座椅使手柄约与胸口同高，背部贴靠。',
+      '呼气向前向中线合拢，顶端稍停顿感受夹紧。',
+      '吸气控制打开至肩部舒适幅度，不要过度拉伸。',
+      '重量以能完成 10～15 次标准动作为宜。',
+    ],
+    tips: [
+      '耸肩发力说明重量过大或沉肩不足。',
+      '肩不适时可减小打开幅度。',
+    ],
+    videos: [
+      {
+        title: '蝴蝶机夹胸教程',
+        bvid: 'BV1fx411N7Yw',
+        embedUrl: bilibiliEmbed('BV1fx411N7Yw'),
+        pageUrl: 'https://www.bilibili.com/video/BV1fx411N7Yw/',
+      },
+    ],
+  },
+  {
+    id: 'shoulder-press-machine',
+    name: '推肩机',
+    englishName: 'Shoulder Press Machine',
+    image: equipmentImage('shoulder-press-machine.png'),
+    coverTone: 'shoulder',
+    summary: '坐姿固定轨迹推举，练三角肌中束/前束，比杠铃推举更安全。',
+    muscles: ['三角肌', '斜方肌上部', '肱三头肌（辅助）'],
+    level: '入门～中级',
+    intro: [
+      '器械推肩降低失衡风险，适合单独强化肩部推力。',
+      '座椅与靠背调到双手握把从耳旁起步较舒适。',
+      '推起时不要过度挺腰借力。',
+    ],
+    howTo: [
+      '背部贴靠，双脚踩实，核心收紧。',
+      '呼气向上推至接近伸直，头顶上方略留余地。',
+      '吸气缓慢下放至手肘约与肩平或略低。',
+      '全程控制，顶端不要猛撞限位。',
+    ],
+    tips: [
+      '肩峰撞击感时减小幅度或改哑铃推举。',
+      '热身肩袖再上正式组。',
+    ],
+    videos: [
+      {
+        title: '器械推肩标准动作',
+        bvid: 'BV1aW411Y7bK',
+        embedUrl: bilibiliEmbed('BV1aW411Y7bK'),
+        pageUrl: 'https://www.bilibili.com/video/BV1aW411Y7bK/',
+      },
+    ],
+  },
+  {
+    id: 'leg-curl',
+    name: '腿弯举机',
+    englishName: 'Leg Curl',
+    image: equipmentImage('leg-curl.png'),
+    coverTone: 'ham',
+    summary: '俯卧或坐姿屈膝拉起，孤立腘绳肌，平衡股四头训练。',
+    muscles: ['腘绳肌', '小腿（辅助）'],
+    level: '入门',
+    intro: [
+      '腿弯举专门刺激大腿后侧，对膝稳定性与体态均衡很重要。',
+      '常见为俯卧、坐姿两种；臀部不要大幅度掀离垫面。',
+      '可与腿举、深蹲组成完整腿日。',
+    ],
+    howTo: [
+      '调节踝垫位置，使阻力落在脚踝上方舒适处。',
+      '呼气屈膝拉起，顶端稍停；吸气控制下放。',
+      '髋部贴实垫面，避免甩腿借力。',
+      '建议中高次数（10～15）注重泵感。',
+    ],
+    tips: [
+      '腘绳紧张时可先动态拉伸再加重。',
+      '膝不适减重并缩减幅度。',
+    ],
+    videos: [
+      {
+        title: '腿弯举正确做法',
+        bvid: 'BV1yt411c7kM',
+        embedUrl: bilibiliEmbed('BV1yt411c7kM'),
+        pageUrl: 'https://www.bilibili.com/video/BV1yt411c7kM/',
+      },
+    ],
+  },
+  {
+    id: 'calf-raise-machine',
+    name: '提踵机',
+    englishName: 'Calf Raise Machine',
+    image: equipmentImage('calf-raise-machine.png'),
+    coverTone: 'calf',
+    summary: '坐姿或站姿提踵，强化小腿腓肠肌与比目鱼肌。',
+    muscles: ['腓肠肌', '比目鱼肌'],
+    level: '入门',
+    intro: [
+      '提踵机可安全对小腿施加高次数刺激，改善跑跳与小腿线条。',
+      '站姿更偏腓肠肌，坐姿屈膝更偏比目鱼肌。',
+      '全程脚掌前部发力，脚跟有控制地下降。',
+    ],
+    howTo: [
+      '肩膀或膝盖垫块贴合，脚掌前部踩稳踏板。',
+      '呼气向上踮起至最高，短暂停顿。',
+      '吸气缓慢下放至脚跟有拉伸感。',
+      '15～20 次中高次数效果更好。',
+    ],
+    tips: [
+      '不要用弹跳惯性；离心要慢。',
+      '踝不稳时先空手靠墙练习。',
+    ],
+    videos: [
+      {
+        title: '小腿提踵训练讲解',
+        bvid: 'BV1Hs411A7mY',
+        embedUrl: bilibiliEmbed('BV1Hs411A7mY'),
+        pageUrl: 'https://www.bilibili.com/video/BV1Hs411A7mY/',
+      },
+    ],
+  },
+  {
+    id: 'assisted-pullup',
+    name: '辅助引体向上机',
+    englishName: 'Assisted Pull-up / Dip',
+    image: equipmentImage('assisted-pullup.png'),
+    coverTone: 'back',
+    summary: '配重辅助完成引体或双杠臂屈伸，循序渐进建上肢拉力。',
+    muscles: ['背阔肌', '肱二头肌', '胸大肌下沿（双杠）', '肱三头肌（双杠）'],
+    level: '入门友好',
+    intro: [
+      '辅助机会用配重「抵消」部分体重，让尚做不了标准引体的人也能练满组。',
+      '配重越大辅助越多；随能力提升逐步减少辅助。',
+      '多数机型也可切换为双杠臂屈伸工位。',
+    ],
+    howTo: [
+      '选择合适握距，双膝跪上辅助垫或双脚踩踏板。',
+      '引体：沉肩后拉至下巴过杆，再控制下放。',
+      '双杠：躯干略前倾练胸，直立更偏三头。',
+      '避免猛晃借力，离心阶段 2～3 秒。',
+    ],
+    tips: [
+      '能做 8～10 次标准后可减辅助重量。',
+      '肩不适时改中立握或减少幅度。',
+    ],
+    videos: [
+      {
+        title: '辅助引体向上使用方法',
+        bvid: 'BV1Rt411N7Vv',
+        embedUrl: bilibiliEmbed('BV1Rt411N7Vv'),
+        pageUrl: 'https://www.bilibili.com/video/BV1Rt411N7Vv/',
+      },
+    ],
+  },
+];
+
+const SPORT_LIST_RAW = [
+  {
+    id: 'running',
+    name: '跑步',
+    englishName: 'Running',
+    image: equipmentImage('running.png'),
+    coverTone: 'run',
+    summary: '有氧基础项目：燃脂、心肺、恢复日轻量有氧都适用；可户外或跑步机。',
+    muscles: ['心肺', '下肢耐力', '核心稳定'],
+    level: '入门～进阶',
+    intro: [
+      '跑步是最易落地的有氧方式，也可作为力量训练后的低强度收尾。',
+      '新手建议先走跑结合，心率落在能说话但仍有呼吸节奏的区间。',
+      '鞋与路面选择影响膝踝负担，不适立刻减量。',
+    ],
+    howTo: [
+      '热身 5 分钟动态活动髋膝踝与轻度快走。',
+      '躯干直立略前倾，步幅自然，落地轻柔靠近身体重心。',
+      '按计划跑完既定时间或距离，再慢走放松 3～5 分钟。',
+      '力量日后可改为 20～30 分钟轻松跑，避免影响恢复。',
+    ],
+    tips: [
+      '涂米诺地尔后 4 小时内尽量避免大汗；可安排晨练前药或晚练后药。',
+      '膝不适改快走、椭圆机或缩短跑量。',
+      '循序渐进：每周总跑量增幅不宜过大。',
+    ],
+    videos: [
+      {
+        title: '跑步正确姿势入门',
+        bvid: 'BV1Wt411Y7dP',
+        embedUrl: bilibiliEmbed('BV1Wt411Y7dP'),
+        pageUrl: 'https://www.bilibili.com/video/BV1Wt411Y7dP/',
+      },
+    ],
+  },
+  {
+    id: 'swimming',
+    name: '游泳',
+    englishName: 'Swimming',
+    image: equipmentImage('swimming.png'),
+    coverTone: 'swim',
+    summary: '全身低冲击有氧：对关节友好，兼具心肺与肩背、核心调动。',
+    muscles: ['全身协调', '肩背', '核心', '心肺'],
+    level: '入门～进阶',
+    intro: [
+      '游泳冲击小，适合力量训练之余补充有氧或主动恢复。',
+      '自由泳效率高；仰泳对肩部友好；蛙泳节奏稳但腰部需注意姿势。',
+      '以技术与呼吸节奏优先，不要盲目追求距离。',
+    ],
+    howTo: [
+      '下水前热身肩袖与髋部，熟悉泳池深浅。',
+      '以能持续游动为目标，初期可游-歇间歇（如 50 米×若干组）。',
+      '换气时尽量身体转动，减少抬头憋气。',
+      '结束后冲洗、补水，肩酸时减少划臂强度。',
+    ],
+    tips: [
+      '开放水域需更加注意安全；室内池也建议结伴或告知计划。',
+      '氯水后冲净头皮再涂外用药，避免刺激。',
+      '耳鼻不适时缩短时长并咨询专业意见。',
+    ],
+    videos: [
+      {
+        title: '自由泳入门教学',
+        bvid: 'BV1NW411z7vG',
+        embedUrl: bilibiliEmbed('BV1NW411z7vG'),
+        pageUrl: 'https://www.bilibili.com/video/BV1NW411z7vG/',
+      },
+    ],
+  },
+  {
+    id: 'walking',
+    name: '散步',
+    englishName: 'Walking',
+    image: equipmentImage('walking.png'),
+    coverTone: 'walk',
+    summary: '低强度日常活动：恢复日、饭后消化、控制久坐都很合适。',
+    muscles: ['下肢轻负荷', '心肺轻刺激', '日常活动量'],
+    level: '全员友好',
+    intro: [
+      '散步门槛最低，却是提升每日步数与代谢最稳妥的方式。',
+      '力量训练次日酸痛时，用 30～60 分钟快走促进恢复。',
+      '饭后散步有助于血糖平稳与消化舒适。',
+    ],
+    howTo: [
+      '穿着舒适运动鞋，目视前方，双臂自然摆动。',
+      '保持能交谈的节奏，持续 20～60 分钟。',
+      '可穿插小坡或略快间歇，但不求喘息感。',
+      '结束后做简单小腿与髋屈伸拉伸。',
+    ],
+    tips: [
+      '盯手机低头走易伤颈，可规划熟悉路线。',
+      '晚间散步注意安全与光线。',
+      '与站立办公、爬楼结合，效果更好。',
+    ],
+    videos: [
+      {
+        title: '正确走路与散步要点',
+        bvid: 'BV1iG411w7Zk',
+        embedUrl: bilibiliEmbed('BV1iG411w7Zk'),
+        pageUrl: 'https://www.bilibili.com/video/BV1iG411w7Zk/',
+      },
+    ],
+  },
+];
+
+export const EQUIPMENT_LIST = [
+  ...EQUIPMENT_CORE.map((item) => withKind(item, 'equipment')),
+  ...EQUIPMENT_EXTRA.map((item) => withKind(item, 'equipment')),
+];
+
+export const SPORT_LIST = SPORT_LIST_RAW.map((item) => withKind(item, 'sport'));
+
+/** 健身运动全部条目（器械 + 运动） */
+export const FITNESS_LIST = [...EQUIPMENT_LIST, ...SPORT_LIST];
+
+export const FITNESS_KIND_LABELS = {
+  equipment: '健身器械',
+  sport: '运动',
+};
+
 export function getEquipmentById(id) {
   return EQUIPMENT_LIST.find((item) => item.id === id) || null;
+}
+
+export function getFitnessById(id) {
+  return FITNESS_LIST.find((item) => item.id === id) || null;
+}
+
+export function getFitnessKindLabel(kind) {
+  return FITNESS_KIND_LABELS[kind] || '健身运动';
 }

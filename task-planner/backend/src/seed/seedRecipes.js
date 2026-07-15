@@ -1,9 +1,21 @@
-import { ensureRecipeLibraryUser, getDb } from '../db.js';
+import { ensureRecipeLibraryUser, getDb, syncPlanBreakfastTasksFromRecipes } from '../db.js';
+import { AGA_MUSCLE_RECIPES } from './agaMuscleRecipes.js';
+import { AFTERNOON_TEA_RECIPES } from './afternoonTeaRecipes.js';
 import { BREAKFAST_RECIPES } from './breakfastRecipes.js';
+import { HAIR_CARE_RECIPES } from './hairCareRecipes.js';
 import { MEAL_RECIPES } from './mealRecipes.js';
+import { resolveRecipeSeries } from './recipeSeries.js';
 import { SOY_MILK_RECIPES } from './soyMilkRecipes.js';
+import { ensurePlanAfternoonTea } from './ensurePlanAfternoonTea.js';
+import { ensurePlanLunchDinner } from './ensurePlanLunchDinner.js';
 
-const DEFAULT_RECIPES = [...BREAKFAST_RECIPES, ...MEAL_RECIPES];
+const DEFAULT_RECIPES = [
+  ...BREAKFAST_RECIPES,
+  ...AFTERNOON_TEA_RECIPES,
+  ...MEAL_RECIPES,
+  ...AGA_MUSCLE_RECIPES,
+  ...HAIR_CARE_RECIPES,
+];
 const OTHER_RECIPES = SOY_MILK_RECIPES;
 const OLD_DEFAULT_TITLES = [
   '黑豆浆核桃全麦早餐',
@@ -20,10 +32,10 @@ function seedTemplateRecipes(libraryUserId, recipes, source) {
   const insert = db.prepare(`
     INSERT INTO recipes (
       user_id, title, meal_type, ingredients, steps, notes,
-      prep_minutes, calories, tags, source, template_key
+      prep_minutes, calories, tags, source, template_key, series
     ) VALUES (
       @userId, @title, @mealType, @ingredients, @steps, @notes,
-      @prepMinutes, @calories, @tags, @source, @templateKey
+      @prepMinutes, @calories, @tags, @source, @templateKey, @series
     )
   `);
   const updateSystem = db.prepare(`
@@ -37,6 +49,7 @@ function seedTemplateRecipes(libraryUserId, recipes, source) {
       calories = @calories,
       tags = @tags,
       source = @source,
+      series = @series,
       updated_at = datetime('now')
     WHERE user_id = @userId AND template_key = @templateKey AND source IN ('system', 'other')
   `);
@@ -45,7 +58,13 @@ function seedTemplateRecipes(libraryUserId, recipes, source) {
   );
 
   for (const recipe of recipes) {
-    const payload = { userId: libraryUserId, source, ...recipe };
+    const series = resolveRecipeSeries({ ...recipe, source });
+    const payload = {
+      userId: libraryUserId,
+      source,
+      ...recipe,
+      series,
+    };
     if (exists.get(libraryUserId, recipe.templateKey)) {
       updateSystem.run(payload);
     } else {
@@ -69,7 +88,16 @@ export function seedSharedRecipeLibrary() {
       DELETE FROM recipes
       WHERE user_id = ? AND source = 'custom' AND title IN (${OLD_DEFAULT_TITLES.map(() => '?').join(', ')})
     `).run(libraryUserId, ...OLD_DEFAULT_TITLES);
+    // 回填旧定制食谱空系列
+    db.prepare(`
+      UPDATE recipes SET series = '我的定制'
+      WHERE source = 'custom' AND (series IS NULL OR series = '')
+    `).run();
   })();
+  // 计划早餐 / 午晚餐 / 下午茶与食谱库对齐（需在系统食谱 upsert 之后）
+  syncPlanBreakfastTasksFromRecipes(db);
+  ensurePlanAfternoonTea({ database: db });
+  ensurePlanLunchDinner({ database: db });
   return libraryUserId;
 }
 

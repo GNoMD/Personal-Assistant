@@ -1,3 +1,4 @@
+import './config.js';
 import { createServer } from 'http';
 import { createApp, initDatabase } from './app.js';
 import { closeDb } from './db.js';

@@ -15,6 +15,7 @@ const EMPTY = {
   category: '自定义',
   time: '',
   durationLabel: '',
+  templateKey: null,
 };
 
 const EQUIPMENT_OPTIONS = buildEquipmentOptions();
@@ -37,6 +38,8 @@ export default function TaskForm({ open, mode, task, date, onSave, onClose }) {
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState('');
 
+  const breakfastLocked = source === 'breakfast' || form.category === '早餐';
+
   useEffect(() => {
     if (!open) return;
     if (mode === 'edit' && task) {
@@ -46,9 +49,11 @@ export default function TaskForm({ open, mode, task, date, onSave, onClose }) {
         category: task.category || '自定义',
         time: task.time || '',
         durationLabel: task.durationLabel || '',
+        templateKey: task.templateKey || null,
       });
-      setSource(guessTaskSource(task));
-      setSelectedId('');
+      const nextSource = guessTaskSource(task);
+      setSource(task.category === '早餐' ? 'breakfast' : nextSource);
+      setSelectedId(task.recipeId ? String(task.recipeId) : '');
     } else {
       setForm(EMPTY);
       setSource('manual');
@@ -95,13 +100,23 @@ export default function TaskForm({ open, mode, task, date, onSave, onClose }) {
     return [];
   }, [source, mineRecipes, otherRecipes]);
 
-  // 编辑早餐时：按标题匹配已选食谱；若仍是「营养早餐」则不强选，等用户下拉
+  const visibleSources = useMemo(() => {
+    if (breakfastLocked) return TASK_SOURCES.filter((item) => item.id === 'breakfast');
+    return TASK_SOURCES;
+  }, [breakfastLocked]);
+
+  // 按 recipeId / templateKey / 标题回填下拉选中项
   useEffect(() => {
     if (!open || source === 'manual' || !catalogOptions.length) return;
-    if (selectedId) return;
-    const matched = catalogOptions.find((item) => item.label === form.title);
+    if (selectedId && catalogOptions.some((item) => item.id === selectedId)) return;
+
+    const byTemplate = form.templateKey
+      ? catalogOptions.find((item) => item.templateKey === form.templateKey)
+      : null;
+    const byTitle = catalogOptions.find((item) => item.label === form.title);
+    const matched = byTemplate || byTitle;
     if (matched) setSelectedId(matched.id);
-  }, [open, source, catalogOptions, form.title, selectedId]);
+  }, [open, source, catalogOptions, form.title, form.templateKey, selectedId]);
 
   if (!open) return null;
 
@@ -110,23 +125,48 @@ export default function TaskForm({ open, mode, task, date, onSave, onClose }) {
     if (!optionId) return;
     const option = catalogOptions.find((item) => item.id === optionId);
     if (!option) return;
-    const { title, description, category, durationLabel } = option.payload;
+    const { title, description, category, durationLabel, templateKey } = option.payload;
     setForm((prev) => ({
       title,
       description,
       category,
-      // 编辑时保留原定时间；新增时可用食谱建议时间（目前为空）
       time: prev.time || option.payload.time || '',
       durationLabel: durationLabel || prev.durationLabel || '',
+      templateKey: templateKey || option.templateKey || null,
     }));
   };
 
   const handleSourceChange = (nextSource) => {
+    if (breakfastLocked && nextSource !== 'breakfast') return;
     setSource(nextSource);
     setSelectedId('');
     setError('');
     if (nextSource === 'manual') {
       if (mode !== 'edit') setForm(EMPTY);
+      else setForm((prev) => ({ ...prev, templateKey: null }));
+    }
+    if (nextSource === 'breakfast') {
+      setForm((prev) => ({ ...prev, category: '早餐' }));
+    }
+  };
+
+  const handleCategoryChange = (nextCategory) => {
+    if (nextCategory === '早餐') {
+      setSource('breakfast');
+      setSelectedId('');
+      setForm((prev) => ({
+        ...prev,
+        category: '早餐',
+        title: '',
+        description: '',
+        templateKey: null,
+      }));
+      return;
+    }
+    setForm((prev) => ({ ...prev, category: nextCategory }));
+    if (source === 'breakfast') {
+      setSource('manual');
+      setSelectedId('');
     }
   };
 
@@ -136,7 +176,12 @@ export default function TaskForm({ open, mode, task, date, onSave, onClose }) {
       setError('请填写任务标题');
       return;
     }
-    if (source !== 'manual' && !selectedId) {
+    if (form.category === '早餐' || source === 'breakfast') {
+      if (!selectedId || !form.templateKey) {
+        setError('早餐必须从食谱库选择，不能手填');
+        return;
+      }
+    } else if (source !== 'manual' && !selectedId) {
       setError('请先从下拉列表选择一项内容，或切换到手填');
       return;
     }
@@ -149,6 +194,9 @@ export default function TaskForm({ open, mode, task, date, onSave, onClose }) {
         category: form.category,
         time: form.time.trim(),
         durationLabel: form.durationLabel.trim(),
+        templateKey: form.category === '早餐' || form.templateKey
+          ? (form.templateKey || null)
+          : null,
       });
       onClose();
     } catch (err) {
@@ -160,10 +208,10 @@ export default function TaskForm({ open, mode, task, date, onSave, onClose }) {
 
   const showCatalog = source !== 'manual';
   const catalogLabel = {
-    breakfast: '选择早餐食谱',
+    breakfast: '选择早餐食谱（食谱库）',
     'recipe-mine': '选择食谱库',
     'recipe-other': '选择其他食谱',
-    equipment: '选择健身器械',
+    equipment: '选择健身运动',
     travel: '选择旅行计划',
   }[source] || '选择内容';
 
@@ -176,22 +224,26 @@ export default function TaskForm({ open, mode, task, date, onSave, onClose }) {
         aria-labelledby="task-form-title"
         onClick={(e) => e.stopPropagation()}
       >
+        <div className="modal-sheet-handle" aria-hidden="true" />
         <header className="modal-header">
-          <h3 id="task-form-title">{mode === 'edit' ? '编辑任务' : '新增任务'}</h3>
+          <div>
+            <p className="modal-eyebrow">任务清单</p>
+            <h3 id="task-form-title">{mode === 'edit' ? '编辑任务' : '新增任务'}</h3>
+            <p className="modal-header-sub">
+              日期 <time dateTime={date}>{date}</time>
+              {breakfastLocked ? ' · 早餐已对接食谱库' : ''}
+            </p>
+          </div>
           <button type="button" className="modal-close" onClick={onClose} aria-label="关闭">
             ×
           </button>
         </header>
 
         <form className="task-form" onSubmit={handleSubmit}>
-          <p className="form-date">
-            日期：<time dateTime={date}>{date}</time>
-          </p>
-
           <div className="form-field">
             <span>内容来源</span>
             <div className="task-source-row" role="tablist" aria-label="任务内容来源">
-              {TASK_SOURCES.map((item) => (
+              {visibleSources.map((item) => (
                 <button
                   key={item.id}
                   type="button"
@@ -205,11 +257,11 @@ export default function TaskForm({ open, mode, task, date, onSave, onClose }) {
               ))}
             </div>
             <small>
-              {source === 'manual'
-                ? '手填标题与详情。'
-                : source === 'breakfast'
-                  ? '从早餐食谱下拉选择，自动填入标题与做法要点。'
-                  : '从下拉列表选择后自动填充，仍可再改。'}
+              {breakfastLocked
+                ? '健康计划早餐一律使用食谱库内容，不支持手填菜单。'
+                : source === 'manual'
+                  ? '手填标题与详情（早餐除外）。'
+                  : '从下拉列表选择后自动填充。'}
             </small>
           </div>
 
@@ -225,7 +277,7 @@ export default function TaskForm({ open, mode, task, date, onSave, onClose }) {
                   required={source !== 'manual'}
                 >
                   <option value="">
-                    {catalogOptions.length ? '请选择…' : '暂无可选项'}
+                    {catalogOptions.length ? '请选择食谱…' : '暂无可选项'}
                   </option>
                   {catalogOptions.map((item) => (
                     <option key={item.id} value={item.id}>
@@ -243,8 +295,9 @@ export default function TaskForm({ open, mode, task, date, onSave, onClose }) {
               type="text"
               value={form.title}
               onChange={(e) => setForm((f) => ({ ...f, title: e.target.value }))}
-              placeholder="例如：营养早餐 / 器械训练 / 厦门一日游"
+              placeholder={breakfastLocked ? '请先选择早餐食谱' : '例如：器械训练 / 厦门一日游'}
               maxLength={100}
+              readOnly={breakfastLocked}
               autoFocus={source === 'manual'}
             />
           </label>
@@ -253,7 +306,7 @@ export default function TaskForm({ open, mode, task, date, onSave, onClose }) {
             <span>分类</span>
             <select
               value={form.category}
-              onChange={(e) => setForm((f) => ({ ...f, category: e.target.value }))}
+              onChange={(e) => handleCategoryChange(e.target.value)}
             >
               {TASK_CATEGORIES.map((c) => (
                 <option key={c} value={c}>{c}</option>
@@ -281,6 +334,7 @@ export default function TaskForm({ open, mode, task, date, onSave, onClose }) {
               placeholder="例如：约 25 分钟"
               maxLength={30}
               list="duration-presets"
+              readOnly={breakfastLocked}
             />
             <datalist id="duration-presets">
               <option value="约 2 分钟" />
@@ -297,13 +351,14 @@ export default function TaskForm({ open, mode, task, date, onSave, onClose }) {
           </label>
 
           <label className="form-field">
-            <span>详情说明（可选）</span>
+            <span>详情说明{breakfastLocked ? '（来自食谱库）' : '（可选）'}</span>
             <textarea
               value={form.description}
               onChange={(e) => setForm((f) => ({ ...f, description: e.target.value }))}
-              placeholder="操作要点、注意事项等"
-              rows={4}
-              maxLength={800}
+              placeholder={breakfastLocked ? '选择食谱后自动填入食材与步骤' : '操作要点、注意事项等'}
+              rows={breakfastLocked ? 8 : 4}
+              maxLength={6000}
+              readOnly={breakfastLocked}
             />
           </label>
 

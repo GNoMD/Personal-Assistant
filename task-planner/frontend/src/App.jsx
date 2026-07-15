@@ -8,6 +8,8 @@ import RecipeDetailPage from './pages/RecipeDetailPage';
 import EquipmentPage, { EquipmentDetailPage } from './pages/EquipmentPage';
 import TravelPage, { TravelDetailPage } from './pages/TravelPage';
 import AdminPage from './pages/AdminPage';
+import ProfilePage from './pages/ProfilePage';
+import AssistantHost from './components/AssistantHost';
 
 function AuthLoading() {
   return (
@@ -52,6 +54,10 @@ function PublicOnly({ children }) {
   return children;
 }
 
+function OpenAssistantRedirect() {
+  return <Navigate to="/my-tasks" replace state={{ openAssistant: true }} />;
+}
+
 function FallbackRoute() {
   const { isAuthenticated, loading } = useAuth();
   if (loading) return <AuthLoading />;
@@ -65,6 +71,11 @@ export default function App() {
         <Routes>
           <Route path="/" element={<PublicOnly><EntryPage /></PublicOnly>} />
           <Route path="/my-tasks" element={<ProtectedRoute><MyTasksPage /></ProtectedRoute>} />
+          <Route path="/profile" element={<ProtectedRoute><ProfilePage /></ProtectedRoute>} />
+          <Route
+            path="/assistant"
+            element={<ProtectedRoute><OpenAssistantRedirect /></ProtectedRoute>}
+          />
           <Route path="/recipes" element={<ProtectedRoute><RecipesPage /></ProtectedRoute>} />
           <Route path="/recipes/:id" element={<ProtectedRoute><RecipeDetailPage /></ProtectedRoute>} />
           <Route path="/other-recipes" element={<ProtectedRoute><OtherRecipesPage /></ProtectedRoute>} />
@@ -78,6 +89,7 @@ export default function App() {
           <Route path="/admin" element={<Navigate to="/users" replace />} />
           <Route path="*" element={<FallbackRoute />} />
         </Routes>
+        <AssistantHost />
       </BrowserRouter>
     </AuthProvider>
   );

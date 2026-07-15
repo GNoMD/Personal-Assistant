@@ -7,10 +7,17 @@ import { createServer } from 'http';
 import { createApp, initDatabase } from '../src/app.js';
 import { closeDb } from '../src/db.js';
 import { initSocket } from '../src/socket.js';
+import { AGA_MUSCLE_RECIPES } from '../src/seed/agaMuscleRecipes.js';
+import { AFTERNOON_TEA_RECIPES } from '../src/seed/afternoonTeaRecipes.js';
 import { BREAKFAST_RECIPES } from '../src/seed/breakfastRecipes.js';
+import { HAIR_CARE_RECIPES } from '../src/seed/hairCareRecipes.js';
 import { MEAL_RECIPES } from '../src/seed/mealRecipes.js';
 
-const SYSTEM_RECIPE_COUNT = BREAKFAST_RECIPES.length + MEAL_RECIPES.length;
+const SYSTEM_RECIPE_COUNT = BREAKFAST_RECIPES.length
+  + AFTERNOON_TEA_RECIPES.length
+  + MEAL_RECIPES.length
+  + AGA_MUSCLE_RECIPES.length
+  + HAIR_CARE_RECIPES.length;
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const TEST_DB = path.join(__dirname, '../data/test-recipes.db');

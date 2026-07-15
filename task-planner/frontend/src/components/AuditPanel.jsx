@@ -26,9 +26,14 @@ export default function AuditPanel({ open, onClose }) {
   return (
     <div className="modal-overlay" onClick={onClose} role="presentation">
       <div className="modal audit-modal" onClick={(e) => e.stopPropagation()} role="dialog" aria-labelledby="audit-title">
+        <div className="modal-sheet-handle" aria-hidden="true" />
         <header className="modal-header">
-          <h3 id="audit-title">操作日志 · 版本追溯</h3>
-          <button type="button" className="modal-close" onClick={onClose}>×</button>
+          <div>
+            <p className="modal-eyebrow">追溯</p>
+            <h3 id="audit-title">操作日志</h3>
+            <p className="modal-header-sub">最近任务变更，便于核对完成与修改记录</p>
+          </div>
+          <button type="button" className="modal-close" onClick={onClose} aria-label="关闭">×</button>
         </header>
         <div className="audit-body">
           {loading && <p className="loading">加载中…</p>}

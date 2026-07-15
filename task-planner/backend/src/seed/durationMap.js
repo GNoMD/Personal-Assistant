@@ -35,6 +35,12 @@ export function inferDuration(title, category, planDay = 1) {
   if (category === '早餐') {
     return { durationLabel: '约 25 分钟', durationMinutes: 25 };
   }
+  if (category === '下午茶' || t.includes('下午茶')) {
+    return { durationLabel: '约 10 分钟', durationMinutes: 10 };
+  }
+  if (category === '午餐' || category === '晚餐') {
+    return { durationLabel: '约 30 分钟', durationMinutes: 30 };
+  }
   if (category === '运动') {
     const m = EXERCISE_MINUTES[planDay] || 45;
     return { durationLabel: `约 ${m} 分钟`, durationMinutes: m };

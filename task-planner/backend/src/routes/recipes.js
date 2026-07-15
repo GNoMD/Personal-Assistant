@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { ensureRecipeLibraryUser, getDb } from '../db.js';
 import { requireAuth } from '../middleware/auth.js';
+import { MAIN_LIBRARY_SERIES } from '../seed/recipeSeries.js';
 import { seedSharedRecipeLibrary } from '../seed/seedRecipes.js';
 
 const router = Router();
@@ -17,6 +18,7 @@ function rowToRecipe(row) {
     prepMinutes: row.prep_minutes,
     calories: row.calories,
     tags: row.tags,
+    series: row.series || '',
     isFavorite: Boolean(row.is_favorite),
     source: row.source,
     templateKey: row.template_key,
@@ -58,9 +60,13 @@ function validate(body) {
   return null;
 }
 
+router.get('/meta/series', (_req, res) => {
+  res.json({ series: MAIN_LIBRARY_SERIES });
+});
+
 router.get('/', (req, res) => {
   const libraryUserId = seedSharedRecipeLibrary();
-  const { mealType, q, favorite, source } = req.query;
+  const { mealType, q, favorite, source, series } = req.query;
   const clauses = ['(r.user_id = @libraryUserId OR (r.user_id = @userId AND r.source = \'custom\'))'];
   const params = { userId: req.user.id, libraryUserId };
 
@@ -74,8 +80,12 @@ router.get('/', (req, res) => {
     clauses.push('r.meal_type = @mealType');
     params.mealType = mealType;
   }
+  if (series && series !== '全部') {
+    clauses.push('r.series = @series');
+    params.series = series;
+  }
   if (q?.trim()) {
-    clauses.push('(r.title LIKE @q OR r.ingredients LIKE @q OR r.tags LIKE @q)');
+    clauses.push('(r.title LIKE @q OR r.ingredients LIKE @q OR r.tags LIKE @q OR r.series LIKE @q)');
     params.q = `%${q.trim()}%`;
   }
   if (favorite === 'true') {
@@ -128,15 +138,17 @@ router.post('/', (req, res) => {
   const {
     title, mealType = '早餐', ingredients, steps, notes = '',
     prepMinutes = null, calories = null, tags = '', isFavorite = false,
+    series = '我的定制',
   } = req.body;
   const result = getDb().prepare(`
     INSERT INTO recipes (
       user_id, title, meal_type, ingredients, steps, notes,
-      prep_minutes, calories, tags, is_favorite, source
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'custom')
+      prep_minutes, calories, tags, is_favorite, source, series
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'custom', ?)
   `).run(
     req.user.id, title.trim(), mealType, ingredients.trim(), steps.trim(), notes.trim(),
-    prepMinutes || null, calories || null, tags.trim(), isFavorite ? 1 : 0
+    prepMinutes || null, calories || null, tags.trim(), isFavorite ? 1 : 0,
+    (series || '我的定制').trim()
   );
   res.status(201).json(rowToRecipe(getReadableRecipe(result.lastInsertRowid, req.user.id)));
 });
@@ -177,6 +189,7 @@ router.patch('/:id', (req, res) => {
     prepMinutes: req.body.prepMinutes ?? existing.prep_minutes,
     calories: req.body.calories ?? existing.calories,
     tags: req.body.tags ?? existing.tags,
+    series: req.body.series ?? existing.series ?? '我的定制',
     isFavorite: req.body.isFavorite ?? Boolean(existing.is_favorite),
   };
   const error = validate(next);
@@ -186,7 +199,8 @@ router.patch('/:id', (req, res) => {
     UPDATE recipes SET
       title = @title, meal_type = @mealType, ingredients = @ingredients,
       steps = @steps, notes = @notes, prep_minutes = @prepMinutes,
-      calories = @calories, tags = @tags, is_favorite = @isFavorite,
+      calories = @calories, tags = @tags, series = @series,
+      is_favorite = @isFavorite,
       updated_at = datetime('now')
     WHERE id = @id AND user_id = @userId
   `).run({
@@ -196,6 +210,7 @@ router.patch('/:id', (req, res) => {
     steps: next.steps.trim(),
     notes: next.notes.trim(),
     tags: next.tags.trim(),
+    series: (next.series || '我的定制').trim(),
     prepMinutes: next.prepMinutes || null,
     calories: next.calories || null,
     isFavorite: next.isFavorite ? 1 : 0,

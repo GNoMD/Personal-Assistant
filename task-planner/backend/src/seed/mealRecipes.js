@@ -17,13 +17,15 @@ function dishes(lines) {
   return lines.join('\n');
 }
 
-function mealNotes({ focus, protein, calories, tip }) {
+function mealNotes({ focus, protein, calories, tip, nutrients, effects }) {
   return [
-    focus,
-    `优质蛋白约 ${protein}；参考热量约 ${calories} 千卡/餐。`,
-    tip,
+    `功效：${focus}`,
+    `补什么：${nutrients || `优质蛋白约 ${protein}，以及蔬果维生素、矿物质与膳食纤维`}`,
+    `作用：${effects || '支持日常能量与饱腹感，兼顾尿酸友好与毛囊营养支持，减少高糖零食依赖。'}`,
+    `营养：优质蛋白约 ${protein}；参考热量约 ${calories} 千卡/餐。`,
+    tip ? `贴士：${tip}` : null,
     '说明：有利于尿酸管理与养发营养支持，不等于治疗高尿酸或脱发；特殊病情请遵医嘱。',
-  ].join('');
+  ].filter(Boolean).join('\n');
 }
 
 function recipe(def) {

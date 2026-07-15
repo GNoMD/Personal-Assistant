@@ -5,8 +5,11 @@ import RecipeForm from '../components/RecipeForm';
 import { api } from '../api/client';
 import { useTheme } from '../hooks/useTheme';
 import { resolveIngredientVisuals } from '../utils/ingredientImages';
+import { resolveIngredientStorage } from '../utils/ingredientStorage';
 import { parseDishLines, resolveMealCalories } from '../utils/mealCalories';
+import { seriesLabel } from '../data/recipeCategories';
 import { resolveRecipeCover } from '../utils/recipeCoverImages';
+import { benefitsFromRecipe } from '../utils/recipeBenefits';
 
 function splitLines(value) {
   return (value || '').split('\n').map((line) => line.trim()).filter(Boolean);
@@ -36,6 +39,74 @@ function IngredientThumb({ line }) {
   );
 }
 
+function IngredientStorageModal({ line, onClose }) {
+  const sections = useMemo(() => resolveIngredientStorage(line), [line]);
+  if (!line) return null;
+
+  return (
+    <div className="modal-overlay" role="presentation" onClick={onClose}>
+      <div
+        className="modal-card ingredient-storage-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="ingredient-storage-title"
+        onClick={(event) => event.stopPropagation()}
+      >
+        <header className="modal-header">
+          <div>
+            <p className="modal-eyebrow">食材保存</p>
+            <h2 id="ingredient-storage-title">如何保存这些原料</h2>
+            <p className="modal-header-sub">来自清单：{line}</p>
+          </div>
+          <button type="button" className="btn btn-ghost" onClick={onClose}>关闭</button>
+        </header>
+        <div className="ingredient-storage-body">
+          {sections.map((section) => (
+            <article key={section.name} className="ingredient-storage-card">
+              <div className="ingredient-storage-card-head">
+                <img
+                  src={section.image}
+                  alt=""
+                  className="ingredient-storage-thumb"
+                  onError={(event) => {
+                    event.currentTarget.src = '/ingredients/fallback.png';
+                  }}
+                />
+                <div>
+                  <h3>{section.name}</h3>
+                  <p>{section.place} · {section.temperature}</p>
+                </div>
+              </div>
+              <dl className="ingredient-storage-meta">
+                <div>
+                  <dt>存放位置</dt>
+                  <dd>{section.place}</dd>
+                </div>
+                <div>
+                  <dt>温度建议</dt>
+                  <dd>{section.temperature}</dd>
+                </div>
+                <div>
+                  <dt>参考时效</dt>
+                  <dd>{section.shelfLife}</dd>
+                </div>
+              </dl>
+              <ul className="ingredient-storage-tips">
+                {(section.tips || []).map((tip) => (
+                  <li key={tip}>{tip}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
+          <p className="ingredient-storage-disclaimer">
+            以上为家庭备餐参考，请结合包装说明与食材新鲜度判断；出现霉变、胀袋或异味请丢弃。
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function RecipeDetailPage() {
   const { id } = useParams();
   const { pathname, state } = useLocation();
@@ -45,6 +116,7 @@ export default function RecipeDetailPage() {
   const [editing, setEditing] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [storageLine, setStorageLine] = useState('');
 
   const fromOther = pathname.startsWith('/other-recipes');
   const dateContext = fromOther && state?.dateLabel
@@ -85,6 +157,10 @@ export default function RecipeDetailPage() {
     [recipe]
   );
   const hasDishCalories = dishes.some((dish) => dish.calories != null);
+  const benefits = useMemo(
+    () => (recipe ? benefitsFromRecipe(recipe) : null),
+    [recipe]
+  );
 
   const handleSave = async (payload) => {
     const updated = await api.updateRecipe(id, payload);
@@ -144,10 +220,17 @@ export default function RecipeDetailPage() {
               </div>
               <div className="recipe-detail-heading">
                 <p className="recipes-kicker">
-                  {recipe.mealType} · {isOther ? '其他食谱' : '专属食谱'}
+                  {recipe.mealType}
+                  {recipe.series ? ` · ${seriesLabel(recipe.series)}` : ''}
+                  {` · ${isOther ? '其他食谱' : (recipe.shared ? '系统食谱' : '私有食谱')}`}
                 </p>
                 <h2>{recipe.title}</h2>
                 <div className="recipe-tags">
+                  {recipe.series && (
+                    <span className="recipe-series-tag" data-series={recipe.series}>
+                      {seriesLabel(recipe.series)}
+                    </span>
+                  )}
                   {splitTags(recipe.tags).map((tag) => <span key={tag}>{tag}</span>)}
                 </div>
               </div>
@@ -174,6 +257,44 @@ export default function RecipeDetailPage() {
               <div><span aria-hidden="true">🧺</span><strong>{dishes.length}</strong><small>{hasDishCalories ? '道菜' : '种食材'}</small></div>
             </section>
 
+            {benefits?.hasCore && (
+              <section className="recipe-benefits" aria-label="功效与营养作用">
+                <div className="recipe-section-title">
+                  <span aria-hidden="true">🌿</span>
+                  <div>
+                    <p>吃这道菜能带来什么</p>
+                    <h3>功效 · 补什么 · 作用</h3>
+                  </div>
+                </div>
+                <div className="recipe-benefits-grid">
+                  {benefits.efficacy && (
+                    <article className="recipe-benefit-card" data-kind="efficacy">
+                      <p className="recipe-benefit-label">功效</p>
+                      <h4>这餐侧重什么</h4>
+                      <p>{benefits.efficacy}</p>
+                    </article>
+                  )}
+                  {benefits.nutrients && (
+                    <article className="recipe-benefit-card" data-kind="nutrients">
+                      <p className="recipe-benefit-label">补什么</p>
+                      <h4>关键营养素 / 食材方向</h4>
+                      <p>{benefits.nutrients}</p>
+                    </article>
+                  )}
+                  {benefits.effects && (
+                    <article className="recipe-benefit-card" data-kind="effects">
+                      <p className="recipe-benefit-label">作用</p>
+                      <h4>对身体与计划的帮助</h4>
+                      <p>{benefits.effects}</p>
+                    </article>
+                  )}
+                </div>
+                {benefits.nutrition && (
+                  <p className="recipe-benefits-nutrition">{benefits.nutrition}</p>
+                )}
+              </section>
+            )}
+
             <div className="recipe-detail-grid">
               <section className="recipe-detail-panel ingredients-panel">
                 <div className="recipe-section-title">
@@ -184,24 +305,34 @@ export default function RecipeDetailPage() {
                   </div>
                 </div>
                 <ul className="ingredient-list">
-                  {dishes.map((dish, index) => (
-                    <li key={`${dish.raw}-${index}`}>
-                      <IngredientThumb line={dish.name || dish.raw} />
-                      <div className="ingredient-text-block">
-                        {dish.isDish && dish.category ? (
-                          <>
-                            <span className="ingredient-category">{dish.category}</span>
-                            <span className="ingredient-text">{dish.name}</span>
-                          </>
-                        ) : (
-                          <span className="ingredient-text">{dish.display}</span>
+                  {dishes.map((dish, index) => {
+                    const line = dish.name || dish.display || dish.raw;
+                    return (
+                      <li key={`${dish.raw}-${index}`}>
+                        <IngredientThumb line={line} />
+                        <div className="ingredient-text-block">
+                          {dish.isDish && dish.category ? (
+                            <>
+                              <span className="ingredient-category">{dish.category}</span>
+                              <span className="ingredient-text">{dish.name}</span>
+                            </>
+                          ) : (
+                            <span className="ingredient-text">{dish.display}</span>
+                          )}
+                        </div>
+                        {dish.calories != null && (
+                          <span className="ingredient-cal">约 {dish.calories} 千卡</span>
                         )}
-                      </div>
-                      {dish.calories != null && (
-                        <span className="ingredient-cal">约 {dish.calories} 千卡</span>
-                      )}
-                    </li>
-                  ))}
+                        <button
+                          type="button"
+                          className="btn btn-ghost ingredient-storage-btn"
+                          onClick={() => setStorageLine(line)}
+                        >
+                          如何保存
+                        </button>
+                      </li>
+                    );
+                  })}
                 </ul>
                 {hasDishCalories && (
                   <div className="meal-calorie-total">
@@ -227,12 +358,15 @@ export default function RecipeDetailPage() {
               </section>
             </div>
 
-            {recipe.notes && (
+            {(benefits?.tip || benefits?.disclaimer || benefits?.notice || benefits?.extra?.length > 0) && (
               <section className="recipe-note">
                 <span aria-hidden="true">💡</span>
                 <div>
-                  <h3>{isOther ? '功效与饮用须知' : '营养小贴士'}</h3>
-                  {splitLines(recipe.notes).map((line, index) => (
+                  <h3>{isOther ? '饮用须知与补充说明' : '营养小贴士与说明'}</h3>
+                  {benefits.tip && <p><strong>贴士：</strong>{benefits.tip}</p>}
+                  {benefits.disclaimer && <p><strong>说明：</strong>{benefits.disclaimer}</p>}
+                  {benefits.notice && <p><strong>须知：</strong>{benefits.notice}</p>}
+                  {(benefits.extra || []).map((line, index) => (
                     <p key={`${index}-${line.slice(0, 12)}`}>{line}</p>
                   ))}
                 </div>
@@ -248,6 +382,13 @@ export default function RecipeDetailPage() {
           recipe={recipe}
           onSave={handleSave}
           onClose={() => setEditing(false)}
+        />
+      )}
+
+      {storageLine && (
+        <IngredientStorageModal
+          line={storageLine}
+          onClose={() => setStorageLine('')}
         />
       )}
     </AppShell>

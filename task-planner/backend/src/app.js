@@ -9,9 +9,17 @@ import authRouter from './routes/auth.js';
 import teamsRouter from './routes/teams.js';
 import auditRouter from './routes/audit.js';
 import recipesRouter from './routes/recipes.js';
+import fitnessRouter from './routes/fitness.js';
+import assistantRouter from './routes/assistant.js';
 import adminRouter from './routes/admin.js';
+import profileRouter from './routes/profile.js';
 import { seedSharedRecipeLibrary } from './seed/seedRecipes.js';
 import { ensureDefaultAdminUser } from './seed/ensureDefaultAdmin.js';
+import { ensureGnomdMedicationSchedule } from './seed/ensureGnomdMedicationSchedule.js';
+import { ensureGnomdProfile } from './seed/ensureGnomdProfile.js';
+import { ensurePlanAfternoonTea } from './seed/ensurePlanAfternoonTea.js';
+import { ensurePlanLunchDinner } from './seed/ensurePlanLunchDinner.js';
+import { stripHairCarePlanFromOtherUsers } from './seed/stripHairCareFromOtherUsers.js';
 import { seedUserTasks } from './seed/seed.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -20,7 +28,7 @@ const FRONTEND_DIST = path.join(__dirname, '../../frontend/dist');
 export function createApp() {
   const app = express();
   app.use(cors());
-  app.use(express.json());
+  app.use(express.json({ limit: '1mb' }));
 
   app.get('/api/health', (_req, res) => {
     const db = getDb();
@@ -34,6 +42,9 @@ export function createApp() {
   app.use('/api/audit', auditRouter);
   app.use('/api/tasks', tasksRouter);
   app.use('/api/recipes', recipesRouter);
+  app.use('/api/fitness', fitnessRouter);
+  app.use('/api/assistant', assistantRouter);
+  app.use('/api/profile', profileRouter);
   app.use('/api/admin', adminRouter);
 
   if (fs.existsSync(FRONTEND_DIST)) {
@@ -55,6 +66,11 @@ export function initDatabase() {
   getDb();
   seedSharedRecipeLibrary();
   const admin = ensureDefaultAdminUser();
-  seedUserTasks(admin.userId);
+  seedUserTasks(admin.userId, { includeHairCare: true });
+  ensureGnomdMedicationSchedule(admin.userId);
+  ensureGnomdProfile();
+  ensurePlanAfternoonTea();
+  ensurePlanLunchDinner();
+  stripHairCarePlanFromOtherUsers();
   return { initialized: true };
 }

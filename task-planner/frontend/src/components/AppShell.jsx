@@ -2,6 +2,7 @@ import AppNav from './AppNav';
 
 /**
  * Shared page chrome so tab switches keep the nav bar and header controls aligned.
+ * Assistant fab/modal is mounted globally via AssistantHost (not here).
  */
 export default function AppShell({
   kicker = '',

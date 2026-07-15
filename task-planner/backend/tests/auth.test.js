@@ -74,6 +74,36 @@ test('register and login flow', async () => {
   assert.equal(me.body.user.username, 'alice');
 });
 
+test('user can change own password with current password', async () => {
+  const reg = await registerUser(`pwd_${Date.now()}`);
+  const bad = await fetchJson('/api/auth/password', {
+    method: 'PATCH',
+    headers: { Authorization: `Bearer ${reg.token}` },
+    body: JSON.stringify({ currentPassword: 'wrong', newPassword: 'pass9999' }),
+  });
+  assert.equal(bad.status, 400);
+
+  const ok = await fetchJson('/api/auth/password', {
+    method: 'PATCH',
+    headers: { Authorization: `Bearer ${reg.token}` },
+    body: JSON.stringify({ currentPassword: 'pass123', newPassword: 'pass9999' }),
+  });
+  assert.equal(ok.status, 200);
+  assert.equal(ok.body.updated, true);
+
+  const oldLogin = await fetchJson('/api/auth/login', {
+    method: 'POST',
+    body: JSON.stringify({ username: reg.user.username, password: 'pass123' }),
+  });
+  assert.equal(oldLogin.status, 401);
+
+  const newLogin = await fetchJson('/api/auth/login', {
+    method: 'POST',
+    body: JSON.stringify({ username: reg.user.username, password: 'pass9999' }),
+  });
+  assert.equal(newLogin.status, 200);
+});
+
 test('tasks require authentication', async () => {
   const { status } = await fetchJson('/api/tasks?date=2026-07-01');
   assert.equal(status, 401);

@@ -10,6 +10,20 @@
  * 份量备注采用常见家用估算，便于无厨房秤时准备；有条件仍建议称重。
  * 乳糖说明：默认选用“无乳糖”乳制品；仍不适者可换鸡蛋/鸡胸肉，或少量无糖植物奶（注意豆类总量）。
  */
+
+function breakfastNotes({ efficacy, nutrients, effects, protein, calories, tip }) {
+  return [
+    `功效：${efficacy}`,
+    `补什么：${nutrients}`,
+    `作用：${effects}`,
+    protein
+      ? `营养：优质蛋白约 ${protein}；参考热量约 ${calories} 千卡/份。`
+      : `营养：参考热量约 ${calories} 千卡/份。`,
+    tip ? `贴士：${tip}` : null,
+    '说明：有利于尿酸管理与养发营养支持，不等于治疗高尿酸或脱发；特殊病情请遵医嘱。',
+  ].filter(Boolean).join('\n');
+}
+
 export const BREAKFAST_RECIPES = [
   {
     templateKey: 'low-purine-d1',
@@ -36,7 +50,14 @@ export const BREAKFAST_RECIPES = [
       '装盘：无乳糖酸奶碗 + 水煮蛋 2 个 + 吐司 1 片 + 蓝莓；谷物饮单独杯装，温饮，不冰镇。',
       '建议搭配温开水 200～300mL，不另加糖、蜂蜜或果汁。',
     ].join('\n'),
-    notes: '无豆日，默认乳糖友好。约含优质蛋白 25～30g。参考热量：约 520 千卡/份。选包装标注“无乳糖”的无糖酸奶；若仍腹胀可改水煮蛋再加 1 个或加熟鸡胸肉 40g。',
+    notes: breakfastNotes({
+      efficacy: '无豆日活力开场，乳糖友好，全谷物 + 优质蛋白稳住上午状态',
+      nutrients: '优质蛋白 25～30g、复合碳水、蓝莓多酚与维C、膳食纤维',
+      effects: '减少豆类嘌呤负担，支持毛囊营养与上午饱腹感，降低对含糖饮料的依赖',
+      protein: '25～30g',
+      calories: 520,
+      tip: '选包装标注「无乳糖」的无糖酸奶；若仍腹胀可改水煮蛋再加 1 个或加熟鸡胸肉 40g。',
+    }),
     prepMinutes: 25,
     calories: 520,
     tags: '无豆,高蛋白,全谷物,乳糖友好,尿酸友好',
@@ -66,7 +87,13 @@ export const BREAKFAST_RECIPES = [
       '装盘：谷物饮温杯 + 水煮蛋 2 个 + 苹果 + 核桃仁；无乳糖低脂奶单独温热饮用或与谷物饮错开。',
       '如有蚕豆病、扁豆过敏或胃肠不适，跳过白扁豆，改用 D1/D3 无豆方案。',
     ].join('\n'),
-    notes: '少豆日，豆类干重约 15g。参考热量：约 540 千卡/份。默认用无乳糖低脂奶；买不到时可换无乳糖无糖酸奶 200g。白扁豆必须彻底煮熟。',
+    notes: breakfastNotes({
+      efficacy: '少豆健脾早餐，白扁豆与山药温和护胃',
+      nutrients: '优质蛋白、山药多糖、全谷物纤维；豆类干重约 15g',
+      effects: '兼顾尿酸友好与早餐能量，避免空腹刺激与豆类过量',
+      calories: 540,
+      tip: '默认用无乳糖低脂奶；买不到时可换无乳糖无糖酸奶 200g。白扁豆必须彻底煮熟。',
+    }),
     prepMinutes: 25,
     calories: 540,
     tags: '少豆,鸡蛋,无乳糖奶,乳糖友好,健身',
@@ -94,7 +121,14 @@ export const BREAKFAST_RECIPES = [
       '装盘：酸奶燕麦碗 + 水煮蛋 1 个；另备温开水 300mL。',
       '不添加蜂蜜、果酱、果汁或炼乳，避免多余游离糖。',
     ].join('\n'),
-    notes: '无豆快手早餐，默认乳糖友好。蛋白质约 25g。参考热量：约 500 千卡/份。普通酸奶乳糖仍较高，请认准“无乳糖”标签。',
+    notes: breakfastNotes({
+      efficacy: '无豆快手、乳糖友好，莓果碗补充维C与多酚',
+      nutrients: '优质蛋白约 25g、燕麦纤维、莓果维C与花青素',
+      effects: '适合赶时间的工作日；帮助铁吸收与晨间抗氧化',
+      protein: '25g',
+      calories: 500,
+      tip: '普通酸奶乳糖仍较高，请认准「无乳糖」标签。',
+    }),
     prepMinutes: 10,
     calories: 500,
     tags: '无豆,快手,高蛋白,莓果,乳糖友好',
@@ -125,7 +159,13 @@ export const BREAKFAST_RECIPES = [
       '橙子洗净，整颗食用，不要榨汁。',
       '装盘：四神燕麦饮 + 鸡肉全麦三明治 + 橙子；建议再喝温水 200mL。',
     ].join('\n'),
-    notes: '无豆日，天然低乳糖（主蛋白来自鸡胸肉与鸡蛋以外的禽肉）。参考热量：约 510 千卡/份。肉类计入全天总量，不建议再叠加大量红肉或高嘌呤海鲜。',
+    notes: breakfastNotes({
+      efficacy: '无豆禽肉蛋白早餐，天然低乳糖',
+      nutrients: '禽肉优质蛋白、燕麦复合碳水、四神谷物微量营养',
+      effects: '补足全天蛋白落点，少乳糖负担；肉类纳入总量勿再叠高嘌呤海鲜',
+      calories: 510,
+      tip: '肉类计入全天总量，不建议再叠加大量红肉或高嘌呤海鲜。',
+    }),
     prepMinutes: 20,
     calories: 510,
     tags: '无豆,鸡胸肉,全麦,维生素C,乳糖友好',
@@ -153,7 +193,13 @@ export const BREAKFAST_RECIPES = [
       '装盘：小份豆浆温杯 + 紫薯块 + 水煮蛋 2 个 + 无乳糖酸奶 + 猕猴桃。',
       '全周仅安排这一次小份黄豆浆；若饮后尿酸或症状反复，改用 D1/D3 无豆方案。',
     ].join('\n'),
-    notes: '全周仅一次小份黄豆浆，豆类干重 20g；酸奶已换成无乳糖。参考热量：约 560 千卡/份。痛风急性期请停豆并遵医嘱。',
+    notes: breakfastNotes({
+      efficacy: '训练日小份豆浆 + 紫薯碳水，兼顾启动与蛋白',
+      nutrients: '植物蛋白（豆类干重约 20g）、优质乳蛋白、紫薯复合碳水',
+      effects: '全周仅一次小份黄豆，控制嘌呤同时为训练供能',
+      calories: 560,
+      tip: '痛风急性期请停豆并遵医嘱；酸奶请用无乳糖款。',
+    }),
     prepMinutes: 25,
     calories: 560,
     tags: '小份豆浆,训练日,高蛋白,紫薯,乳糖友好',
@@ -183,7 +229,13 @@ export const BREAKFAST_RECIPES = [
       '梨洗净，切块或整颗食用。',
       '装盘：谷物饮 + 无乳糖奶 + 水煮蛋 2 个 + 馒头 + 梨；恢复日避免油炸和含糖饮料。',
     ].join('\n'),
-    notes: '少豆恢复日，豆类干重约 12g，默认乳糖友好。参考热量：约 570 千卡/份。痛风急性发作期可改为 D7 无豆方案，并遵医嘱处理。',
+    notes: breakfastNotes({
+      efficacy: '少豆恢复早餐，绿豆百合清润不腻',
+      nutrients: '少量豆类蛋白（约 12g 干重）、无乳糖奶蛋白、全谷物与百合',
+      effects: '主动恢复日降低胃肠负担，稳住血糖与尿酸关照',
+      calories: 570,
+      tip: '痛风急性发作期可改为 D7 无豆方案，并遵医嘱处理。',
+    }),
     prepMinutes: 25,
     calories: 570,
     tags: '少豆,恢复日,无乳糖奶,全麦,乳糖友好',
@@ -213,7 +265,13 @@ export const BREAKFAST_RECIPES = [
       '装盘：谷物饮 + 荞麦面一小碗 + 水煮蛋 2 个 + 无乳糖酸奶 + 水果。',
       '水果作为均衡饮食组成，不将其视为降尿酸药物。',
     ].join('\n'),
-    notes: '无豆日，默认乳糖友好。参考热量：约 580 千卡/份。提供优质蛋白、复合碳水和膳食纤维；适合周末稍宽松安排。',
+    notes: breakfastNotes({
+      efficacy: '周末无豆山药莲子荞麦早餐，清淡饱腹',
+      nutrients: '优质蛋白、复合碳水、膳食纤维与山药/莲子健脾食材',
+      effects: '给肝肾与嘌呤代谢一个无豆缓冲日，适合稍宽松周末节奏',
+      calories: 580,
+      tip: '默认乳糖友好；可随运动量微调主食份量。',
+    }),
     prepMinutes: 28,
     calories: 580,
     tags: '无豆,荞麦,高蛋白,周末,乳糖友好',
@@ -240,7 +298,14 @@ export const BREAKFAST_RECIPES = [
       '装盘：隔夜燕麦杯 + 水煮蛋 2 个；另备温开水 200～300mL。',
       '不添加蜂蜜、果酱或坚果糖浆。',
     ].join('\n'),
-    notes: '推荐备选 1：无豆、乳糖友好、快手，蛋白质约 25～30g。参考热量：约 520 千卡/份。适合赶时间的工作日。',
+    notes: breakfastNotes({
+      efficacy: '备选快手无豆早餐，适合赶时间',
+      nutrients: '优质蛋白 25～30g、全谷物与蔬果微营养',
+      effects: '乳糖友好快速开餐，减少外卖高油高糖早餐',
+      protein: '25～30g',
+      calories: 520,
+      tip: '推荐备选 1：适合工作日赶时间。',
+    }),
     prepMinutes: 8,
     calories: 520,
     tags: '推荐,无豆,隔夜燕麦,快手,乳糖友好',
@@ -268,7 +333,13 @@ export const BREAKFAST_RECIPES = [
       '橙子洗净，整颗食用，不要榨汁。',
       '装盘：鸡肉全麦卷 + 橙子；可再喝温水或无乳糖低脂奶 200mL。避免番茄酱、甜沙拉酱等高糖酱料。',
     ].join('\n'),
-    notes: '推荐备选 2：无豆高蛋白、乳糖友好，适合力量训练日。参考热量：约 490 千卡/份。避免高盐加工肉和含糖酱料。',
+    notes: breakfastNotes({
+      efficacy: '备选高蛋白训练日早餐',
+      nutrients: '高生物价蛋白、复合碳水；无豆、乳糖友好',
+      effects: '支撑力量训练前的氨基酸与能量需求',
+      calories: 490,
+      tip: '避免高盐加工肉和含糖酱料。',
+    }),
     prepMinutes: 15,
     calories: 490,
     tags: '推荐,无豆,鸡胸肉,力量训练,乳糖友好',
@@ -295,13 +366,20 @@ export const BREAKFAST_RECIPES = [
       '土豆不要油炸或浇糖浆；酸奶不添加蜂蜜或果酱。',
       '可另备温开水 300mL，作为训练日无豆高蛋白早餐。',
     ].join('\n'),
-    notes: '推荐备选 3：无豆、无乳糖、无精制糖。参考热量：约 550 千卡/份。杏仁 10g 约等于 8～10 粒。若对乳蛋白过敏（非乳糖不耐受），请改用水煮蛋 + 鸡胸肉，勿用任何酸奶。',
+    notes: breakfastNotes({
+      efficacy: '备选无豆无乳糖无精制糖早餐',
+      nutrients: '优质蛋白、全谷物、限量杏仁健康脂肪',
+      effects: '严格规避乳糖与添加糖，稳血糖、减炎症负荷',
+      calories: 550,
+      tip: '杏仁 10g 约 8～10 粒。若对乳蛋白过敏，请改用水煮蛋 + 鸡胸肉，勿用任何酸奶。',
+    }),
     prepMinutes: 25,
     calories: 550,
     tags: '推荐,无豆,健身,低添加糖,乳糖友好',
   },
 ];
 
+/** @deprecated 健康计划已改为关联食谱库；仅兼容旧迁移探测 */
 export const BREAKFAST_DESCRIPTIONS = Object.fromEntries(
   BREAKFAST_RECIPES
     .filter((recipe) => recipe.planDay)
@@ -310,3 +388,63 @@ export const BREAKFAST_DESCRIPTIONS = Object.fromEntries(
       `${recipe.title}｜${recipe.ingredients.split('\n').slice(0, 4).join(' + ')} 等（${recipe.notes.split('。')[0]}）`,
     ])
 );
+
+/** 7 日健康计划用早餐食谱（日常均衡 · low-purine-dN） */
+export function getPlanBreakfastRecipe(planDay) {
+  return BREAKFAST_RECIPES.find((recipe) => recipe.planDay === Number(planDay)) || null;
+}
+
+/**
+ * 将食谱库早餐转为任务字段（标题/说明/耗时/templateKey）
+ * @param {object} recipe seed 或 API 食谱对象
+ * @param {{ recipeId?: number|string|null }} [opts]
+ */
+export function buildBreakfastTaskContent(recipe, opts = {}) {
+  if (!recipe) {
+    throw new Error('buildBreakfastTaskContent: recipe required');
+  }
+  const templateKey = recipe.templateKey || recipe.template_key || '';
+  const ingredients = String(recipe.ingredients || '')
+    .split('\n')
+    .map((line) => line.trim())
+    .filter(Boolean);
+  const steps = String(recipe.steps || '')
+    .split('\n')
+    .map((line) => line.trim())
+    .filter(Boolean);
+  const notes = String(recipe.notes || '').trim();
+  const calories = recipe.calories;
+  const prepMinutes = recipe.prepMinutes ?? recipe.prep_minutes ?? null;
+
+  const parts = [];
+  parts.push('来源：食谱库 · 健康计划关联');
+  if (recipe.mealType || recipe.meal_type) {
+    parts.push(`餐次：${recipe.mealType || recipe.meal_type}`);
+  }
+  if (calories != null && calories !== '') parts.push(`约 ${calories} 千卡`);
+  if (ingredients.length) {
+    parts.push(`食材：\n${ingredients.map((line) => `· ${line}`).join('\n')}`);
+  }
+  if (steps.length) {
+    parts.push(`步骤：\n${steps.map((line, i) => `${i + 1}. ${line}`).join('\n')}`);
+  }
+  if (notes) parts.push(`说明：${notes}`);
+  if (opts.recipeId) parts.push(`详情页：/recipes/${opts.recipeId}`);
+
+  return {
+    title: recipe.title,
+    description: parts.join('\n\n'),
+    category: '早餐',
+    templateKey,
+    durationLabel: prepMinutes ? `约 ${prepMinutes} 分钟` : '',
+    durationMinutes: prepMinutes != null && prepMinutes !== '' ? Number(prepMinutes) : null,
+  };
+}
+
+export function planBreakfastTaskFields(planDay) {
+  const recipe = getPlanBreakfastRecipe(planDay);
+  if (!recipe) {
+    throw new Error(`未找到计划第 ${planDay} 天对应的早餐食谱（请在 breakfastRecipes.js 配置 planDay）`);
+  }
+  return buildBreakfastTaskContent(recipe);
+}

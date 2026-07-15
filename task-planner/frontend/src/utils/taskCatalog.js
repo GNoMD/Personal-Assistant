@@ -1,4 +1,4 @@
-import { EQUIPMENT_LIST } from '../data/equipment';
+import { FITNESS_LIST } from '../data/equipment';
 import {
   CITY_TRAVEL_PLANS,
   FUJIAN_CITIES,
@@ -6,19 +6,26 @@ import {
 } from '../data/travel';
 
 /** 任务表单可选分类（含关联模块） */
-export const TASK_CATEGORIES = ['作息', '早餐', '护理', '运动', '清单', '食谱', '旅行', '自定义'];
+export const TASK_CATEGORIES = ['作息', '早餐', '午餐', '下午茶', '晚餐', '用药', '护理', '运动', '清单', '食谱', '旅行', '自定义'];
 
 export const TASK_SOURCES = [
   { id: 'manual', label: '手填' },
   { id: 'breakfast', label: '早餐食谱' },
   { id: 'recipe-mine', label: '食谱库' },
   { id: 'recipe-other', label: '其他食谱' },
-  { id: 'equipment', label: '健身器械' },
+  { id: 'equipment', label: '健身运动' },
   { id: 'travel', label: '旅行计划' },
 ];
 
-function recipeCategory(mealType) {
+/** 早餐不可手填，必须从食谱库选择 */
+export const BREAKFAST_SOURCE_IDS = ['breakfast'];
+
+function recipeCategory(mealType, recipe = {}) {
   if (mealType === '早餐') return '早餐';
+  if (mealType === '午餐') return '午餐';
+  if (mealType === '晚餐') return '晚餐';
+  const key = recipe.templateKey || '';
+  if (mealType === '加餐' && String(key).startsWith('afternoon-tea-')) return '下午茶';
   return '食谱';
 }
 
@@ -47,16 +54,21 @@ function recipeDescription(recipe) {
 }
 
 export function recipeToTaskFields(recipe) {
+  const category = recipeCategory(recipe.mealType, recipe);
   return {
     title: recipe.title || '食谱任务',
     description: recipeDescription(recipe),
-    category: recipeCategory(recipe.mealType),
+    category,
     time: '',
     durationLabel: recipeDuration(recipe.prepMinutes),
+    templateKey: recipe.templateKey || null,
     sourceRef: {
-      type: recipe.source === 'other' ? 'recipe-other' : 'recipe-mine',
+      type: recipe.mealType === '早餐'
+        ? 'breakfast'
+        : (recipe.source === 'other' ? 'recipe-other' : 'recipe-mine'),
       id: String(recipe.id),
       label: recipe.title,
+      templateKey: recipe.templateKey || null,
     },
   };
 }
@@ -64,17 +76,25 @@ export function recipeToTaskFields(recipe) {
 export function equipmentToTaskFields(item) {
   const steps = (item.howTo || []).slice(0, 3).join('；');
   const muscles = (item.muscles || []).join('、');
+  const isSport = item.kind === 'sport';
+  const durationBySport = {
+    running: '约 30 分钟',
+    swimming: '约 40 分钟',
+    walking: '约 40 分钟',
+  };
   return {
-    title: `器械训练：${item.name}`,
+    title: isSport ? `有氧运动：${item.name}` : `器械训练：${item.name}`,
     description: [
       item.summary,
-      muscles ? `主要肌群：${muscles}` : '',
+      muscles ? (isSport ? `侧重：${muscles}` : `主要肌群：${muscles}`) : '',
       steps ? `要点：${steps}` : '',
       `详情页：/equipment/${item.id}`,
     ].filter(Boolean).join('\n'),
     category: '运动',
     time: '',
-    durationLabel: '约 45 分钟',
+    durationLabel: isSport
+      ? (durationBySport[item.id] || '约 30 分钟')
+      : '约 45 分钟',
     sourceRef: {
       type: 'equipment',
       id: item.id,
@@ -117,9 +137,9 @@ export function travelPlanToTaskFields(plan, meta = {}) {
 }
 
 export function buildEquipmentOptions() {
-  return EQUIPMENT_LIST.map((item) => ({
+  return FITNESS_LIST.map((item) => ({
     id: item.id,
-    label: item.name,
+    label: `${item.kind === 'sport' ? '运动' : '器械'} · ${item.name}`,
     hint: item.summary,
     payload: equipmentToTaskFields(item),
   }));
@@ -150,24 +170,30 @@ export function buildTravelOptions() {
   return options;
 }
 
-export function buildRecipeOptions(recipes, { mealType } = {}) {
+export function buildRecipeOptions(recipes, { mealType, series } = {}) {
   return (recipes || [])
     .filter((recipe) => !mealType || recipe.mealType === mealType)
+    .filter((recipe) => !series || recipe.series === series)
     .map((recipe) => ({
       id: String(recipe.id),
       label: recipe.title,
-      hint: [recipe.mealType, recipe.calories != null ? `约 ${recipe.calories} 千卡` : '']
-        .filter(Boolean)
-        .join(' · '),
+      hint: [
+        recipe.series,
+        recipe.mealType,
+        recipe.calories != null ? `约 ${recipe.calories} 千卡` : '',
+      ].filter(Boolean).join(' · '),
+      templateKey: recipe.templateKey || null,
       payload: recipeToTaskFields(recipe),
     }));
 }
 
 export function guessTaskSource(task) {
   if (!task) return 'manual';
-  if (task.category === '早餐' || /早餐|营养早餐/.test(task.title || '')) return 'breakfast';
-  if (task.category === '运动' || /器械训练/.test(task.title || '')) return 'equipment';
+  if (task.category === '早餐' || task.templateKey?.startsWith('low-purine-') || task.templateKey?.includes('bf-')) {
+    return 'breakfast';
+  }
+  if (task.category === '运动' || /器械训练|有氧运动/.test(task.title || '')) return 'equipment';
   if (task.category === '旅行') return 'travel';
-  if (task.category === '食谱') return 'recipe-mine';
+  if (task.category === '食谱' || task.templateKey) return 'recipe-mine';
   return 'manual';
 }

@@ -1,10 +1,35 @@
 import { useEffect, useState } from 'react';
+import { RECIPE_CATEGORIES } from '../data/recipeCategories';
+import { benefitsFromRecipe, composeRecipeNotes } from '../utils/recipeBenefits';
+
+const SERIES_OPTIONS = RECIPE_CATEGORIES.filter((c) => c.id);
 
 const EMPTY = {
-  title: '', mealType: '早餐', ingredients: '', steps: '', notes: '',
+  title: '', mealType: '早餐', series: '我的定制', ingredients: '', steps: '',
+  efficacy: '', nutrients: '', effects: '', tip: '',
   prepMinutes: '', calories: '', tags: '', isFavorite: false,
 };
 const MEAL_TYPES = ['早餐', '午餐', '晚餐', '加餐', '饮品'];
+
+function formFromRecipe(recipe) {
+  if (!recipe) return EMPTY;
+  const benefits = benefitsFromRecipe(recipe);
+  return {
+    title: recipe.title || '',
+    mealType: recipe.mealType || '早餐',
+    series: recipe.series || '我的定制',
+    ingredients: recipe.ingredients || '',
+    steps: recipe.steps || '',
+    efficacy: benefits.efficacy || '',
+    nutrients: benefits.nutrients || '',
+    effects: benefits.effects || '',
+    tip: [benefits.tip, benefits.disclaimer, ...(benefits.extra || [])].filter(Boolean).join('\n'),
+    prepMinutes: recipe.prepMinutes ?? '',
+    calories: recipe.calories ?? '',
+    tags: recipe.tags || '',
+    isFavorite: Boolean(recipe.isFavorite),
+  };
+}
 
 export default function RecipeForm({ open, recipe, onSave, onClose }) {
   const [form, setForm] = useState(EMPTY);
@@ -13,17 +38,7 @@ export default function RecipeForm({ open, recipe, onSave, onClose }) {
 
   useEffect(() => {
     if (!open) return;
-    setForm(recipe ? {
-      title: recipe.title || '',
-      mealType: recipe.mealType || '早餐',
-      ingredients: recipe.ingredients || '',
-      steps: recipe.steps || '',
-      notes: recipe.notes || '',
-      prepMinutes: recipe.prepMinutes ?? '',
-      calories: recipe.calories ?? '',
-      tags: recipe.tags || '',
-      isFavorite: Boolean(recipe.isFavorite),
-    } : EMPTY);
+    setForm(formFromRecipe(recipe));
     setError('');
   }, [open, recipe]);
 
@@ -39,12 +54,21 @@ export default function RecipeForm({ open, recipe, onSave, onClose }) {
     setSaving(true);
     setError('');
     try {
+      const nutrition = form.calories
+        ? `参考热量约 ${Number(form.calories)} 千卡/餐。`
+        : '';
       await onSave({
         ...form,
         title: form.title.trim(),
         ingredients: form.ingredients.trim(),
         steps: form.steps.trim(),
-        notes: form.notes.trim(),
+        notes: composeRecipeNotes({
+          efficacy: form.efficacy,
+          nutrients: form.nutrients,
+          effects: form.effects,
+          nutrition,
+          tip: form.tip,
+        }),
         tags: form.tags.trim(),
         prepMinutes: form.prepMinutes ? Number(form.prepMinutes) : null,
         calories: form.calories ? Number(form.calories) : null,
@@ -66,10 +90,12 @@ export default function RecipeForm({ open, recipe, onSave, onClose }) {
         aria-labelledby="recipe-form-title"
         onClick={(event) => event.stopPropagation()}
       >
+        <div className="modal-sheet-handle" aria-hidden="true" />
         <header className="modal-header">
           <div>
-            <p className="recipe-form-eyebrow">定制你的专属搭配</p>
+            <p className="modal-eyebrow">食谱库</p>
             <h3 id="recipe-form-title">{recipe ? '编辑食谱' : '新增食谱'}</h3>
+            <p className="modal-header-sub">填写食材、步骤与功效，保存为你的私有搭配</p>
           </div>
           <button type="button" className="modal-close" onClick={onClose} aria-label="关闭">×</button>
         </header>
@@ -90,6 +116,14 @@ export default function RecipeForm({ open, recipe, onSave, onClose }) {
               <span>餐次</span>
               <select value={form.mealType} onChange={(event) => update('mealType', event.target.value)}>
                 {MEAL_TYPES.map((type) => <option key={type} value={type}>{type}</option>)}
+              </select>
+            </label>
+            <label className="form-field">
+              <span>食谱类别</span>
+              <select value={form.series} onChange={(event) => update('series', event.target.value)}>
+                {SERIES_OPTIONS.map((cat) => (
+                  <option key={cat.id} value={cat.id}>{cat.label}</option>
+                ))}
               </select>
             </label>
             <label className="form-field">
@@ -137,6 +171,41 @@ export default function RecipeForm({ open, recipe, onSave, onClose }) {
               maxLength={3000}
             />
           </label>
+
+          <div className="recipe-benefits-fields">
+            <p>功效与营养作用（详情页醒目展示）</p>
+            <label className="form-field">
+              <span>功效</span>
+              <textarea
+                value={form.efficacy}
+                onChange={(event) => update('efficacy', event.target.value)}
+                placeholder="例如：高蛋白清淡，支持养发与训练恢复"
+                rows={2}
+                maxLength={300}
+              />
+            </label>
+            <label className="form-field">
+              <span>补什么</span>
+              <textarea
+                value={form.nutrients}
+                onChange={(event) => update('nutrients', event.target.value)}
+                placeholder="例如：优质蛋白、维C、锌、膳食纤维"
+                rows={2}
+                maxLength={300}
+              />
+            </label>
+            <label className="form-field">
+              <span>作用</span>
+              <textarea
+                value={form.effects}
+                onChange={(event) => update('effects', event.target.value)}
+                placeholder="例如：提供角蛋白原料，促进铁吸收，稳定午后血糖"
+                rows={2}
+                maxLength={300}
+              />
+            </label>
+          </div>
+
           <label className="form-field">
             <span>标签</span>
             <input
@@ -147,10 +216,10 @@ export default function RecipeForm({ open, recipe, onSave, onClose }) {
             />
           </label>
           <label className="form-field">
-            <span>营养备注</span>
+            <span>其他贴士 / 说明</span>
             <textarea
-              value={form.notes}
-              onChange={(event) => update('notes', event.target.value)}
+              value={form.tip}
+              onChange={(event) => update('tip', event.target.value)}
               placeholder="替换建议、过敏提示或食用注意事项"
               rows={3}
               maxLength={1000}
@@ -164,13 +233,15 @@ export default function RecipeForm({ open, recipe, onSave, onClose }) {
             />
             <span>⭐ 收藏这份食谱</span>
           </label>
-          {error && <p className="form-error" role="alert">{error}</p>}
-          <div className="form-actions">
+
+          {error && <p className="error" role="alert">{error}</p>}
+
+          <footer className="modal-footer">
             <button type="button" className="btn btn-ghost" onClick={onClose} disabled={saving}>取消</button>
             <button type="submit" className="btn btn-primary" disabled={saving}>
               {saving ? '保存中…' : '保存食谱'}
             </button>
-          </div>
+          </footer>
         </form>
       </div>
     </div>

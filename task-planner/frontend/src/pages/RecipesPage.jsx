@@ -4,6 +4,7 @@ import AppShell from '../components/AppShell';
 import Pagination, { paginateItems } from '../components/Pagination';
 import RecipeForm from '../components/RecipeForm';
 import { api } from '../api/client';
+import { RECIPE_CATEGORIES, seriesLabel } from '../data/recipeCategories';
 import { useTheme } from '../hooks/useTheme';
 import { resolveRecipeCover } from '../utils/recipeCoverImages';
 
@@ -33,6 +34,7 @@ export default function RecipesPage() {
   const navigate = useNavigate();
   const { cycleTheme, label: themeLabel } = useTheme();
   const [recipes, setRecipes] = useState([]);
+  const [series, setSeries] = useState('');
   const [mealType, setMealType] = useState('全部');
   const [query, setQuery] = useState('');
   const [favoriteOnly, setFavoriteOnly] = useState(false);
@@ -41,12 +43,18 @@ export default function RecipesPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
+  const activeCategory = useMemo(
+    () => RECIPE_CATEGORIES.find((c) => c.id === series) || RECIPE_CATEGORIES[0],
+    [series]
+  );
+
   const loadRecipes = useCallback(async () => {
     setLoading(true);
     setError('');
     try {
       const data = await api.getRecipes({
         mealType,
+        series,
         q: query.trim(),
         favorite: favoriteOnly ? 'true' : '',
       });
@@ -56,7 +64,7 @@ export default function RecipesPage() {
     } finally {
       setLoading(false);
     }
-  }, [mealType, query, favoriteOnly]);
+  }, [mealType, series, query, favoriteOnly]);
 
   useEffect(() => {
     const timer = setTimeout(loadRecipes, query ? 250 : 0);
@@ -65,7 +73,7 @@ export default function RecipesPage() {
 
   useEffect(() => {
     setPage(1);
-  }, [mealType, query, favoriteOnly]);
+  }, [mealType, series, query, favoriteOnly]);
 
   const paged = useMemo(
     () => paginateItems(recipes, page, PAGE_SIZE),
@@ -113,8 +121,10 @@ export default function RecipesPage() {
           <div>
             <span className="recipes-hero-icon" aria-hidden="true">🥗</span>
             <p className="recipes-kicker">公共食谱库</p>
-            <h2>先把适合的菜都收齐，再谈怎么排</h2>
-            <p>尿酸友好、养发营养支持、乳糖友好的早餐 / 午餐 / 晚餐 / 加餐 / 饮品均可筛选浏览；按日定制排餐会放到后续板块。</p>
+            <h2>按目标选菜谱，再按餐次精细筛</h2>
+            <p>
+              {activeCategory.description || '防脱养发、AGA增肌、日常均衡等分类一目了然；可再按早餐/午餐等餐次筛选。'}
+            </p>
           </div>
           <div className="recipes-hero-stat">
             <strong>{recipes.length}</strong>
@@ -123,13 +133,27 @@ export default function RecipesPage() {
         </section>
 
         <section className="recipes-toolbar" aria-label="筛选食谱">
+          <div className="series-filter" role="group" aria-label="按食谱类别筛选">
+            {RECIPE_CATEGORIES.map((cat) => (
+              <button
+                key={cat.id || 'all'}
+                type="button"
+                className={`series-chip${series === cat.id ? ' active' : ''}`}
+                data-series={cat.id || 'all'}
+                onClick={() => setSeries(cat.id)}
+                title={cat.description}
+              >
+                {cat.label}
+              </button>
+            ))}
+          </div>
           <div className="recipe-search">
             <span aria-hidden="true">⌕</span>
             <input
               type="search"
               value={query}
               onChange={(event) => setQuery(event.target.value)}
-              placeholder="搜索食谱、食材或标签"
+              placeholder="搜索食谱、食材、标签或类别"
               aria-label="搜索食谱"
             />
           </div>
@@ -185,8 +209,13 @@ export default function RecipesPage() {
                   role="button"
                   tabIndex={0}
                 >
-                  <div className="recipe-card-cover" data-meal={recipe.mealType}>
+                  <div className="recipe-card-cover" data-meal={recipe.mealType} data-series={recipe.series || ''}>
                     <span className="recipe-meal-badge">{recipe.mealType}</span>
+                    {recipe.series && (
+                      <span className="recipe-series-badge" data-series={recipe.series}>
+                        {seriesLabel(recipe.series)}
+                      </span>
+                    )}
                     <button
                       type="button"
                       className={`recipe-favorite${recipe.isFavorite ? ' active' : ''}`}

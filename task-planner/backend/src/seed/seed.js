@@ -1,10 +1,11 @@
 import { getDb } from '../db.js';
-import { START_DATE, SEED_DAYS, planDayForDate, getTasksForPlanDay } from './planData.js';
+import { START_DATE, SEED_DAYS, planDayForDate, getTasksForPlanDay, isHairCarePlanUsername } from './planData.js';
 import { getRecipeSeedStats, seedSharedRecipeLibrary } from './seedRecipes.js';
 import {
   DEFAULT_ADMIN_USERNAME,
   ensureDefaultAdminUser,
 } from './ensureDefaultAdmin.js';
+import { ensureGnomdMedicationSchedule } from './ensureGnomdMedicationSchedule.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
@@ -17,16 +18,28 @@ function addDays(dateStr, days) {
   return `${y2}-${m2}-${d2}`;
 }
 
-export function seedUserTasks(userId) {
+function resolveIncludeHairCare(db, userId, override) {
+  if (typeof override === 'boolean') return override;
+  const row = db.prepare('SELECT username FROM users WHERE id = ?').get(userId);
+  return isHairCarePlanUsername(row?.username);
+}
+
+/**
+ * @param {number} userId
+ * @param {{ includeHairCare?: boolean }} [options]
+ */
+export function seedUserTasks(userId, options = {}) {
   const db = getDb();
   const existing = db.prepare('SELECT COUNT(*) as c FROM tasks WHERE user_id = ?').get(userId).c;
   if (existing > 0) return { seeded: false, count: existing };
 
+  const includeHairCare = resolveIncludeHairCare(db, userId, options.includeHairCare);
+
   const insert = db.prepare(`
     INSERT INTO tasks (user_id, date, plan_day, plan_name, time, category, title, description,
-      duration_label, duration_minutes, completed, sort_order)
+      duration_label, duration_minutes, template_key, completed, sort_order)
     VALUES (@userId, @date, @planDay, @planName, @time, @category, @title, @description,
-      @durationLabel, @durationMinutes, 0, @sortOrder)
+      @durationLabel, @durationMinutes, @templateKey, 0, @sortOrder)
   `);
 
   let total = 0;
@@ -34,7 +47,7 @@ export function seedUserTasks(userId) {
     for (let i = 0; i < SEED_DAYS; i++) {
       const date = addDays(START_DATE, i);
       const planDay = planDayForDate(date);
-      const templates = getTasksForPlanDay(planDay);
+      const templates = getTasksForPlanDay(planDay, { includeHairCare });
       for (const t of templates) {
         insert.run({
           userId,
@@ -47,6 +60,7 @@ export function seedUserTasks(userId) {
           description: t.description,
           durationLabel: t.durationLabel || '',
           durationMinutes: t.durationMinutes ?? null,
+          templateKey: t.templateKey || null,
           sortOrder: t.sortOrder,
         });
         total++;
@@ -54,7 +68,7 @@ export function seedUserTasks(userId) {
     }
   });
   seedMany();
-  return { seeded: true, total };
+  return { seeded: true, total, includeHairCare };
 }
 
 /** @deprecated 全局种子仅用于迁移；新用户通过 seedUserTasks */
@@ -78,9 +92,13 @@ if (isCli) {
   const libraryUserId = seedSharedRecipeLibrary();
   const admin = ensureDefaultAdminUser();
   const taskSeed = seedUserTasks(admin.userId);
+  const medSync = ensureGnomdMedicationSchedule(admin.userId);
   const stats = getRecipeSeedStats();
   const recipeCount = getDb().prepare('SELECT COUNT(*) AS c FROM recipes').get().c;
   const taskCount = getDb().prepare('SELECT COUNT(*) AS c FROM tasks WHERE user_id = ?').get(admin.userId).c;
+  const medCount = getDb().prepare(
+    `SELECT COUNT(*) AS c FROM tasks WHERE user_id = ? AND category = '用药'`
+  ).get(admin.userId).c;
   console.log(JSON.stringify({
     ok: true,
     libraryUserId,
@@ -92,6 +110,8 @@ if (isCli) {
       created: admin.created,
       tasksSeeded: taskSeed,
       tasks: taskCount,
+      medicationSync: medSync,
+      medicationTasks: medCount,
     },
     note: '勿提交本地 tasks.db；管理员引导密码不会打印到日志',
   }, null, 2));

@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { api } from '../api/client';
+import { useAuth } from '../context/AuthContext';
 import {
   cacheDay,
   cacheCalendar,
@@ -9,6 +10,7 @@ import {
   loadPending,
   removePending,
   savePending,
+  setCacheUser,
 } from '../utils/storage';
 
 export function useSync() {
@@ -80,21 +82,35 @@ export function useSync() {
   return { syncStatus, pendingCount, flushPending, optimisticUpdate };
 }
 
+function isHairCarePlanUser(user) {
+  return String(user?.username || '').trim().toLowerCase() === 'gnomd';
+}
+
 export function useTasks(selectedDate) {
+  const { user } = useAuth();
   const [dayData, setDayData] = useState(null);
   const [tasks, setTasks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  useEffect(() => {
+    if (user?.id != null) setCacheUser(user.id);
+  }, [user?.id]);
+
   const loadDay = useCallback(async (date) => {
     setLoading(true);
     setError(null);
 
-    const cached = getCachedDay(date);
+    if (user?.id != null) setCacheUser(user.id);
+    const rejectHairCare = !isHairCarePlanUser(user);
+    const cached = getCachedDay(date, { rejectHairCare });
     if (cached) {
       setDayData(cached);
       setTasks(cached.tasks);
       setLoading(false);
+    } else {
+      setDayData(null);
+      setTasks([]);
     }
 
     try {
@@ -110,24 +126,32 @@ export function useTasks(selectedDate) {
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [user]);
 
   useEffect(() => {
-    if (selectedDate) loadDay(selectedDate);
-  }, [selectedDate, loadDay]);
+    if (selectedDate && user?.id != null) loadDay(selectedDate);
+  }, [selectedDate, loadDay, user?.id]);
 
   return { dayData, tasks, setTasks, setDayData, loading, error, reload: () => loadDay(selectedDate) };
 }
 
 export function useCalendar(year, month) {
+  const { user } = useAuth();
   const [days, setDays] = useState([]);
   const [loading, setLoading] = useState(true);
   const key = `${year}-${month}`;
 
   useEffect(() => {
+    if (user?.id != null) setCacheUser(user.id);
+  }, [user?.id]);
+
+  useEffect(() => {
+    if (user?.id == null) return undefined;
     let cancelled = false;
+    setCacheUser(user.id);
     const cached = getCachedCalendar(key);
     if (cached) setDays(cached.days);
+    else setDays([]);
 
     (async () => {
       setLoading(true);
@@ -145,7 +169,7 @@ export function useCalendar(year, month) {
     })();
 
     return () => { cancelled = true; };
-  }, [year, month, key]);
+  }, [year, month, key, user?.id]);
 
   const getProgress = useCallback(
     (dateStr) => days.find((d) => d.date === dateStr) ?? null,
@@ -153,6 +177,8 @@ export function useCalendar(year, month) {
   );
 
   const refresh = useCallback(async () => {
+    if (user?.id == null) return;
+    setCacheUser(user.id);
     try {
       const data = await api.getCalendar(year, month);
       setDays(data.days);
@@ -160,7 +186,7 @@ export function useCalendar(year, month) {
     } catch {
       /* keep current */
     }
-  }, [year, month, key]);
+  }, [year, month, key, user?.id]);
 
   return { days, loading, getProgress, refresh };
 }
