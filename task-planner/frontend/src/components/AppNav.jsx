@@ -13,8 +13,7 @@ const ITEMS = [
     match: (path) => (
       path === '/recipes'
       || path.startsWith('/recipes/')
-      || path === '/other-recipes'
-      || path.startsWith('/other-recipes/')
+      || path.startsWith('/menus/')
     ),
   },
   {

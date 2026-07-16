@@ -9,6 +9,7 @@ import authRouter from './routes/auth.js';
 import teamsRouter from './routes/teams.js';
 import auditRouter from './routes/audit.js';
 import recipesRouter from './routes/recipes.js';
+import menusRouter from './routes/menus.js';
 import fitnessRouter from './routes/fitness.js';
 import assistantRouter from './routes/assistant.js';
 import adminRouter from './routes/admin.js';
@@ -19,6 +20,7 @@ import { ensureGnomdMedicationSchedule } from './seed/ensureGnomdMedicationSched
 import { ensureGnomdProfile } from './seed/ensureGnomdProfile.js';
 import { ensurePlanAfternoonTea } from './seed/ensurePlanAfternoonTea.js';
 import { ensurePlanLunchDinner } from './seed/ensurePlanLunchDinner.js';
+import { ensureSoyMilkWeekMenu } from './seed/ensureSoyMilkWeekMenu.js';
 import { stripHairCarePlanFromOtherUsers } from './seed/stripHairCareFromOtherUsers.js';
 import { seedUserTasks } from './seed/seed.js';
 
@@ -42,14 +44,25 @@ export function createApp() {
   app.use('/api/audit', auditRouter);
   app.use('/api/tasks', tasksRouter);
   app.use('/api/recipes', recipesRouter);
+  app.use('/api/menus', menusRouter);
   app.use('/api/fitness', fitnessRouter);
   app.use('/api/assistant', assistantRouter);
   app.use('/api/profile', profileRouter);
   app.use('/api/admin', adminRouter);
 
   if (fs.existsSync(FRONTEND_DIST)) {
-    app.use(express.static(FRONTEND_DIST, { index: false }));
+    app.use(express.static(FRONTEND_DIST, {
+      index: false,
+      setHeaders(res, filePath) {
+        if (/\.html$/i.test(filePath)) {
+          res.setHeader('Cache-Control', 'no-store');
+        } else if (/\.(?:js|css|png|jpe?g|webp|svg|woff2?)$/i.test(filePath)) {
+          res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+        }
+      },
+    }));
     app.get(/^\/(?!api|socket\.io).*/, (_req, res) => {
+      res.setHeader('Cache-Control', 'no-store');
       res.sendFile(path.join(FRONTEND_DIST, 'index.html'));
     });
   }
@@ -71,6 +84,7 @@ export function initDatabase() {
   ensureGnomdProfile();
   ensurePlanAfternoonTea();
   ensurePlanLunchDinner();
+  ensureSoyMilkWeekMenu();
   stripHairCarePlanFromOtherUsers();
   return { initialized: true };
 }

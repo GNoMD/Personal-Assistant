@@ -11,6 +11,12 @@
     "build": "npm run build --prefix frontend",
     "start": "npm start --prefix backend",
     "seed": "npm run seed --prefix backend",
-    "pack": "npm run build && node scripts/pack-release.mjs"
+    "pack": "npm run build && node scripts/pack-release.mjs",
+    "pack:update": "npm run build && node scripts/pack-release.mjs --update",
+    "pack:update:media": "npm run build && node scripts/pack-release.mjs --update --with-media",
+    "pack:offline": "npm run build && node scripts/pack-release.mjs --offline",
+    "deploy": "node scripts/deploy-remote.mjs",
+    "deploy:full": "node scripts/deploy-remote.mjs --full",
+    "deploy:restart": "node scripts/deploy-remote.mjs --restart-only"
   }
 }

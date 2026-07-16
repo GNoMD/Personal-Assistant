@@ -5,7 +5,8 @@
  */
 
 function bilibiliEmbed(bvid) {
-  return `https://player.bilibili.com/player.html?bvid=${bvid}&page=1&high_quality=1&danmaku=0`;
+  // isOutside=true：站外嵌入必填，否则播放器常黑屏/无法播
+  return `https://player.bilibili.com/player.html?isOutside=true&bvid=${bvid}&page=1&high_quality=1&danmaku=0&autoplay=0`;
 }
 
 const IMG_V = '20260715a';

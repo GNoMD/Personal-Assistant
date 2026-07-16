@@ -4,7 +4,7 @@ import { createApp, initDatabase } from './app.js';
 import { closeDb } from './db.js';
 import { initSocket } from './socket.js';
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 13222;
 const HOST = process.env.HOST || '0.0.0.0';
 
 initDatabase();

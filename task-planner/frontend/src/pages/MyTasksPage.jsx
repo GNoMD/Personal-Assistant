@@ -1,5 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Calendar from '../components/Calendar';
 import TaskForm from '../components/TaskForm';
 import TaskList from '../components/TaskList';
@@ -23,7 +22,6 @@ function buildDayCache(dayData, tasks) {
 }
 
 export default function MyTasksPage() {
-  const navigate = useNavigate();
   const { user, teams, setTeams } = useAuth();
   const today = formatDate(new Date());
   const initialDate = today >= PLAN_START ? today : PLAN_START;
@@ -34,6 +32,8 @@ export default function MyTasksPage() {
   const [viewMonth, setViewMonth] = useState(() => parseInt(initialDate.slice(5, 7), 10));
   const [savingId, setSavingId] = useState(null);
   const [calendarOpen, setCalendarOpen] = useState(true);
+  const [dayCelebrate, setDayCelebrate] = useState(false);
+  const prevAllDone = useRef(false);
 
   useEffect(() => {
     setCalendarOpen(!isMobile);
@@ -48,18 +48,20 @@ export default function MyTasksPage() {
 
   const { cycleTheme, label: themeLabel } = useTheme();
   const { dayData, tasks, setTasks, setDayData, loading, error, reload } = useTasks(selectedDate);
-  const { getProgress, refresh: refreshCalendar } = useCalendar(viewYear, viewMonth);
+  const { getProgress, patchDayProgress, refresh: refreshCalendar } = useCalendar(viewYear, viewMonth);
   const { syncStatus, pendingCount, optimisticUpdate } = useSync();
 
   const applyTasks = useCallback((updated) => {
     setTasks(updated);
+    const completed = updated.filter((t) => t.completed).length;
+    const total = updated.length;
     if (dayData) {
       const cached = buildDayCache(dayData, updated);
       setDayData(cached);
       cacheDay(selectedDate, cached);
     }
-    refreshCalendar();
-  }, [dayData, selectedDate, setTasks, setDayData, refreshCalendar]);
+    patchDayProgress(selectedDate, { total, completed });
+  }, [dayData, selectedDate, setTasks, setDayData, patchDayProgress]);
 
   const handleSocketSync = useCallback((payload) => {
     if (payload.date && payload.date !== selectedDate) {
@@ -93,6 +95,24 @@ export default function MyTasksPage() {
     return { total, completed, percent: total ? Math.round((completed / total) * 100) : 0 };
   }, [dayData]);
 
+  const dayAllDone = progress.total > 0 && progress.percent >= 100;
+
+  useEffect(() => {
+    prevAllDone.current = false;
+    setDayCelebrate(false);
+  }, [selectedDate]);
+
+  useEffect(() => {
+    if (dayAllDone && !prevAllDone.current) {
+      setDayCelebrate(true);
+      const t = setTimeout(() => setDayCelebrate(false), 1600);
+      prevAllDone.current = true;
+      return () => clearTimeout(t);
+    }
+    if (!dayAllDone) prevAllDone.current = false;
+    return undefined;
+  }, [dayAllDone]);
+
   const totalDuration = useMemo(() => formatTotalDuration(sumTaskMinutes(tasks)), [tasks]);
 
   const handleToggle = useCallback(async (task) => {
@@ -100,7 +120,8 @@ export default function MyTasksPage() {
     setSavingId(task.id);
     await optimisticUpdate(task.id, { completed: next }, tasks, applyTasks);
     setSavingId(null);
-  }, [optimisticUpdate, tasks, applyTasks]);
+    refreshCalendar();
+  }, [optimisticUpdate, tasks, applyTasks, refreshCalendar]);
 
   const handleSave = async (payload) => {
     if (formMode === 'edit' && editingTask) {
@@ -110,6 +131,7 @@ export default function MyTasksPage() {
       const created = await api.createTask({ ...payload, date: selectedDate });
       applyTasks([...tasks, created]);
     }
+    refreshCalendar();
   };
 
   const handleDelete = async (task) => {
@@ -118,6 +140,7 @@ export default function MyTasksPage() {
     try {
       await api.deleteTask(task.id);
       applyTasks(tasks.filter((t) => t.id !== task.id));
+      refreshCalendar();
     } catch (e) {
       alert(e.message || '删除失败');
     } finally {
@@ -183,9 +206,9 @@ export default function MyTasksPage() {
 
       <main className="recipes-main tasks-main">
         <section className={`tasks-date-panel${calendarOpen ? '' : ' is-collapsed'}`} aria-label="选择日期">
-          <div className="recipes-hero tasks-date-hero">
+          <div className={`recipes-hero tasks-date-hero${dayAllDone ? ' is-day-complete' : ''}`}>
             <div>
-              <span className="recipes-hero-icon" aria-hidden="true">📋</span>
+              <span className="recipes-hero-icon" aria-hidden="true">{dayAllDone ? '🏆' : '📋'}</span>
               <p className="recipes-kicker">今日安排</p>
               <h2>
                 <time dateTime={selectedDate}>{selectedDate}</time>
@@ -206,11 +229,37 @@ export default function MyTasksPage() {
                 📅 {calendarOpen ? '收起日历' : '展开日历'}
               </button>
             </div>
-            <div className="recipes-hero-stat" title="今日完成进度">
-              <strong>{progress.percent}%</strong>
-              <span>{progress.completed}/{progress.total} 已完成</span>
+            <div
+              className={`recipes-hero-stat${dayAllDone ? ' is-complete' : ''}`}
+              title={dayAllDone ? '当日任务全部完成' : '今日完成进度'}
+            >
+              {dayAllDone ? (
+                <>
+                  <strong className="hero-stat-done">✓</strong>
+                  <span>全部完成</span>
+                </>
+              ) : (
+                <>
+                  <strong>{progress.percent}%</strong>
+                  <span>{progress.completed}/{progress.total} 已完成</span>
+                </>
+              )}
             </div>
           </div>
+
+          {dayAllDone && (
+            <div
+              className={`day-complete-banner${dayCelebrate ? ' is-celebrate' : ''}`}
+              role="status"
+              aria-live="polite"
+            >
+              <span className="day-complete-badge" aria-hidden="true">✓</span>
+              <div>
+                <strong>今日任务全部完成</strong>
+                <p>太棒了，继续保持！日历上已标记成功。</p>
+              </div>
+            </div>
+          )}
 
           <div className={`tasks-calendar-wrap${calendarOpen ? ' is-open' : ''}`}>
             <Calendar

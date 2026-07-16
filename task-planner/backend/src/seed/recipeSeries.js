@@ -30,8 +30,8 @@ export const RECIPE_SERIES = [
     id: '豆浆轮换',
     label: '豆浆轮换',
     shortLabel: '豆浆',
-    description: '一周豆浆配方（其他食谱页）',
-    matchPrefix: ['soy-'],
+    description: '一周7天豆浆配方（1200ml水/4人份）',
+    matchPrefix: ['soy-week-'],
   },
   {
     id: '我的定制',
@@ -42,8 +42,8 @@ export const RECIPE_SERIES = [
   },
 ];
 
-/** 主食谱库页展示的系列（不含豆浆轮换专页） */
-export const MAIN_LIBRARY_SERIES = RECIPE_SERIES.filter((s) => s.id !== '豆浆轮换');
+/** 主食谱库页展示的系列 */
+export const MAIN_LIBRARY_SERIES = RECIPE_SERIES.filter((s) => s.id !== '我的定制');
 
 export function resolveRecipeSeries(recipe = {}) {
   if (recipe.series && String(recipe.series).trim()) {
@@ -55,7 +55,7 @@ export function resolveRecipeSeries(recipe = {}) {
       return series.id;
     }
   }
-  if (recipe.source === 'custom' || (!key && recipe.source !== 'system' && recipe.source !== 'other')) {
+  if (recipe.source === 'custom' || (!key && recipe.source !== 'system')) {
     return '我的定制';
   }
   return '日常均衡';

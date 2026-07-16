@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import AppShell from '../components/AppShell';
 import RecipeForm from '../components/RecipeForm';
 import { api } from '../api/client';
@@ -109,7 +109,6 @@ function IngredientStorageModal({ line, onClose }) {
 
 export default function RecipeDetailPage() {
   const { id } = useParams();
-  const { pathname, state } = useLocation();
   const navigate = useNavigate();
   const { cycleTheme, label: themeLabel } = useTheme();
   const [recipe, setRecipe] = useState(null);
@@ -118,22 +117,12 @@ export default function RecipeDetailPage() {
   const [error, setError] = useState('');
   const [storageLine, setStorageLine] = useState('');
 
-  const fromOther = pathname.startsWith('/other-recipes');
-  const dateContext = fromOther && state?.dateLabel
-    ? `${state.dateLabel}${state.weekdayLabel ? ` · ${state.weekdayLabel}` : ''}`
-    : '';
-
   useEffect(() => {
     let active = true;
     api.getRecipe(id)
       .then((data) => {
         if (!active) return;
         setRecipe(data);
-        if (data.source === 'other' && !pathname.startsWith('/other-recipes')) {
-          navigate(`/other-recipes/${data.id}`, { replace: true });
-        } else if (data.source !== 'other' && pathname.startsWith('/other-recipes')) {
-          navigate(`/recipes/${data.id}`, { replace: true });
-        }
       })
       .catch((err) => {
         if (active) setError(err.message || '食谱加载失败');
@@ -142,7 +131,7 @@ export default function RecipeDetailPage() {
         if (active) setLoading(false);
       });
     return () => { active = false; };
-  }, [id, navigate, pathname]);
+  }, [id]);
 
   const dishes = useMemo(
     () => (recipe ? parseDishLines(recipe.ingredients) : []),
@@ -161,6 +150,7 @@ export default function RecipeDetailPage() {
     () => (recipe ? benefitsFromRecipe(recipe) : null),
     [recipe]
   );
+  const drinkStyleNotes = recipe?.mealType === '饮品' || recipe?.series === '豆浆轮换';
 
   const handleSave = async (payload) => {
     const updated = await api.updateRecipe(id, payload);
@@ -172,30 +162,22 @@ export default function RecipeDetailPage() {
     setRecipe(updated);
   };
 
-  const isOther = fromOther || recipe?.source === 'other';
-  const backTo = isOther
-    ? (state?.weekStart ? `/other-recipes/week/${state.weekStart}` : '/other-recipes')
-    : '/recipes';
-  const backLabel = isOther
-    ? (state?.weekLabel ? `返回 ${state.weekLabel}` : '返回周列表')
-    : '返回食谱库';
-
   const handleDelete = async () => {
     if (!window.confirm(`确定删除「${recipe.title}」？删除后不可恢复。`)) return;
     await api.deleteRecipe(id);
-    navigate(isOther ? '/other-recipes' : '/recipes', { replace: true });
+    navigate('/recipes', { replace: true });
   };
 
   return (
     <AppShell
       className="recipe-detail-app"
-      kicker={isOther ? '其他食谱' : '食谱库'}
+      kicker="食谱库"
       title={recipe?.title || '加载中…'}
-      subtitle={dateContext || '食材、步骤与营养备注一页看清'}
+      subtitle="食材、步骤与营养备注一页看清"
       actions={(
         <>
           <button type="button" className="theme-toggle" onClick={cycleTheme}>◐ {themeLabel}</button>
-          <Link to={backTo} className="btn btn-ghost">{backLabel}</Link>
+          <Link to="/recipes" className="btn btn-ghost">返回食谱库</Link>
         </>
       )}
     >
@@ -222,7 +204,7 @@ export default function RecipeDetailPage() {
                 <p className="recipes-kicker">
                   {recipe.mealType}
                   {recipe.series ? ` · ${seriesLabel(recipe.series)}` : ''}
-                  {` · ${isOther ? '其他食谱' : (recipe.shared ? '系统食谱' : '私有食谱')}`}
+                  {` · ${recipe.shared ? '系统食谱' : '私有食谱'}`}
                 </p>
                 <h2>{recipe.title}</h2>
                 <div className="recipe-tags">
@@ -242,12 +224,8 @@ export default function RecipeDetailPage() {
                 >
                   {recipe.isFavorite ? '★ 已收藏' : '☆ 收藏'}
                 </button>
-                {!isOther && (
-                  <>
-                    <button type="button" className="btn btn-primary" onClick={() => setEditing(true)}>编辑食谱</button>
-                    <button type="button" className="btn btn-danger-outline" onClick={handleDelete}>删除</button>
-                  </>
-                )}
+                <button type="button" className="btn btn-primary" onClick={() => setEditing(true)}>编辑食谱</button>
+                <button type="button" className="btn btn-danger-outline" onClick={handleDelete}>删除</button>
               </div>
             </section>
 
@@ -362,7 +340,7 @@ export default function RecipeDetailPage() {
               <section className="recipe-note">
                 <span aria-hidden="true">💡</span>
                 <div>
-                  <h3>{isOther ? '饮用须知与补充说明' : '营养小贴士与说明'}</h3>
+                  <h3>{drinkStyleNotes ? '饮用须知与补充说明' : '营养小贴士与说明'}</h3>
                   {benefits.tip && <p><strong>贴士：</strong>{benefits.tip}</p>}
                   {benefits.disclaimer && <p><strong>说明：</strong>{benefits.disclaimer}</p>}
                   {benefits.notice && <p><strong>须知：</strong>{benefits.notice}</p>}

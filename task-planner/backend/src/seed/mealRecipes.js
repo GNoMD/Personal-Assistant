@@ -839,7 +839,7 @@ export const SNACK_RECIPES = [
   }),
 ];
 
-/** 日常饮品库（与「其他食谱」豆浆合集区分：这边是通用轻饮/谷物饮/乳糖友好饮） */
+/** 日常饮品库（通用轻饮 / 谷物饮 / 乳糖友好饮） */
 export const DRINK_RECIPES = [
   recipe({
     templateKey: 'drink-lemon-warm',
@@ -1056,7 +1056,7 @@ export const DRINK_RECIPES = [
       '搭配鸡蛋或杂粮，不空腹作唯一一餐。',
     ],
     notes: mealNotes({
-      focus: '豆类干重严控的小份豆浆向饮品；需要完整 7 日豆浆轮换请看「其他食谱」。',
+      focus: '豆类干重严控的小份豆浆向饮品。',
       protein: '5～8g',
       calories: 130,
       tip: '痛风急性期停用，改山药茯苓莲子百合温饮。',

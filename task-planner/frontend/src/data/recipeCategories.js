@@ -24,6 +24,12 @@ export const RECIPE_CATEGORIES = [
     description: '尿酸友好、乳糖友好、三餐加餐与下午茶水果轻食',
   },
   {
+    id: '豆浆轮换',
+    label: '豆浆轮换',
+    shortLabel: '豆浆',
+    description: '一周7天豆浆配方（1200ml水/4人份）',
+  },
+  {
     id: '我的定制',
     label: '我的定制',
     shortLabel: '定制',

@@ -1,6 +1,6 @@
 # 服务器部署指南
 
-生产环境由后端同时提供 API 与前端静态页（`frontend/dist`），默认端口 **3001**。
+生产环境由后端同时提供 API 与前端静态页（`frontend/dist`），默认端口 **13222**。
 
 ## 环境要求
 
@@ -9,7 +9,47 @@
 - Linux 编译原生模块可能需要：`build-essential`（gcc / make / python3）
 - 无需单独部署 Nginx（可直接用 Node 对外服务）；生产环境建议 Nginx 反代 + HTTPS
 
-## 方式一：Git 源码部署（推荐）
+---
+
+## 方式零：日常更新包（推荐，手动上传）
+
+只打包 **已编译前端** `frontend/dist` + **后端源码**，**不含** `node_modules` / `data` / `.env`。体积通常几 MB，适合反复手动上传覆盖。
+
+### 开发机
+
+```bat
+cd task-planner
+npm run pack:update
+REM → release/task-planner-update.tar.gz（通常约 1～3 MB）
+
+REM 若改了食材/器械大图：
+npm run pack:update:media
+```
+
+### 服务器
+
+```bash
+# 停服务后，在「含 task-planner 目录」的上一级解压覆盖
+cd /home/ubuntu/soft/person-assistant
+tar -xzf task-planner-update.tar.gz
+cd task-planner
+# .env、data/、backend/node_modules 保持不动
+chmod +x start.sh && ./start.sh
+# 或: pm2 restart task-planner
+```
+
+| 包 | 命令 | 内容 | 何时用 |
+|----|------|------|--------|
+| 更新包 | `npm run pack:update` | dist + 后端源码（默认不含大图） | **日常改代码** |
+| 更新包+图 | `npm run pack:update:media` | 含 ingredients/equipment | 改了静态大图 |
+| 全离线包 | `npm run pack:offline` | 含 Linux node_modules | 首次部署 / 改了依赖 |
+| 轻量完整包 | `npm run pack` | 无 node_modules | 服务器可自行 npm install |
+
+> 勿用 Windows「压缩」或 `Compress-Archive` 打 zip。
+
+---
+
+## 方式一：Git 源码部署
 
 在服务器上直接克隆仓库、构建并启动：
 
@@ -86,13 +126,17 @@ pm2 save
 pm2 startup
 ```
 
-## 方式二：发布包部署
+一键部署若检测到已有同名 pm2 进程，会自动 `pm2 restart`。
 
-发布包已含构建好的前端，服务器可不跑 `npm run build`：
+---
+
+## 方式二：发布包部署（轻量）
+
+发布包已含构建好的前端，服务器可不跑 `npm run build`，但仍需一次 `npm install`（`start.sh` 自动执行）：
 
 ```
 task-planner/
-├── backend/          # Node.js 后端源码
+├── backend/          # Node.js 后端源码（无 node_modules）
 ├── frontend/dist/    # 前端静态资源（已构建）
 ├── data/             # SQLite 数据库目录（需可写）
 ├── start.sh
@@ -121,13 +165,59 @@ chmod +x start.sh
 ./start.sh
 ```
 
+---
+
+## 方式三：全离线包（手动上传）
+
+适合没有 SSH、只能网盘/FTP 传文件的场景。有 SSH 时优先用 **方式零**。
+
+### 开发机（Windows）
+
+```bash
+cd task-planner
+npm run install:all
+npm run pack:offline
+# → release/task-planner-offline-linux.tar.gz（推荐）
+```
+
+可选：指定与服务器一致的 Node 版本：
+
+```powershell
+$env:PACK_NODE_TARGET="20.18.0"
+npm run pack:offline
+```
+
+### 服务器（Ubuntu）
+
+```bash
+tar -xzf task-planner-offline-linux.tar.gz
+cd task-planner
+cp .env.example .env    # 更新时请保留已有 .env 与 data/
+chmod +x start.sh && ./start.sh
+```
+
+> 勿用 Windows「压缩」或 `Compress-Archive` 手动打 zip：会写入 `\` 路径，Linux 解压后出现 `Cannot find module .../engine.io-parser/...`。
+
+| 注意 | 说明 |
+|------|------|
+| Node 版本 | 服务器 Node **主版本**须与打包目标一致（可用 `PACK_NODE_TARGET` 指定） |
+| 保留文件 | 更新时不要覆盖服务器 `.env`、`data/tasks.db` |
+| 架构 | 默认 `x64`；ARM 服务器设 `PACK_ARCH=arm64` |
+
+| 包类型 | 命令 | 服务器是否需要 npm install |
+|--------|------|----------------------------|
+| 轻量包 | `npm run pack` | 需要 |
+| 全离线 Linux | `npm run pack:offline` | **不需要** |
+
+---
+
 ## 访问地址
 
 | 场景 | 地址 |
 |------|------|
-| 本机 | http://localhost:3001 |
-| 局域网 | http://\<服务器内网IP\>:3001 |
-| 公网 | http://\<公网IP\>:3001 或配置域名后 https://your-domain.com |
+| 本机 | http://localhost:13222 |
+| 局域网 | http://\<服务器内网IP\>:13222 |
+| 公网 | http://\<公网IP\>:13222 或配置域名后 https://your-domain.com |
 
 健康检查：`GET /api/health`
 
@@ -135,7 +225,7 @@ chmod +x start.sh
 
 | 变量 | 说明 | 默认 |
 |------|------|------|
-| `PORT` | 监听端口 | 3001 |
+| `PORT` | 监听端口 | 13222 |
 | `HOST` | 监听地址 | 0.0.0.0 |
 | `JWT_SECRET` | JWT 签名密钥 | 内置开发密钥（**生产必改**） |
 | `ADMIN_USERNAMES` | 系统管理员用户名（逗号分隔） | `gnomd` |
@@ -183,7 +273,7 @@ server {
     server_name your-domain.com;
 
     location / {
-        proxy_pass http://127.0.0.1:3001;
+        proxy_pass http://127.0.0.1:13222;
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection "upgrade";
@@ -201,12 +291,23 @@ WebSocket（实时同步）走同一路径 `/socket.io`，上述配置已包含 
 
 ```bash
 # firewalld
-firewall-cmd --permanent --add-port=3001/tcp
+firewall-cmd --permanent --add-port=13222/tcp
 firewall-cmd --reload
 ```
 
-云服务器还需在**安全组**放行 3001 或 80/443。
+云服务器还需在**安全组**放行 13222 或 80/443。
 
 ## 数据备份
 
 定期备份 `data/tasks.db` 即可。更完整说明见 [README.md](./README.md)。
+
+## 附录：本机 SSH 一键上传（可选）
+
+若已配置免密 SSH，也可用：
+
+```bat
+copy .deploy.env.example .deploy.env
+npm run deploy
+```
+
+日常仍更推荐手动上传 `task-planner-update.tar.gz`。

@@ -4,10 +4,11 @@ import { AFTERNOON_TEA_RECIPES } from './afternoonTeaRecipes.js';
 import { BREAKFAST_RECIPES } from './breakfastRecipes.js';
 import { HAIR_CARE_RECIPES } from './hairCareRecipes.js';
 import { MEAL_RECIPES } from './mealRecipes.js';
+import { SOY_WEEK_RECIPES } from './soyMilkWeekRecipes.js';
 import { resolveRecipeSeries } from './recipeSeries.js';
-import { SOY_MILK_RECIPES } from './soyMilkRecipes.js';
 import { ensurePlanAfternoonTea } from './ensurePlanAfternoonTea.js';
 import { ensurePlanLunchDinner } from './ensurePlanLunchDinner.js';
+import { ensureSoyMilkWeekMenu } from './ensureSoyMilkWeekMenu.js';
 
 const DEFAULT_RECIPES = [
   ...BREAKFAST_RECIPES,
@@ -15,8 +16,8 @@ const DEFAULT_RECIPES = [
   ...MEAL_RECIPES,
   ...AGA_MUSCLE_RECIPES,
   ...HAIR_CARE_RECIPES,
+  ...SOY_WEEK_RECIPES,
 ];
-const OTHER_RECIPES = SOY_MILK_RECIPES;
 const OLD_DEFAULT_TITLES = [
   '黑豆浆核桃全麦早餐',
   '豆浆燕麦香蕉早餐',
@@ -51,7 +52,7 @@ function seedTemplateRecipes(libraryUserId, recipes, source) {
       source = @source,
       series = @series,
       updated_at = datetime('now')
-    WHERE user_id = @userId AND template_key = @templateKey AND source IN ('system', 'other')
+    WHERE user_id = @userId AND template_key = @templateKey AND source = 'system'
   `);
   const exists = db.prepare(
     'SELECT id FROM recipes WHERE user_id = ? AND template_key = ?'
@@ -79,10 +80,11 @@ export function seedSharedRecipeLibrary() {
   const libraryUserId = ensureRecipeLibraryUser(db);
   db.transaction(() => {
     seedTemplateRecipes(libraryUserId, DEFAULT_RECIPES, 'system');
-    seedTemplateRecipes(libraryUserId, OTHER_RECIPES, 'other');
+    // 移除已废弃的「其他食谱 / 豆浆轮换」数据
+    db.prepare(`DELETE FROM recipes WHERE source = 'other'`).run();
     db.prepare(`
       DELETE FROM recipes
-      WHERE user_id != ? AND source IN ('system', 'other')
+      WHERE user_id != ? AND source = 'system'
     `).run(libraryUserId);
     db.prepare(`
       DELETE FROM recipes
@@ -98,12 +100,12 @@ export function seedSharedRecipeLibrary() {
   syncPlanBreakfastTasksFromRecipes(db);
   ensurePlanAfternoonTea({ database: db });
   ensurePlanLunchDinner({ database: db });
+  ensureSoyMilkWeekMenu();
   return libraryUserId;
 }
 
 export function getRecipeSeedStats() {
   return {
     system: DEFAULT_RECIPES.length,
-    other: OTHER_RECIPES.length,
   };
 }

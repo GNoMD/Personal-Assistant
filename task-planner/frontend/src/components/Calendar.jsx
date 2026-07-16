@@ -3,6 +3,19 @@ import { formatDate, parseDate, weekdayLabel } from '../utils/storage';
 
 const WEEKDAYS = ['日', '一', '二', '三', '四', '五', '六'];
 
+function normalizeProgress(prog) {
+  if (!prog) return { total: 0, completed: 0, percent: 0 };
+  const total = Number(prog.total) || 0;
+  const completed = Number(prog.completed) || 0;
+  const percent =
+    typeof prog.percent === 'number'
+      ? prog.percent
+      : total > 0
+        ? Math.round((completed / total) * 100)
+        : 0;
+  return { total, completed, percent };
+}
+
 function progressClass(percent) {
   if (percent >= 100) return 'full';
   if (percent >= 50) return 'half';
@@ -34,10 +47,8 @@ export default function Calendar({
 
     for (let d = 1; d <= daysInMonth; d++) {
       const dateStr = `${year}-${String(month).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
-      const prog = getProgress(dateStr);
-      const percent = prog?.percent ?? 0;
-      const total = prog?.total ?? 0;
-      const allDone = total > 0 && percent >= 100;
+      const prog = normalizeProgress(getProgress(dateStr));
+      const allDone = prog.total > 0 && prog.percent >= 100;
       const isBeforePlan = parseDate(dateStr) < parseDate('2026-07-01');
 
       result.push({
@@ -46,7 +57,9 @@ export default function Calendar({
         dateStr,
         day: d,
         weekday: weekdayLabel(dateStr),
-        percent,
+        percent: prog.percent,
+        total: prog.total,
+        completed: prog.completed,
         allDone,
         isBeforePlan,
         isSelected: dateStr === selectedDate,
@@ -101,15 +114,26 @@ export default function Calendar({
                   ? `${cell.day}日，计划未开始`
                   : cell.allDone
                     ? `${cell.day}日，全部完成，太棒了`
-                    : `${cell.day}日，完成 ${cell.percent}%`
+                    : cell.total > 0
+                      ? `${cell.day}日，完成 ${cell.completed}/${cell.total}`
+                      : `${cell.day}日`
               }
               aria-selected={cell.isSelected}
             >
               <span className="cell-day">{cell.day}</span>
-              {cell.allDone && (
-                <span className="cell-done-badge" title="全部完成，太棒了！" aria-hidden="true">
+              {cell.allDone ? (
+                <span className="cell-done-badge" title="全部完成" aria-hidden="true">
                   ✓
                 </span>
+              ) : cell.total > 0 && cell.percent > 0 ? (
+                <span className="cell-progress-pip" aria-hidden="true" />
+              ) : null}
+              {cell.total > 0 && (
+                <span
+                  className="cell-progress-bar"
+                  aria-hidden="true"
+                  style={{ '--cell-p': cell.percent }}
+                />
               )}
             </button>
           )

@@ -3,8 +3,8 @@ import { AuthProvider, useAuth } from './context/AuthContext';
 import EntryPage from './pages/EntryPage';
 import MyTasksPage from './pages/MyTasksPage';
 import RecipesPage from './pages/RecipesPage';
-import OtherRecipesPage, { OtherRecipeWeekPage } from './pages/OtherRecipesPage';
 import RecipeDetailPage from './pages/RecipeDetailPage';
+import MenuDetailPage from './pages/MenuDetailPage';
 import EquipmentPage, { EquipmentDetailPage } from './pages/EquipmentPage';
 import TravelPage, { TravelDetailPage } from './pages/TravelPage';
 import AdminPage from './pages/AdminPage';
@@ -78,9 +78,8 @@ export default function App() {
           />
           <Route path="/recipes" element={<ProtectedRoute><RecipesPage /></ProtectedRoute>} />
           <Route path="/recipes/:id" element={<ProtectedRoute><RecipeDetailPage /></ProtectedRoute>} />
-          <Route path="/other-recipes" element={<ProtectedRoute><OtherRecipesPage /></ProtectedRoute>} />
-          <Route path="/other-recipes/week/:weekStart" element={<ProtectedRoute><OtherRecipeWeekPage /></ProtectedRoute>} />
-          <Route path="/other-recipes/:id" element={<ProtectedRoute><RecipeDetailPage /></ProtectedRoute>} />
+          <Route path="/menus/:id" element={<ProtectedRoute><MenuDetailPage /></ProtectedRoute>} />
+          <Route path="/other-recipes/*" element={<Navigate to="/recipes" replace />} />
           <Route path="/equipment" element={<ProtectedRoute><EquipmentPage /></ProtectedRoute>} />
           <Route path="/equipment/:id" element={<ProtectedRoute><EquipmentDetailPage /></ProtectedRoute>} />
           <Route path="/travel" element={<ProtectedRoute><TravelPage /></ProtectedRoute>} />

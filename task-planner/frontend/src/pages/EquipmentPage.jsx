@@ -383,9 +383,11 @@ export function EquipmentDetailPage() {
                     <iframe
                       src={video.embedUrl}
                       title={video.title}
-                      loading="lazy"
+                      referrerPolicy="no-referrer"
                       allow="fullscreen; encrypted-media; picture-in-picture"
                       allowFullScreen
+                      scrolling="no"
+                      frameBorder="0"
                     />
                   </div>
                   <a className="btn btn-ghost" href={video.pageUrl} target="_blank" rel="noreferrer">

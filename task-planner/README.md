@@ -18,7 +18,7 @@
 | 登录入口 | `/` | 注册 / 登录；注册后自动种子约 365 天个人任务 |
 | 任务清单 | `/my-tasks` | 日历选日、完成打卡、增删改；可手填或从食谱 / 器械 / 旅行一键带入 |
 | 食谱库 | `/recipes` | 全员共享系统菜谱 + 个人定制；筛选、搜索、收藏、详情 |
-| 其他食谱 | `/other-recipes` | 一周豆浆轮换；先选周再选日，查看配方详情 |
+| 菜单 | `/recipes?tab=menus`、`/menus/:id` | 将多道食谱组合成私有菜单；可在任务中一键带入 |
 | 健身器械 | `/equipment` | 场馆主力器械介绍、动作要点与教学视频 |
 | 旅行计划 | `/travel` | 福建九市可选；目前完善厦门半日 / 一日 / 两日游 |
 | 用户管理 | `/users` | **仅系统管理员**可见；查看全部注册用户与角色 |
@@ -26,7 +26,7 @@
 ### 任务清单
 
 - 按日期查看与勾选任务，支持月历进度
-- 新增任务时可选择来源：**手填**、**食谱库**、**其他食谱**、**健身器械**、**旅行计划**
+- 新增任务时可选择来源：**手填**、**食谱库**、**菜单**、**健身器械**、**旅行计划**
 - 从内容库选择后自动填充标题、分类、耗时与详情，仍可再改
 - 同一账号多端通过 WebSocket 实时同步
 - 操作写入审计日志；支持团队邀请码协作
@@ -34,7 +34,7 @@
 ### 食谱
 
 - **食谱库**：全员共享的早餐 / 午餐 / 晚餐 / 加餐 / 饮品等；个人定制食谱仅自己可见；新用户注册只种子任务清单
-- **其他食谱**：豆浆轮换合集（含统一红线、功效与饮用须知），按周卡片浏览
+- **菜单**：在食谱库「菜单」页组合多道食谱；仅自己可见，可收藏与带入任务
 
 ### 健身器械
 
@@ -55,7 +55,7 @@
 cd task-planner
 npm run install:all
 
-# 后端 :3001
+# 后端 :13222（也可在 .env 中改 PORT）
 cd backend && npm start
 
 # 前端 :5173（另开终端）
@@ -85,7 +85,7 @@ cd task-planner/frontend && npm install && npm run dev
 
 ## 部署到服务器
 
-生产环境由后端同时提供 API 与前端静态资源（构建后的 `frontend/dist`），默认端口 **3001**。推荐直接在服务器上 `git clone` 源码后构建启动（无需本地打 zip）。
+生产环境由后端同时提供 API 与前端静态资源（构建后的 `frontend/dist`），默认端口 **13222**。
 
 ### 环境要求
 
@@ -93,7 +93,7 @@ cd task-planner/frontend && npm install && npm run dev
 - Git
 - Linux 上编译 `better-sqlite3` 可能需要：`build-essential`（或等价的 gcc/make/python3）
 
-### 方式一：Git 源码部署（推荐）
+### 方式一：Git 源码部署
 
 ```bash
 # 1. 拉取仓库
@@ -108,7 +108,7 @@ npm run build
 cp .env.example .env
 nano .env   # 或 vim / vi
 
-# 4. 启动（后端会托管前端静态页 + API，默认 :3001）
+# 4. 启动（后端会托管前端静态页 + API，默认 :13222）
 chmod +x start.sh
 ./start.sh
 ```
@@ -158,37 +158,38 @@ pm2 startup
 
 | 场景 | 地址 |
 |------|------|
-| 本机 | http://localhost:3001 |
-| 局域网 / 公网 | http://\<服务器IP\>:3001 |
+| 本机 | http://localhost:13222 |
+| 局域网 / 公网 | http://\<服务器IP\>:13222 |
 | 健康检查 | `GET /api/health` |
 
-云服务器请在安全组放行 **3001**（或下方 Nginx 的 80/443）。
+云服务器请在安全组放行 **13222**（或下方 Nginx 的 80/443）。
 
-### 方式二：发布包部署（可选）
+### 方式二：日常更新包（推荐手动上传）
 
-在开发机打包后上传 zip（服务器可不装 Git / 可不编译前端）：
+只传编译前端 + 后端源码（不含 node_modules；默认也不含食材/器械大图）：
+
+```bat
+cd task-planner
+npm run pack:update
+REM → release/task-planner-update.tar.gz（约 1～3 MB）
+```
+
+服务器在安装目录上一级解压覆盖后重启；保留 `.env`、`data/`、`backend/node_modules`。
+
+改大图：`npm run pack:update:media`。首次或改依赖：`npm run pack:offline`。细则见 [DEPLOY.md](./DEPLOY.md)。
+
+### 方式三：全离线包 / SSH 一键（可选）
 
 ```bash
-# 开发机
-cd task-planner
-npm run install:all
-npm run pack
-# 得到 release/task-planner.zip
-
-# 服务器
-unzip task-planner.zip
-cd task-planner
-cp .env.example .env
-# 编辑 .env，务必修改 JWT_SECRET
-chmod +x start.sh
-./start.sh
+npm run pack:offline   # 含 Linux node_modules，体积大
+# 或配置 .deploy.env 后: npm run deploy
 ```
 
 ### 环境变量
 
 | 变量 | 说明 | 默认 |
 |------|------|------|
-| `PORT` | 监听端口 | `3001` |
+| `PORT` | 监听端口 | `13222` |
 | `HOST` | 监听地址 | `0.0.0.0` |
 | `JWT_SECRET` | JWT 签名密钥 | 开发默认值（**生产必改**） |
 | `ADMIN_USERNAMES` | 系统管理员用户名（逗号分隔） | `gnomd` |
@@ -204,7 +205,7 @@ server {
     server_name your-domain.com;
 
     location / {
-        proxy_pass http://127.0.0.1:3001;
+        proxy_pass http://127.0.0.1:13222;
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection "upgrade";
@@ -228,7 +229,8 @@ WebSocket（`/socket.io`）依赖上述 Upgrade 头。
 |------|------|
 | 认证 | `POST /api/auth/register`、`/login`；`GET /api/auth/me` |
 | 任务 | `GET/POST /api/tasks`；`PATCH/DELETE /api/tasks/:id`；月历 `GET /api/tasks/calendar` |
-| 食谱 | `GET/POST /api/recipes`；`GET/PATCH/DELETE /api/recipes/:id`（`?source=other` 为其他食谱） |
+| 食谱 | `GET/POST /api/recipes`；`GET/PATCH/DELETE /api/recipes/:id` |
+| 菜单 | `GET/POST /api/menus`；`GET/PATCH/DELETE /api/menus/:id` |
 | 审计 / 团队 | `GET /api/audit/recent`；`POST /api/teams`、`/teams/join` |
 | WebSocket | `/socket.io`，`auth: { token }`，事件 `task:sync` |
 
@@ -237,7 +239,7 @@ WebSocket（`/socket.io`）依赖上述 Upgrade 头。
 | 项目 | 说明 |
 |------|------|
 | 数据库 | `task-planner/data/tasks.db` |
-| 主要表 | `users`、`tasks`、`task_audit_log`、`recipes` 等 |
+| 主要表 | `users`、`tasks`、`task_audit_log`、`recipes`、`menus`、`menu_items` 等 |
 
 ```
 task-planner/
@@ -249,7 +251,7 @@ task-planner/
 │   └── utils/            # 任务内容库映射等
 ├── data/                 # SQLite（需可写）
 ├── DEPLOY.md             # 部署细则
-└── package.json          # install:all / build / pack / start
+└── package.json          # install:all / build / pack / deploy / start
 ```
 
 ## 测试

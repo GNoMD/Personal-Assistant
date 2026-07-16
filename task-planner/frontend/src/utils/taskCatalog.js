@@ -12,7 +12,7 @@ export const TASK_SOURCES = [
   { id: 'manual', label: '手填' },
   { id: 'breakfast', label: '早餐食谱' },
   { id: 'recipe-mine', label: '食谱库' },
-  { id: 'recipe-other', label: '其他食谱' },
+  { id: 'menu', label: '菜单' },
   { id: 'equipment', label: '健身运动' },
   { id: 'travel', label: '旅行计划' },
 ];
@@ -48,7 +48,7 @@ function recipeDescription(recipe) {
     const note = String(recipe.notes).split('\n').find((line) => line.trim());
     if (note) parts.push(note.trim());
   }
-  const path = recipe.source === 'other' ? `/other-recipes/${recipe.id}` : `/recipes/${recipe.id}`;
+  const path = `/recipes/${recipe.id}`;
   parts.push(`详情页：${path}`);
   return parts.join('\n');
 }
@@ -63,14 +63,55 @@ export function recipeToTaskFields(recipe) {
     durationLabel: recipeDuration(recipe.prepMinutes),
     templateKey: recipe.templateKey || null,
     sourceRef: {
-      type: recipe.mealType === '早餐'
-        ? 'breakfast'
-        : (recipe.source === 'other' ? 'recipe-other' : 'recipe-mine'),
+      type: recipe.mealType === '早餐' ? 'breakfast' : 'recipe-mine',
       id: String(recipe.id),
       label: recipe.title,
       templateKey: recipe.templateKey || null,
     },
   };
+}
+
+export function menuToTaskFields(menu) {
+  const category = recipeCategory(menu.mealType || '午餐');
+  const items = menu.items || [];
+  const lines = [
+    `菜单：${menu.title || '未命名菜单'}`,
+    menu.mealType ? `餐次：${menu.mealType}` : '',
+    menu.calories != null ? `合计约 ${menu.calories} 千卡` : '',
+    menu.prepMinutes != null ? `合计约 ${menu.prepMinutes} 分钟` : '',
+    items.length
+      ? `组成食谱：\n${items.map((item, index) => `${index + 1}. ${item.title}${item.calories != null ? `（约 ${item.calories} 千卡）` : ''} → /recipes/${item.recipeId}`).join('\n')}`
+      : '',
+    menu.notes ? String(menu.notes).trim() : '',
+    `菜单详情：/menus/${menu.id}`,
+  ].filter(Boolean);
+
+  return {
+    title: menu.title || '菜单任务',
+    description: lines.join('\n'),
+    category,
+    time: '',
+    durationLabel: recipeDuration(menu.prepMinutes),
+    templateKey: null,
+    sourceRef: {
+      type: 'menu',
+      id: String(menu.id),
+      label: menu.title,
+    },
+  };
+}
+
+export function buildMenuOptions(menus) {
+  return (menus || []).map((menu) => ({
+    id: String(menu.id),
+    label: menu.title,
+    hint: [
+      menu.mealType,
+      menu.recipeCount != null ? `${menu.recipeCount} 道菜` : '',
+      menu.calories != null ? `约 ${menu.calories} 千卡` : '',
+    ].filter(Boolean).join(' · '),
+    payload: menuToTaskFields(menu),
+  }));
 }
 
 export function equipmentToTaskFields(item) {
@@ -194,6 +235,9 @@ export function guessTaskSource(task) {
   }
   if (task.category === '运动' || /器械训练|有氧运动/.test(task.title || '')) return 'equipment';
   if (task.category === '旅行') return 'travel';
+  if (/菜单详情：\/menus\/|详情页：\/menus\//.test(task.description || '') || /^菜单：/.test(task.description || '')) {
+    return 'menu';
+  }
   if (task.category === '食谱' || task.templateKey) return 'recipe-mine';
   return 'manual';
 }

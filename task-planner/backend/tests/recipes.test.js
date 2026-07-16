@@ -12,12 +12,14 @@ import { AFTERNOON_TEA_RECIPES } from '../src/seed/afternoonTeaRecipes.js';
 import { BREAKFAST_RECIPES } from '../src/seed/breakfastRecipes.js';
 import { HAIR_CARE_RECIPES } from '../src/seed/hairCareRecipes.js';
 import { MEAL_RECIPES } from '../src/seed/mealRecipes.js';
+import { SOY_WEEK_RECIPES } from '../src/seed/soyMilkWeekRecipes.js';
 
 const SYSTEM_RECIPE_COUNT = BREAKFAST_RECIPES.length
   + AFTERNOON_TEA_RECIPES.length
   + MEAL_RECIPES.length
   + AGA_MUSCLE_RECIPES.length
-  + HAIR_CARE_RECIPES.length;
+  + HAIR_CARE_RECIPES.length
+  + SOY_WEEK_RECIPES.length;
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const TEST_DB = path.join(__dirname, '../data/test-recipes.db');
@@ -81,13 +83,6 @@ test('user receives starter recipes and can CRUD custom recipe', async () => {
   assert.ok(!list.body.recipes.some((recipe) => /周[一二三四五六日]/.test(recipe.title)));
   assert.ok(list.body.recipes.some((recipe) => recipe.tags.includes('高蛋白')));
   assert.ok(list.body.recipes.some((recipe) => recipe.ingredients.includes('约') && recipe.ingredients.includes('千卡')));
-
-  const otherList = await request('/api/recipes?source=other', { headers: auth });
-  assert.equal(otherList.status, 200);
-  assert.equal(otherList.body.recipes.length, 7);
-  assert.ok(otherList.body.recipes.every((recipe) => recipe.source === 'other'));
-  assert.ok(otherList.body.recipes.some((recipe) => recipe.title.includes('莲子黑豆百合安神款')));
-  assert.ok(otherList.body.recipes.some((recipe) => recipe.ingredients.includes('黑豆12g')));
 
   const created = await request('/api/recipes', {
     method: 'POST',

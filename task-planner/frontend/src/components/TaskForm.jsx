@@ -4,6 +4,7 @@ import {
   TASK_CATEGORIES,
   TASK_SOURCES,
   buildEquipmentOptions,
+  buildMenuOptions,
   buildRecipeOptions,
   buildTravelOptions,
   guessTaskSource,
@@ -24,7 +25,11 @@ const TRAVEL_OPTIONS = buildTravelOptions();
 export { TASK_CATEGORIES as CATEGORIES };
 
 function needsRecipes(source) {
-  return source === 'breakfast' || source === 'recipe-mine' || source === 'recipe-other';
+  return source === 'breakfast' || source === 'recipe-mine';
+}
+
+function needsMenus(source) {
+  return source === 'menu';
 }
 
 export default function TaskForm({ open, mode, task, date, onSave, onClose }) {
@@ -32,7 +37,7 @@ export default function TaskForm({ open, mode, task, date, onSave, onClose }) {
   const [source, setSource] = useState('manual');
   const [selectedId, setSelectedId] = useState('');
   const [mineRecipes, setMineRecipes] = useState([]);
-  const [otherRecipes, setOtherRecipes] = useState([]);
+  const [menus, setMenus] = useState([]);
   const [catalogLoading, setCatalogLoading] = useState(false);
   const [catalogError, setCatalogError] = useState('');
   const [saving, setSaving] = useState(false);
@@ -64,7 +69,7 @@ export default function TaskForm({ open, mode, task, date, onSave, onClose }) {
   }, [open, mode, task]);
 
   useEffect(() => {
-    if (!open || !needsRecipes(source)) return;
+    if (!open || (!needsRecipes(source) && !needsMenus(source))) return;
 
     let cancelled = false;
     (async () => {
@@ -75,9 +80,9 @@ export default function TaskForm({ open, mode, task, date, onSave, onClose }) {
           const data = await api.getRecipes();
           if (!cancelled) setMineRecipes(data.recipes || []);
         }
-        if (source === 'recipe-other' && otherRecipes.length === 0) {
-          const data = await api.getRecipes({ source: 'other' });
-          if (!cancelled) setOtherRecipes(data.recipes || []);
+        if (source === 'menu' && menus.length === 0) {
+          const data = await api.getMenus();
+          if (!cancelled) setMenus(data.menus || []);
         }
       } catch (err) {
         if (!cancelled) setCatalogError(err.message || '内容库加载失败');
@@ -89,16 +94,16 @@ export default function TaskForm({ open, mode, task, date, onSave, onClose }) {
     return () => {
       cancelled = true;
     };
-  }, [open, source, mineRecipes.length, otherRecipes.length]);
+  }, [open, source, mineRecipes.length, menus.length]);
 
   const catalogOptions = useMemo(() => {
     if (source === 'breakfast') return buildRecipeOptions(mineRecipes, { mealType: '早餐' });
     if (source === 'recipe-mine') return buildRecipeOptions(mineRecipes);
-    if (source === 'recipe-other') return buildRecipeOptions(otherRecipes);
+    if (source === 'menu') return buildMenuOptions(menus);
     if (source === 'equipment') return EQUIPMENT_OPTIONS;
     if (source === 'travel') return TRAVEL_OPTIONS;
     return [];
-  }, [source, mineRecipes, otherRecipes]);
+  }, [source, mineRecipes, menus]);
 
   const visibleSources = useMemo(() => {
     if (breakfastLocked) return TASK_SOURCES.filter((item) => item.id === 'breakfast');
@@ -210,7 +215,7 @@ export default function TaskForm({ open, mode, task, date, onSave, onClose }) {
   const catalogLabel = {
     breakfast: '选择早餐食谱（食谱库）',
     'recipe-mine': '选择食谱库',
-    'recipe-other': '选择其他食谱',
+    menu: '选择菜单',
     equipment: '选择健身运动',
     travel: '选择旅行计划',
   }[source] || '选择内容';

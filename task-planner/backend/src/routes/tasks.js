@@ -201,12 +201,17 @@ router.get('/calendar', (req, res) => {
   res.json({
     year,
     month,
-    days: rows.map((r) => ({
-      date: r.date,
-      total: r.total,
-      completed: r.completed || 0,
-      highlights: highlightsByDate[r.date] || [],
-    })),
+    days: rows.map((r) => {
+      const total = r.total;
+      const completed = r.completed || 0;
+      return {
+        date: r.date,
+        total,
+        completed,
+        percent: total > 0 ? Math.round((completed / total) * 100) : 0,
+        highlights: highlightsByDate[r.date] || [],
+      };
+    }),
   });
 });
 

@@ -172,9 +172,39 @@ export function useCalendar(year, month) {
   }, [year, month, key, user?.id]);
 
   const getProgress = useCallback(
-    (dateStr) => days.find((d) => d.date === dateStr) ?? null,
+    (dateStr) => {
+      const row = days.find((d) => d.date === dateStr);
+      if (!row) return null;
+      const total = Number(row.total) || 0;
+      const completed = Number(row.completed) || 0;
+      return {
+        ...row,
+        total,
+        completed,
+        percent: total > 0 ? Math.round((completed / total) * 100) : 0,
+      };
+    },
     [days]
   );
+
+  const patchDayProgress = useCallback((dateStr, { total, completed }) => {
+    const t = Number(total) || 0;
+    const c = Number(completed) || 0;
+    setDays((prev) => {
+      const idx = prev.findIndex((d) => d.date === dateStr);
+      const nextRow = {
+        date: dateStr,
+        total: t,
+        completed: c,
+        percent: t > 0 ? Math.round((c / t) * 100) : 0,
+        highlights: idx >= 0 ? prev[idx].highlights : [],
+      };
+      if (idx < 0) return [...prev, nextRow];
+      const next = [...prev];
+      next[idx] = { ...prev[idx], ...nextRow };
+      return next;
+    });
+  }, []);
 
   const refresh = useCallback(async () => {
     if (user?.id == null) return;
@@ -188,5 +218,5 @@ export function useCalendar(year, month) {
     }
   }, [year, month, key, user?.id]);
 
-  return { days, loading, getProgress, refresh };
+  return { days, loading, getProgress, patchDayProgress, refresh };
 }

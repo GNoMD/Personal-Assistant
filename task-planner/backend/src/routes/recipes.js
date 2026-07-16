@@ -66,15 +66,11 @@ router.get('/meta/series', (_req, res) => {
 
 router.get('/', (req, res) => {
   const libraryUserId = seedSharedRecipeLibrary();
-  const { mealType, q, favorite, source, series } = req.query;
+  const { mealType, q, favorite, series } = req.query;
   const clauses = ['(r.user_id = @libraryUserId OR (r.user_id = @userId AND r.source = \'custom\'))'];
   const params = { userId: req.user.id, libraryUserId };
 
-  if (source === 'other') {
-    clauses.push("r.source = 'other'");
-  } else {
-    clauses.push("r.source != 'other'");
-  }
+  clauses.push("r.source != 'other'");
 
   if (mealType && mealType !== '全部') {
     clauses.push('r.meal_type = @mealType');
@@ -95,12 +91,7 @@ router.get('/', (req, res) => {
     )`);
   }
 
-  const orderBy = source === 'other'
-    ? `CASE
-         WHEN r.template_key GLOB 'soy-rotation-d[0-9]' THEN CAST(substr(r.template_key, 15) AS INTEGER)
-         ELSE 999
-       END ASC, r.id ASC`
-    : `CASE
+  const orderBy = `CASE
          WHEN r.user_id = @userId THEN r.is_favorite
          WHEN f.user_id IS NOT NULL THEN 1
          ELSE 0
@@ -227,6 +218,14 @@ router.delete('/:id', (req, res) => {
     return res.status(403).json({ error: '公共食谱库内容不可删除' });
   }
   const db = getDb();
+  const used = db
+    .prepare('SELECT COUNT(*) AS c FROM menu_items WHERE recipe_id = ?')
+    .get(existing.id);
+  if (used?.c > 0) {
+    return res.status(409).json({
+      error: `该食谱仍在 ${used.c} 个菜单中，请先从菜单中移除后再删除`,
+    });
+  }
   db.prepare('DELETE FROM recipe_favorites WHERE recipe_id = ?').run(existing.id);
   db.prepare('DELETE FROM recipes WHERE id = ? AND user_id = ?').run(existing.id, req.user.id);
   res.json({ deleted: true, id: Number(req.params.id) });

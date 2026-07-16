@@ -345,6 +345,28 @@ function initSchema(database) {
       FOREIGN KEY (recipe_id) REFERENCES recipes(id)
     );
 
+    CREATE TABLE IF NOT EXISTS menus (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      user_id INTEGER NOT NULL,
+      title TEXT NOT NULL,
+      meal_type TEXT NOT NULL DEFAULT '午餐',
+      notes TEXT NOT NULL DEFAULT '',
+      tags TEXT NOT NULL DEFAULT '',
+      is_favorite INTEGER NOT NULL DEFAULT 0,
+      created_at TEXT DEFAULT (datetime('now')),
+      updated_at TEXT DEFAULT (datetime('now')),
+      FOREIGN KEY (user_id) REFERENCES users(id)
+    );
+
+    CREATE TABLE IF NOT EXISTS menu_items (
+      menu_id INTEGER NOT NULL,
+      recipe_id INTEGER NOT NULL,
+      sort_order INTEGER NOT NULL DEFAULT 0,
+      PRIMARY KEY (menu_id, recipe_id),
+      FOREIGN KEY (menu_id) REFERENCES menus(id) ON DELETE CASCADE,
+      FOREIGN KEY (recipe_id) REFERENCES recipes(id)
+    );
+
     CREATE TABLE IF NOT EXISTS fitness_favorites (
       user_id INTEGER NOT NULL,
       item_id TEXT NOT NULL,
@@ -441,6 +463,8 @@ function initSchema(database) {
     CREATE INDEX IF NOT EXISTS idx_audit_user ON task_audit_log(user_id);
     CREATE INDEX IF NOT EXISTS idx_recipes_user ON recipes(user_id);
     CREATE INDEX IF NOT EXISTS idx_recipe_favorites_user ON recipe_favorites(user_id);
+    CREATE INDEX IF NOT EXISTS idx_menus_user ON menus(user_id);
+    CREATE INDEX IF NOT EXISTS idx_menu_items_recipe ON menu_items(recipe_id);
     CREATE INDEX IF NOT EXISTS idx_fitness_favorites_user ON fitness_favorites(user_id);
     CREATE INDEX IF NOT EXISTS idx_assistant_actions_user_status
       ON assistant_actions(user_id, status, expires_at);

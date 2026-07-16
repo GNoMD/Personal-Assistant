@@ -92,6 +92,18 @@ export const api = {
   updateRecipe: (id, data) =>
     request(`/recipes/${id}`, { method: 'PATCH', body: JSON.stringify(data) }),
   deleteRecipe: (id) => request(`/recipes/${id}`, { method: 'DELETE' }),
+  getMenus: (params = {}) => {
+    const query = new URLSearchParams(
+      Object.entries(params).filter(([, value]) => value !== undefined && value !== '')
+    );
+    return request(`/menus${query.size ? `?${query}` : ''}`);
+  },
+  getMenu: (id) => request(`/menus/${id}`),
+  createMenu: (data) =>
+    request('/menus', { method: 'POST', body: JSON.stringify(data) }),
+  updateMenu: (id, data) =>
+    request(`/menus/${id}`, { method: 'PATCH', body: JSON.stringify(data) }),
+  deleteMenu: (id) => request(`/menus/${id}`, { method: 'DELETE' }),
   getFitnessFavorites: () => request('/fitness/favorites'),
   setFitnessFavorite: (itemId, isFavorite) =>
     request(`/fitness/favorites/${encodeURIComponent(itemId)}`, {
