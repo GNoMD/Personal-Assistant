@@ -1,11 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useAuth } from '../context/AuthContext';
+import { getAssistantPersonalityLabel } from '../constants/assistantPersonality';
 
 const STARTERS = [
   '帮我看看今天还有哪些任务没完成',
-  '根据食谱库推荐一份适合训练日的晚餐',
-  '帮我在明天 19:00 添加一个散步任务',
+  '把今天晚上的训练改成跑步 30 分钟',
+  '周六安排厦门半日鼓浪屿',
+  '帮我把清炒时蔬加到我的食谱库',
 ];
 
 const SKIP_MESSAGE_DELETE_CONFIRM_KEY = 'assistant.skipMessageDeleteConfirm';
@@ -116,7 +118,7 @@ function MessageBubble({ message, onApprove, onReject, onDelete, disabled }) {
   );
 }
 
-export default function AssistantModal({ open, onClose, chat }) {
+export default function AssistantModal({ open, onClose, chat, onChangePersonality }) {
   const { user } = useAuth();
   const {
     sessions,
@@ -159,6 +161,8 @@ export default function AssistantModal({ open, onClose, chat }) {
 
   if (typeof document === 'undefined') return null;
 
+  const personalityLabel = getAssistantPersonalityLabel(user?.assistantPersonality);
+
   const submit = (event) => {
     event.preventDefault();
     const value = input.trim();
@@ -189,7 +193,14 @@ export default function AssistantModal({ open, onClose, chat }) {
               <p className="modal-eyebrow">小精灵</p>
               <h2 id="assistant-modal-title">智能助手</h2>
               <p className="assistant-modal-sub">
-                {user?.displayName || user?.username || '你'} · 对话自动保存
+                {user?.displayName || user?.username || '你'}
+                {personalityLabel ? (
+                  <>
+                    {' · '}
+                    <span className="assistant-personality-badge">{personalityLabel}</span>
+                  </>
+                ) : null}
+                {' · 对话自动保存'}
               </p>
             </div>
           </div>
@@ -204,6 +215,17 @@ export default function AssistantModal({ open, onClose, chat }) {
             <button type="button" className="btn btn-ghost" onClick={startNewChat} disabled={streaming}>
               新对话
             </button>
+            {typeof onChangePersonality === 'function' && (
+              <button
+                type="button"
+                className="btn btn-ghost assistant-personality-btn"
+                onClick={onChangePersonality}
+                disabled={streaming}
+                title={personalityLabel ? `当前人设：${personalityLabel}` : '选择人设'}
+              >
+                {personalityLabel ? `人设 · ${personalityLabel}` : '人设'}
+              </button>
+            )}
             {(sessionId || messages.length > 0) && (
               <button
                 type="button"
@@ -292,8 +314,9 @@ export default function AssistantModal({ open, onClose, chat }) {
                 <p className="recipes-kicker">你的计划协作小精灵</p>
                 <h3>今天想从哪里开始？</h3>
                 <p>
-                  我只能协助查看与调整<strong>任务、食谱等业务数据</strong>（写操作需你确认）；
+                  我只能协助查看与调整<strong>任务、食谱、旅行计划等业务数据</strong>（写操作会直接执行）；
                   不能修改系统功能页面、导航、主题或界面布局。
+                  {personalityLabel ? ` 当前人设：${personalityLabel}。` : ''}
                 </p>
                 <div className="assistant-starters">
                   {STARTERS.map((starter) => (

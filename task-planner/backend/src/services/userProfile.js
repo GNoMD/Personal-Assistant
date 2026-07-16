@@ -1,4 +1,5 @@
 import { getDb, LIBRARY_USERNAME } from '../db.js';
+import { refreshAssistantRuleFromProfile } from './assistantPersonality.js';
 
 const SEX = new Set(['male', 'female', 'other', 'prefer_not', '']);
 const WEIGHT_TREND = new Set(['gaining', 'stable', 'losing', 'unknown', '']);
@@ -577,6 +578,7 @@ export function saveUserProfile(userId, input, actor) {
     }
   })();
 
+  refreshAssistantRuleFromProfile(userId);
   return getProfileDto(userId);
 }
 
@@ -594,6 +596,7 @@ export function clearUserProfile(userId, actor) {
     `).run(userId, actor.id, actor.role || 'user', JSON.stringify(['*cleared']));
   })();
 
+  refreshAssistantRuleFromProfile(userId);
   return getProfileDto(userId);
 }
 

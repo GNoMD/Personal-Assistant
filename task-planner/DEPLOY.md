@@ -1,6 +1,7 @@
 # 服务器部署指南
 
 生产环境由后端同时提供 API 与前端静态页（`frontend/dist`），默认端口 **13222**。
+日常发版以**手动上传发布包**为主：分 **少量更新** 与 **全量更新** 两种操作方式。
 
 ## 环境要求
 
@@ -11,41 +12,180 @@
 
 ---
 
-## 方式零：日常更新包（推荐，手动上传）
+## 先选哪种包？
 
-只打包 **已编译前端** `frontend/dist` + **后端源码**，**不含** `node_modules` / `data` / `.env`。体积通常几 MB，适合反复手动上传覆盖。
+| 类型 | 开发机命令 | 产物 | 体积 | 何时用 |
+|------|------------|------|------|--------|
+| **少量更新** | `npm run pack:update` | `release/task-planner-update.tar.gz` | 约 1～3 MB | **日常改代码/UI**（服务器已有 `node_modules`） |
+| **少量更新 + 大图** | `npm run pack:update:media` | 同上 | 更大 | 改了 `ingredients/`、`equipment/` 静态图 |
+| **全量更新** | `npm run pack:offline` | `release/task-planner-offline-linux.tar.gz` | 较大 | **首次部署**、改了依赖、`node_modules` 损坏、换机器 |
 
-### 开发机
+> 勿用 Windows「压缩」或 `Compress-Archive` 打 zip（路径分隔符会导致 Linux 解压后模块找不到）。
+
+**更新时务必保留服务器上的：** `.env`、`data/`（含 `tasks.db`）、以及少量更新时的 `backend/node_modules/`。
+
+---
+
+## 少量更新（日常推荐）
+
+只覆盖 **已编译前端** `frontend/dist` + **后端源码**，**不含** `node_modules` / `data` / `.env`。
+
+### 1. 开发机打包
 
 ```bat
 cd task-planner
 npm run pack:update
-REM → release/task-planner-update.tar.gz（通常约 1～3 MB）
+REM → release/task-planner-update.tar.gz
 
-REM 若改了食材/器械大图：
+REM 若本次改了食材/器械大图：
 npm run pack:update:media
 ```
 
-### 服务器
+把 `task-planner-update.tar.gz` 上传到服务器（与现网 `task-planner` 同级目录，或任意临时目录）。
+
+### 2. 服务器停服 → 解压覆盖 → 启动
+
+假设现网目录为 `/home/ubuntu/soft/person-assistant/task-planner`：
 
 ```bash
-# 停服务后，在「含 task-planner 目录」的上一级解压覆盖
+cd /home/ubuntu/soft/person-assistant/task-planner
+
+# 停服务（start.sh 后台模式）
+if [ -f data/task-planner.pid ]; then
+  kill "$(cat data/task-planner.pid)" 2>/dev/null || true
+  rm -f data/task-planner.pid
+fi
+# 若用 PM2： pm2 stop task-planner
+
+# 备份数据库（建议）
+cp data/tasks.db "data/tasks.db.bak.$(date +%Y%m%d%H%M%S)"
+
+# 在「含 task-planner 目录」的上一级解压覆盖
 cd /home/ubuntu/soft/person-assistant
-tar -xzf task-planner-update.tar.gz
+tar -xzf /path/to/task-planner-update.tar.gz
+
 cd task-planner
-# .env、data/、backend/node_modules 保持不动
-chmod +x start.sh && ./start.sh
-# 或: pm2 restart task-planner
+# 确认 .env、data/、backend/node_modules 仍在
+
+chmod +x start.sh
+./start.sh
+# 后台启动；日志：logs/task-planner.log ；PID：data/task-planner.pid
+# 若用 PM2： pm2 restart task-planner
 ```
 
-| 包 | 命令 | 内容 | 何时用 |
-|----|------|------|--------|
-| 更新包 | `npm run pack:update` | dist + 后端源码（默认不含大图） | **日常改代码** |
-| 更新包+图 | `npm run pack:update:media` | 含 ingredients/equipment | 改了静态大图 |
-| 全离线包 | `npm run pack:offline` | 含 Linux node_modules | 首次部署 / 改了依赖 |
-| 轻量完整包 | `npm run pack` | 无 node_modules | 服务器可自行 npm install |
+### 3. 需要补库数据时（按发版说明）
 
-> 勿用 Windows「压缩」或 `Compress-Archive` 打 zip。
+多数改动重启即可。若发版要求写入新种子数据（例如一周豆浆菜单），在**重启后**执行：
+
+```bash
+cd /home/ubuntu/soft/person-assistant/task-planner/backend
+DB_PATH=../data/tasks.db npm run seed:soy-week
+DB_PATH=../data/tasks.db npm run seed:soy-week -- --yes
+```
+
+其它仅同步 `gnomd` 任务见下文「仅更新线上 gnomd 任务」。
+
+### 少量更新检查清单
+
+- [ ] 开发机已 `pack:update`（或 `pack:update:media`）
+- [ ] 已停服
+- [ ] 已备份 `data/tasks.db`
+- [ ] 解压后 `.env` / `data/` / `backend/node_modules` 仍在
+- [ ] `./start.sh` 或 `pm2 restart` 成功
+- [ ] 浏览器强刷后访问正常；`GET /api/health` 正常
+- [ ] 若发版要求：已跑对应 `seed:*` / `sync:gnomd` 脚本
+
+---
+
+## 全量更新（首次 / 改依赖）
+
+含 Linux 版 `backend/node_modules`（含 `better-sqlite3` 预编译），服务器**不需要**再 `npm install`。
+
+### 1. 开发机打包
+
+```bash
+cd task-planner
+npm run install:all   # 首次或依赖变更时
+npm run pack:offline
+# → release/task-planner-offline-linux.tar.gz
+```
+
+可选：与服务器 Node 主版本对齐：
+
+```powershell
+$env:PACK_NODE_TARGET="20.18.0"
+npm run pack:offline
+```
+
+ARM 服务器：`PACK_ARCH=arm64 npm run pack:offline`
+
+### 2. 服务器停服 → 解压覆盖 → 启动
+
+```bash
+cd /home/ubuntu/soft/person-assistant/task-planner
+
+if [ -f data/task-planner.pid ]; then
+  kill "$(cat data/task-planner.pid)" 2>/dev/null || true
+  rm -f data/task-planner.pid
+fi
+
+cp .env ".env.bak.$(date +%Y%m%d%H%M%S)" 2>/dev/null || true
+cp data/tasks.db "data/tasks.db.bak.$(date +%Y%m%d%H%M%S)"
+
+cd /home/ubuntu/soft/person-assistant
+tar -xzf /path/to/task-planner-offline-linux.tar.gz
+
+cd task-planner
+# 通常包内不含 .env / data，保留原文件即可
+chmod +x start.sh
+./start.sh
+```
+
+首次部署若没有 `.env`：
+
+```bash
+cp .env.example .env
+# 编辑 .env，务必修改 JWT_SECRET
+chmod +x start.sh && ./start.sh
+```
+
+### 全量更新检查清单
+
+- [ ] 服务器 Node **主版本**与打包目标一致（`node -v`）
+- [ ] 已停服并备份 `.env`、`data/tasks.db`
+- [ ] 使用 `tar -xzf` 解压（不要手搓 zip）
+- [ ] `./start.sh` 后台启动成功；查看 `logs/task-planner.log`
+- [ ] `/api/health` 正常；登录抽查
+
+---
+
+## 启停与日志（start.sh）
+
+`start.sh` 为**后台启动**（`nohup`）：
+
+| 文件 | 说明 |
+|------|------|
+| `data/task-planner.pid` | 进程 PID |
+| `logs/task-planner.log` | 标准输出/错误日志 |
+
+```bash
+chmod +x start.sh && ./start.sh
+tail -f logs/task-planner.log
+kill "$(cat data/task-planner.pid)" && rm -f data/task-planner.pid
+```
+
+若提示「已在运行中」，需先停止再启动。也可用 PM2 托管，与 `start.sh` 二选一。
+
+---
+
+## 包类型对照
+
+| 包 | 命令 | 内容 | 服务器 npm install |
+|----|------|------|-------------------|
+| 少量更新 | `npm run pack:update` | dist + 后端源码（默认不含大图） | 不需要（沿用现有 modules） |
+| 少量更新+图 | `npm run pack:update:media` | 含 ingredients/equipment | 不需要 |
+| 全离线 | `npm run pack:offline` | 含 Linux node_modules | **不需要** |
+| 轻量完整包 | `npm run pack` | 无 node_modules | 需要（`start.sh` 会装） |
 
 ---
 
@@ -89,7 +229,9 @@ git pull
 cd task-planner
 npm run install:all
 npm run build
-pm2 restart task-planner   # 若使用 PM2；否则重启 start.sh / start.bat
+kill "$(cat data/task-planner.pid)" 2>/dev/null; rm -f data/task-planner.pid
+./start.sh
+# 或: pm2 restart task-planner
 ```
 
 `data/tasks.db` 不会被 git 覆盖；更新前仍建议备份。
@@ -115,6 +257,14 @@ DB_PATH=/path/to/tasks.db npm run sync:gnomd -- --mode=full --yes
 ```
 
 脚本硬编码目标用户名为 `gnomd`，写库后会校验其他用户任务总数不变。
+
+### 补种一周豆浆菜单（需要时）
+
+```bash
+cd Personal-Assistant/task-planner/backend
+DB_PATH=../data/tasks.db npm run seed:soy-week          # 预览
+DB_PATH=../data/tasks.db npm run seed:soy-week -- --yes # 写库
+```
 
 ### PM2 常驻
 
@@ -167,7 +317,7 @@ chmod +x start.sh
 
 ---
 
-## 方式三：全离线包（手动上传）
+## 方式三：全离线包补充说明
 
 适合没有 SSH、只能网盘/FTP 传文件的场景。有 SSH 时优先用 **方式零**。
 
@@ -310,4 +460,7 @@ copy .deploy.env.example .deploy.env
 npm run deploy
 ```
 
-日常仍更推荐手动上传 `task-planner-update.tar.gz`。
+日常仍更推荐手动上传：
+
+- 少量：`task-planner-update.tar.gz`
+- 全量：`task-planner-offline-linux.tar.gz`

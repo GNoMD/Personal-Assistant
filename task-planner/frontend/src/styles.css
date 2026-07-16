@@ -2660,6 +2660,78 @@ img, svg {
   margin-top: 14px;
 }
 
+.personality-picker-overlay {
+  z-index: 1400;
+}
+
+.personality-picker-modal {
+  width: min(720px, 94vw);
+  max-height: min(88vh, 820px);
+  display: flex;
+  flex-direction: column;
+}
+
+.personality-picker-body {
+  padding: 0 var(--space-lg) var(--space-md);
+  overflow: auto;
+}
+
+.personality-picker-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.personality-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--surface-2);
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.personality-card:hover {
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+}
+
+.personality-card.is-active {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 25%, transparent);
+  background: color-mix(in srgb, var(--accent-soft) 55%, var(--surface));
+}
+
+.personality-card strong {
+  font-size: 1.05rem;
+}
+
+.personality-card span {
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+  line-height: 1.45;
+}
+
+.personality-card em {
+  font-style: normal;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.personality-picker-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: var(--space-md) var(--space-lg) var(--space-lg);
+  border-top: 1px solid var(--border);
+}
+
 .assistant-action-status {
   display: inline-block;
   margin-top: 12px;
@@ -2785,6 +2857,18 @@ img, svg {
   margin: 2px 0 0;
   color: var(--text-muted);
   font-size: 0.78rem;
+}
+
+.assistant-personality-badge {
+  color: var(--accent, #0ea5e9);
+  font-weight: 600;
+}
+
+.assistant-personality-btn {
+  max-width: 11.5rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .assistant-modal-header-actions {

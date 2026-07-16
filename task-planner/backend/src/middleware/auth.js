@@ -10,7 +10,7 @@ export function requireAuth(req, res, next) {
   try {
     const payload = verifyToken(token);
     const user = getDb().prepare(
-      'SELECT id, username, display_name, role FROM users WHERE id = ?'
+      'SELECT id, username, display_name, role, assistant_personality FROM users WHERE id = ?'
     ).get(payload.sub);
     if (!user) {
       return res.status(401).json({ error: '用户不存在或已失效' });
@@ -38,5 +38,6 @@ export function toPublicUser(row) {
     displayName: row.display_name,
     role: row.role || 'user',
     isAdmin: (row.role || 'user') === 'admin',
+    assistantPersonality: row.assistant_personality || null,
   };
 }

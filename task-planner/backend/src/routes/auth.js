@@ -5,9 +5,16 @@ import { hashPassword, comparePassword } from '../auth/password.js';
 import { signToken } from '../auth/jwt.js';
 import { requireAuth, toPublicUser } from '../middleware/auth.js';
 import { seedUserTasks } from '../seed/seed.js';
+import { ensureAssistantPersonality } from '../services/assistantPersonality.js';
 
 const router = Router();
 
+function loadPublicUser(userId) {
+  const row = getDb().prepare(
+    'SELECT id, username, display_name, role, assistant_personality FROM users WHERE id = ?'
+  ).get(userId);
+  return row ? toPublicUser(row) : null;
+}
 function makeInviteCode() {
   return crypto.randomBytes(4).toString('hex').toUpperCase();
 }
@@ -53,12 +60,12 @@ router.post('/register', async (req, res) => {
     });
 
     const { userId, team } = createUser();
-    const row = db.prepare('SELECT id, username, display_name, role FROM users WHERE id = ?').get(userId);
-    const token = signToken(row);
+    ensureAssistantPersonality(userId);
+    const token = signToken({ id: userId, username, role: 'user' });
 
     res.status(201).json({
       token,
-      user: toPublicUser(row),
+      user: loadPublicUser(userId),
       team,
     });
   } catch (err) {
@@ -86,6 +93,8 @@ router.post('/login', async (req, res) => {
   const ok = await comparePassword(password, row.password_hash);
   if (!ok) return res.status(401).json({ error: '用户名或密码错误' });
 
+  ensureAssistantPersonality(row.id);
+
   const teams = getDb().prepare(`
     SELECT t.id, t.name, t.invite_code as inviteCode, tm.role
     FROM team_members tm
@@ -96,13 +105,14 @@ router.post('/login', async (req, res) => {
   const token = signToken(row);
   res.json({
     token,
-    user: toPublicUser(row),
+    user: loadPublicUser(row.id),
     teams,
   });
 });
 
 /** GET /api/auth/me */
 router.get('/me', requireAuth, (req, res) => {
+  ensureAssistantPersonality(req.user.id);
   const teams = getDb().prepare(`
     SELECT t.id, t.name, t.invite_code as inviteCode, tm.role
     FROM team_members tm
@@ -111,7 +121,7 @@ router.get('/me', requireAuth, (req, res) => {
   `).all(req.user.id);
 
   res.json({
-    user: toPublicUser(req.user),
+    user: loadPublicUser(req.user.id),
     teams,
   });
 });

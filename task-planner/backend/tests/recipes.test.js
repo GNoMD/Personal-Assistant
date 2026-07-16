@@ -80,7 +80,7 @@ test('user receives starter recipes and can CRUD custom recipe', async () => {
   assert.ok(list.body.recipes.some((recipe) => recipe.mealType === '饮品'));
   assert.ok(list.body.recipes.some((recipe) => recipe.title === '鸡胸糙米绿叶盘'));
   assert.ok(list.body.recipes.some((recipe) => recipe.title === '莓果无乳糖酸奶昔'));
-  assert.ok(!list.body.recipes.some((recipe) => /周[一二三四五六日]/.test(recipe.title)));
+  assert.ok(list.body.recipes.some((recipe) => /周一｜/.test(recipe.title) && recipe.series === '豆浆轮换'));
   assert.ok(list.body.recipes.some((recipe) => recipe.tags.includes('高蛋白')));
   assert.ok(list.body.recipes.some((recipe) => recipe.ingredients.includes('约') && recipe.ingredients.includes('千卡')));
 

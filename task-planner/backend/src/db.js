@@ -96,6 +96,9 @@ function migrateSchema(database) {
   if (userCols.length && !userCols.includes('role')) {
     database.exec(`ALTER TABLE users ADD COLUMN role TEXT NOT NULL DEFAULT 'user'`);
   }
+  if (userCols.length && !userCols.includes('assistant_personality')) {
+    database.exec(`ALTER TABLE users ADD COLUMN assistant_personality TEXT DEFAULT NULL`);
+  }
 
   database.exec(`
     CREATE TABLE IF NOT EXISTS recipe_favorites (
@@ -262,6 +265,7 @@ function initSchema(database) {
       password_hash TEXT NOT NULL,
       display_name TEXT NOT NULL,
       role TEXT NOT NULL DEFAULT 'user',
+      assistant_personality TEXT DEFAULT NULL,
       created_at TEXT DEFAULT (datetime('now'))
     );
 

@@ -87,6 +87,17 @@ export function streamAssistantMessage(payload, onEvent, signal) {
   return streamRequest('/assistant/chat', payload, onEvent, signal);
 }
 
+export function getAssistantPersonality() {
+  return api('/assistant/personality');
+}
+
+export function setAssistantPersonality(personality) {
+  return api('/assistant/personality', {
+    method: 'PUT',
+    body: JSON.stringify({ personality }),
+  });
+}
+
 export async function resolveAssistantAction(actionId, approve, onEvent, signal, sessionId) {
   const token = getToken();
   const response = await fetch(

@@ -54,6 +54,22 @@ before(async () => {
           }),
         },
       });
+    } else if (String(body.input).includes('新增食谱') || String(body.input).includes('加到食谱库')) {
+      sse(res, 'response.output_item.done', {
+        item: {
+          type: 'function_call',
+          name: 'create_recipe',
+          call_id: 'call-create-recipe',
+          arguments: JSON.stringify({
+            title: '清炒时蔬',
+            meal_type: '晚餐',
+            ingredients: '时令青菜 300g\n蒜末 少许\n盐 适量',
+            steps: '1. 青菜洗净切段\n2. 热锅少油爆香蒜末\n3. 下菜快炒至断生，加盐出锅',
+            prep_minutes: 15,
+            tags: '素食,快手',
+          }),
+        },
+      });
     } else if (String(body.input).includes('任务')) {
       sse(res, 'response.output_item.done', {
         item: {
@@ -130,22 +146,133 @@ test('assistant streams text and executes scoped read tools', async () => {
   assert.match(tasks.text, /"delta":"操作已完成。"/);
 });
 
-test('assistant write action is pending until user confirms', async () => {
+test('assistant write tools execute immediately without confirmation', async () => {
   const { token, user } = await register();
-  const proposal = await postSse('/api/assistant/chat', token, { message: '创建散步任务' });
-  assert.equal(proposal.status, 200);
-  const match = proposal.text.match(/"action":\{"id":"([^"]+)"/);
-  assert.ok(match, proposal.text);
-  const actionId = match[1];
+  const result = await postSse('/api/assistant/chat', token, { message: '创建散步任务' });
+  assert.equal(result.status, 200);
+  assert.doesNotMatch(result.text, /"type":"action_required"/);
+  assert.match(result.text, /"type":"tool_result"/);
+  assert.match(result.text, /"delta":"操作已完成。"/);
 
-  const before = getDb().prepare(
+  const after = getDb().prepare(
     "SELECT COUNT(*) AS n FROM tasks WHERE user_id = ? AND date = '2026-07-20' AND title = '散步 30 分钟'"
   ).get(user.id);
-  assert.equal(before.n, 0);
+  assert.equal(after.n, 1);
+});
+
+test('assistant can create a private recipe in the user library', async () => {
+  const { token, user } = await register();
+  const result = await postSse('/api/assistant/chat', token, { message: '帮我把清炒时蔬加到食谱库' });
+  assert.equal(result.status, 200);
+  assert.doesNotMatch(result.text, /"type":"action_required"/);
+  assert.match(result.text, /"type":"tool_result"/);
+
+  const row = getDb().prepare(
+    "SELECT * FROM recipes WHERE user_id = ? AND title = '清炒时蔬' AND source = 'custom'"
+  ).get(user.id);
+  assert.ok(row);
+  assert.equal(row.meal_type, '晚餐');
+  assert.match(row.ingredients, /青菜/);
+  assert.match(row.steps, /热锅/);
+  assert.equal(row.series, '我的定制');
+});
+
+test('create_recipe rejects incomplete payloads', async () => {
+  const { executeWriteAssistantTool } = await import('../src/services/assistantTools.js');
+  const { user } = await register();
+  assert.throws(
+    () => executeWriteAssistantTool('create_recipe', { title: '只有名字' }, {
+      id: user.id,
+      username: user.username,
+      displayName: user.displayName,
+    }),
+    /食材|步骤/
+  );
+});
+
+test('assistant can schedule fitness and travel then update task in one flow', async () => {
+  const {
+    executeReadAssistantTool,
+    executeWriteAssistantTool,
+  } = await import('../src/services/assistantTools.js');
+  const { user } = await register();
+  const authUser = { id: user.id, username: user.username, displayName: user.displayName };
+
+  const fitnessHits = executeReadAssistantTool('search_fitness', { query: '史密斯' }, authUser);
+  assert.ok(fitnessHits.items.length >= 1);
+
+  const workout = executeWriteAssistantTool('schedule_fitness', {
+    date: '2026-07-22',
+    item_name: '史密斯机',
+    time: '19:00',
+  }, authUser);
+  assert.equal(workout.result.category, '运动');
+  assert.match(workout.result.title, /史密斯/);
+
+  const travelHits = executeReadAssistantTool('search_travel', {
+    city: '厦门',
+    duration: '半日游',
+    query: '鼓浪屿',
+  }, authUser);
+  assert.ok(travelHits.plans.length >= 1);
+
+  const trip = executeWriteAssistantTool('schedule_travel', {
+    date: '2026-07-25',
+    city: '厦门',
+    duration: '半日游',
+    query: '鼓浪屿',
+  }, authUser);
+  assert.equal(trip.result.category, '旅行');
+  assert.match(trip.result.title, /厦门/);
+
+  const updated = executeWriteAssistantTool('update_task', {
+    task_id: workout.result.id,
+    title: '有氧运动：跑步',
+    duration_minutes: 30,
+    duration_label: '约 30 分钟',
+    time: '20:00',
+  }, authUser);
+  assert.equal(updated.result.title, '有氧运动：跑步');
+  assert.equal(updated.result.time, '20:00');
+  assert.equal(updated.result.durationMinutes, 30);
+
+  const listed = executeReadAssistantTool('list_tasks', {
+    date: '2026-07-22',
+    category: '运动',
+    query: '跑步',
+  }, authUser);
+  assert.equal(listed.tasks.length, 1);
+  assert.equal(listed.tasks[0].id, workout.result.id);
+
+  const fav = executeWriteAssistantTool('set_fitness_favorite', {
+    item_id: 'smith-machine',
+    is_favorite: true,
+  }, authUser);
+  assert.equal(fav.result.isFavorite, true);
+  assert.ok(fav.result.itemIds.includes('smith-machine'));
+});
+
+test('legacy pending write action resolve still works when confirmed', async () => {
+  const { token, user } = await register();
+  const { createPendingAssistantAction } = await import('../src/services/assistantTools.js');
+  const pending = createPendingAssistantAction({
+    userId: user.id,
+    sessionId: null,
+    callId: 'call-legacy',
+    responseId: 'resp-legacy',
+    toolName: 'create_task',
+    args: {
+      date: '2026-07-21',
+      time: '18:00',
+      category: '运动',
+      title: '拉伸 10 分钟',
+      description: '',
+    },
+  });
 
   const other = await register();
   const forbidden = await postSse(
-    `/api/assistant/actions/${actionId}/resolve`,
+    `/api/assistant/actions/${pending.id}/resolve`,
     other.token,
     { approve: true }
   );
@@ -153,7 +280,7 @@ test('assistant write action is pending until user confirms', async () => {
   assert.match(forbidden.text, /不存在|无权|过期/);
 
   const confirmed = await postSse(
-    `/api/assistant/actions/${actionId}/resolve`,
+    `/api/assistant/actions/${pending.id}/resolve`,
     token,
     { approve: true }
   );
@@ -161,7 +288,7 @@ test('assistant write action is pending until user confirms', async () => {
   assert.match(confirmed.text, /"type":"action_result"/);
 
   const after = getDb().prepare(
-    "SELECT COUNT(*) AS n FROM tasks WHERE user_id = ? AND date = '2026-07-20' AND title = '散步 30 分钟'"
+    "SELECT COUNT(*) AS n FROM tasks WHERE user_id = ? AND date = '2026-07-21' AND title = '拉伸 10 分钟'"
   ).get(user.id);
   assert.equal(after.n, 1);
 });
@@ -341,10 +468,16 @@ test('assistant scope is data-only and tools cannot modify UI pages', async () =
   const { assistantInstructions } = await import('../src/routes/assistant.js');
   const names = ASSISTANT_TOOLS.map((tool) => tool.name).sort();
   assert.deepEqual(names, [
+    'create_recipe',
     'create_task',
     'delete_task',
     'list_tasks',
+    'schedule_fitness',
+    'schedule_travel',
+    'search_fitness',
     'search_recipes',
+    'search_travel',
+    'set_fitness_favorite',
     'update_task',
   ]);
   for (const tool of ASSISTANT_TOOLS) {

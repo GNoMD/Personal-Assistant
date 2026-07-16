@@ -115,6 +115,7 @@ export function AuthProvider({ children }) {
   const value = useMemo(
     () => ({
       user,
+      setUser,
       teams,
       setTeams,
       loading,
