@@ -3162,14 +3162,6 @@ img, svg {
   min-width: 0;
 }
 
-.app-nav-logout {
-  flex: 0 0 auto;
-  min-height: 36px;
-  padding: 0 12px;
-  font-size: var(--text-sm);
-  white-space: nowrap;
-}
-
 .app-nav-right {
   display: flex;
   align-items: center;
@@ -3185,8 +3177,8 @@ img, svg {
 .app-nav-avatar-btn {
   display: grid;
   place-items: center;
-  width: 52px;
-  height: 52px;
+  width: 64px;
+  height: 64px;
   padding: 0;
   border: 1px solid var(--border);
   border-radius: 999px;
@@ -3209,7 +3201,7 @@ img, svg {
   height: 100%;
   max-width: 100%;
   padding: 0;
-  font-size: 1.15rem;
+  font-size: 1.35rem;
   font-weight: 700;
   color: var(--accent);
   line-height: 1.1;
@@ -3233,8 +3225,8 @@ img, svg {
   top: calc(100% + 8px);
   right: 0;
   z-index: 80;
-  min-width: 220px;
-  max-width: min(280px, calc(100vw - 24px));
+  min-width: 260px;
+  max-width: min(340px, calc(100vw - 24px));
   padding: 0.45rem;
   border: 1px solid var(--border);
   border-radius: 14px;
@@ -3301,14 +3293,15 @@ img, svg {
   transform: translateY(-50%);
   display: grid;
   place-items: center;
-  width: 64px;
-  height: 64px;
+  width: 72px;
+  height: 72px;
   margin: 0;
   padding: 0;
   border: 0;
-  border-radius: 50%;
+  border-radius: 0;
   background: transparent;
   box-shadow: none;
+  outline: none;
   text-decoration: none;
   cursor: pointer;
   appearance: none;
@@ -3316,9 +3309,15 @@ img, svg {
   transition: transform 0.2s ease, filter 0.2s ease, opacity 0.2s ease;
 }
 
+.assistant-sprite-fab:focus,
+.assistant-sprite-fab:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
 .assistant-sprite-fab:hover {
   transform: translateY(-50%) scale(1.06);
-  filter: brightness(1.04);
+  filter: brightness(1.04) drop-shadow(0 6px 14px rgba(15, 60, 50, 0.18));
 }
 
 .assistant-sprite-fab:active {
@@ -3330,13 +3329,13 @@ img, svg {
 }
 
 .assistant-sprite-fab-img {
-  width: 64px;
+  width: 72px;
   max-width: none;
-  height: 64px;
+  height: 72px;
   border: 0;
   outline: none;
-  border-radius: 50%;
-  object-fit: cover;
+  border-radius: 0;
+  object-fit: contain;
   display: block;
   background: transparent;
   box-shadow: none;
@@ -3356,8 +3355,7 @@ img, svg {
   transition: color 0.2s, border-color 0.2s, background 0.2s;
 }
 
-.app-nav-label--short,
-.app-nav-logout-short {
+.app-nav-label--short {
   display: none;
 }
 
@@ -5911,13 +5909,13 @@ body::after {
 
   .assistant-sprite-fab {
     right: max(8px, env(safe-area-inset-right, 0px));
-    width: 56px;
-    height: 56px;
+    width: 64px;
+    height: 64px;
   }
 
   .assistant-sprite-fab-img {
-    width: 56px;
-    height: 56px;
+    width: 64px;
+    height: 64px;
   }
 
   .app-nav-link {
@@ -5957,38 +5955,21 @@ body::after {
     display: inline;
   }
 
-  .app-nav-logout {
-    flex: 0 0 auto;
-    min-width: 44px;
-    min-height: 52px;
-    padding: 0 8px;
-    border-radius: 12px;
-  }
-
-  .app-nav-logout-full {
-    display: none;
-  }
-
-  .app-nav-logout-short {
-    display: inline;
-    font-size: 1.1rem;
-  }
-
   .app-nav-avatar-btn {
-    width: 52px;
-    height: 52px;
+    width: 58px;
+    height: 58px;
     border-radius: 16px;
   }
 
   .app-nav-avatar {
-    font-size: 1.05rem;
+    font-size: 1.2rem;
   }
 
   .app-nav-account-menu {
     top: auto;
     bottom: calc(100% + 10px);
     right: 0;
-    min-width: 220px;
+    min-width: 240px;
   }
 
   /* ???????????????? */
@@ -6136,13 +6117,11 @@ body::after {
 }
 
 @media (min-width: 1024px) {
-  .app-nav-label--short,
-  .app-nav-logout-short {
+  .app-nav-label--short {
     display: none;
   }
 
-  .app-nav-label--full,
-  .app-nav-logout-full {
+  .app-nav-label--full {
     display: inline;
   }
 

@@ -22,6 +22,25 @@ function isAbortError(err) {
   return err?.name === 'AbortError' || /aborted|abort/i.test(String(err?.message || ''));
 }
 
+const LAST_SESSION_KEY = 'assistant.lastSessionId';
+
+function readLastSessionId() {
+  try {
+    return localStorage.getItem(LAST_SESSION_KEY) || null;
+  } catch {
+    return null;
+  }
+}
+
+function writeLastSessionId(id) {
+  try {
+    if (id) localStorage.setItem(LAST_SESSION_KEY, id);
+    else localStorage.removeItem(LAST_SESSION_KEY);
+  } catch {
+    // Ignore private-mode / quota failures.
+  }
+}
+
 export function useAssistantChat() {
   const [sessions, setSessions] = useState([]);
   const [sessionId, setSessionId] = useState(null);
@@ -33,9 +52,11 @@ export function useAssistantChat() {
   const sessionIdRef = useRef(null);
   const activeAssistantIdRef = useRef(null);
   const controllerRef = useRef(null);
+  const didResumeRef = useRef(false);
 
   useEffect(() => {
     sessionIdRef.current = sessionId;
+    writeLastSessionId(sessionId);
   }, [sessionId]);
 
   useEffect(() => () => controllerRef.current?.abort(), []);
@@ -46,20 +67,60 @@ export function useAssistantChat() {
     return data.sessions || [];
   }, []);
 
+  const applySessionPayload = useCallback((session) => {
+    setSessionId(session.id);
+    sessionIdRef.current = session.id;
+    responseIdRef.current = session.previousResponseId || null;
+    setMessages((session.messages || []).map((message) => ({
+      ...message,
+      content: message.content || '',
+      stopped: message.error === '已终止回答',
+      error: message.error === '已终止回答' ? null : message.error,
+    })));
+  }, []);
+
+  const openSession = useCallback(async (id) => {
+    if (!id || streaming) return;
+    setError('');
+    setLoadingHistory(true);
+    try {
+      const data = await getAssistantSession(id);
+      applySessionPayload(data.session);
+    } catch (err) {
+      setError(err.message);
+      writeLastSessionId(null);
+    } finally {
+      setLoadingHistory(false);
+    }
+  }, [applySessionPayload, streaming]);
+
   useEffect(() => {
     let cancelled = false;
     (async () => {
       try {
         setLoadingHistory(true);
-        await refreshSessions();
+        const list = await refreshSessions();
+        if (cancelled || didResumeRef.current) return;
+        didResumeRef.current = true;
+        const preferred = readLastSessionId();
+        const target = list.find((item) => item.id === preferred)?.id
+          || list[0]?.id
+          || null;
+        if (!target) return;
+        const data = await getAssistantSession(target);
+        if (cancelled) return;
+        applySessionPayload(data.session);
       } catch (err) {
-        if (!cancelled) setError(err.message);
+        if (!cancelled) {
+          setError(err.message);
+          writeLastSessionId(null);
+        }
       } finally {
         if (!cancelled) setLoadingHistory(false);
       }
     })();
     return () => { cancelled = true; };
-  }, [refreshSessions]);
+  }, [applySessionPayload, refreshSessions]);
 
   const updateMessage = useCallback((id, updater) => {
     setMessages((current) => current.map((message) => (
@@ -139,33 +200,12 @@ export function useAssistantChat() {
     }
   }, [markStopped, refreshSessions, updateMessage]);
 
-  const openSession = useCallback(async (id) => {
-    if (!id || streaming) return;
-    setError('');
-    setLoadingHistory(true);
-    try {
-      const data = await getAssistantSession(id);
-      setSessionId(data.session.id);
-      sessionIdRef.current = data.session.id;
-      responseIdRef.current = data.session.previousResponseId || null;
-      setMessages((data.session.messages || []).map((message) => ({
-        ...message,
-        content: message.content || '',
-        stopped: message.error === '已终止回答',
-        error: message.error === '已终止回答' ? null : message.error,
-      })));
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setLoadingHistory(false);
-    }
-  }, [streaming]);
-
   const startNewChat = useCallback(() => {
     controllerRef.current?.abort();
     responseIdRef.current = null;
     sessionIdRef.current = null;
     activeAssistantIdRef.current = null;
+    writeLastSessionId(null);
     setSessionId(null);
     setMessages([]);
     setError('');

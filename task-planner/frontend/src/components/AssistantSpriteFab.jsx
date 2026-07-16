@@ -14,8 +14,8 @@ export default function AssistantSpriteFab({ active = false, onClick }) {
         src="/assistant/sprite.png"
         alt=""
         className="assistant-sprite-fab-img"
-        width={64}
-        height={64}
+        width={72}
+        height={72}
       />
     </button>
   );
