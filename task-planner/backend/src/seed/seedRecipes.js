@@ -8,7 +8,7 @@ import { SOY_WEEK_RECIPES } from './soyMilkWeekRecipes.js';
 import { resolveRecipeSeries } from './recipeSeries.js';
 import { ensurePlanAfternoonTea } from './ensurePlanAfternoonTea.js';
 import { ensurePlanLunchDinner } from './ensurePlanLunchDinner.js';
-import { ensureSoyMilkWeekMenu } from './ensureSoyMilkWeekMenu.js';
+import { ensureSoyMilkWeekData } from './ensureSoyMilkWeekMenu.js';
 
 const DEFAULT_RECIPES = [
   ...BREAKFAST_RECIPES,
@@ -100,7 +100,7 @@ export function seedSharedRecipeLibrary() {
   syncPlanBreakfastTasksFromRecipes(db);
   ensurePlanAfternoonTea({ database: db });
   ensurePlanLunchDinner({ database: db });
-  ensureSoyMilkWeekMenu();
+  ensureSoyMilkWeekData();
   return libraryUserId;
 }
 

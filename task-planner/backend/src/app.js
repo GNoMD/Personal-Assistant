@@ -20,7 +20,7 @@ import { ensureGnomdMedicationSchedule } from './seed/ensureGnomdMedicationSched
 import { ensureGnomdProfile } from './seed/ensureGnomdProfile.js';
 import { ensurePlanAfternoonTea } from './seed/ensurePlanAfternoonTea.js';
 import { ensurePlanLunchDinner } from './seed/ensurePlanLunchDinner.js';
-import { ensureSoyMilkWeekMenu } from './seed/ensureSoyMilkWeekMenu.js';
+import { ensureSoyMilkWeekData } from './seed/ensureSoyMilkWeekMenu.js';
 import { stripHairCarePlanFromOtherUsers } from './seed/stripHairCareFromOtherUsers.js';
 import { seedUserTasks } from './seed/seed.js';
 
@@ -84,7 +84,7 @@ export function initDatabase() {
   ensureGnomdProfile();
   ensurePlanAfternoonTea();
   ensurePlanLunchDinner();
-  ensureSoyMilkWeekMenu();
+  ensureSoyMilkWeekData();
   stripHairCarePlanFromOtherUsers();
   return { initialized: true };
 }
