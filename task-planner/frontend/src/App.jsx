@@ -6,7 +6,7 @@ import RecipesPage from './pages/RecipesPage';
 import RecipeDetailPage from './pages/RecipeDetailPage';
 import MenuDetailPage from './pages/MenuDetailPage';
 import EquipmentPage, { EquipmentDetailPage } from './pages/EquipmentPage';
-import TravelPage, { TravelDetailPage } from './pages/TravelPage';
+import TravelPage, { TravelDetailPage, TravelSpotDetailPage } from './pages/TravelPage';
 import AdminPage from './pages/AdminPage';
 import ProfilePage from './pages/ProfilePage';
 import AssistantHost from './components/AssistantHost';
@@ -83,6 +83,7 @@ export default function App() {
           <Route path="/equipment" element={<ProtectedRoute><EquipmentPage /></ProtectedRoute>} />
           <Route path="/equipment/:id" element={<ProtectedRoute><EquipmentDetailPage /></ProtectedRoute>} />
           <Route path="/travel" element={<ProtectedRoute><TravelPage /></ProtectedRoute>} />
+          <Route path="/travel/spots/:id" element={<ProtectedRoute><TravelSpotDetailPage /></ProtectedRoute>} />
           <Route path="/travel/:id" element={<ProtectedRoute><TravelDetailPage /></ProtectedRoute>} />
           <Route path="/users" element={<AdminRoute><AdminPage /></AdminRoute>} />
           <Route path="/admin" element={<Navigate to="/users" replace />} />

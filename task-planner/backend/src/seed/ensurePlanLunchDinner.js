@@ -152,7 +152,16 @@ export function ensurePlanLunchDinner(options = {}) {
 
   if (!options.force) {
     const done = database.prepare('SELECT 1 AS ok FROM schema_migrations WHERE id = ?').get(MIGRATION_ID);
-    if (done) return { applied: false, reason: 'already_applied' };
+    if (done) {
+      const lunchSynced = syncMealContent(database, '午餐', 'lunch-d', planLunchTaskFields);
+      const dinnerSynced = syncMealContent(database, '晚餐', 'dinner-d', planDinnerTaskFields);
+      return {
+        applied: false,
+        reason: 'already_applied',
+        lunchSynced,
+        dinnerSynced,
+      };
+    }
   }
 
   let lunch = { days: 0, inserted: 0 };

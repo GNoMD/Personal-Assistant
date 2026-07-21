@@ -9,17 +9,21 @@ import { closeDb } from '../src/db.js';
 import { initSocket } from '../src/socket.js';
 import { AGA_MUSCLE_RECIPES } from '../src/seed/agaMuscleRecipes.js';
 import { AFTERNOON_TEA_RECIPES } from '../src/seed/afternoonTeaRecipes.js';
+import { EVENING_SNACK_RECIPES } from '../src/seed/eveningSnackRecipes.js';
 import { BREAKFAST_RECIPES } from '../src/seed/breakfastRecipes.js';
 import { HAIR_CARE_RECIPES } from '../src/seed/hairCareRecipes.js';
 import { MEAL_RECIPES } from '../src/seed/mealRecipes.js';
 import { SOY_WEEK_RECIPES } from '../src/seed/soyMilkWeekRecipes.js';
+import { SOY_BREAKFAST_RECIPES } from '../src/seed/soyMilkBreakfastRecipes.js';
 
 const SYSTEM_RECIPE_COUNT = BREAKFAST_RECIPES.length
   + AFTERNOON_TEA_RECIPES.length
+  + EVENING_SNACK_RECIPES.length
   + MEAL_RECIPES.length
   + AGA_MUSCLE_RECIPES.length
   + HAIR_CARE_RECIPES.length
-  + SOY_WEEK_RECIPES.length;
+  + SOY_WEEK_RECIPES.length
+  + SOY_BREAKFAST_RECIPES.length;
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const TEST_DB = path.join(__dirname, '../data/test-recipes.db');
@@ -78,7 +82,7 @@ test('user receives starter recipes and can CRUD custom recipe', async () => {
   assert.ok(list.body.recipes.some((recipe) => recipe.mealType === '晚餐'));
   assert.ok(list.body.recipes.some((recipe) => recipe.mealType === '加餐'));
   assert.ok(list.body.recipes.some((recipe) => recipe.mealType === '饮品'));
-  assert.ok(list.body.recipes.some((recipe) => recipe.title === '鸡胸糙米绿叶盘'));
+  assert.ok(list.body.recipes.some((recipe) => recipe.title === '鸡胸糙米西兰花盘'));
   assert.ok(list.body.recipes.some((recipe) => recipe.title === '莓果无乳糖酸奶昔'));
   assert.ok(list.body.recipes.some((recipe) => /周一｜/.test(recipe.title) && recipe.series === '豆浆轮换'));
   assert.ok(list.body.recipes.some((recipe) => recipe.tags.includes('高蛋白')));

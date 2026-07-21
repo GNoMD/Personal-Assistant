@@ -3,6 +3,8 @@
  * 统一：总干料约 117–122g；裸燕麦米；杂粮提前浸泡 4h 并倒掉泡水。
  */
 
+import { estimateSoyDryCalories } from './soyIngredientCalories.js';
+
 export const SOY_WEEK_COMMON_RULES = [
   '【统一标准红线】',
   '油脂类：黑芝麻≤6g、核桃≤8g、花生仅周六1次≤10g。',
@@ -37,13 +39,21 @@ function recipe({
   ingredients,
   tags,
 }) {
+  const { dryKcal, unknown } = estimateSoyDryCalories(ingredients);
+  if (unknown.length) {
+    console.warn(`[soy-week-d${day}] 未识别热量食材行:`, unknown);
+  }
+  // 4 人份：卡片展示「每人约」；取整到 5 千卡
+  const perServing = Math.round((dryKcal / 4) / 5) * 5;
+  const batchRounded = Math.round(dryKcal / 5) * 5;
+
   return {
     title: `${title}（${totalG}g）`,
     mealType: '饮品',
     series: '豆浆轮换',
     templateKey: `soy-week-d${day}`,
     prepMinutes: 25,
-    calories: null,
+    calories: perServing,
     tags: `豆浆轮换,周${['一', '二', '三', '四', '五', '六', '日'][day - 1]},${tags}`,
     ingredients: ingredients.map((line) => line).join('\n'),
     steps: [
@@ -53,6 +63,7 @@ function recipe({
     ].join('\n'),
     notes: [
       `功效：${focus}`,
+      `营养：整锅干料参考约 ${batchRounded} 千卡；4 人份均分约 ${perServing} 千卡/人（保留豆渣、不加糖）。`,
       '',
       SOY_WEEK_COMMON_RULES,
     ].join('\n'),

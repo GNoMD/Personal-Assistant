@@ -57,5 +57,48 @@ export function resolveMealCalories(recipe) {
   if (recipe?.calories != null && recipe.calories !== '') {
     return Number(recipe.calories);
   }
-  return sumDishCalories(parseDishLines(recipe?.ingredients));
+  const summed = sumDishCalories(parseDishLines(recipe?.ingredients));
+  return summed > 0 ? summed : null;
 }
+
+/** 列表卡片展示用：有值则「约 N 千卡」，否则空串 */
+export function getRecipeCaloriesLabel(recipe) {
+  const n = resolveMealCalories(recipe);
+  if (n == null || !Number.isFinite(n)) return '';
+  return `约 ${Math.round(n)} 千卡`;
+}
+
+const FOOD_TASK_CATEGORIES = new Set(['早餐', '午餐', '晚餐', '下午茶', '夜宵', '食谱']);
+
+/**
+ * 从任务说明里提取展示用热量标签（日程卡片用）。
+ * 优先取「约 N 千卡」独立行，避开食材明细里的分菜千卡。
+ */
+export function getTaskCaloriesLabel(task) {
+  if (!FOOD_TASK_CATEGORIES.has(String(task?.category || ''))) return '';
+
+  const text = String(task?.description || '');
+  if (!text) return '';
+
+  const header = text.split(/\n\s*食材[：:]/)[0] || text;
+  const lines = header
+    .split(/\n+/)
+    .map((line) => line.trim())
+    .filter(Boolean);
+
+  for (const line of lines) {
+    if (/[｜|]/.test(line)) continue;
+    const range = line.match(/^约\s*(\d+\s*[～~\-－]\s*\d+)\s*千卡/);
+    if (range) return `约 ${range[1].replace(/\s+/g, '')} 千卡`;
+    const single = line.match(/^约\s*(\d+)\s*千卡/);
+    if (single) return `约 ${single[1]} 千卡`;
+    const ref = line.match(/参考热量约\s*(\d+)\s*千卡/);
+    if (ref) return `约 ${ref[1]} 千卡`;
+    const total = line.match(/合计约\s*(\d+)\s*千卡/);
+    if (total) return `约 ${total[1]} 千卡`;
+  }
+
+  const fallback = header.match(/约\s*(\d+)\s*千卡/);
+  return fallback ? `约 ${fallback[1]} 千卡` : '';
+}
+

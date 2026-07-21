@@ -124,24 +124,24 @@ export const AFTERNOON_TEA_RECIPES = [
     mealType: '加餐',
     series: '水果派对',
     ingredients: [
-      '香蕉 1 根（约 100～120g，七成熟）',
+      '香蕉 半根（约 50～60g，七成熟；另半根留给练前）',
       '温开水 200mL（可选）',
     ].join('\n'),
     steps: [
       '养胃日首选：少酸、温和；勿换酸橙/青柠。',
       '配豆浆「四神养胃」日；反酸时细嚼慢咽。',
-      '若当晚练前要用半根香蕉，下午只吃半根，避免一天两根堆糖。',
+      '当天练前另吃半根香蕉作快碳，本派对只吃半根，全天合计约 1 根。',
       FRUIT_STORAGE.banana,
     ].join('\n'),
     notes: fruitNotes({
       efficacy: '周四养胃向：少酸刺激、易消化',
       nutrients: '钾、易用碳水、少量纤维',
       effects: '护胃加餐，减少烧心日乱吃',
-      calories: '90～110',
+      calories: '45～55',
       storage: '必须常温；青黄约 2～4 天，全黄后 1～2 天内吃。勿整根冷藏；与催熟水果分开放。',
     }),
     prepMinutes: 3,
-    calories: 100,
+    calories: 50,
     tags: '水果派对,加餐,香蕉,养胃',
   },
   {
@@ -250,8 +250,8 @@ export function buildAfternoonTeaTaskContent(recipe, opts = {}) {
 
   const parts = [];
   parts.push('来源：食谱库 · 健康计划水果派对（原下午茶时段）');
-  parts.push('餐次：水果派对（加餐）');
   if (calories != null && calories !== '') parts.push(`约 ${calories} 千卡`);
+  parts.push('餐次：水果派对（加餐）');
   if (ingredients.length) {
     parts.push(`食材：\n${ingredients.map((line) => `· ${line}`).join('\n')}`);
   }
@@ -285,7 +285,7 @@ export const WEEKLY_FRUIT_SHOPPING = [
   '蓝莓 80～100g（周一）｜冷藏 2～3 天，吃前再洗',
   '苹果 1 个（周二）｜常温 5～7 天或冷藏 1～2 周',
   '梨 1～2 个（周三、周六）｜常温 3～5 天或冷藏约 1 周',
-  '香蕉 1 根（周四）｜必须常温，勿冷藏；青黄 2～4 天',
+  '香蕉 7～8 根（练前每日约 1 根；周四派对+练前各半根）｜必须常温，勿冷藏；青黄 2～4 天',
   '猕猴桃 1 个（周五）｜硬果常温催熟，软后冷藏 3～5 天',
   '桃或梨 1 个（周六）｜硬桃常温催熟；梨见上',
   '橙子 1 个（周日）｜常温 5～7 天或冷藏 1～2 周',

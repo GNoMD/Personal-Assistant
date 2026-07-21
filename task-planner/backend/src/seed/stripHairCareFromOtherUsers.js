@@ -4,7 +4,7 @@
 import { getDb } from '../db.js';
 import { HAIR_CARE_PLAN_USERNAME } from './planData.js';
 
-const MIGRATION_ID = 'strip_hair_care_from_non_gnomd_v2';
+const MIGRATION_ID = 'strip_hair_care_from_non_gnomd_v3';
 
 function ensureMigrationsTable(database) {
   database.exec(`
@@ -41,6 +41,8 @@ export function stripHairCarePlanFromOtherUsers(options = {}) {
         category IN ('用药', '按摩')
         OR title = '晚间洗发'
         OR title = '晨间洗发'
+        OR title = '晨间护肤'
+        OR title = '晚间护肤'
         OR title LIKE '米诺%'
         OR title LIKE '%非那%'
         OR title LIKE '外用非那%'

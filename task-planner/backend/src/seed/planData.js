@@ -9,7 +9,6 @@ import { planAfternoonTeaTaskFields } from './afternoonTeaRecipes.js';
 import { planEveningSnackTaskFields } from './eveningSnackRecipes.js';
 import { planDinnerTaskFields, planLunchTaskFields } from './planMeals.js';
 import { GYM_WEEK_BY_PLAN_DAY } from './beginnerGymWeek.js';
-import { DEFAULT_ADMIN_USERNAME } from './ensureDefaultAdmin.js';
 
 export const PLAN_META = [
   { day: 1, name: '体态启动日', theme: '晚间拉背，改善圆肩驼背' },
@@ -21,8 +20,8 @@ export const PLAN_META = [
   { day: 7, name: '全身巩固日', theme: '深蹲架/史密斯 + 推拉串练' },
 ];
 
-/** 防脱用药计划仅对默认管理员账号启用 */
-export const HAIR_CARE_PLAN_USERNAME = DEFAULT_ADMIN_USERNAME;
+/** 防脱用药计划仅对默认管理员账号启用（与 ensureDefaultAdmin 的 gnomd 一致；勿反向 import 以免与 db 循环依赖） */
+export const HAIR_CARE_PLAN_USERNAME = 'gnomd';
 
 /** 一日三次用药任务标题（用于同步/去重） */
 export const MEDICATION_TITLES = Object.freeze([
@@ -30,6 +29,9 @@ export const MEDICATION_TITLES = Object.freeze([
   '外用非那雄胺（午）',
   '米诺地尔（晚）',
 ]);
+
+/** 男士护肤任务标题（用于同步/去重） */
+export const SKINCARE_TITLES = Object.freeze(['晨间护肤', '晚间护肤']);
 
 const CHECKLIST_DEFAULT = {
   1: [GYM_WEEK_BY_PLAN_DAY[1].checklist, '完成早/午/晚三餐与水果派对'],
@@ -46,7 +48,7 @@ const CHECKLIST_DEFAULT = {
 };
 
 const CHECKLIST_HAIR = {
-  1: [GYM_WEEK_BY_PLAN_DAY[1].checklist, '完成早米诺、午非那、晚米诺三次用药'],
+  1: [GYM_WEEK_BY_PLAN_DAY[1].checklist, '完成早米诺、午非那、晚米诺三次用药', '完成晨间/晚间护肤（洁面·润肤·防晒）'],
   2: [GYM_WEEK_BY_PLAN_DAY[2].checklist, '完成三次用药；训练避开用药后 4h 暴汗'],
   3: [GYM_WEEK_BY_PLAN_DAY[3].checklist, '完成三次用药'],
   4: [GYM_WEEK_BY_PLAN_DAY[4].checklist, '完成三次用药'],
@@ -110,6 +112,39 @@ export function getMedicationTasks(isWeekend) {
   ];
 }
 
+/** 男士护肤：洁面 → 润肤 →（晨）防晒；周末时间略顺延 */
+export function getSkincareTasks(isWeekend) {
+  const morning = isWeekend ? '08:15' : '07:15';
+  const evening = isWeekend ? '21:45' : '21:15';
+
+  return [
+    {
+      time: morning,
+      category: '护理',
+      title: '晨间护肤',
+      description: [
+        '1. 洁面：温和洁面或清水洗脸（油皮用洁面；干皮/敏感可清水），勿用热水狠搓。',
+        '2. 润肤：全脸薄涂润肤乳/保湿乳，等 1～2 分钟吸干。',
+        '3. 防晒：出门必做（室内靠窗、开车也建议）；约 1 元硬币量，SPF30～50。',
+        '出汗或擦脸后每 2～3 小时补涂；运动后回来可再简单洁面+润肤。',
+        '产品尽量少香精、少酒精；勿把脸部护理糊到头皮用药区。',
+      ].join('\n'),
+    },
+    {
+      time: evening,
+      category: '护理',
+      title: '晚间护肤',
+      description: [
+        '1. 洁面：洗去防晒、油脂与灰尘（当天擦过防晒务必认真洗）。',
+        '2. 润肤：全脸涂润肤乳，可比早上略厚；干燥处可再补一层。',
+        '3. 可选：唇膏；局部痘痘按需点涂（新产品一次只加一样）。',
+        '安排在晚米诺之前完成，洗脸时避免把头皮用药区打湿。',
+        '一天洁面不超过 2 次（运动后可加一次）；忌过度去角质。',
+      ].join('\n'),
+    },
+  ];
+}
+
 function baseTasks(planDay, isWeekend, { includeHairCare = false, breakfastWeekday, teaWeekday } = {}) {
   const wake = isWeekend ? '07:30' : '06:30';
   const breakfast = isWeekend ? '08:00' : '07:00';
@@ -157,6 +192,8 @@ function baseTasks(planDay, isWeekend, { includeHairCare = false, breakfastWeekd
   });
 
   if (includeHairCare) {
+    const skin = getSkincareTasks(isWeekend);
+    raw.push(skin[0]);
     const meds = getMedicationTasks(isWeekend);
     raw.push(meds[0]);
   }
@@ -215,6 +252,8 @@ function baseTasks(planDay, isWeekend, { includeHairCare = false, breakfastWeekd
   );
 
   if (includeHairCare) {
+    const skin = getSkincareTasks(isWeekend);
+    raw.push(skin[1]);
     const meds = getMedicationTasks(isWeekend);
     raw.push(meds[2]);
   }

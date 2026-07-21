@@ -39,6 +39,7 @@ import {
   MEDICATION_TITLES,
 } from '../src/seed/planData.js';
 import { ensureGnomdMedicationSchedule, ensureMorningShampooSchedule } from '../src/seed/ensureGnomdMedicationSchedule.js';
+import { ensureGnomdSkincareSchedule } from '../src/seed/ensureGnomdSkincareSchedule.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const TARGET_USERNAME = 'gnomd';
@@ -247,7 +248,8 @@ function main() {
     if (args.mode === 'meds') {
       const med = ensureGnomdMedicationSchedule(user.id, { force: true, database: db });
       const shampoo = ensureMorningShampooSchedule(user.id, { force: true, database: db });
-      result = { med, shampoo };
+      const skincare = ensureGnomdSkincareSchedule(user.id, { force: true, database: db });
+      result = { med, shampoo, skincare };
     } else {
       const deleted = db.prepare('DELETE FROM tasks WHERE user_id = ?').run(user.id);
       db.exec(`
@@ -256,15 +258,17 @@ function main() {
           applied_at TEXT DEFAULT (datetime('now'))
         );
       `);
-      db.prepare(`DELETE FROM schema_migrations WHERE id IN (?, ?)`).run(
+      db.prepare(`DELETE FROM schema_migrations WHERE id IN (?, ?, ?)`).run(
         'gnomd_med_schedule_v2_am_noon_pm',
         'gnomd_morning_shampoo_v1',
+        'gnomd_skincare_am_pm_v1',
       );
       const seeded = reseedGnomdTasks(db, user.id);
       // 模板已含用药；再跑一遍确保起床/洗发/入睡文案与迁移标记一致
       const med = ensureGnomdMedicationSchedule(user.id, { force: true, database: db });
       const shampoo = ensureMorningShampooSchedule(user.id, { force: true, database: db });
-      result = { deleted: deleted.changes, seeded, med, shampoo };
+      const skincare = ensureGnomdSkincareSchedule(user.id, { force: true, database: db });
+      result = { deleted: deleted.changes, seeded, med, shampoo, skincare };
     }
 
     const still = db.prepare('SELECT id FROM users WHERE username = ?').get(TARGET_USERNAME);

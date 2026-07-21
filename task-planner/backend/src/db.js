@@ -204,7 +204,7 @@ export function syncPlanBreakfastTasksFromRecipes(database = getDb()) {
   if (!cols.includes('template_key')) return 0;
 
   const rows = database.prepare(`
-    SELECT id, date, title, template_key AS templateKey
+    SELECT id, date, title, description, template_key AS templateKey
     FROM tasks
     WHERE category = '早餐'
   `).all();
@@ -235,7 +235,13 @@ export function syncPlanBreakfastTasksFromRecipes(database = getDb()) {
       const recipe = getPlanBreakfastRecipe(weekDay);
       if (!recipe) continue;
       const content = buildBreakfastTaskContent(recipe);
-      if (content.templateKey === key && content.title === row.title) continue;
+      if (
+        content.templateKey === key
+        && content.title === row.title
+        && content.description === (row.description || '')
+      ) {
+        continue;
+      }
 
       const result = update.run({
         id: row.id,

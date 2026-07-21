@@ -9,6 +9,7 @@ import { MORE_CITY_TRAVEL_PLANS } from './travelMorePlans.js';
 import { MORE_CITY_TRAVEL_PLANS_REST } from './travelMorePlansRest.js';
 import { LONG_CITY_TRAVEL_PLANS } from './travelLongPlans.js';
 import { LONG_CITY_TRAVEL_PLANS_REST } from './travelLongPlansRest.js';
+import { DRIVE_CITY_TRAVEL_PLANS } from './travelDrivePlans.js';
 
 export const FUJIAN_CITIES = [
   { id: 'xiamen', name: '厦门', pinyin: 'Xiamen' },
@@ -349,6 +350,7 @@ export const CITY_TRAVEL_PLANS = mergeCityPlans(
   MORE_CITY_TRAVEL_PLANS_REST,
   LONG_CITY_TRAVEL_PLANS,
   LONG_CITY_TRAVEL_PLANS_REST,
+  DRIVE_CITY_TRAVEL_PLANS,
 );
 
 export function getCityById(cityId) {

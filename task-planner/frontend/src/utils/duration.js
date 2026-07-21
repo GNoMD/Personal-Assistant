@@ -8,6 +8,7 @@ function inferDuration(title, category, planDay = 1) {
   if (t.includes('非那雄胺')) return '约 3 分钟';
   if (t.includes('SSM') || t.includes('标准化')) return `约 ${planDay === 6 ? 5 : 4} 分钟`;
   if (t.includes('洗发') || t.includes('吹干')) return '约 15 分钟';
+  if (t.includes('护肤') || t.includes('洁面') || t.includes('防晒') || t.includes('润肤')) return '约 5 分钟';
   if (t.includes('确认头皮') || t.includes('干燥')) return '约 2 分钟';
   if (t.includes('起床') || t.includes('饮水')) return '约 5 分钟';
   if (t.includes('入睡')) return '约 30 分钟';

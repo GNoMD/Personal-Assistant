@@ -7,6 +7,7 @@ import RecipeForm from '../components/RecipeForm';
 import { api } from '../api/client';
 import { RECIPE_CATEGORIES, seriesLabel } from '../data/recipeCategories';
 import { useTheme } from '../hooks/useTheme';
+import { getRecipeCaloriesLabel } from '../utils/mealCalories';
 import { resolveRecipeCover } from '../utils/recipeCoverImages';
 
 const MEAL_TYPES = ['全部', '早餐', '午餐', '晚餐', '加餐', '饮品'];
@@ -28,6 +29,16 @@ function RecipeCoverImage({ recipe, className }) {
         event.currentTarget.src = '/ingredients/fallback.png';
       }}
     />
+  );
+}
+
+function RecipeCalorieBadge({ label, className = '' }) {
+  if (!label) return null;
+  return (
+    <span className={`recipe-calorie-badge ${className}`.trim()} title="参考热量">
+      <span className="calorie-tag-icon" aria-hidden="true">🔥</span>
+      {label}
+    </span>
   );
 }
 
@@ -290,7 +301,9 @@ export default function RecipesPage() {
         {!loading && !error && tab === 'recipes' && recipes.length > 0 && (
           <>
             <section className="recipe-grid" aria-label="食谱列表">
-              {paged.items.map((recipe) => (
+              {paged.items.map((recipe) => {
+                const caloriesLabel = getRecipeCaloriesLabel(recipe);
+                return (
                 <article
                   key={recipe.id}
                   className="recipe-card"
@@ -317,15 +330,19 @@ export default function RecipesPage() {
                       {recipe.isFavorite ? '★' : '☆'}
                     </button>
                     <RecipeCoverImage recipe={recipe} className="recipe-card-cover-img" />
+                    <RecipeCalorieBadge label={caloriesLabel} />
                   </div>
                   <div className="recipe-card-body">
                     <h3>{recipe.title}</h3>
                     <div className="recipe-meta">
                       {recipe.prepMinutes && <span>⏱ {recipe.prepMinutes} 分钟</span>}
-                      <span>
-                        🔥 约 {recipe.calories ?? '—'} 千卡
-                        {recipe.mealType === '午餐' || recipe.mealType === '晚餐' ? '（整餐）' : ''}
-                      </span>
+                      {caloriesLabel && (
+                        <span className="calorie-tag" title="参考热量">
+                          <span className="calorie-tag-icon" aria-hidden="true">🔥</span>
+                          {caloriesLabel}
+                          {(recipe.mealType === '午餐' || recipe.mealType === '晚餐') ? ' · 整餐' : ''}
+                        </span>
+                      )}
                     </div>
                     <p className="recipe-ingredients-preview">
                       {recipe.ingredients.split('\n').filter(Boolean).slice(0, 3).join(' · ')}
@@ -336,7 +353,8 @@ export default function RecipesPage() {
                     <span className="recipe-view-link">查看食谱 <span aria-hidden="true">→</span></span>
                   </div>
                 </article>
-              ))}
+                );
+              })}
             </section>
 
             <Pagination
@@ -353,7 +371,9 @@ export default function RecipesPage() {
         {!loading && !error && tab === 'menus' && menus.length > 0 && (
           <>
             <section className="recipe-grid" aria-label="菜单列表">
-              {paged.items.map((menu) => (
+              {paged.items.map((menu) => {
+                const caloriesLabel = getRecipeCaloriesLabel(menu);
+                return (
                 <article
                   key={menu.id}
                   className="recipe-card menu-card"
@@ -378,13 +398,19 @@ export default function RecipesPage() {
                     <div className="menu-card-cover-label" aria-hidden="true">
                       {menu.recipeCount} 道菜
                     </div>
+                    <RecipeCalorieBadge label={caloriesLabel} />
                   </div>
                   <div className="recipe-card-body">
                     <h3>{menu.title}</h3>
                     <div className="recipe-meta">
                       <span>🥗 {menu.recipeCount} 道</span>
                       {menu.prepMinutes != null && <span>⏱ {menu.prepMinutes} 分钟</span>}
-                      <span>🔥 约 {menu.calories ?? '—'} 千卡</span>
+                      {caloriesLabel && (
+                        <span className="calorie-tag" title="参考热量">
+                          <span className="calorie-tag-icon" aria-hidden="true">🔥</span>
+                          {caloriesLabel}
+                        </span>
+                      )}
                     </div>
                     <p className="recipe-ingredients-preview">
                       {(menu.items || []).map((item) => item.title).slice(0, 3).join(' · ')}
@@ -396,7 +422,8 @@ export default function RecipesPage() {
                     <span className="recipe-view-link">查看菜单 <span aria-hidden="true">→</span></span>
                   </div>
                 </article>
-              ))}
+                );
+              })}
             </section>
 
             <Pagination

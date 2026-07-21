@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getTaskDurationLabel, getDurationTagClass } from '../utils/duration';
+import { getTaskCaloriesLabel } from '../utils/mealCalories';
 
 const CATEGORY_ICONS = {
   作息: '🌅',
@@ -92,6 +93,7 @@ function TaskItem({ task, onToggle, onEdit, onDelete, onDemo, saving, showTimeli
   const icon = CATEGORY_ICONS[task.category] || '📌';
   const durationLabel = getTaskDurationLabel(task);
   const durationClass = getDurationTagClass(task.category);
+  const caloriesLabel = getTaskCaloriesLabel(task);
   const detailId = `task-detail-${task.id}`;
   const preview = descriptionPreview(task.description);
 
@@ -135,6 +137,12 @@ function TaskItem({ task, onToggle, onEdit, onDelete, onDemo, saving, showTimeli
           <div className="task-meta-row">
             <span className="task-cat-icon" aria-hidden="true">{icon}</span>
             <span className="task-category">{task.category}</span>
+            {caloriesLabel && (
+              <span className="calorie-tag" title="参考热量">
+                <span className="calorie-tag-icon" aria-hidden="true">🔥</span>
+                {caloriesLabel}
+              </span>
+            )}
             {durationLabel && (
               <span className={`duration-tag ${durationClass}`} title="预计耗时">
                 <span className="duration-tag-icon" aria-hidden="true">⏱</span>
@@ -202,6 +210,12 @@ function TaskItem({ task, onToggle, onEdit, onDelete, onDemo, saving, showTimeli
               <dt>耗时</dt>
               <dd>{durationLabel || '—'}</dd>
             </div>
+            {caloriesLabel && (
+              <div>
+                <dt>热量</dt>
+                <dd>{caloriesLabel}</dd>
+              </div>
+            )}
             <div>
               <dt>状态</dt>
               <dd>{task.completed ? '已完成' : '未完成'}</dd>

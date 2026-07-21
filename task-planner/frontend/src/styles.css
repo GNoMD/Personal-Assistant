@@ -1908,6 +1908,34 @@ img, svg {
   line-height: 1;
 }
 
+.calorie-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  flex-shrink: 0;
+  background: linear-gradient(135deg, #fff7ed, #ffedd5);
+  color: #c2410c;
+  border: 1px solid rgba(249, 115, 22, 0.35);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.calorie-tag-icon {
+  font-size: 0.75rem;
+  line-height: 1;
+}
+
+[data-theme='dark'] .calorie-tag {
+  background: linear-gradient(135deg, rgba(154, 52, 18, 0.45), rgba(194, 65, 12, 0.35));
+  color: #fed7aa;
+  border-color: rgba(251, 146, 60, 0.4);
+}
+
 .duration-tag--med {
   background: linear-gradient(135deg, #d1fae5, #a7f3d0);
   color: #047857;
@@ -4404,6 +4432,38 @@ img, svg {
   backdrop-filter: blur(8px);
 }
 
+.recipe-calorie-badge {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  max-width: calc(100% - 20px);
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  background: linear-gradient(135deg, #fff7ed, #ffedd5);
+  color: #c2410c;
+  border: 1px solid rgba(249, 115, 22, 0.45);
+  box-shadow: 0 4px 14px rgba(194, 65, 12, 0.18);
+  backdrop-filter: blur(8px);
+}
+
+[data-theme='dark'] .recipe-calorie-badge {
+  background: linear-gradient(135deg, rgba(154, 52, 18, 0.72), rgba(194, 65, 12, 0.55));
+  color: #fed7aa;
+  border-color: rgba(251, 146, 60, 0.5);
+}
+
+.recipe-meta .calorie-tag {
+  font-size: 0.78rem;
+}
+
 .recipe-favorite {
   width: 36px;
   height: 36px;
@@ -5713,6 +5773,43 @@ img, svg {
 .travel-empty p {
   margin: 0;
   color: var(--text-muted);
+}
+
+.travel-breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 8px;
+  margin: var(--space-md) 0 var(--space-sm);
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+}
+
+.travel-breadcrumb-link {
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: var(--accent);
+  cursor: pointer;
+  font: inherit;
+}
+
+.travel-breadcrumb-link:hover {
+  text-decoration: underline;
+}
+
+.travel-breadcrumb-sep {
+  opacity: 0.55;
+}
+
+.travel-breadcrumb-current {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.travel-app .library-tabs {
+  margin-top: 0;
+  margin-bottom: var(--space-md);
 }
 
 @media (max-width: 900px) {

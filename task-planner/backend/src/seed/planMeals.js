@@ -32,8 +32,8 @@ function buildMealTaskContent(recipe, { mealLabel, category, sourceLine }) {
 
   const parts = [];
   parts.push(sourceLine);
-  parts.push(`餐次：${mealLabel}`);
   if (calories != null && calories !== '') parts.push(`约 ${calories} 千卡`);
+  parts.push(`餐次：${mealLabel}`);
   if (ingredients.length) {
     parts.push(`食材：\n${ingredients.map((line) => `· ${line}`).join('\n')}`);
   }

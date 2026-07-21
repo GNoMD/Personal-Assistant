@@ -23,6 +23,9 @@ export function inferDuration(title, category, planDay = 1) {
   if (t.includes('洗发') || t.includes('吹干')) {
     return { durationLabel: '约 15 分钟', durationMinutes: 15 };
   }
+  if (t.includes('护肤') || t.includes('洁面') || t.includes('防晒') || t.includes('润肤')) {
+    return { durationLabel: '约 5 分钟', durationMinutes: 5 };
+  }
   if (t.includes('确认头皮') || t.includes('干燥')) {
     return { durationLabel: '约 2 分钟', durationMinutes: 2 };
   }

@@ -428,10 +428,10 @@ export function buildBreakfastTaskContent(recipe, opts = {}) {
 
   const parts = [];
   parts.push('来源：食谱库 · 健康计划关联');
+  if (calories != null && calories !== '') parts.push(`约 ${calories} 千卡`);
   if (recipe.mealType || recipe.meal_type) {
     parts.push(`餐次：${recipe.mealType || recipe.meal_type}`);
   }
-  if (calories != null && calories !== '') parts.push(`约 ${calories} 千卡`);
   if (ingredients.length) {
     parts.push(`食材：\n${ingredients.map((line) => `· ${line}`).join('\n')}`);
   }

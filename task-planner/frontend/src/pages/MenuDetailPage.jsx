@@ -4,6 +4,7 @@ import AppShell from '../components/AppShell';
 import MenuForm from '../components/MenuForm';
 import { api } from '../api/client';
 import { useTheme } from '../hooks/useTheme';
+import { getRecipeCaloriesLabel } from '../utils/mealCalories';
 import { resolveRecipeCover } from '../utils/recipeCoverImages';
 
 function splitTags(value) {
@@ -135,7 +136,9 @@ export default function MenuDetailPage() {
             <section className="recipe-section menu-recipes-section">
               <h3>组成食谱</h3>
               <div className="recipe-grid menu-recipe-grid" aria-label="组成食谱">
-                {(menu.items || []).map((item, index) => (
+                {(menu.items || []).map((item, index) => {
+                  const caloriesLabel = getRecipeCaloriesLabel(item);
+                  return (
                   <article key={item.recipeId} className="recipe-card menu-recipe-card">
                     <Link to={`/recipes/${item.recipeId}`} className="menu-recipe-card-link">
                       <div className="recipe-card-cover" data-meal={item.mealType || ''}>
@@ -146,12 +149,23 @@ export default function MenuDetailPage() {
                           <span className="recipe-meal-badge">{item.mealType}</span>
                         )}
                         <MenuRecipeCover item={item} />
+                        {caloriesLabel && (
+                          <span className="recipe-calorie-badge" title="参考热量">
+                            <span className="calorie-tag-icon" aria-hidden="true">🔥</span>
+                            {caloriesLabel}
+                          </span>
+                        )}
                       </div>
                       <div className="recipe-card-body">
                         <h3>{item.title}</h3>
                         <div className="recipe-meta">
                           {item.prepMinutes != null && <span>⏱ {item.prepMinutes} 分钟</span>}
-                          <span>🔥 约 {item.calories ?? '—'} 千卡</span>
+                          {caloriesLabel && (
+                            <span className="calorie-tag" title="参考热量">
+                              <span className="calorie-tag-icon" aria-hidden="true">🔥</span>
+                              {caloriesLabel}
+                            </span>
+                          )}
                         </div>
                         {splitTags(item.tags).length > 0 && (
                           <div className="recipe-tags">
@@ -166,7 +180,8 @@ export default function MenuDetailPage() {
                       </div>
                     </Link>
                   </article>
-                ))}
+                  );
+                })}
               </div>
             </section>
           </>

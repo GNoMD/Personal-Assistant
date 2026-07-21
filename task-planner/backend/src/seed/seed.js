@@ -6,6 +6,7 @@ import {
   ensureDefaultAdminUser,
 } from './ensureDefaultAdmin.js';
 import { ensureGnomdMedicationSchedule } from './ensureGnomdMedicationSchedule.js';
+import { ensureGnomdSkincareSchedule } from './ensureGnomdSkincareSchedule.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
@@ -93,11 +94,15 @@ if (isCli) {
   const admin = ensureDefaultAdminUser();
   const taskSeed = seedUserTasks(admin.userId);
   const medSync = ensureGnomdMedicationSchedule(admin.userId);
+  const skinSync = ensureGnomdSkincareSchedule(admin.userId);
   const stats = getRecipeSeedStats();
   const recipeCount = getDb().prepare('SELECT COUNT(*) AS c FROM recipes').get().c;
   const taskCount = getDb().prepare('SELECT COUNT(*) AS c FROM tasks WHERE user_id = ?').get(admin.userId).c;
   const medCount = getDb().prepare(
     `SELECT COUNT(*) AS c FROM tasks WHERE user_id = ? AND category = '用药'`
+  ).get(admin.userId).c;
+  const skinCount = getDb().prepare(
+    `SELECT COUNT(*) AS c FROM tasks WHERE user_id = ? AND title IN ('晨间护肤', '晚间护肤')`
   ).get(admin.userId).c;
   console.log(JSON.stringify({
     ok: true,
@@ -112,6 +117,8 @@ if (isCli) {
       tasks: taskCount,
       medicationSync: medSync,
       medicationTasks: medCount,
+      skincareSync: skinSync,
+      skincareTasks: skinCount,
     },
     note: '勿提交本地 tasks.db；管理员引导密码不会打印到日志',
   }, null, 2));

@@ -1,4 +1,4 @@
-import { ensureRecipeLibraryUser, getDb } from '../db.js';
+import { ensureRecipeLibraryUser, getDb, syncPlanBreakfastTasksFromRecipes } from '../db.js';
 import { resolveRecipeSeries } from './recipeSeries.js';
 import {
   SOY_BREAKFAST_MENU_TITLE,
@@ -151,5 +151,6 @@ export function ensureSoyMilkBreakfastMenu(username = DEFAULT_ADMIN_USERNAME) {
 export function ensureSoyMilkBreakfastData(username = DEFAULT_ADMIN_USERNAME) {
   const recipes = ensureSoyMilkBreakfastRecipes();
   const menu = ensureSoyMilkBreakfastMenu(username);
-  return { recipes, menu };
+  const breakfastSynced = syncPlanBreakfastTasksFromRecipes();
+  return { recipes, menu, breakfastSynced };
 }

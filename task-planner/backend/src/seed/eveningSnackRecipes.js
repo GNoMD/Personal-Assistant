@@ -104,7 +104,7 @@ export const EVENING_SNACK_RECIPES = [
     ].join('\n'),
     steps: [
       '养胃日：酸奶勿冰、不加果；反酸明显时改 150g 温酸奶 + 1 个水煮蛋。',
-      '配合四神豆浆日，晚间同样温和；下午已有香蕉派对，夜宵不再叠果。',
+      '配合四神豆浆日，晚间同样温和；下午水果派对半根+练前半根，夜宵不再叠果。',
     ].join('\n'),
     notes: snackNotes({
       efficacy: '背训+养胃日：低酸、小份量，不刺激反酸',
@@ -209,8 +209,8 @@ export function buildEveningSnackTaskContent(recipe, opts = {}) {
 
   const parts = [];
   parts.push('来源：健康计划 · 练后轻夜宵');
-  parts.push('餐次：夜宵（练后补充）');
   if (calories != null && calories !== '') parts.push(`约 ${calories} 千卡`);
+  parts.push('餐次：夜宵（练后补充）');
   if (ingredients.length) {
     parts.push(`食材：\n${ingredients.map((line) => `· ${line}`).join('\n')}`);
   }
@@ -242,5 +242,5 @@ export const WEEKLY_EVENING_SNACK_SHOPPING = [
   '无乳糖无糖酸奶 7～10 小杯/盒（150～200g/次，恢复日可少买）',
   '鸡蛋（与早餐共用，另备 2～3 个专练后）',
   '蓝莓/猕猴桃/橙子（与水果派对统筹，避免重复浪费）',
-  '香蕉 2～3 根（练前+腿训练后，周四尽量不用）',
+  '香蕉 2～3 根（练前每日 1 根；周四派对+练前各半根）',
 ];

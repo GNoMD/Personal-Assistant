@@ -17,6 +17,7 @@ import profileRouter from './routes/profile.js';
 import { seedSharedRecipeLibrary } from './seed/seedRecipes.js';
 import { ensureDefaultAdminUser } from './seed/ensureDefaultAdmin.js';
 import { ensureGnomdMedicationSchedule, ensureMorningShampooSchedule } from './seed/ensureGnomdMedicationSchedule.js';
+import { ensureGnomdSkincareSchedule } from './seed/ensureGnomdSkincareSchedule.js';
 import { ensureGnomdProfile } from './seed/ensureGnomdProfile.js';
 import { ensurePlanAfternoonTea } from './seed/ensurePlanAfternoonTea.js';
 import { ensurePlanEveningSnack } from './seed/ensurePlanEveningSnack.js';
@@ -84,6 +85,7 @@ export function initDatabase() {
   seedUserTasks(admin.userId, { includeHairCare: true });
   ensureGnomdMedicationSchedule(admin.userId);
   ensureMorningShampooSchedule(admin.userId);
+  ensureGnomdSkincareSchedule(admin.userId);
   ensureGnomdProfile();
   ensurePlanAfternoonTea();
   ensurePlanEveningSnack();
