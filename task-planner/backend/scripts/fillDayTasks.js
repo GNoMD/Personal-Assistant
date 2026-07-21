@@ -27,7 +27,7 @@ if (!planDay) {
 }
 
 const includeHairCare = isHairCarePlanUsername(user.username);
-const templates = getTasksForPlanDay(planDay, { includeHairCare });
+const templates = getTasksForPlanDay(planDay, { includeHairCare, date });
 const existing = db
   .prepare(
     `SELECT id, category, title, template_key AS templateKey

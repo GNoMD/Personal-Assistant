@@ -72,7 +72,7 @@ test('get tasks for 2026-07-01 (day 1)', async () => {
   assert.ok(body.tasks.length >= 5);
   const medTitles = body.tasks.filter((t) => t.category === '用药').map((t) => t.title);
   assert.equal(medTitles.length, 0, '普通用户默认不应含用药计划');
-  assert.equal(body.tasks.some((t) => t.title === '晚间洗发'), false);
+  assert.equal(body.tasks.some((t) => t.title === '晚间洗发' || t.title === '晨间洗发'), false);
   assert.equal(body.tasks.some((t) => /米诺|非那|头皮按摩|SSM/.test(t.title)), false);
   const withDuration = body.tasks.filter((t) => t.durationLabel);
   assert.ok(withDuration.length >= 5);
@@ -96,7 +96,8 @@ test('gnomd plan includes medication schedule', async () => {
   assert.ok(medTitles.includes('米诺地尔（晨）'));
   assert.ok(medTitles.includes('外用非那雄胺（午）'));
   assert.ok(medTitles.includes('米诺地尔（晚）'));
-  assert.ok(body.tasks.some((t) => t.title === '晚间洗发'));
+  assert.ok(body.tasks.some((t) => t.title === '晨间洗发'));
+  assert.equal(body.tasks.some((t) => t.title === '晚间洗发'), false);
 });
 
 test('patch task completed persists', async () => {

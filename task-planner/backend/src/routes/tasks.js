@@ -112,7 +112,7 @@ router.get('/', (req, res) => {
     if (rows.length === 0) {
       const planDay = planDayForDate(date);
       const includeHairCare = isHairCarePlanUsername(req.user.username);
-      const templates = getTasksForPlanDay(planDay, { includeHairCare });
+      const templates = getTasksForPlanDay(planDay, { includeHairCare, date });
       const create = db.transaction(() => {
         for (const t of templates) {
           insertTaskRow(db, {

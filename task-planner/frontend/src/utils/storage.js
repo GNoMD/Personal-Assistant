@@ -92,7 +92,7 @@ function looksLikeHairCareTask(task) {
   const title = String(task?.title || '');
   const category = String(task?.category || '');
   if (category === '用药' || category === '按摩') return true;
-  if (title === '晚间洗发') return true;
+  if (title === '晚间洗发' || title === '晨间洗发') return true;
   return /米诺|非那|头皮按摩|SSM/.test(title);
 }
 

@@ -35,7 +35,10 @@ export function inferDuration(title, category, planDay = 1) {
   if (category === '早餐') {
     return { durationLabel: '约 25 分钟', durationMinutes: 25 };
   }
-  if (category === '下午茶' || t.includes('下午茶')) {
+  if (category === '夜宵' || t.includes('练后轻夜宵') || t.includes('夜宵')) {
+    return { durationLabel: '约 5 分钟', durationMinutes: 5 };
+  }
+  if (category === '下午茶' || t.includes('下午茶') || t.includes('水果派对')) {
     return { durationLabel: '约 10 分钟', durationMinutes: 10 };
   }
   if (category === '午餐' || category === '晚餐') {

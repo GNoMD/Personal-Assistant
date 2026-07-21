@@ -16,11 +16,13 @@ import adminRouter from './routes/admin.js';
 import profileRouter from './routes/profile.js';
 import { seedSharedRecipeLibrary } from './seed/seedRecipes.js';
 import { ensureDefaultAdminUser } from './seed/ensureDefaultAdmin.js';
-import { ensureGnomdMedicationSchedule } from './seed/ensureGnomdMedicationSchedule.js';
+import { ensureGnomdMedicationSchedule, ensureMorningShampooSchedule } from './seed/ensureGnomdMedicationSchedule.js';
 import { ensureGnomdProfile } from './seed/ensureGnomdProfile.js';
 import { ensurePlanAfternoonTea } from './seed/ensurePlanAfternoonTea.js';
+import { ensurePlanEveningSnack } from './seed/ensurePlanEveningSnack.js';
 import { ensurePlanLunchDinner } from './seed/ensurePlanLunchDinner.js';
 import { ensureSoyMilkWeekData } from './seed/ensureSoyMilkWeekMenu.js';
+import { ensureSoyMilkBreakfastData } from './seed/ensureSoyMilkBreakfastMenu.js';
 import { stripHairCarePlanFromOtherUsers } from './seed/stripHairCareFromOtherUsers.js';
 import { seedUserTasks } from './seed/seed.js';
 
@@ -81,10 +83,13 @@ export function initDatabase() {
   const admin = ensureDefaultAdminUser();
   seedUserTasks(admin.userId, { includeHairCare: true });
   ensureGnomdMedicationSchedule(admin.userId);
+  ensureMorningShampooSchedule(admin.userId);
   ensureGnomdProfile();
   ensurePlanAfternoonTea();
+  ensurePlanEveningSnack();
   ensurePlanLunchDinner();
   ensureSoyMilkWeekData();
+  ensureSoyMilkBreakfastData();
   stripHairCarePlanFromOtherUsers();
   return { initialized: true };
 }

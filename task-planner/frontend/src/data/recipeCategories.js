@@ -30,6 +30,24 @@ export const RECIPE_CATEGORIES = [
     description: '一周7天豆浆配方（1200ml水/4人份）',
   },
   {
+    id: '豆浆早餐',
+    label: '豆浆早餐',
+    shortLabel: '豆浆早',
+    description: '一人份早餐豆浆一周轮换（约550ml）',
+  },
+  {
+    id: '水果派对',
+    label: '水果派对',
+    shortLabel: '水果',
+    description: '下午茶整果轮换，含常温/冷藏保存说明',
+  },
+  {
+    id: '练后轻夜宵',
+    label: '练后轻夜宵',
+    shortLabel: '夜宵',
+    description: '晚练后无乳糖酸奶、蛋等轻补充',
+  },
+  {
     id: '我的定制',
     label: '我的定制',
     shortLabel: '定制',

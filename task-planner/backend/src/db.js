@@ -7,6 +7,7 @@ import {
   buildBreakfastTaskContent,
   getPlanBreakfastRecipe,
 } from './seed/breakfastRecipes.js';
+import { weekdayMon1 } from './seed/planData.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -195,12 +196,18 @@ export function backfillDurations(database) {
 }
 
 /**
- * 将计划中的早餐任务绑定到食谱库（low-purine-dN），并同步标题/详情。
- * 仅覆盖系统计划早餐：营养早餐 / 已挂 low-purine-* / 与计划日食谱同名。
+ * 将计划中的早餐任务绑定到豆浆一周菜单（按日历星期 → soy-breakfast-dN）。
+ * 覆盖系统计划早餐：营养早餐 / low-purine-* / soy-breakfast-*。
  */
 export function syncPlanBreakfastTasksFromRecipes(database = getDb()) {
   const cols = database.prepare('PRAGMA table_info(tasks)').all().map((c) => c.name);
   if (!cols.includes('template_key')) return 0;
+
+  const rows = database.prepare(`
+    SELECT id, date, title, template_key AS templateKey
+    FROM tasks
+    WHERE category = '早餐'
+  `).all();
 
   const update = database.prepare(`
     UPDATE tasks
@@ -210,30 +217,33 @@ export function syncPlanBreakfastTasksFromRecipes(database = getDb()) {
         duration_label = @durationLabel,
         duration_minutes = @durationMinutes,
         updated_at = datetime('now')
-    WHERE category = '早餐'
-      AND plan_day = @planDay
-      AND (
-        title = '营养早餐'
-        OR template_key IS NULL
-        OR template_key = ''
-        OR template_key = @templateKey
-        OR title = @title
-      )
+    WHERE id = @id
   `);
 
   let updated = 0;
   database.transaction(() => {
-    for (let day = 1; day <= 7; day += 1) {
-      const recipe = getPlanBreakfastRecipe(day);
+    for (const row of rows) {
+      const key = row.templateKey || '';
+      const isSystem = row.title === '营养早餐'
+        || !key
+        || key.startsWith('low-purine-')
+        || key.startsWith('soy-breakfast-');
+      if (!isSystem) continue;
+
+      const weekDay = weekdayMon1(row.date);
+      if (!weekDay) continue;
+      const recipe = getPlanBreakfastRecipe(weekDay);
       if (!recipe) continue;
       const content = buildBreakfastTaskContent(recipe);
+      if (content.templateKey === key && content.title === row.title) continue;
+
       const result = update.run({
+        id: row.id,
         title: content.title,
         description: content.description,
         templateKey: content.templateKey,
         durationLabel: content.durationLabel || '',
         durationMinutes: content.durationMinutes,
-        planDay: day,
       });
       updated += result.changes || 0;
     }

@@ -47,7 +47,7 @@ export function seedUserTasks(userId, options = {}) {
     for (let i = 0; i < SEED_DAYS; i++) {
       const date = addDays(START_DATE, i);
       const planDay = planDayForDate(date);
-      const templates = getTasksForPlanDay(planDay, { includeHairCare });
+      const templates = getTasksForPlanDay(planDay, { includeHairCare, date });
       for (const t of templates) {
         insert.run({
           userId,

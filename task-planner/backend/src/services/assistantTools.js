@@ -26,7 +26,7 @@ const WRITE_TOOLS = new Set([
 ]);
 const MEAL_TYPES = new Set(['早餐', '午餐', '晚餐', '加餐', '饮品']);
 const TASK_CATEGORIES = new Set([
-  '作息', '早餐', '午餐', '下午茶', '晚餐', '用药', '护理', '运动', '清单', '食谱', '旅行', '自定义',
+  '作息', '早餐', '午餐', '下午茶', '晚餐', '夜宵', '用药', '护理', '运动', '清单', '食谱', '旅行', '自定义',
 ]);
 const RECIPE_TITLE_MAX = 120;
 const RECIPE_TEXT_MAX = 8000;

@@ -40,6 +40,7 @@ export function stripHairCarePlanFromOtherUsers(options = {}) {
       AND (
         category IN ('用药', '按摩')
         OR title = '晚间洗发'
+        OR title = '晨间洗发'
         OR title LIKE '米诺%'
         OR title LIKE '%非那%'
         OR title LIKE '外用非那%'

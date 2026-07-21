@@ -24,7 +24,7 @@ export const RECIPE_SERIES = [
     label: '日常均衡',
     shortLabel: '日常',
     description: '尿酸友好、乳糖友好与基础三餐饮品',
-    matchPrefix: ['low-purine-', 'lunch-', 'dinner-', 'snack-', 'drink-', 'afternoon-tea-'],
+    matchPrefix: ['low-purine-', 'lunch-', 'dinner-', 'snack-', 'drink-', 'afternoon-tea-', 'soy-breakfast-'],
   },
   {
     id: '豆浆轮换',
@@ -32,6 +32,27 @@ export const RECIPE_SERIES = [
     shortLabel: '豆浆',
     description: '一周7天豆浆配方（1200ml水/4人份）',
     matchPrefix: ['soy-week-'],
+  },
+  {
+    id: '豆浆早餐',
+    label: '豆浆早餐',
+    shortLabel: '豆浆早',
+    description: '一人份早餐豆浆一周轮换（约550ml）',
+    matchPrefix: ['soy-breakfast-'],
+  },
+  {
+    id: '水果派对',
+    label: '水果派对',
+    shortLabel: '水果',
+    description: '下午茶时段整果轮换，与豆浆早餐主题互补',
+    matchPrefix: ['fruit-party-'],
+  },
+  {
+    id: '练后轻夜宵',
+    label: '练后轻夜宵',
+    shortLabel: '夜宵',
+    description: '晚练后无乳糖酸奶/蛋等轻补充',
+    matchPrefix: ['night-snack-'],
   },
   {
     id: '我的定制',

@@ -1,22 +1,28 @@
 import { ensureRecipeLibraryUser, getDb, syncPlanBreakfastTasksFromRecipes } from '../db.js';
 import { AGA_MUSCLE_RECIPES } from './agaMuscleRecipes.js';
 import { AFTERNOON_TEA_RECIPES } from './afternoonTeaRecipes.js';
+import { EVENING_SNACK_RECIPES } from './eveningSnackRecipes.js';
 import { BREAKFAST_RECIPES } from './breakfastRecipes.js';
 import { HAIR_CARE_RECIPES } from './hairCareRecipes.js';
 import { MEAL_RECIPES } from './mealRecipes.js';
 import { SOY_WEEK_RECIPES } from './soyMilkWeekRecipes.js';
+import { SOY_BREAKFAST_RECIPES } from './soyMilkBreakfastRecipes.js';
 import { resolveRecipeSeries } from './recipeSeries.js';
 import { ensurePlanAfternoonTea } from './ensurePlanAfternoonTea.js';
+import { ensurePlanEveningSnack } from './ensurePlanEveningSnack.js';
 import { ensurePlanLunchDinner } from './ensurePlanLunchDinner.js';
 import { ensureSoyMilkWeekData } from './ensureSoyMilkWeekMenu.js';
+import { ensureSoyMilkBreakfastData } from './ensureSoyMilkBreakfastMenu.js';
 
 const DEFAULT_RECIPES = [
   ...BREAKFAST_RECIPES,
   ...AFTERNOON_TEA_RECIPES,
+  ...EVENING_SNACK_RECIPES,
   ...MEAL_RECIPES,
   ...AGA_MUSCLE_RECIPES,
   ...HAIR_CARE_RECIPES,
   ...SOY_WEEK_RECIPES,
+  ...SOY_BREAKFAST_RECIPES,
 ];
 const OLD_DEFAULT_TITLES = [
   '黑豆浆核桃全麦早餐',
@@ -99,8 +105,10 @@ export function seedSharedRecipeLibrary() {
   // 计划早餐 / 午晚餐 / 下午茶与食谱库对齐（需在系统食谱 upsert 之后）
   syncPlanBreakfastTasksFromRecipes(db);
   ensurePlanAfternoonTea({ database: db });
+  ensurePlanEveningSnack({ database: db });
   ensurePlanLunchDinner({ database: db });
   ensureSoyMilkWeekData();
+  ensureSoyMilkBreakfastData();
   return libraryUserId;
 }
 

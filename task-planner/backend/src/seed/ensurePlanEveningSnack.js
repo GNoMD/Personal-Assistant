@@ -1,11 +1,11 @@
 /**
- * 为所有已有日历用户幂等写入「水果派对」（原下午茶时段；按日历星期挂 fruit-party-dN）。
+ * 幂等写入「练后轻夜宵」计划任务（按 plan_day · night-snack-dN）。
  */
 import { getDb } from '../db.js';
-import { planDayForDate, weekdayMon1 } from './planData.js';
-import { planAfternoonTeaTaskFields } from './afternoonTeaRecipes.js';
+import { planDayForDate } from './planData.js';
+import { planEveningSnackTaskFields } from './eveningSnackRecipes.js';
 
-const MIGRATION_ID = 'plan_fruit_party_v1';
+const MIGRATION_ID = 'plan_evening_snack_v1';
 
 function ensureMigrationsTable(database) {
   database.exec(`
@@ -16,27 +16,25 @@ function ensureMigrationsTable(database) {
   `);
 }
 
-function isTeaSlotRow(row) {
+function isEveningSnackRow(row) {
   const key = row.templateKey || row.template_key || '';
   const title = row.title || '';
-  return row.category === '下午茶'
-    || key.startsWith('afternoon-tea-')
-    || key.startsWith('fruit-party-')
-    || title.startsWith('下午茶')
-    || title.startsWith('水果派对');
+  return row.category === '夜宵'
+    || key.startsWith('night-snack-')
+    || title.includes('练后轻夜宵');
 }
 
 /**
  * @param {{ force?: boolean, database?: import('better-sqlite3').Database }} [options]
  */
-export function ensurePlanAfternoonTea(options = {}) {
+export function ensurePlanEveningSnack(options = {}) {
   const database = options.database || getDb();
   ensureMigrationsTable(database);
 
   if (!options.force) {
     const done = database.prepare('SELECT 1 AS ok FROM schema_migrations WHERE id = ?').get(MIGRATION_ID);
     if (done) {
-      const refreshed = syncAfternoonTeaContent(database);
+      const refreshed = syncEveningSnackContent(database);
       return { applied: false, reason: 'already_applied', refreshed };
     }
   }
@@ -58,11 +56,9 @@ export function ensurePlanAfternoonTea(options = {}) {
     WHERE user_id = ?
       AND date = ?
       AND (
-        category = '下午茶'
-        OR template_key LIKE 'afternoon-tea-%'
-        OR template_key LIKE 'fruit-party-%'
-        OR title LIKE '下午茶%'
-        OR title LIKE '水果派对%'
+        category = '夜宵'
+        OR template_key LIKE 'night-snack-%'
+        OR title LIKE '练后轻夜宵%'
       )
     LIMIT 1
   `);
@@ -98,24 +94,22 @@ export function ensurePlanAfternoonTea(options = {}) {
       if (!planDay) continue;
       if (existsStmt.get(row.userId, row.date)) continue;
 
-      const weekDay = weekdayMon1(row.date) || planDay;
-      const tea = planAfternoonTeaTaskFields(weekDay);
-      const isWeekend = planDay === 6 || planDay === 7;
+      const snack = planEveningSnackTaskFields(planDay);
       const sortOrder = Number(maxSortStmt.get(row.userId, row.date).m) + 1;
       const payload = {
         userId: row.userId,
         date: row.date,
         planDay,
         planName: row.planName || '',
-        time: isWeekend ? '16:00' : '15:30',
-        category: tea.category,
-        title: tea.title,
-        description: tea.description,
-        durationLabel: tea.durationLabel || '',
-        durationMinutes: tea.durationMinutes,
+        time: '20:30',
+        category: snack.category,
+        title: snack.title,
+        description: snack.description,
+        durationLabel: snack.durationLabel || '',
+        durationMinutes: snack.durationMinutes,
         sortOrder,
       };
-      if (hasTemplateKey) payload.templateKey = tea.templateKey;
+      if (hasTemplateKey) payload.templateKey = snack.templateKey;
       insert.run(payload);
       inserted += 1;
     }
@@ -123,33 +117,31 @@ export function ensurePlanAfternoonTea(options = {}) {
       .run(MIGRATION_ID);
   })();
 
-  const refreshed = syncAfternoonTeaContent(database);
+  const refreshed = syncEveningSnackContent(database);
   return { applied: true, dates: days.length, inserted, refreshed };
 }
 
-/** 已存在的下午茶/水果派对任务按日历星期刷新文案 */
-export function syncAfternoonTeaContent(database = getDb()) {
+export function syncEveningSnackContent(database = getDb()) {
   const cols = database.prepare('PRAGMA table_info(tasks)').all().map((c) => c.name);
   if (!cols.includes('template_key')) return 0;
 
   const rows = database.prepare(`
-    SELECT id, date, title, category, template_key AS templateKey
+    SELECT id, date, plan_day AS planDay, title, category, template_key AS templateKey
     FROM tasks
-    WHERE category = '下午茶'
-       OR template_key LIKE 'afternoon-tea-%'
-       OR template_key LIKE 'fruit-party-%'
-       OR title LIKE '下午茶%'
-       OR title LIKE '水果派对%'
+    WHERE category = '夜宵'
+       OR template_key LIKE 'night-snack-%'
+       OR title LIKE '练后轻夜宵%'
   `).all();
 
   const update = database.prepare(`
     UPDATE tasks
     SET title = @title,
         description = @description,
-        category = '下午茶',
+        category = '夜宵',
         template_key = @templateKey,
         duration_label = @durationLabel,
         duration_minutes = @durationMinutes,
+        time = '20:30',
         updated_at = datetime('now')
     WHERE id = @id
   `);
@@ -157,10 +149,10 @@ export function syncAfternoonTeaContent(database = getDb()) {
   let updated = 0;
   database.transaction(() => {
     for (const row of rows) {
-      if (!isTeaSlotRow(row)) continue;
-      const weekDay = weekdayMon1(row.date);
-      if (!weekDay) continue;
-      const content = planAfternoonTeaTaskFields(weekDay);
+      if (!isEveningSnackRow(row)) continue;
+      const planDay = row.planDay || planDayForDate(row.date);
+      if (!planDay) continue;
+      const content = planEveningSnackTaskFields(planDay);
       const result = update.run({
         id: row.id,
         title: content.title,

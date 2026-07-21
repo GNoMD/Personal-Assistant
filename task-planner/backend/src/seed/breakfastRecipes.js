@@ -9,7 +9,11 @@
  *
  * 份量备注采用常见家用估算，便于无厨房秤时准备；有条件仍建议称重。
  * 乳糖说明：默认选用“无乳糖”乳制品；仍不适者可换鸡蛋/鸡胸肉，或少量无糖植物奶（注意豆类总量）。
+ *
+ * 健康计划日历早餐已切换为「一人份一周豆浆早餐」（见 getPlanBreakfastRecipe）。
  */
+
+import { SOY_BREAKFAST_RECIPES } from './soyMilkBreakfastRecipes.js';
 
 function breakfastNotes({ efficacy, nutrients, effects, protein, calories, tip }) {
   return [
@@ -106,7 +110,7 @@ export const BREAKFAST_RECIPES = [
     ingredients: [
       '无乳糖无糖酸奶 / 无乳糖希腊酸奶 250g（约 1 盒半 / 1 杯）',
       '纯燕麦 45g（约半杯 / 5 大勺）',
-      '草莓或蓝莓 100g（草莓约 6～8 颗中等大小；蓝莓约半杯多）',
+      '蓝莓 100g（约半杯多）',
       '奇亚籽 8g（约 1.5 小勺 / 1 茶匙稍满）',
       '核桃仁 10g（约 2～3 个半边）',
       '鸡蛋 1 个（约 50～55g）',
@@ -115,9 +119,9 @@ export const BREAKFAST_RECIPES = [
     steps: [
       '燕麦倒入碗中，加入 80～100mL 温水或无乳糖低脂奶，静置 3～5 分钟至软糯；急用可微波加热 40～60 秒。',
       '鸡蛋冷水下锅，水开后小火煮 8～10 分钟，捞出过凉去壳。',
-      '草莓洗净去蒂切半；蓝莓洗净沥干。',
+      '蓝莓洗净沥干（吃前再洗，勿提前洗净存放）。',
       '核桃仁用手掰成小块；奇亚籽直接撒入燕麦碗。',
-      '将无乳糖无糖酸奶倒在泡好的燕麦上，再铺上莓果、核桃仁和奇亚籽。',
+      '将无乳糖无糖酸奶倒在泡好的燕麦上，再铺上蓝莓、核桃仁和奇亚籽。',
       '装盘：酸奶燕麦碗 + 水煮蛋 1 个；另备温开水 300mL。',
       '不添加蜂蜜、果酱、果汁或炼乳，避免多余游离糖。',
     ].join('\n'),
@@ -253,7 +257,7 @@ export const BREAKFAST_RECIPES = [
       '干荞麦面 70g（约一小把）',
       '鸡蛋 2 个（约 100～110g）',
       '无乳糖无糖酸奶 200g（约 1 小盒）',
-      '樱桃或草莓 100g（樱桃约 12～15 颗；草莓约 6～8 颗）',
+      '橙子 1 个（约 150～180g）',
       '清水约 350mL（打浆用，最终饮用 ≤250mL）',
     ].join('\n'),
     steps: [
@@ -261,8 +265,8 @@ export const BREAKFAST_RECIPES = [
       '【早晨】浸泡干料加清水约 350mL，打细煮沸，制成约 250mL 无糖谷物饮。',
       '锅中烧开水，下入荞麦面，按包装煮 6～8 分钟至熟透；捞出后仅用少量盐或清汤调味，不加油炸酱料。',
       '鸡蛋冷水下锅，水开后小火煮 8～10 分钟，捞出过凉去壳。',
-      '樱桃 / 草莓洗净沥干；无乳糖酸奶开封备用。',
-      '装盘：谷物饮 + 荞麦面一小碗 + 水煮蛋 2 个 + 无乳糖酸奶 + 水果。',
+      '橙子洗净，剥皮或切半食用；无乳糖酸奶开封备用。',
+      '装盘：谷物饮 + 荞麦面一小碗 + 水煮蛋 2 个 + 无乳糖酸奶 + 橙子。',
       '水果作为均衡饮食组成，不将其视为降尿酸药物。',
     ].join('\n'),
     notes: breakfastNotes({
@@ -389,9 +393,15 @@ export const BREAKFAST_DESCRIPTIONS = Object.fromEntries(
     ])
 );
 
-/** 7 日健康计划用早餐食谱（日常均衡 · low-purine-dN） */
-export function getPlanBreakfastRecipe(planDay) {
-  return BREAKFAST_RECIPES.find((recipe) => recipe.planDay === Number(planDay)) || null;
+/**
+ * 计划日历早餐：一人份一周豆浆（按日历星期，周一=1…周日=7 → soy-breakfast-dN）
+ * 注意：不是健身 plan_day；旧版 low-purine 仍保留在库中作备选。
+ */
+export function getPlanBreakfastRecipe(weekDayMon1) {
+  const day = Number(weekDayMon1);
+  const soy = SOY_BREAKFAST_RECIPES.find((recipe) => recipe.planDay === day);
+  if (soy) return soy;
+  return BREAKFAST_RECIPES.find((recipe) => recipe.planDay === day) || null;
 }
 
 /**
@@ -441,10 +451,11 @@ export function buildBreakfastTaskContent(recipe, opts = {}) {
   };
 }
 
-export function planBreakfastTaskFields(planDay) {
-  const recipe = getPlanBreakfastRecipe(planDay);
+/** @param {number} weekDayMon1 日历星期 1=周一 … 7=周日 */
+export function planBreakfastTaskFields(weekDayMon1) {
+  const recipe = getPlanBreakfastRecipe(weekDayMon1);
   if (!recipe) {
-    throw new Error(`未找到计划第 ${planDay} 天对应的早餐食谱（请在 breakfastRecipes.js 配置 planDay）`);
+    throw new Error(`未找到星期 ${weekDayMon1} 对应的早餐食谱（soy-breakfast-d${weekDayMon1}）`);
   }
   return buildBreakfastTaskContent(recipe);
 }

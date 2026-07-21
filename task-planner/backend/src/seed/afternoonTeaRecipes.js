@@ -1,213 +1,237 @@
 /**
- * 健康计划 · 下午茶（7 日轮换）
+ * 健康计划 · 水果派对（原下午茶时段）
  *
- * 定位：午后轻量加餐，以水果为主，搭配少量全麦饼干/面包；不替代正餐蛋白。
- * 原则：控制添加糖与果汁；尿酸/养发友好（浆果、猕猴桃、柑橘维 C 优先）。
- *
- * —— 每周水果备货建议（一人份参考，按冰箱冷藏 3～5 天采购）——
- * 必备：猕猴桃 4～5 个 · 苹果 4～5 个 · 鲜蓝莓或草莓 2 盒（约 250～300g）
- * 轮换：橙子或西柚 3～4 个 · 香蕉 3～4 根（训练日）· 梨 2～3 个
- * 轻食柜：原味苏打/全麦消化饼 1 小包 · 全麦吐司半袋（冷冻分片更耐放）
- * 少买：果汁饮料、夹心甜饼、奶油蛋糕（血糖与头皮油脂负担更大）
+ * 按日历星期轮换，与《一人份一周豆浆早餐配方》第 10 节水果搭配一致：
+ * 控尿酸 · 健脾养胃 · 养发安神 · 稳糖轻体。
+ * 整果、不榨汁、不加糖；不替代正餐蛋白。
  */
 
 const FRUIT_PREP_TIP = [
-  '冷藏浆果 2～3 天内吃完；猕猴桃常温催熟后冷藏；香蕉勿冷藏；吐司可冷冻按片取用。',
-  '当天上午或前一晚洗净擦干装盒，下午直接开吃，减少临时凑合买奶茶甜点。',
+  '冷藏浆果 2～3 天内吃完；猕猴桃硬果常温催熟、软后冷藏；香蕉勿整根冷藏；梨/苹果常温或冷藏均可。',
+  '浆果类吃前再洗；已切开密封冷藏尽量当天吃完。禁止果汁、奶茶、果干当「水果份」。',
 ].join('');
 
-function teaNotes({ efficacy, nutrients, effects, calories, tip }) {
-  return [
+/** 写入任务说明的保存摘要（与文档 10.5 一致） */
+const FRUIT_STORAGE = {
+  blueberry: '保存：冷藏首选，原盒垫纸吸潮、吃前再洗；冷藏约 2～3 天。常温仅当天。',
+  apple: '保存：阴凉常温约 5～7 天，或冷藏保鲜袋 1～2 周；切开密封冷藏当天吃。',
+  pear: '保存：阴凉常温约 3～5 天，或冷藏约 1 周；偏硬可常温再放软。',
+  banana: '保存：必须常温；青黄约 2～4 天，全黄后 1～2 天内吃。勿整根冷藏（皮易黑）。',
+  kiwi: '保存：硬果常温催熟约 2～5 天；软熟后冷藏约 3～5 天。想慢熟可硬果直接冷藏。',
+  peach: '保存：硬桃常温催熟 1～3 天；软熟后冷藏 2～3 天尽快吃。易碰伤。',
+  orange: '保存：阴凉常温约 5～7 天，或冷藏 1～2 周；切开密封冷藏当天吃。',
+};
+
+function fruitNotes({ efficacy, nutrients, effects, calories, tip, storage }) {
+  const lines = [
     `功效：${efficacy}`,
     `补什么：${nutrients}`,
     `作用：${effects}`,
     `营养：参考热量约 ${calories} 千卡。`,
-    `贴士：${tip || FRUIT_PREP_TIP}`,
-    '说明：下午茶为轻量加餐，不替代正餐蛋白；少果汁甜点。',
-  ].join('\n');
+  ];
+  if (storage) lines.push(`保存：${storage}`);
+  lines.push(`贴士：${tip || FRUIT_PREP_TIP}`);
+  lines.push('说明：水果派对为轻量加餐，与豆浆早餐主题互补；整果一次吃完，不替代正餐蛋白。');
+  return lines.join('\n');
 }
 
+/** planDay / weekDayMon1：周一=1 … 周日=7 */
 export const AFTERNOON_TEA_RECIPES = [
   {
-    templateKey: 'afternoon-tea-d1',
+    templateKey: 'fruit-party-d1',
     planDay: 1,
-    title: '下午茶｜蓝莓全麦薄饼',
+    title: '水果派对｜蓝莓',
     mealType: '加餐',
+    series: '水果派对',
     ingredients: [
-      '水果｜鲜蓝莓 100～120g（约大半杯）｜约 55～65 千卡',
-      '轻食｜全麦薄脆/消化饼 2 片（约 20g）｜约 80 千卡',
-      '饮品｜温开水或淡柠檬水 200mL｜约 0 千卡',
+      '鲜蓝莓 80～100g（约半杯）',
+      '温开水 200mL（可选）',
     ].join('\n'),
     steps: [
-      '蓝莓冷水冲洗，沥干；异味果挑出。',
-      '饼干原味、低糖；不配果酱或炼乳。',
-      '15:30 左右食用，用餐时间控制在 10～15 分钟。',
+      '蓝莓冷水冲洗沥干，异味果挑出（吃前再洗，勿提前洗净存放）。',
+      '15:30～16:00 整果食用，不撒糖、不配炼乳。',
+      '与豆浆「养发安神」日互补：浆果多酚 + 低 GI。',
+      FRUIT_STORAGE.blueberry,
     ].join('\n'),
-    notes: teaNotes({
-      efficacy: '浆果多酚 + 全麦碳水，适合启动日午后续航',
-      nutrients: '蓝莓花青素与维C、全麦复合碳水与膳食纤维',
-      effects: '稳住血糖、减少奶茶甜点冲动，补充抗氧化营养',
-      calories: '140～150',
+    notes: fruitNotes({
+      efficacy: '周一养发向：浆果抗氧化，搭豆浆黑米芝麻不扎堆',
+      nutrients: '花青素、维C、膳食纤维',
+      effects: '稳糖、减甜点冲动，支持养发营养',
+      calories: '45～55',
+      storage: '冷藏首选（原盒垫纸、吃前再洗）约 2～3 天；常温仅当天。已切开密封冷藏当天吃。',
     }),
-    prepMinutes: 10,
-    calories: 145,
-    tags: '下午茶,加餐,水果,全麦,尿酸友好,养发',
+    prepMinutes: 5,
+    calories: 50,
+    tags: '水果派对,加餐,蓝莓,尿酸友好,养发',
   },
   {
-    templateKey: 'afternoon-tea-d2',
+    templateKey: 'fruit-party-d2',
     planDay: 2,
-    title: '下午茶｜猕猴桃苏打饼干',
+    title: '水果派对｜苹果',
     mealType: '加餐',
+    series: '水果派对',
     ingredients: [
-      '水果｜猕猴桃 1 个中等（约 100～120g 可食部）｜约 55 千卡',
-      '轻食｜原味苏打饼干 3～4 小片（约 18g）｜约 70 千卡',
-      '饮品｜温开水 200mL｜约 0 千卡',
+      '苹果 1 个（约 180g，可去皮）',
+      '温开水 200mL（可选）',
     ].join('\n'),
     steps: [
-      '猕猴桃洗净，切半挖勺或去皮切片。',
-      '苏打饼干限量；手痒想续杯时再加半个猕猴桃，不加倍饼干。',
-      '维 C 丰富，有助于铁吸收；避免同时大口喝浓茶。',
+      '洗净；胃弱可去皮或切块细嚼。',
+      '搭配豆浆「健脾固肾」日：果胶护肠，不打架。',
+      '不榨汁、不配甜酱。',
+      FRUIT_STORAGE.apple,
     ].join('\n'),
-    notes: teaNotes({
-      efficacy: '猕猴桃维C午点，搭配低负担苏打饼干',
-      nutrients: '维C、膳食纤维；少量全谷物碳水',
-      effects: '促进铁吸收、支持养发营养，替代含糖饮料',
-      calories: 125,
+    notes: fruitNotes({
+      efficacy: '周二健脾向：果胶温和护肠',
+      nutrients: '果胶、膳食纤维、钾',
+      effects: '延长饱腹、减少乱吃，肠胃友好',
+      calories: '90～100',
+      storage: '阴凉常温约 5～7 天，或冷藏保鲜袋 1～2 周；切开后密封冷藏当天吃。',
     }),
-    prepMinutes: 8,
-    calories: 125,
-    tags: '下午茶,加餐,猕猴桃,维C,尿酸友好,养发',
+    prepMinutes: 5,
+    calories: 95,
+    tags: '水果派对,加餐,苹果,健脾,尿酸友好',
   },
   {
-    templateKey: 'afternoon-tea-d3',
+    templateKey: 'fruit-party-d3',
     planDay: 3,
-    title: '下午茶｜苹果全麦小餐包',
+    title: '水果派对｜梨',
     mealType: '加餐',
+    series: '水果派对',
     ingredients: [
-      '水果｜富士/黄蕉等苹果 1 个中等（约 180g）｜约 95 千卡',
-      '轻食｜全麦小餐包/小面包半个（约 30～35g）｜约 80 千卡',
-      '可选｜原味杏仁 5g（约 4～5 粒，发作期可省略）｜约 30 千卡',
+      '梨 1 个（约 180～200g）',
+      '温开水 200mL（可选）',
     ].join('\n'),
     steps: [
-      '苹果洗净，连皮吃更饱腹；切开可喷一点柠檬防氧化。',
-      '面包选无糖精、无奶油夹心款；烤箱或平底锅微热更香。',
-      '杏仁严格限量，不要一把抓。',
+      '洗净直接吃；胃弱可去皮或切块细嚼。',
+      '呼应豆浆「利水轻体」日：清润补水。',
+      `梨：${FRUIT_STORAGE.pear}`,
     ].join('\n'),
-    notes: teaNotes({
-      efficacy: '苹果纤维饱腹，少量全麦面包垫饥',
-      nutrients: '果胶与膳食纤维、复合碳水；可选限量杏仁健康脂肪',
-      effects: '腿训日控制零食冲动，延长饱腹、减少血糖起伏',
-      calories: '175～200（含杏仁）',
+    notes: fruitNotes({
+      efficacy: '周三利水向：清润、水分足',
+      nutrients: '水分、纤维、钾（适量）',
+      effects: '清口减黏腻感，配合赤小豆茯苓主题',
+      calories: '80～90',
+      storage: '梨：阴凉常温 3～5 天或冷藏约 1 周；一人份更容易控量，也更耐放。',
     }),
-    prepMinutes: 10,
-    calories: 185,
-    tags: '下午茶,加餐,苹果,全麦,尿酸友好',
+    prepMinutes: 5,
+    calories: 85,
+    tags: '水果派对,加餐,梨,利水,尿酸友好',
   },
   {
-    templateKey: 'afternoon-tea-d4',
+    templateKey: 'fruit-party-d4',
     planDay: 4,
-    title: '下午茶｜草莓消化饼',
+    title: '水果派对｜香蕉',
     mealType: '加餐',
+    series: '水果派对',
     ingredients: [
-      '水果｜草莓 120～150g（约 8～10 颗中等）｜约 40～50 千卡',
-      '轻食｜全麦消化饼 2 片（约 20g）｜约 80 千卡',
-      '饮品｜温开水 200mL｜约 0 千卡',
+      '香蕉 1 根（约 100～120g，七成熟）',
+      '温开水 200mL（可选）',
     ].join('\n'),
     steps: [
-      '草莓蒂拔掉后冲洗沥干；切开配饼干更易控制份量。',
-      '不刷炼乳、不撒糖粉。',
-      '草莓不耐放，到家 1～2 天内优先吃完。',
+      '养胃日首选：少酸、温和；勿换酸橙/青柠。',
+      '配豆浆「四神养胃」日；反酸时细嚼慢咽。',
+      '若当晚练前要用半根香蕉，下午只吃半根，避免一天两根堆糖。',
+      FRUIT_STORAGE.banana,
     ].join('\n'),
-    notes: teaNotes({
-      efficacy: '低热量草莓午点，背训日也稳得住',
-      nutrients: '草莓维C与多酚、全麦消化饼复合碳水',
-      effects: '替代奶茶甜食，补充微量营养与轻量能量',
-      calories: 130,
+    notes: fruitNotes({
+      efficacy: '周四养胃向：少酸刺激、易消化',
+      nutrients: '钾、易用碳水、少量纤维',
+      effects: '护胃加餐，减少烧心日乱吃',
+      calories: '90～110',
+      storage: '必须常温；青黄约 2～4 天，全黄后 1～2 天内吃。勿整根冷藏；与催熟水果分开放。',
     }),
-    prepMinutes: 8,
-    calories: 130,
-    tags: '下午茶,加餐,草莓,全麦,养发,尿酸友好',
+    prepMinutes: 3,
+    calories: 100,
+    tags: '水果派对,加餐,香蕉,养胃',
   },
   {
-    templateKey: 'afternoon-tea-d5',
+    templateKey: 'fruit-party-d5',
     planDay: 5,
-    title: '下午茶｜香蕉橙瓣全麦吐司',
+    title: '水果派对｜猕猴桃',
     mealType: '加餐',
+    series: '水果派对',
     ingredients: [
-      '水果｜香蕉半根至大半根（约 60～80g）｜约 55～70 千卡',
-      '水果｜橙子或血橙 ½～1 个（约 100～150g 果肉）｜约 45～70 千卡',
-      '轻食｜全麦吐司 ½ 片（约 15g）｜约 40 千卡',
+      '猕猴桃 1 个（约 80～100g 可食部）',
+      '温开水 200mL（可选）',
     ].join('\n'),
     steps: [
-      '训练日建议安排在出门前 45～60 分钟，补充易用碳水。',
-      '香蕉勿整根大吃，半根够用；橙肉去白络亦可。',
-      '吐司烤箱微烤；不涂黄油果酱。',
+      '洗净，切半挖勺或去皮切片；偏硬可常温再放半天。',
+      '配豆浆「蛋白增肌养发」日：维 C 互补，不与周一蓝莓扎堆。',
+      '胃酸敏感者可换成蓝莓 80～100g，或苹果半个。',
+      FRUIT_STORAGE.kiwi,
     ].join('\n'),
-    notes: teaNotes({
-      efficacy: '训练日前轻碳水续航',
-      nutrients: '香蕉快碳、柑橘维C、少量全麦吐司',
-      effects: '出门前 45～60 分钟补能，兼顾铁吸收支持',
-      calories: '150～170',
+    notes: fruitNotes({
+      efficacy: '周五增肌养发向：维 C 丰富',
+      nutrients: '维C、纤维、叶酸',
+      effects: '助植物蛋白日营养利用感，替代甜饮',
+      calories: '50～60',
+      storage: '硬果常温催熟 2～5 天；软熟后冷藏 3～5 天。想慢熟可硬果直接冷藏。',
     }),
-    prepMinutes: 10,
-    calories: 160,
-    tags: '下午茶,加餐,香蕉,柑橘,训练日,养发',
+    prepMinutes: 5,
+    calories: 55,
+    tags: '水果派对,加餐,猕猴桃,维C,养发,尿酸友好',
   },
   {
-    templateKey: 'afternoon-tea-d6',
+    templateKey: 'fruit-party-d6',
     planDay: 6,
-    title: '下午茶｜梨片原味饼干',
+    title: '水果派对｜桃或梨',
     mealType: '加餐',
+    series: '水果派对',
     ingredients: [
-      '水果｜梨 1 个中小（约 200g）｜约 80～90 千卡',
-      '轻食｜原味饼干 2 片（约 16g）｜约 60 千卡',
-      '饮品｜温开水 250mL｜约 0 千卡',
+      '桃或梨 1 个（约 150～200g）',
+      '温开水 200mL（可选）',
     ].join('\n'),
     steps: [
-      '梨洗净切片；偏硬可室温再放半天。',
-      '恢复日份量可略保守，饥饿感不强时只吃梨也行。',
-      '不搭配冰淇淋或珍珠奶茶。',
+      '清暑日：桃/梨二选一；胃弱优先梨。',
+      '配豆浆「清暑健脾」日，呼应绿豆清火。',
+      '不配冰淇淋、奶茶。',
+      `桃：${FRUIT_STORAGE.peach}`,
+      `梨：${FRUIT_STORAGE.pear}`,
     ].join('\n'),
-    notes: teaNotes({
-      efficacy: '清爽低负担梨片午点，适合主动恢复日',
-      nutrients: '梨的水分与纤维、少量原味饼干碳水',
-      effects: '胃肠轻松、控热量，减少恢复日零食升级',
-      calories: '140～150',
+    notes: fruitNotes({
+      efficacy: '周六清暑向：润燥清口',
+      nutrients: '水分、纤维',
+      effects: '清暑减上火感，低负担加餐',
+      calories: '70～90',
+      storage: '桃：硬桃常温催熟 1～3 天，软熟后冷藏 2～3 天。梨：常温 3～5 天或冷藏约 1 周。',
     }),
-    prepMinutes: 8,
-    calories: 145,
-    tags: '下午茶,加餐,梨,恢复日,尿酸友好',
+    prepMinutes: 5,
+    calories: 80,
+    tags: '水果派对,加餐,桃,梨,清暑,尿酸友好',
   },
   {
-    templateKey: 'afternoon-tea-d7',
+    templateKey: 'fruit-party-d7',
     planDay: 7,
-    title: '下午茶｜柑橘莓果面包卷',
+    title: '水果派对｜橙子',
     mealType: '加餐',
+    series: '水果派对',
     ingredients: [
-      '水果｜橙子段或西柚瓣 120g｜约 50 千卡',
-      '水果｜蓝莓或草莓 60g｜约 30 千卡',
-      '轻食｜全麦小面包卷半个或吐司 ½ 片（约 25g）｜约 65 千卡',
+      '橙子 1 个（约 150～180g）',
+      '温开水 200mL（可选）',
     ].join('\n'),
     steps: [
-      '柑橘剥好去籽；浆果洗净。',
-      '面包卷微热后与水果同盘，细嚼慢咽。',
-      '本周复盘：冰箱是否还有剩余浆果/猕猴桃，下周日采买时按备货清单补货。',
+      '洗净，剥皮或切半挖勺；一人刚好一只，好控量。',
+      '配豆浆「无杂豆护肾」日：维 C 低负担，肾脏缓冲日加分。',
+      '本周复盘：下周按备货清单补蓝莓/猕猴桃/苹果等。',
+      `橙子：${FRUIT_STORAGE.orange}`,
     ].join('\n'),
-    notes: teaNotes({
-      efficacy: '一周收官：柑橘维C + 浆果多酚 + 少量全麦',
-      nutrients: '维C、花青素/多酚、全麦复合碳水',
-      effects: '收束本周抗氧化与控糖目标，复盘备果是否齐全',
-      calories: 145,
-      tip: `${FRUIT_PREP_TIP} 每周采购优先：猕猴桃、苹果、浆果、柑橘、香蕉（训练日）、梨；轻食柜只备原味全麦饼与吐司。`,
+    notes: fruitNotes({
+      efficacy: '周日护肾向：一人一只好控量，维 C 不贵也不娇气',
+      nutrients: '维C、纤维、叶酸',
+      effects: '给代谢减负日加维 C，不冲尿酸红线；比浆果耐放、更省钱',
+      calories: '60～70',
+      storage: '阴凉常温约 5～7 天，或冷藏 1～2 周；切开密封冷藏当天吃。',
+      tip: `${FRUIT_PREP_TIP} 一周采购：蓝莓、苹果、梨、香蕉、猕猴桃、桃、橙子各约 1 日份。`,
     }),
-    prepMinutes: 12,
-    calories: 145,
-    tags: '下午茶,加餐,柑橘,浆果,全麦,养发',
+    prepMinutes: 5,
+    calories: 65,
+    tags: '水果派对,加餐,橙子,护肾,尿酸友好',
   },
 ];
 
-export function getPlanAfternoonTeaRecipe(planDay) {
-  return AFTERNOON_TEA_RECIPES.find((r) => r.planDay === Number(planDay)) || null;
+/** @param {number} weekDayMon1 日历星期 1=周一 … 7=周日 */
+export function getPlanAfternoonTeaRecipe(weekDayMon1) {
+  return AFTERNOON_TEA_RECIPES.find((r) => r.planDay === Number(weekDayMon1)) || null;
 }
 
 export function buildAfternoonTeaTaskContent(recipe, opts = {}) {
@@ -225,8 +249,8 @@ export function buildAfternoonTeaTaskContent(recipe, opts = {}) {
   const prepMinutes = recipe.prepMinutes ?? recipe.prep_minutes ?? null;
 
   const parts = [];
-  parts.push('来源：食谱库 · 健康计划下午茶');
-  parts.push('餐次：下午茶（加餐）');
+  parts.push('来源：食谱库 · 健康计划水果派对（原下午茶时段）');
+  parts.push('餐次：水果派对（加餐）');
   if (calories != null && calories !== '') parts.push(`约 ${calories} 千卡`);
   if (ingredients.length) {
     parts.push(`食材：\n${ingredients.map((line) => `· ${line}`).join('\n')}`);
@@ -242,26 +266,27 @@ export function buildAfternoonTeaTaskContent(recipe, opts = {}) {
     description: parts.join('\n\n'),
     category: '下午茶',
     templateKey,
-    durationLabel: prepMinutes ? `约 ${prepMinutes} 分钟` : '约 10 分钟',
-    durationMinutes: prepMinutes != null && prepMinutes !== '' ? Number(prepMinutes) : 10,
+    durationLabel: prepMinutes ? `约 ${prepMinutes} 分钟` : '约 5 分钟',
+    durationMinutes: prepMinutes != null && prepMinutes !== '' ? Number(prepMinutes) : 5,
   };
 }
 
-export function planAfternoonTeaTaskFields(planDay) {
-  const recipe = getPlanAfternoonTeaRecipe(planDay);
+/** @param {number} weekDayMon1 日历星期 1=周一 … 7=周日 */
+export function planAfternoonTeaTaskFields(weekDayMon1) {
+  const recipe = getPlanAfternoonTeaRecipe(weekDayMon1);
   if (!recipe) {
-    throw new Error(`未找到计划第 ${planDay} 天对应的下午茶食谱`);
+    throw new Error(`未找到星期 ${weekDayMon1} 对应的水果派对食谱（fruit-party-d${weekDayMon1}）`);
   }
   return buildAfternoonTeaTaskContent(recipe);
 }
 
-/** 每周水果/轻食备货清单（便于清单任务或说明引用） */
+/** 每周水果备货清单（一人份，含保存要点） */
 export const WEEKLY_FRUIT_SHOPPING = [
-  '猕猴桃 4～5 个（常温催熟后冷藏）',
-  '苹果 4～5 个',
-  '蓝莓或草莓 2 盒（约 250～300g，优先吃完）',
-  '橙子或西柚 3～4 个',
-  '香蕉 3～4 根（训练日；勿整把冷藏）',
-  '梨 2～3 个',
-  '原味苏打/全麦消化饼 1 小包 + 全麦吐司（可冷冻按片）',
+  '蓝莓 80～100g（周一）｜冷藏 2～3 天，吃前再洗',
+  '苹果 1 个（周二）｜常温 5～7 天或冷藏 1～2 周',
+  '梨 1～2 个（周三、周六）｜常温 3～5 天或冷藏约 1 周',
+  '香蕉 1 根（周四）｜必须常温，勿冷藏；青黄 2～4 天',
+  '猕猴桃 1 个（周五）｜硬果常温催熟，软后冷藏 3～5 天',
+  '桃或梨 1 个（周六）｜硬桃常温催熟；梨见上',
+  '橙子 1 个（周日）｜常温 5～7 天或冷藏 1～2 周',
 ];

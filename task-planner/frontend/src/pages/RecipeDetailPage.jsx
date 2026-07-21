@@ -150,7 +150,7 @@ export default function RecipeDetailPage() {
     () => (recipe ? benefitsFromRecipe(recipe) : null),
     [recipe]
   );
-  const drinkStyleNotes = recipe?.mealType === '饮品' || recipe?.series === '豆浆轮换';
+  const drinkStyleNotes = recipe?.mealType === '饮品' || recipe?.series === '豆浆轮换' || recipe?.series === '豆浆早餐';
 
   const handleSave = async (payload) => {
     const updated = await api.updateRecipe(id, payload);

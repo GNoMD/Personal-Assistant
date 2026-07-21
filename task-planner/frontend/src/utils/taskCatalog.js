@@ -6,7 +6,7 @@ import {
 } from '../data/travel';
 
 /** 任务表单可选分类（含关联模块） */
-export const TASK_CATEGORIES = ['作息', '早餐', '午餐', '下午茶', '晚餐', '用药', '护理', '运动', '清单', '食谱', '旅行', '自定义'];
+export const TASK_CATEGORIES = ['作息', '早餐', '午餐', '下午茶', '晚餐', '夜宵', '用药', '护理', '运动', '清单', '食谱', '旅行', '自定义'];
 
 export const TASK_SOURCES = [
   { id: 'manual', label: '手填' },
@@ -25,7 +25,8 @@ function recipeCategory(mealType, recipe = {}) {
   if (mealType === '午餐') return '午餐';
   if (mealType === '晚餐') return '晚餐';
   const key = recipe.templateKey || '';
-  if (mealType === '加餐' && String(key).startsWith('afternoon-tea-')) return '下午茶';
+  if (mealType === '加餐' && (String(key).startsWith('afternoon-tea-') || String(key).startsWith('fruit-party-'))) return '下午茶';
+  if (mealType === '加餐' && String(key).startsWith('night-snack-')) return '夜宵';
   return '食谱';
 }
 

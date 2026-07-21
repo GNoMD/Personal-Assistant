@@ -13,6 +13,7 @@ function inferDuration(title, category, planDay = 1) {
   if (t.includes('入睡')) return '约 30 分钟';
   if (category === '早餐' || category === '食谱') return '约 25 分钟';
   if (category === '午餐' || category === '晚餐') return '约 30 分钟';
+  if (category === '夜宵') return '约 5 分钟';
   if (category === '下午茶') return '约 10 分钟';
   if (category === '运动') return `约 ${EXERCISE_MINUTES[planDay] || 45} 分钟`;
   if (category === '旅行') return '约 9 小时';
@@ -36,6 +37,7 @@ export function getDurationTagClass(category) {
     早餐: 'duration-tag--food',
     午餐: 'duration-tag--food',
     下午茶: 'duration-tag--food',
+    夜宵: 'duration-tag--food',
     晚餐: 'duration-tag--food',
     食谱: 'duration-tag--food',
     旅行: 'duration-tag--custom',

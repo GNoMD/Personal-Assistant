@@ -7,6 +7,7 @@
     "dev": "node --watch src/index.js",
     "seed": "node src/seed/seed.js",
     "seed:soy-week": "node scripts/seedSoyMilkWeek.js",
+    "seed:soy-breakfast": "node scripts/seedSoyMilkBreakfast.js",
     "sync:gnomd": "node scripts/syncGnomdOnline.js",
     "reset:password": "node scripts/resetPassword.js",
     "test": "node --test tests/*.test.js"

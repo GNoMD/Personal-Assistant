@@ -86,16 +86,18 @@ export function ensureGnomdMedicationSchedule(userId, options = {}) {
 
   const updateWake = database.prepare(`
     UPDATE tasks
-    SET description = '起床，饮水200mL；晨间一般不洗发，待头皮干燥后涂早米诺',
+    SET description = '起床，饮水200mL；随后晨间洗发，吹干后再涂早米诺',
         updated_at = datetime('now')
     WHERE user_id = ? AND date = ? AND title = '起床饮水'
   `);
 
   const updateWash = database.prepare(`
     UPDATE tasks
-    SET description = '温和洗发露清洗头皮，完全吹干后准备晚米诺；一天最多洗 1 次',
+    SET title = '晨间洗发',
+        time = ?,
+        description = '温和洗发露清洗头皮，完全吹干后准备早米诺；一天最多洗 1 次',
         updated_at = datetime('now')
-    WHERE user_id = ? AND date = ? AND title = '晚间洗发'
+    WHERE user_id = ? AND date = ? AND title IN ('晚间洗发', '晨间洗发')
   `);
 
   const updateSleep = database.prepare(`
@@ -136,7 +138,7 @@ export function ensureGnomdMedicationSchedule(userId, options = {}) {
       }
 
       updateWake.run(userId, row.date);
-      updateWash.run(userId, row.date);
+      updateWash.run(isWeekend ? '07:45' : '06:45', userId, row.date);
       updateSleep.run(userId, row.date);
     }
 
@@ -151,4 +153,77 @@ export function ensureGnomdMedicationSchedule(userId, options = {}) {
     inserted,
     titles: [...MEDICATION_TITLES],
   };
+}
+
+const SHAMPOO_MIGRATION_ID = 'gnomd_morning_shampoo_v1';
+
+/**
+ * 将「晚间洗发」迁移为「晨间洗发」，并同步起床/米诺相关文案（幂等）。
+ */
+export function ensureMorningShampooSchedule(userId, options = {}) {
+  const database = options.database || getDb();
+  ensureMigrationsTable(database);
+
+  if (!options.force) {
+    const done = database.prepare('SELECT 1 AS ok FROM schema_migrations WHERE id = ?').get(SHAMPOO_MIGRATION_ID);
+    if (done) return { applied: false, reason: 'already_applied' };
+  }
+
+  const dates = database
+    .prepare('SELECT DISTINCT date, plan_day FROM tasks WHERE user_id = ? ORDER BY date')
+    .all(userId);
+
+  const updateWake = database.prepare(`
+    UPDATE tasks
+    SET description = '起床，饮水200mL；随后晨间洗发，吹干后再涂早米诺',
+        updated_at = datetime('now')
+    WHERE user_id = ? AND date = ? AND title = '起床饮水'
+  `);
+
+  const updateWash = database.prepare(`
+    UPDATE tasks
+    SET title = '晨间洗发',
+        time = ?,
+        category = '护理',
+        description = '温和洗发露清洗头皮，完全吹干后准备早米诺；一天最多洗 1 次',
+        updated_at = datetime('now')
+    WHERE user_id = ? AND date = ? AND title IN ('晚间洗发', '晨间洗发')
+  `);
+
+  const updateMorningMed = database.prepare(`
+    UPDATE tasks
+    SET description = ?,
+        updated_at = datetime('now')
+    WHERE user_id = ? AND date = ? AND title = '米诺地尔（晨）'
+  `);
+
+  const updateEveningMed = database.prepare(`
+    UPDATE tasks
+    SET description = ?,
+        updated_at = datetime('now')
+    WHERE user_id = ? AND date = ? AND title = '米诺地尔（晚）'
+  `);
+
+  let washUpdated = 0;
+  const run = database.transaction(() => {
+    for (const row of dates) {
+      const planDay = row.plan_day || planDayForDate(row.date);
+      if (!planDay) continue;
+      const isWeekend = planDay === 6 || planDay === 7;
+      const meds = getMedicationTasks(isWeekend);
+
+      updateWake.run(userId, row.date);
+      const washResult = updateWash.run(isWeekend ? '07:45' : '06:45', userId, row.date);
+      washUpdated += washResult.changes || 0;
+      updateMorningMed.run(meds[0].description, userId, row.date);
+      updateEveningMed.run(meds[2].description, userId, row.date);
+    }
+
+    database.prepare(
+      "INSERT OR REPLACE INTO schema_migrations (id, applied_at) VALUES (?, datetime('now'))"
+    ).run(SHAMPOO_MIGRATION_ID);
+  });
+  run();
+
+  return { applied: true, dates: dates.length, washUpdated };
 }

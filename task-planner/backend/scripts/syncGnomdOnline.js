@@ -38,7 +38,7 @@ import {
   planDayForDate,
   MEDICATION_TITLES,
 } from '../src/seed/planData.js';
-import { ensureGnomdMedicationSchedule } from '../src/seed/ensureGnomdMedicationSchedule.js';
+import { ensureGnomdMedicationSchedule, ensureMorningShampooSchedule } from '../src/seed/ensureGnomdMedicationSchedule.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const TARGET_USERNAME = 'gnomd';
@@ -145,7 +145,7 @@ function reseedGnomdTasks(db, userId) {
     for (let i = 0; i < SEED_DAYS; i += 1) {
       const date = addDays(START_DATE, i);
       const planDay = planDayForDate(date);
-      const templates = getTasksForPlanDay(planDay, { includeHairCare: true });
+      const templates = getTasksForPlanDay(planDay, { includeHairCare: true, date });
       for (const t of templates) {
         insert.run({
           userId,
@@ -245,7 +245,9 @@ function main() {
 
     let result;
     if (args.mode === 'meds') {
-      result = ensureGnomdMedicationSchedule(user.id, { force: true, database: db });
+      const med = ensureGnomdMedicationSchedule(user.id, { force: true, database: db });
+      const shampoo = ensureMorningShampooSchedule(user.id, { force: true, database: db });
+      result = { med, shampoo };
     } else {
       const deleted = db.prepare('DELETE FROM tasks WHERE user_id = ?').run(user.id);
       db.exec(`
@@ -254,11 +256,15 @@ function main() {
           applied_at TEXT DEFAULT (datetime('now'))
         );
       `);
-      db.prepare(`DELETE FROM schema_migrations WHERE id = ?`).run('gnomd_med_schedule_v2_am_noon_pm');
+      db.prepare(`DELETE FROM schema_migrations WHERE id IN (?, ?)`).run(
+        'gnomd_med_schedule_v2_am_noon_pm',
+        'gnomd_morning_shampoo_v1',
+      );
       const seeded = reseedGnomdTasks(db, user.id);
       // 模板已含用药；再跑一遍确保起床/洗发/入睡文案与迁移标记一致
       const med = ensureGnomdMedicationSchedule(user.id, { force: true, database: db });
-      result = { deleted: deleted.changes, seeded, med };
+      const shampoo = ensureMorningShampooSchedule(user.id, { force: true, database: db });
+      result = { deleted: deleted.changes, seeded, med, shampoo };
     }
 
     const still = db.prepare('SELECT id FROM users WHERE username = ?').get(TARGET_USERNAME);

@@ -279,7 +279,7 @@ export const DEMO_CONFIGS = {
             <div className="cup-fill" style={{ height: `${step.id === 'water' ? stepProgress * 100 : 0}%` }} />
             <span>💧 200mL</span>
           </div>
-          <p className="demo-action-text">晨间不洗发，利于非那整夜吸收</p>
+          <p className="demo-action-text">起床后晨间洗发，吹干再涂早米诺</p>
         </div>
       );
     },
