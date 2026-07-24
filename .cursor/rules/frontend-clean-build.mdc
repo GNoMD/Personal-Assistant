@@ -1,0 +1,13 @@
+---
+description: 前端重新构建前必须先清空旧 dist，避免用户看到旧包
+alwaysApply: true
+---
+
+# 前端构建：先删旧包再构建
+
+当需要让用户看到最新前端（含旅行计划 Tab、UI 改动等），或执行 `npm run build` / `pack:*` / 部署相关构建时：
+
+1. **必须**通过 `npm run build`（frontend 或根目录）构建；`prebuild` 会先删除 `frontend/dist`。
+2. 不要只改源码却依赖可能过期的 `dist`；若用户走后端 `13222` 静态页，构建后需让后端读到新 `dist`（必要时重启后端）。
+3. 若手动清理：删除整个 `task-planner/frontend/dist` 目录后再 `vite build`，禁止在旧 hashed 资源上「半覆盖」。
+4. 提醒用户对浏览器做一次强制刷新（Ctrl+F5），避免缓存旧 JS。

@@ -1,0 +1,15 @@
+{
+  "fetchedAt": "2026-07-23T04:20:04.723Z",
+  "spots": [
+    {
+      "cityId": "quanzhou",
+      "cityName": "泉州",
+      "name": "有充满烟火气息的小小古城",
+      "category": "古镇街区",
+      "area": "泉州",
+      "location": "福建省泉州",
+      "source": "bing",
+      "provinceId": "fujian"
+    }
+  ]
+}

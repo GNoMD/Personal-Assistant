@@ -143,10 +143,10 @@ fs.mkdirSync(releaseDir, { recursive: true });
 if (updateOnly) {
   // 日常更新：只带编译前端 + 后端源码，体积小；服务器保留 node_modules / .env / data
   copyDir(path.join(root, 'backend'), path.join(releaseDir, 'backend'), skipBackendUpdateName);
-  // 默认不带 ingredients/equipment 大图（很少改）；需要时加 --with-media
+  // 默认不带大体积静态资源（很少改）；需要时加 --with-media
   const skipDistMedia = updateWithMedia
     ? () => false
-    : (name) => ['ingredients', 'equipment'].includes(name);
+    : (name) => ['ingredients', 'equipment', 'travel-spot-photos'].includes(name);
   copyDir(distDir, path.join(releaseDir, 'frontend', 'dist'), skipDistMedia);
   for (const file of ['start.sh', 'start.bat', '.env.example']) {
     const src = path.join(root, file);
@@ -161,10 +161,12 @@ if (updateOnly) {
       '日常更新包（无 node_modules / 无 data）',
       '',
       '本包仅含：',
-      '  - frontend/dist/     （已编译前端；默认不含 ingredients、equipment 大图）',
+      '  - frontend/dist/     （已编译前端；默认不含 ingredients、equipment、travel-spot-photos）',
       '  - backend/src 等源码（无 node_modules）',
       '  - start.sh 等启动脚本',
-      updateWithMedia ? '  - 已包含 ingredients/、equipment/ 静态图' : '  - 未含大图：改图时请用 npm run pack:update:media',
+      updateWithMedia
+        ? '  - 已包含 ingredients/、equipment/、travel-spot-photos/ 静态图'
+        : '  - 未含大图：改图时请用 npm run pack:update:media，或单独上传 travel-spot-photos 包',
       '',
       '服务器操作（已有完整安装，含 node_modules 与 .env）：',
       '  1. 停服务：pm2 stop task-planner  或  结束占用 PORT 的进程',

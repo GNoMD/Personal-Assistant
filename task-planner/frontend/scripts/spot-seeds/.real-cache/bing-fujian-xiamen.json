@@ -1,0 +1,45 @@
+{
+  "fetchedAt": "2026-07-23T04:19:58.394Z",
+  "spots": [
+    {
+      "cityId": "xiamen",
+      "cityName": "厦门",
+      "name": "是位于中国福建省厦门市的岛屿",
+      "category": "海滨湖泊",
+      "area": "厦门",
+      "location": "福建省厦门市",
+      "source": "bing",
+      "provinceId": "fujian"
+    },
+    {
+      "cityId": "xiamen",
+      "cityName": "厦门",
+      "name": "福建省东南部沿厦门湾的大陆地区和厦门岛",
+      "category": "海滨湖泊",
+      "area": "厦门",
+      "location": "福建省厦门市",
+      "source": "bing",
+      "provinceId": "fujian"
+    },
+    {
+      "cityId": "xiamen",
+      "cityName": "厦门",
+      "name": "是那座充满浪漫与历史韵味的鼓浪屿",
+      "category": "海滨湖泊",
+      "area": "厦门",
+      "location": "福建省厦门市",
+      "source": "bing",
+      "provinceId": "fujian"
+    },
+    {
+      "cityId": "xiamen",
+      "cityName": "厦门",
+      "name": "福建旅游必去十大景点有鼓浪屿",
+      "category": "海滨湖泊",
+      "area": "厦门",
+      "location": "福建省厦门市",
+      "source": "bing",
+      "provinceId": "fujian"
+    }
+  ]
+}

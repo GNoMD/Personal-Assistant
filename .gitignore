@@ -190,6 +190,18 @@ task-planner/release/**/data/
 task-planner/release/
 *.zip
 
+# Travel spot photo binaries (download locally / deploy as a folder; do not commit)
+task-planner/frontend/public/travel-spot-photos/**
+!task-planner/frontend/public/travel-spot-photos/.gitkeep
+!task-planner/frontend/public/travel-spot-photos/README.md
+
+# Vite / local build output (including ad-hoc outDir names)
+task-planner/frontend/dist/
+task-planner/frontend/dist-*/
+task-planner/frontend/dist-check-tmp/
+task-planner/frontend/dist-verify-hub/
+task-planner/frontend/dist-js-only/
+
 # OS / editor junk
 .DS_Store
 Thumbs.db

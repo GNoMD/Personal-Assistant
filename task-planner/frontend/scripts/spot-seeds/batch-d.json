@@ -1,0 +1,5718 @@
+{
+  "cities": {
+    "shaanxi": [
+      {
+        "id": "shaanxi-c01",
+        "name": "西安"
+      },
+      {
+        "id": "shaanxi-c02",
+        "name": "宝鸡"
+      },
+      {
+        "id": "shaanxi-c03",
+        "name": "咸阳"
+      },
+      {
+        "id": "shaanxi-c04",
+        "name": "铜川"
+      },
+      {
+        "id": "shaanxi-c05",
+        "name": "渭南"
+      },
+      {
+        "id": "shaanxi-c06",
+        "name": "延安"
+      },
+      {
+        "id": "shaanxi-c07",
+        "name": "榆林"
+      },
+      {
+        "id": "shaanxi-c08",
+        "name": "汉中"
+      },
+      {
+        "id": "shaanxi-c09",
+        "name": "安康"
+      },
+      {
+        "id": "shaanxi-c10",
+        "name": "商洛"
+      },
+      {
+        "id": "shaanxi-c11",
+        "name": "杨凌"
+      }
+    ],
+    "ningxia": [
+      {
+        "id": "ningxia-c01",
+        "name": "银川"
+      },
+      {
+        "id": "ningxia-c02",
+        "name": "石嘴山"
+      },
+      {
+        "id": "ningxia-c03",
+        "name": "吴忠"
+      },
+      {
+        "id": "ningxia-c04",
+        "name": "固原"
+      },
+      {
+        "id": "ningxia-c05",
+        "name": "中卫"
+      },
+      {
+        "id": "ningxia-c06",
+        "name": "灵武"
+      },
+      {
+        "id": "ningxia-c07",
+        "name": "青铜峡"
+      },
+      {
+        "id": "ningxia-c08",
+        "name": "同心"
+      },
+      {
+        "id": "ningxia-c09",
+        "name": "盐池"
+      },
+      {
+        "id": "ningxia-c10",
+        "name": "平罗"
+      },
+      {
+        "id": "ningxia-c11",
+        "name": "贺兰"
+      }
+    ],
+    "gansu": [
+      {
+        "id": "gansu-c01",
+        "name": "兰州"
+      },
+      {
+        "id": "gansu-c02",
+        "name": "嘉峪关"
+      },
+      {
+        "id": "gansu-c03",
+        "name": "金昌"
+      },
+      {
+        "id": "gansu-c04",
+        "name": "白银"
+      },
+      {
+        "id": "gansu-c05",
+        "name": "天水"
+      },
+      {
+        "id": "gansu-c06",
+        "name": "武威"
+      },
+      {
+        "id": "gansu-c07",
+        "name": "张掖"
+      },
+      {
+        "id": "gansu-c08",
+        "name": "平凉"
+      },
+      {
+        "id": "gansu-c09",
+        "name": "酒泉"
+      },
+      {
+        "id": "gansu-c10",
+        "name": "庆阳"
+      },
+      {
+        "id": "gansu-c11",
+        "name": "陇南"
+      }
+    ],
+    "qinghai": [
+      {
+        "id": "qinghai-c01",
+        "name": "西宁"
+      },
+      {
+        "id": "qinghai-c02",
+        "name": "海东"
+      },
+      {
+        "id": "qinghai-c03",
+        "name": "德令哈"
+      },
+      {
+        "id": "qinghai-c04",
+        "name": "格尔木"
+      },
+      {
+        "id": "qinghai-c05",
+        "name": "玉树"
+      },
+      {
+        "id": "qinghai-c06",
+        "name": "同仁"
+      },
+      {
+        "id": "qinghai-c07",
+        "name": "共和"
+      },
+      {
+        "id": "qinghai-c08",
+        "name": "玛沁"
+      },
+      {
+        "id": "qinghai-c09",
+        "name": "海晏"
+      },
+      {
+        "id": "qinghai-c10",
+        "name": "祁连"
+      },
+      {
+        "id": "qinghai-c11",
+        "name": "门源"
+      }
+    ],
+    "neimenggu": [
+      {
+        "id": "neimenggu-c01",
+        "name": "呼和浩特"
+      },
+      {
+        "id": "neimenggu-c02",
+        "name": "包头"
+      },
+      {
+        "id": "neimenggu-c03",
+        "name": "乌海"
+      },
+      {
+        "id": "neimenggu-c04",
+        "name": "赤峰"
+      },
+      {
+        "id": "neimenggu-c05",
+        "name": "通辽"
+      },
+      {
+        "id": "neimenggu-c06",
+        "name": "鄂尔多斯"
+      },
+      {
+        "id": "neimenggu-c07",
+        "name": "呼伦贝尔"
+      },
+      {
+        "id": "neimenggu-c08",
+        "name": "巴彦淖尔"
+      },
+      {
+        "id": "neimenggu-c09",
+        "name": "乌兰察布"
+      },
+      {
+        "id": "neimenggu-c10",
+        "name": "兴安盟"
+      },
+      {
+        "id": "neimenggu-c11",
+        "name": "锡林郭勒盟"
+      }
+    ],
+    "xinjiang": [
+      {
+        "id": "xinjiang-c01",
+        "name": "乌鲁木齐"
+      },
+      {
+        "id": "xinjiang-c02",
+        "name": "克拉玛依"
+      },
+      {
+        "id": "xinjiang-c03",
+        "name": "吐鲁番"
+      },
+      {
+        "id": "xinjiang-c04",
+        "name": "哈密"
+      },
+      {
+        "id": "xinjiang-c05",
+        "name": "昌吉"
+      },
+      {
+        "id": "xinjiang-c06",
+        "name": "博乐"
+      },
+      {
+        "id": "xinjiang-c07",
+        "name": "伊宁"
+      },
+      {
+        "id": "xinjiang-c08",
+        "name": "阿克苏"
+      },
+      {
+        "id": "xinjiang-c09",
+        "name": "喀什"
+      },
+      {
+        "id": "xinjiang-c10",
+        "name": "和田"
+      },
+      {
+        "id": "xinjiang-c11",
+        "name": "库尔勒"
+      }
+    ],
+    "xizang": [
+      {
+        "id": "xizang-c01",
+        "name": "拉萨"
+      },
+      {
+        "id": "xizang-c02",
+        "name": "日喀则"
+      },
+      {
+        "id": "xizang-c03",
+        "name": "昌都"
+      },
+      {
+        "id": "xizang-c04",
+        "name": "林芝"
+      },
+      {
+        "id": "xizang-c05",
+        "name": "山南"
+      },
+      {
+        "id": "xizang-c06",
+        "name": "那曲"
+      },
+      {
+        "id": "xizang-c07",
+        "name": "噶尔"
+      },
+      {
+        "id": "xizang-c08",
+        "name": "江孜"
+      },
+      {
+        "id": "xizang-c09",
+        "name": "波密"
+      },
+      {
+        "id": "xizang-c10",
+        "name": "墨脱"
+      },
+      {
+        "id": "xizang-c11",
+        "name": "扎达"
+      }
+    ]
+  },
+  "spots": [
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c01",
+      "name": "西安博物馆",
+      "category": "博物馆",
+      "area": "西安"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c01",
+      "name": "西安人民公园",
+      "category": "公园休闲",
+      "area": "西安"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c01",
+      "name": "西安文化馆",
+      "category": "历史人文",
+      "area": "西安"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c01",
+      "name": "西安图书馆",
+      "category": "历史人文",
+      "area": "西安"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c01",
+      "name": "西安美术馆",
+      "category": "博物馆",
+      "area": "西安"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c01",
+      "name": "西安科技馆",
+      "category": "博物馆",
+      "area": "西安"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c01",
+      "name": "西安城市规划展览馆",
+      "category": "博物馆",
+      "area": "西安"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c01",
+      "name": "西安体育公园",
+      "category": "公园休闲",
+      "area": "西安"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c01",
+      "name": "西安非物质文化遗产展示馆",
+      "category": "历史人文",
+      "area": "西安"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c01",
+      "name": "西安历史文化街区",
+      "category": "古镇街区",
+      "area": "西安"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c02",
+      "name": "宝鸡博物馆",
+      "category": "博物馆",
+      "area": "宝鸡"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c02",
+      "name": "宝鸡人民公园",
+      "category": "公园休闲",
+      "area": "宝鸡"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c02",
+      "name": "宝鸡文化馆",
+      "category": "历史人文",
+      "area": "宝鸡"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c02",
+      "name": "宝鸡图书馆",
+      "category": "历史人文",
+      "area": "宝鸡"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c02",
+      "name": "宝鸡美术馆",
+      "category": "博物馆",
+      "area": "宝鸡"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c02",
+      "name": "宝鸡科技馆",
+      "category": "博物馆",
+      "area": "宝鸡"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c02",
+      "name": "宝鸡城市规划展览馆",
+      "category": "博物馆",
+      "area": "宝鸡"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c02",
+      "name": "宝鸡体育公园",
+      "category": "公园休闲",
+      "area": "宝鸡"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c02",
+      "name": "宝鸡非物质文化遗产展示馆",
+      "category": "历史人文",
+      "area": "宝鸡"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c02",
+      "name": "宝鸡历史文化街区",
+      "category": "古镇街区",
+      "area": "宝鸡"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c03",
+      "name": "咸阳博物馆",
+      "category": "博物馆",
+      "area": "咸阳"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c03",
+      "name": "咸阳人民公园",
+      "category": "公园休闲",
+      "area": "咸阳"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c03",
+      "name": "咸阳文化馆",
+      "category": "历史人文",
+      "area": "咸阳"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c03",
+      "name": "咸阳图书馆",
+      "category": "历史人文",
+      "area": "咸阳"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c03",
+      "name": "咸阳美术馆",
+      "category": "博物馆",
+      "area": "咸阳"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c03",
+      "name": "咸阳科技馆",
+      "category": "博物馆",
+      "area": "咸阳"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c03",
+      "name": "咸阳城市规划展览馆",
+      "category": "博物馆",
+      "area": "咸阳"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c03",
+      "name": "咸阳体育公园",
+      "category": "公园休闲",
+      "area": "咸阳"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c03",
+      "name": "咸阳非物质文化遗产展示馆",
+      "category": "历史人文",
+      "area": "咸阳"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c03",
+      "name": "咸阳历史文化街区",
+      "category": "古镇街区",
+      "area": "咸阳"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c04",
+      "name": "铜川博物馆",
+      "category": "博物馆",
+      "area": "铜川"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c04",
+      "name": "铜川人民公园",
+      "category": "公园休闲",
+      "area": "铜川"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c04",
+      "name": "铜川文化馆",
+      "category": "历史人文",
+      "area": "铜川"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c04",
+      "name": "铜川图书馆",
+      "category": "历史人文",
+      "area": "铜川"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c04",
+      "name": "铜川美术馆",
+      "category": "博物馆",
+      "area": "铜川"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c04",
+      "name": "铜川科技馆",
+      "category": "博物馆",
+      "area": "铜川"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c04",
+      "name": "铜川城市规划展览馆",
+      "category": "博物馆",
+      "area": "铜川"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c04",
+      "name": "铜川体育公园",
+      "category": "公园休闲",
+      "area": "铜川"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c04",
+      "name": "铜川非物质文化遗产展示馆",
+      "category": "历史人文",
+      "area": "铜川"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c04",
+      "name": "铜川历史文化街区",
+      "category": "古镇街区",
+      "area": "铜川"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c05",
+      "name": "渭南博物馆",
+      "category": "博物馆",
+      "area": "渭南"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c05",
+      "name": "渭南人民公园",
+      "category": "公园休闲",
+      "area": "渭南"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c05",
+      "name": "渭南文化馆",
+      "category": "历史人文",
+      "area": "渭南"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c05",
+      "name": "渭南图书馆",
+      "category": "历史人文",
+      "area": "渭南"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c05",
+      "name": "渭南美术馆",
+      "category": "博物馆",
+      "area": "渭南"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c05",
+      "name": "渭南科技馆",
+      "category": "博物馆",
+      "area": "渭南"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c05",
+      "name": "渭南城市规划展览馆",
+      "category": "博物馆",
+      "area": "渭南"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c05",
+      "name": "渭南体育公园",
+      "category": "公园休闲",
+      "area": "渭南"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c05",
+      "name": "渭南非物质文化遗产展示馆",
+      "category": "历史人文",
+      "area": "渭南"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c05",
+      "name": "渭南历史文化街区",
+      "category": "古镇街区",
+      "area": "渭南"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c06",
+      "name": "延安博物馆",
+      "category": "博物馆",
+      "area": "延安"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c06",
+      "name": "延安人民公园",
+      "category": "公园休闲",
+      "area": "延安"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c06",
+      "name": "延安文化馆",
+      "category": "历史人文",
+      "area": "延安"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c06",
+      "name": "延安图书馆",
+      "category": "历史人文",
+      "area": "延安"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c06",
+      "name": "延安美术馆",
+      "category": "博物馆",
+      "area": "延安"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c06",
+      "name": "延安科技馆",
+      "category": "博物馆",
+      "area": "延安"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c06",
+      "name": "延安城市规划展览馆",
+      "category": "博物馆",
+      "area": "延安"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c06",
+      "name": "延安体育公园",
+      "category": "公园休闲",
+      "area": "延安"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c06",
+      "name": "延安非物质文化遗产展示馆",
+      "category": "历史人文",
+      "area": "延安"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c06",
+      "name": "延安历史文化街区",
+      "category": "古镇街区",
+      "area": "延安"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c07",
+      "name": "榆林博物馆",
+      "category": "博物馆",
+      "area": "榆林"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c07",
+      "name": "榆林人民公园",
+      "category": "公园休闲",
+      "area": "榆林"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c07",
+      "name": "榆林文化馆",
+      "category": "历史人文",
+      "area": "榆林"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c07",
+      "name": "榆林图书馆",
+      "category": "历史人文",
+      "area": "榆林"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c07",
+      "name": "榆林美术馆",
+      "category": "博物馆",
+      "area": "榆林"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c07",
+      "name": "榆林科技馆",
+      "category": "博物馆",
+      "area": "榆林"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c07",
+      "name": "榆林城市规划展览馆",
+      "category": "博物馆",
+      "area": "榆林"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c07",
+      "name": "榆林体育公园",
+      "category": "公园休闲",
+      "area": "榆林"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c07",
+      "name": "榆林非物质文化遗产展示馆",
+      "category": "历史人文",
+      "area": "榆林"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c07",
+      "name": "榆林历史文化街区",
+      "category": "古镇街区",
+      "area": "榆林"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c08",
+      "name": "汉中博物馆",
+      "category": "博物馆",
+      "area": "汉中"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c08",
+      "name": "汉中人民公园",
+      "category": "公园休闲",
+      "area": "汉中"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c08",
+      "name": "汉中文化馆",
+      "category": "历史人文",
+      "area": "汉中"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c08",
+      "name": "汉中图书馆",
+      "category": "历史人文",
+      "area": "汉中"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c08",
+      "name": "汉中美术馆",
+      "category": "博物馆",
+      "area": "汉中"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c08",
+      "name": "汉中科技馆",
+      "category": "博物馆",
+      "area": "汉中"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c08",
+      "name": "汉中城市规划展览馆",
+      "category": "博物馆",
+      "area": "汉中"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c08",
+      "name": "汉中体育公园",
+      "category": "公园休闲",
+      "area": "汉中"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c08",
+      "name": "汉中非物质文化遗产展示馆",
+      "category": "历史人文",
+      "area": "汉中"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c08",
+      "name": "汉中历史文化街区",
+      "category": "古镇街区",
+      "area": "汉中"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c09",
+      "name": "安康博物馆",
+      "category": "博物馆",
+      "area": "安康"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c09",
+      "name": "安康人民公园",
+      "category": "公园休闲",
+      "area": "安康"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c09",
+      "name": "安康文化馆",
+      "category": "历史人文",
+      "area": "安康"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c09",
+      "name": "安康图书馆",
+      "category": "历史人文",
+      "area": "安康"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c09",
+      "name": "安康美术馆",
+      "category": "博物馆",
+      "area": "安康"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c09",
+      "name": "安康科技馆",
+      "category": "博物馆",
+      "area": "安康"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c09",
+      "name": "安康城市规划展览馆",
+      "category": "博物馆",
+      "area": "安康"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c09",
+      "name": "安康体育公园",
+      "category": "公园休闲",
+      "area": "安康"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c09",
+      "name": "安康非物质文化遗产展示馆",
+      "category": "历史人文",
+      "area": "安康"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c09",
+      "name": "安康历史文化街区",
+      "category": "古镇街区",
+      "area": "安康"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c10",
+      "name": "商洛博物馆",
+      "category": "博物馆",
+      "area": "商洛"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c10",
+      "name": "商洛人民公园",
+      "category": "公园休闲",
+      "area": "商洛"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c10",
+      "name": "商洛文化馆",
+      "category": "历史人文",
+      "area": "商洛"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c10",
+      "name": "商洛图书馆",
+      "category": "历史人文",
+      "area": "商洛"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c10",
+      "name": "商洛美术馆",
+      "category": "博物馆",
+      "area": "商洛"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c10",
+      "name": "商洛科技馆",
+      "category": "博物馆",
+      "area": "商洛"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c10",
+      "name": "商洛城市规划展览馆",
+      "category": "博物馆",
+      "area": "商洛"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c10",
+      "name": "商洛体育公园",
+      "category": "公园休闲",
+      "area": "商洛"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c10",
+      "name": "商洛非物质文化遗产展示馆",
+      "category": "历史人文",
+      "area": "商洛"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c10",
+      "name": "商洛历史文化街区",
+      "category": "古镇街区",
+      "area": "商洛"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c11",
+      "name": "杨凌博物馆",
+      "category": "博物馆",
+      "area": "杨凌"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c11",
+      "name": "杨凌人民公园",
+      "category": "公园休闲",
+      "area": "杨凌"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c11",
+      "name": "杨凌文化馆",
+      "category": "历史人文",
+      "area": "杨凌"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c11",
+      "name": "杨凌图书馆",
+      "category": "历史人文",
+      "area": "杨凌"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c11",
+      "name": "杨凌美术馆",
+      "category": "博物馆",
+      "area": "杨凌"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c11",
+      "name": "杨凌科技馆",
+      "category": "博物馆",
+      "area": "杨凌"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c11",
+      "name": "杨凌城市规划展览馆",
+      "category": "博物馆",
+      "area": "杨凌"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c11",
+      "name": "杨凌体育公园",
+      "category": "公园休闲",
+      "area": "杨凌"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c11",
+      "name": "杨凌非物质文化遗产展示馆",
+      "category": "历史人文",
+      "area": "杨凌"
+    },
+    {
+      "provinceId": "shaanxi",
+      "cityId": "shaanxi-c11",
+      "name": "杨凌历史文化街区",
+      "category": "古镇街区",
+      "area": "杨凌"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c01",
+      "name": "银川博物馆",
+      "category": "博物馆",
+      "area": "银川"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c01",
+      "name": "银川人民公园",
+      "category": "公园休闲",
+      "area": "银川"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c01",
+      "name": "银川文化馆",
+      "category": "历史人文",
+      "area": "银川"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c01",
+      "name": "银川图书馆",
+      "category": "历史人文",
+      "area": "银川"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c01",
+      "name": "银川美术馆",
+      "category": "博物馆",
+      "area": "银川"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c01",
+      "name": "银川科技馆",
+      "category": "博物馆",
+      "area": "银川"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c01",
+      "name": "银川城市规划展览馆",
+      "category": "博物馆",
+      "area": "银川"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c01",
+      "name": "银川体育公园",
+      "category": "公园休闲",
+      "area": "银川"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c01",
+      "name": "银川非物质文化遗产展示馆",
+      "category": "历史人文",
+      "area": "银川"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c01",
+      "name": "银川历史文化街区",
+      "category": "古镇街区",
+      "area": "银川"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c02",
+      "name": "石嘴山博物馆",
+      "category": "博物馆",
+      "area": "石嘴山"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c02",
+      "name": "石嘴山人民公园",
+      "category": "公园休闲",
+      "area": "石嘴山"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c02",
+      "name": "石嘴山文化馆",
+      "category": "历史人文",
+      "area": "石嘴山"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c02",
+      "name": "石嘴山图书馆",
+      "category": "历史人文",
+      "area": "石嘴山"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c02",
+      "name": "石嘴山美术馆",
+      "category": "博物馆",
+      "area": "石嘴山"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c02",
+      "name": "石嘴山科技馆",
+      "category": "博物馆",
+      "area": "石嘴山"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c02",
+      "name": "石嘴山城市规划展览馆",
+      "category": "博物馆",
+      "area": "石嘴山"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c02",
+      "name": "石嘴山体育公园",
+      "category": "公园休闲",
+      "area": "石嘴山"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c02",
+      "name": "石嘴山非物质文化遗产展示馆",
+      "category": "历史人文",
+      "area": "石嘴山"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c02",
+      "name": "石嘴山历史文化街区",
+      "category": "古镇街区",
+      "area": "石嘴山"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c03",
+      "name": "吴忠博物馆",
+      "category": "博物馆",
+      "area": "吴忠"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c03",
+      "name": "吴忠人民公园",
+      "category": "公园休闲",
+      "area": "吴忠"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c03",
+      "name": "吴忠文化馆",
+      "category": "历史人文",
+      "area": "吴忠"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c03",
+      "name": "吴忠图书馆",
+      "category": "历史人文",
+      "area": "吴忠"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c03",
+      "name": "吴忠美术馆",
+      "category": "博物馆",
+      "area": "吴忠"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c03",
+      "name": "吴忠科技馆",
+      "category": "博物馆",
+      "area": "吴忠"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c03",
+      "name": "吴忠城市规划展览馆",
+      "category": "博物馆",
+      "area": "吴忠"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c03",
+      "name": "吴忠体育公园",
+      "category": "公园休闲",
+      "area": "吴忠"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c03",
+      "name": "吴忠非物质文化遗产展示馆",
+      "category": "历史人文",
+      "area": "吴忠"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c03",
+      "name": "吴忠历史文化街区",
+      "category": "古镇街区",
+      "area": "吴忠"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c04",
+      "name": "固原博物馆",
+      "category": "博物馆",
+      "area": "固原"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c04",
+      "name": "固原人民公园",
+      "category": "公园休闲",
+      "area": "固原"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c04",
+      "name": "固原文化馆",
+      "category": "历史人文",
+      "area": "固原"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c04",
+      "name": "固原图书馆",
+      "category": "历史人文",
+      "area": "固原"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c04",
+      "name": "固原美术馆",
+      "category": "博物馆",
+      "area": "固原"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c04",
+      "name": "固原科技馆",
+      "category": "博物馆",
+      "area": "固原"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c04",
+      "name": "固原城市规划展览馆",
+      "category": "博物馆",
+      "area": "固原"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c04",
+      "name": "固原体育公园",
+      "category": "公园休闲",
+      "area": "固原"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c04",
+      "name": "固原非物质文化遗产展示馆",
+      "category": "历史人文",
+      "area": "固原"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c04",
+      "name": "固原历史文化街区",
+      "category": "古镇街区",
+      "area": "固原"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c05",
+      "name": "中卫博物馆",
+      "category": "博物馆",
+      "area": "中卫"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c05",
+      "name": "中卫人民公园",
+      "category": "公园休闲",
+      "area": "中卫"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c05",
+      "name": "中卫文化馆",
+      "category": "历史人文",
+      "area": "中卫"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c05",
+      "name": "中卫图书馆",
+      "category": "历史人文",
+      "area": "中卫"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c05",
+      "name": "中卫美术馆",
+      "category": "博物馆",
+      "area": "中卫"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c05",
+      "name": "中卫科技馆",
+      "category": "博物馆",
+      "area": "中卫"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c05",
+      "name": "中卫城市规划展览馆",
+      "category": "博物馆",
+      "area": "中卫"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c05",
+      "name": "中卫体育公园",
+      "category": "公园休闲",
+      "area": "中卫"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c05",
+      "name": "中卫非物质文化遗产展示馆",
+      "category": "历史人文",
+      "area": "中卫"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c05",
+      "name": "中卫历史文化街区",
+      "category": "古镇街区",
+      "area": "中卫"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c06",
+      "name": "灵武博物馆",
+      "category": "博物馆",
+      "area": "灵武"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c06",
+      "name": "灵武人民公园",
+      "category": "公园休闲",
+      "area": "灵武"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c06",
+      "name": "灵武文化馆",
+      "category": "历史人文",
+      "area": "灵武"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c06",
+      "name": "灵武图书馆",
+      "category": "历史人文",
+      "area": "灵武"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c06",
+      "name": "灵武美术馆",
+      "category": "博物馆",
+      "area": "灵武"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c06",
+      "name": "灵武科技馆",
+      "category": "博物馆",
+      "area": "灵武"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c06",
+      "name": "灵武城市规划展览馆",
+      "category": "博物馆",
+      "area": "灵武"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c06",
+      "name": "灵武体育公园",
+      "category": "公园休闲",
+      "area": "灵武"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c06",
+      "name": "灵武非物质文化遗产展示馆",
+      "category": "历史人文",
+      "area": "灵武"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c06",
+      "name": "灵武历史文化街区",
+      "category": "古镇街区",
+      "area": "灵武"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c07",
+      "name": "青铜峡博物馆",
+      "category": "博物馆",
+      "area": "青铜峡"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c07",
+      "name": "青铜峡人民公园",
+      "category": "公园休闲",
+      "area": "青铜峡"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c07",
+      "name": "青铜峡文化馆",
+      "category": "历史人文",
+      "area": "青铜峡"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c07",
+      "name": "青铜峡图书馆",
+      "category": "历史人文",
+      "area": "青铜峡"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c07",
+      "name": "青铜峡美术馆",
+      "category": "博物馆",
+      "area": "青铜峡"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c07",
+      "name": "青铜峡科技馆",
+      "category": "博物馆",
+      "area": "青铜峡"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c07",
+      "name": "青铜峡城市规划展览馆",
+      "category": "博物馆",
+      "area": "青铜峡"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c07",
+      "name": "青铜峡体育公园",
+      "category": "公园休闲",
+      "area": "青铜峡"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c07",
+      "name": "青铜峡非物质文化遗产展示馆",
+      "category": "历史人文",
+      "area": "青铜峡"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c07",
+      "name": "青铜峡历史文化街区",
+      "category": "古镇街区",
+      "area": "青铜峡"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c08",
+      "name": "同心博物馆",
+      "category": "博物馆",
+      "area": "同心"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c08",
+      "name": "同心人民公园",
+      "category": "公园休闲",
+      "area": "同心"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c08",
+      "name": "同心文化馆",
+      "category": "历史人文",
+      "area": "同心"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c08",
+      "name": "同心图书馆",
+      "category": "历史人文",
+      "area": "同心"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c08",
+      "name": "同心美术馆",
+      "category": "博物馆",
+      "area": "同心"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c08",
+      "name": "同心科技馆",
+      "category": "博物馆",
+      "area": "同心"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c08",
+      "name": "同心城市规划展览馆",
+      "category": "博物馆",
+      "area": "同心"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c08",
+      "name": "同心体育公园",
+      "category": "公园休闲",
+      "area": "同心"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c08",
+      "name": "同心非物质文化遗产展示馆",
+      "category": "历史人文",
+      "area": "同心"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c08",
+      "name": "同心历史文化街区",
+      "category": "古镇街区",
+      "area": "同心"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c09",
+      "name": "盐池博物馆",
+      "category": "博物馆",
+      "area": "盐池"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c09",
+      "name": "盐池人民公园",
+      "category": "公园休闲",
+      "area": "盐池"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c09",
+      "name": "盐池文化馆",
+      "category": "历史人文",
+      "area": "盐池"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c09",
+      "name": "盐池图书馆",
+      "category": "历史人文",
+      "area": "盐池"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c09",
+      "name": "盐池美术馆",
+      "category": "博物馆",
+      "area": "盐池"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c09",
+      "name": "盐池科技馆",
+      "category": "博物馆",
+      "area": "盐池"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c09",
+      "name": "盐池城市规划展览馆",
+      "category": "博物馆",
+      "area": "盐池"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c09",
+      "name": "盐池体育公园",
+      "category": "公园休闲",
+      "area": "盐池"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c09",
+      "name": "盐池非物质文化遗产展示馆",
+      "category": "历史人文",
+      "area": "盐池"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c09",
+      "name": "盐池历史文化街区",
+      "category": "古镇街区",
+      "area": "盐池"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c10",
+      "name": "平罗博物馆",
+      "category": "博物馆",
+      "area": "平罗"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c10",
+      "name": "平罗人民公园",
+      "category": "公园休闲",
+      "area": "平罗"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c10",
+      "name": "平罗文化馆",
+      "category": "历史人文",
+      "area": "平罗"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c10",
+      "name": "平罗图书馆",
+      "category": "历史人文",
+      "area": "平罗"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c10",
+      "name": "平罗美术馆",
+      "category": "博物馆",
+      "area": "平罗"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c10",
+      "name": "平罗科技馆",
+      "category": "博物馆",
+      "area": "平罗"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c10",
+      "name": "平罗城市规划展览馆",
+      "category": "博物馆",
+      "area": "平罗"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c10",
+      "name": "平罗体育公园",
+      "category": "公园休闲",
+      "area": "平罗"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c10",
+      "name": "平罗非物质文化遗产展示馆",
+      "category": "历史人文",
+      "area": "平罗"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c10",
+      "name": "平罗历史文化街区",
+      "category": "古镇街区",
+      "area": "平罗"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c11",
+      "name": "贺兰博物馆",
+      "category": "博物馆",
+      "area": "贺兰"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c11",
+      "name": "贺兰人民公园",
+      "category": "公园休闲",
+      "area": "贺兰"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c11",
+      "name": "贺兰文化馆",
+      "category": "历史人文",
+      "area": "贺兰"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c11",
+      "name": "贺兰图书馆",
+      "category": "历史人文",
+      "area": "贺兰"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c11",
+      "name": "贺兰美术馆",
+      "category": "博物馆",
+      "area": "贺兰"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c11",
+      "name": "贺兰科技馆",
+      "category": "博物馆",
+      "area": "贺兰"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c11",
+      "name": "贺兰城市规划展览馆",
+      "category": "博物馆",
+      "area": "贺兰"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c11",
+      "name": "贺兰体育公园",
+      "category": "公园休闲",
+      "area": "贺兰"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c11",
+      "name": "贺兰非物质文化遗产展示馆",
+      "category": "历史人文",
+      "area": "贺兰"
+    },
+    {
+      "provinceId": "ningxia",
+      "cityId": "ningxia-c11",
+      "name": "贺兰历史文化街区",
+      "category": "古镇街区",
+      "area": "贺兰"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c01",
+      "name": "兰州博物馆",
+      "category": "博物馆",
+      "area": "兰州"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c01",
+      "name": "兰州人民公园",
+      "category": "公园休闲",
+      "area": "兰州"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c01",
+      "name": "兰州文化馆",
+      "category": "历史人文",
+      "area": "兰州"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c01",
+      "name": "兰州图书馆",
+      "category": "历史人文",
+      "area": "兰州"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c01",
+      "name": "兰州美术馆",
+      "category": "博物馆",
+      "area": "兰州"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c01",
+      "name": "兰州科技馆",
+      "category": "博物馆",
+      "area": "兰州"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c01",
+      "name": "兰州城市规划展览馆",
+      "category": "博物馆",
+      "area": "兰州"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c01",
+      "name": "兰州体育公园",
+      "category": "公园休闲",
+      "area": "兰州"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c01",
+      "name": "兰州非物质文化遗产展示馆",
+      "category": "历史人文",
+      "area": "兰州"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c01",
+      "name": "兰州历史文化街区",
+      "category": "古镇街区",
+      "area": "兰州"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c02",
+      "name": "嘉峪关博物馆",
+      "category": "博物馆",
+      "area": "嘉峪关"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c02",
+      "name": "嘉峪关人民公园",
+      "category": "公园休闲",
+      "area": "嘉峪关"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c02",
+      "name": "嘉峪关文化馆",
+      "category": "历史人文",
+      "area": "嘉峪关"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c02",
+      "name": "嘉峪关图书馆",
+      "category": "历史人文",
+      "area": "嘉峪关"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c02",
+      "name": "嘉峪关美术馆",
+      "category": "博物馆",
+      "area": "嘉峪关"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c02",
+      "name": "嘉峪关科技馆",
+      "category": "博物馆",
+      "area": "嘉峪关"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c02",
+      "name": "嘉峪关城市规划展览馆",
+      "category": "博物馆",
+      "area": "嘉峪关"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c02",
+      "name": "嘉峪关体育公园",
+      "category": "公园休闲",
+      "area": "嘉峪关"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c02",
+      "name": "嘉峪关非物质文化遗产展示馆",
+      "category": "历史人文",
+      "area": "嘉峪关"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c02",
+      "name": "嘉峪关历史文化街区",
+      "category": "古镇街区",
+      "area": "嘉峪关"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c03",
+      "name": "金昌博物馆",
+      "category": "博物馆",
+      "area": "金昌"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c03",
+      "name": "金昌人民公园",
+      "category": "公园休闲",
+      "area": "金昌"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c03",
+      "name": "金昌文化馆",
+      "category": "历史人文",
+      "area": "金昌"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c03",
+      "name": "金昌图书馆",
+      "category": "历史人文",
+      "area": "金昌"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c03",
+      "name": "金昌美术馆",
+      "category": "博物馆",
+      "area": "金昌"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c03",
+      "name": "金昌科技馆",
+      "category": "博物馆",
+      "area": "金昌"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c03",
+      "name": "金昌城市规划展览馆",
+      "category": "博物馆",
+      "area": "金昌"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c03",
+      "name": "金昌体育公园",
+      "category": "公园休闲",
+      "area": "金昌"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c03",
+      "name": "金昌非物质文化遗产展示馆",
+      "category": "历史人文",
+      "area": "金昌"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c03",
+      "name": "金昌历史文化街区",
+      "category": "古镇街区",
+      "area": "金昌"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c04",
+      "name": "白银博物馆",
+      "category": "博物馆",
+      "area": "白银"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c04",
+      "name": "白银人民公园",
+      "category": "公园休闲",
+      "area": "白银"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c04",
+      "name": "白银文化馆",
+      "category": "历史人文",
+      "area": "白银"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c04",
+      "name": "白银图书馆",
+      "category": "历史人文",
+      "area": "白银"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c04",
+      "name": "白银美术馆",
+      "category": "博物馆",
+      "area": "白银"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c04",
+      "name": "白银科技馆",
+      "category": "博物馆",
+      "area": "白银"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c04",
+      "name": "白银城市规划展览馆",
+      "category": "博物馆",
+      "area": "白银"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c04",
+      "name": "白银体育公园",
+      "category": "公园休闲",
+      "area": "白银"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c04",
+      "name": "白银非物质文化遗产展示馆",
+      "category": "历史人文",
+      "area": "白银"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c04",
+      "name": "白银历史文化街区",
+      "category": "古镇街区",
+      "area": "白银"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c05",
+      "name": "天水博物馆",
+      "category": "博物馆",
+      "area": "天水"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c05",
+      "name": "天水人民公园",
+      "category": "公园休闲",
+      "area": "天水"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c05",
+      "name": "天水文化馆",
+      "category": "历史人文",
+      "area": "天水"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c05",
+      "name": "天水图书馆",
+      "category": "历史人文",
+      "area": "天水"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c05",
+      "name": "天水美术馆",
+      "category": "博物馆",
+      "area": "天水"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c05",
+      "name": "天水科技馆",
+      "category": "博物馆",
+      "area": "天水"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c05",
+      "name": "天水城市规划展览馆",
+      "category": "博物馆",
+      "area": "天水"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c05",
+      "name": "天水体育公园",
+      "category": "公园休闲",
+      "area": "天水"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c05",
+      "name": "天水非物质文化遗产展示馆",
+      "category": "历史人文",
+      "area": "天水"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c05",
+      "name": "天水历史文化街区",
+      "category": "古镇街区",
+      "area": "天水"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c06",
+      "name": "武威博物馆",
+      "category": "博物馆",
+      "area": "武威"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c06",
+      "name": "武威人民公园",
+      "category": "公园休闲",
+      "area": "武威"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c06",
+      "name": "武威文化馆",
+      "category": "历史人文",
+      "area": "武威"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c06",
+      "name": "武威图书馆",
+      "category": "历史人文",
+      "area": "武威"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c06",
+      "name": "武威美术馆",
+      "category": "博物馆",
+      "area": "武威"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c06",
+      "name": "武威科技馆",
+      "category": "博物馆",
+      "area": "武威"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c06",
+      "name": "武威城市规划展览馆",
+      "category": "博物馆",
+      "area": "武威"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c06",
+      "name": "武威体育公园",
+      "category": "公园休闲",
+      "area": "武威"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c06",
+      "name": "武威非物质文化遗产展示馆",
+      "category": "历史人文",
+      "area": "武威"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c06",
+      "name": "武威历史文化街区",
+      "category": "古镇街区",
+      "area": "武威"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c07",
+      "name": "张掖博物馆",
+      "category": "博物馆",
+      "area": "张掖"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c07",
+      "name": "张掖人民公园",
+      "category": "公园休闲",
+      "area": "张掖"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c07",
+      "name": "张掖文化馆",
+      "category": "历史人文",
+      "area": "张掖"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c07",
+      "name": "张掖图书馆",
+      "category": "历史人文",
+      "area": "张掖"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c07",
+      "name": "张掖美术馆",
+      "category": "博物馆",
+      "area": "张掖"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c07",
+      "name": "张掖科技馆",
+      "category": "博物馆",
+      "area": "张掖"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c07",
+      "name": "张掖城市规划展览馆",
+      "category": "博物馆",
+      "area": "张掖"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c07",
+      "name": "张掖体育公园",
+      "category": "公园休闲",
+      "area": "张掖"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c07",
+      "name": "张掖非物质文化遗产展示馆",
+      "category": "历史人文",
+      "area": "张掖"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c07",
+      "name": "张掖历史文化街区",
+      "category": "古镇街区",
+      "area": "张掖"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c08",
+      "name": "平凉博物馆",
+      "category": "博物馆",
+      "area": "平凉"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c08",
+      "name": "平凉人民公园",
+      "category": "公园休闲",
+      "area": "平凉"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c08",
+      "name": "平凉文化馆",
+      "category": "历史人文",
+      "area": "平凉"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c08",
+      "name": "平凉图书馆",
+      "category": "历史人文",
+      "area": "平凉"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c08",
+      "name": "平凉美术馆",
+      "category": "博物馆",
+      "area": "平凉"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c08",
+      "name": "平凉科技馆",
+      "category": "博物馆",
+      "area": "平凉"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c08",
+      "name": "平凉城市规划展览馆",
+      "category": "博物馆",
+      "area": "平凉"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c08",
+      "name": "平凉体育公园",
+      "category": "公园休闲",
+      "area": "平凉"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c08",
+      "name": "平凉非物质文化遗产展示馆",
+      "category": "历史人文",
+      "area": "平凉"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c08",
+      "name": "平凉历史文化街区",
+      "category": "古镇街区",
+      "area": "平凉"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c09",
+      "name": "酒泉博物馆",
+      "category": "博物馆",
+      "area": "酒泉"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c09",
+      "name": "酒泉人民公园",
+      "category": "公园休闲",
+      "area": "酒泉"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c09",
+      "name": "酒泉文化馆",
+      "category": "历史人文",
+      "area": "酒泉"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c09",
+      "name": "酒泉图书馆",
+      "category": "历史人文",
+      "area": "酒泉"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c09",
+      "name": "酒泉美术馆",
+      "category": "博物馆",
+      "area": "酒泉"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c09",
+      "name": "酒泉科技馆",
+      "category": "博物馆",
+      "area": "酒泉"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c09",
+      "name": "酒泉城市规划展览馆",
+      "category": "博物馆",
+      "area": "酒泉"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c09",
+      "name": "酒泉体育公园",
+      "category": "公园休闲",
+      "area": "酒泉"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c09",
+      "name": "酒泉非物质文化遗产展示馆",
+      "category": "历史人文",
+      "area": "酒泉"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c09",
+      "name": "酒泉历史文化街区",
+      "category": "古镇街区",
+      "area": "酒泉"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c10",
+      "name": "庆阳博物馆",
+      "category": "博物馆",
+      "area": "庆阳"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c10",
+      "name": "庆阳人民公园",
+      "category": "公园休闲",
+      "area": "庆阳"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c10",
+      "name": "庆阳文化馆",
+      "category": "历史人文",
+      "area": "庆阳"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c10",
+      "name": "庆阳图书馆",
+      "category": "历史人文",
+      "area": "庆阳"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c10",
+      "name": "庆阳美术馆",
+      "category": "博物馆",
+      "area": "庆阳"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c10",
+      "name": "庆阳科技馆",
+      "category": "博物馆",
+      "area": "庆阳"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c10",
+      "name": "庆阳城市规划展览馆",
+      "category": "博物馆",
+      "area": "庆阳"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c10",
+      "name": "庆阳体育公园",
+      "category": "公园休闲",
+      "area": "庆阳"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c10",
+      "name": "庆阳非物质文化遗产展示馆",
+      "category": "历史人文",
+      "area": "庆阳"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c10",
+      "name": "庆阳历史文化街区",
+      "category": "古镇街区",
+      "area": "庆阳"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c11",
+      "name": "陇南博物馆",
+      "category": "博物馆",
+      "area": "陇南"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c11",
+      "name": "陇南人民公园",
+      "category": "公园休闲",
+      "area": "陇南"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c11",
+      "name": "陇南文化馆",
+      "category": "历史人文",
+      "area": "陇南"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c11",
+      "name": "陇南图书馆",
+      "category": "历史人文",
+      "area": "陇南"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c11",
+      "name": "陇南美术馆",
+      "category": "博物馆",
+      "area": "陇南"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c11",
+      "name": "陇南科技馆",
+      "category": "博物馆",
+      "area": "陇南"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c11",
+      "name": "陇南城市规划展览馆",
+      "category": "博物馆",
+      "area": "陇南"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c11",
+      "name": "陇南体育公园",
+      "category": "公园休闲",
+      "area": "陇南"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c11",
+      "name": "陇南非物质文化遗产展示馆",
+      "category": "历史人文",
+      "area": "陇南"
+    },
+    {
+      "provinceId": "gansu",
+      "cityId": "gansu-c11",
+      "name": "陇南历史文化街区",
+      "category": "古镇街区",
+      "area": "陇南"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c01",
+      "name": "西宁博物馆",
+      "category": "博物馆",
+      "area": "西宁"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c01",
+      "name": "西宁人民公园",
+      "category": "公园休闲",
+      "area": "西宁"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c01",
+      "name": "西宁文化馆",
+      "category": "历史人文",
+      "area": "西宁"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c01",
+      "name": "西宁图书馆",
+      "category": "历史人文",
+      "area": "西宁"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c01",
+      "name": "西宁美术馆",
+      "category": "博物馆",
+      "area": "西宁"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c01",
+      "name": "西宁科技馆",
+      "category": "博物馆",
+      "area": "西宁"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c01",
+      "name": "西宁城市规划展览馆",
+      "category": "博物馆",
+      "area": "西宁"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c01",
+      "name": "西宁体育公园",
+      "category": "公园休闲",
+      "area": "西宁"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c01",
+      "name": "西宁非物质文化遗产展示馆",
+      "category": "历史人文",
+      "area": "西宁"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c01",
+      "name": "西宁历史文化街区",
+      "category": "古镇街区",
+      "area": "西宁"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c02",
+      "name": "海东博物馆",
+      "category": "博物馆",
+      "area": "海东"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c02",
+      "name": "海东人民公园",
+      "category": "公园休闲",
+      "area": "海东"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c02",
+      "name": "海东文化馆",
+      "category": "历史人文",
+      "area": "海东"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c02",
+      "name": "海东图书馆",
+      "category": "历史人文",
+      "area": "海东"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c02",
+      "name": "海东美术馆",
+      "category": "博物馆",
+      "area": "海东"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c02",
+      "name": "海东科技馆",
+      "category": "博物馆",
+      "area": "海东"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c02",
+      "name": "海东城市规划展览馆",
+      "category": "博物馆",
+      "area": "海东"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c02",
+      "name": "海东体育公园",
+      "category": "公园休闲",
+      "area": "海东"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c02",
+      "name": "海东非物质文化遗产展示馆",
+      "category": "历史人文",
+      "area": "海东"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c02",
+      "name": "海东历史文化街区",
+      "category": "古镇街区",
+      "area": "海东"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c03",
+      "name": "德令哈博物馆",
+      "category": "博物馆",
+      "area": "德令哈"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c03",
+      "name": "德令哈人民公园",
+      "category": "公园休闲",
+      "area": "德令哈"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c03",
+      "name": "德令哈文化馆",
+      "category": "历史人文",
+      "area": "德令哈"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c03",
+      "name": "德令哈图书馆",
+      "category": "历史人文",
+      "area": "德令哈"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c03",
+      "name": "德令哈美术馆",
+      "category": "博物馆",
+      "area": "德令哈"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c03",
+      "name": "德令哈科技馆",
+      "category": "博物馆",
+      "area": "德令哈"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c03",
+      "name": "德令哈城市规划展览馆",
+      "category": "博物馆",
+      "area": "德令哈"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c03",
+      "name": "德令哈体育公园",
+      "category": "公园休闲",
+      "area": "德令哈"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c03",
+      "name": "德令哈非物质文化遗产展示馆",
+      "category": "历史人文",
+      "area": "德令哈"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c03",
+      "name": "德令哈历史文化街区",
+      "category": "古镇街区",
+      "area": "德令哈"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c04",
+      "name": "格尔木博物馆",
+      "category": "博物馆",
+      "area": "格尔木"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c04",
+      "name": "格尔木人民公园",
+      "category": "公园休闲",
+      "area": "格尔木"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c04",
+      "name": "格尔木文化馆",
+      "category": "历史人文",
+      "area": "格尔木"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c04",
+      "name": "格尔木图书馆",
+      "category": "历史人文",
+      "area": "格尔木"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c04",
+      "name": "格尔木美术馆",
+      "category": "博物馆",
+      "area": "格尔木"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c04",
+      "name": "格尔木科技馆",
+      "category": "博物馆",
+      "area": "格尔木"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c04",
+      "name": "格尔木城市规划展览馆",
+      "category": "博物馆",
+      "area": "格尔木"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c04",
+      "name": "格尔木体育公园",
+      "category": "公园休闲",
+      "area": "格尔木"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c04",
+      "name": "格尔木非物质文化遗产展示馆",
+      "category": "历史人文",
+      "area": "格尔木"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c04",
+      "name": "格尔木历史文化街区",
+      "category": "古镇街区",
+      "area": "格尔木"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c05",
+      "name": "玉树博物馆",
+      "category": "博物馆",
+      "area": "玉树"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c05",
+      "name": "玉树人民公园",
+      "category": "公园休闲",
+      "area": "玉树"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c05",
+      "name": "玉树文化馆",
+      "category": "历史人文",
+      "area": "玉树"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c05",
+      "name": "玉树图书馆",
+      "category": "历史人文",
+      "area": "玉树"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c05",
+      "name": "玉树美术馆",
+      "category": "博物馆",
+      "area": "玉树"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c05",
+      "name": "玉树科技馆",
+      "category": "博物馆",
+      "area": "玉树"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c05",
+      "name": "玉树城市规划展览馆",
+      "category": "博物馆",
+      "area": "玉树"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c05",
+      "name": "玉树体育公园",
+      "category": "公园休闲",
+      "area": "玉树"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c05",
+      "name": "玉树非物质文化遗产展示馆",
+      "category": "历史人文",
+      "area": "玉树"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c05",
+      "name": "玉树历史文化街区",
+      "category": "古镇街区",
+      "area": "玉树"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c06",
+      "name": "同仁博物馆",
+      "category": "博物馆",
+      "area": "同仁"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c06",
+      "name": "同仁人民公园",
+      "category": "公园休闲",
+      "area": "同仁"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c06",
+      "name": "同仁文化馆",
+      "category": "历史人文",
+      "area": "同仁"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c06",
+      "name": "同仁图书馆",
+      "category": "历史人文",
+      "area": "同仁"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c06",
+      "name": "同仁美术馆",
+      "category": "博物馆",
+      "area": "同仁"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c06",
+      "name": "同仁科技馆",
+      "category": "博物馆",
+      "area": "同仁"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c06",
+      "name": "同仁城市规划展览馆",
+      "category": "博物馆",
+      "area": "同仁"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c06",
+      "name": "同仁体育公园",
+      "category": "公园休闲",
+      "area": "同仁"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c06",
+      "name": "同仁非物质文化遗产展示馆",
+      "category": "历史人文",
+      "area": "同仁"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c06",
+      "name": "同仁历史文化街区",
+      "category": "古镇街区",
+      "area": "同仁"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c07",
+      "name": "共和博物馆",
+      "category": "博物馆",
+      "area": "共和"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c07",
+      "name": "共和人民公园",
+      "category": "公园休闲",
+      "area": "共和"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c07",
+      "name": "共和文化馆",
+      "category": "历史人文",
+      "area": "共和"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c07",
+      "name": "共和图书馆",
+      "category": "历史人文",
+      "area": "共和"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c07",
+      "name": "共和美术馆",
+      "category": "博物馆",
+      "area": "共和"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c07",
+      "name": "共和科技馆",
+      "category": "博物馆",
+      "area": "共和"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c07",
+      "name": "共和城市规划展览馆",
+      "category": "博物馆",
+      "area": "共和"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c07",
+      "name": "共和体育公园",
+      "category": "公园休闲",
+      "area": "共和"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c07",
+      "name": "共和非物质文化遗产展示馆",
+      "category": "历史人文",
+      "area": "共和"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c07",
+      "name": "共和历史文化街区",
+      "category": "古镇街区",
+      "area": "共和"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c08",
+      "name": "玛沁博物馆",
+      "category": "博物馆",
+      "area": "玛沁"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c08",
+      "name": "玛沁人民公园",
+      "category": "公园休闲",
+      "area": "玛沁"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c08",
+      "name": "玛沁文化馆",
+      "category": "历史人文",
+      "area": "玛沁"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c08",
+      "name": "玛沁图书馆",
+      "category": "历史人文",
+      "area": "玛沁"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c08",
+      "name": "玛沁美术馆",
+      "category": "博物馆",
+      "area": "玛沁"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c08",
+      "name": "玛沁科技馆",
+      "category": "博物馆",
+      "area": "玛沁"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c08",
+      "name": "玛沁城市规划展览馆",
+      "category": "博物馆",
+      "area": "玛沁"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c08",
+      "name": "玛沁体育公园",
+      "category": "公园休闲",
+      "area": "玛沁"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c08",
+      "name": "玛沁非物质文化遗产展示馆",
+      "category": "历史人文",
+      "area": "玛沁"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c08",
+      "name": "玛沁历史文化街区",
+      "category": "古镇街区",
+      "area": "玛沁"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c09",
+      "name": "海晏博物馆",
+      "category": "博物馆",
+      "area": "海晏"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c09",
+      "name": "海晏人民公园",
+      "category": "公园休闲",
+      "area": "海晏"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c09",
+      "name": "海晏文化馆",
+      "category": "历史人文",
+      "area": "海晏"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c09",
+      "name": "海晏图书馆",
+      "category": "历史人文",
+      "area": "海晏"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c09",
+      "name": "海晏美术馆",
+      "category": "博物馆",
+      "area": "海晏"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c09",
+      "name": "海晏科技馆",
+      "category": "博物馆",
+      "area": "海晏"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c09",
+      "name": "海晏城市规划展览馆",
+      "category": "博物馆",
+      "area": "海晏"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c09",
+      "name": "海晏体育公园",
+      "category": "公园休闲",
+      "area": "海晏"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c09",
+      "name": "海晏非物质文化遗产展示馆",
+      "category": "历史人文",
+      "area": "海晏"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c09",
+      "name": "海晏历史文化街区",
+      "category": "古镇街区",
+      "area": "海晏"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c10",
+      "name": "祁连博物馆",
+      "category": "博物馆",
+      "area": "祁连"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c10",
+      "name": "祁连人民公园",
+      "category": "公园休闲",
+      "area": "祁连"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c10",
+      "name": "祁连文化馆",
+      "category": "历史人文",
+      "area": "祁连"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c10",
+      "name": "祁连图书馆",
+      "category": "历史人文",
+      "area": "祁连"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c10",
+      "name": "祁连美术馆",
+      "category": "博物馆",
+      "area": "祁连"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c10",
+      "name": "祁连科技馆",
+      "category": "博物馆",
+      "area": "祁连"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c10",
+      "name": "祁连城市规划展览馆",
+      "category": "博物馆",
+      "area": "祁连"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c10",
+      "name": "祁连体育公园",
+      "category": "公园休闲",
+      "area": "祁连"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c10",
+      "name": "祁连非物质文化遗产展示馆",
+      "category": "历史人文",
+      "area": "祁连"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c10",
+      "name": "祁连历史文化街区",
+      "category": "古镇街区",
+      "area": "祁连"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c11",
+      "name": "门源博物馆",
+      "category": "博物馆",
+      "area": "门源"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c11",
+      "name": "门源人民公园",
+      "category": "公园休闲",
+      "area": "门源"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c11",
+      "name": "门源文化馆",
+      "category": "历史人文",
+      "area": "门源"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c11",
+      "name": "门源图书馆",
+      "category": "历史人文",
+      "area": "门源"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c11",
+      "name": "门源美术馆",
+      "category": "博物馆",
+      "area": "门源"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c11",
+      "name": "门源科技馆",
+      "category": "博物馆",
+      "area": "门源"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c11",
+      "name": "门源城市规划展览馆",
+      "category": "博物馆",
+      "area": "门源"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c11",
+      "name": "门源体育公园",
+      "category": "公园休闲",
+      "area": "门源"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c11",
+      "name": "门源非物质文化遗产展示馆",
+      "category": "历史人文",
+      "area": "门源"
+    },
+    {
+      "provinceId": "qinghai",
+      "cityId": "qinghai-c11",
+      "name": "门源历史文化街区",
+      "category": "古镇街区",
+      "area": "门源"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c01",
+      "name": "呼和浩特博物馆",
+      "category": "博物馆",
+      "area": "呼和浩特"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c01",
+      "name": "呼和浩特人民公园",
+      "category": "公园休闲",
+      "area": "呼和浩特"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c01",
+      "name": "呼和浩特文化馆",
+      "category": "历史人文",
+      "area": "呼和浩特"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c01",
+      "name": "呼和浩特图书馆",
+      "category": "历史人文",
+      "area": "呼和浩特"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c01",
+      "name": "呼和浩特美术馆",
+      "category": "博物馆",
+      "area": "呼和浩特"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c01",
+      "name": "呼和浩特科技馆",
+      "category": "博物馆",
+      "area": "呼和浩特"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c01",
+      "name": "呼和浩特城市规划展览馆",
+      "category": "博物馆",
+      "area": "呼和浩特"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c01",
+      "name": "呼和浩特体育公园",
+      "category": "公园休闲",
+      "area": "呼和浩特"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c01",
+      "name": "呼和浩特非物质文化遗产展示馆",
+      "category": "历史人文",
+      "area": "呼和浩特"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c01",
+      "name": "呼和浩特历史文化街区",
+      "category": "古镇街区",
+      "area": "呼和浩特"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c02",
+      "name": "包头博物馆",
+      "category": "博物馆",
+      "area": "包头"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c02",
+      "name": "包头人民公园",
+      "category": "公园休闲",
+      "area": "包头"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c02",
+      "name": "包头文化馆",
+      "category": "历史人文",
+      "area": "包头"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c02",
+      "name": "包头图书馆",
+      "category": "历史人文",
+      "area": "包头"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c02",
+      "name": "包头美术馆",
+      "category": "博物馆",
+      "area": "包头"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c02",
+      "name": "包头科技馆",
+      "category": "博物馆",
+      "area": "包头"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c02",
+      "name": "包头城市规划展览馆",
+      "category": "博物馆",
+      "area": "包头"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c02",
+      "name": "包头体育公园",
+      "category": "公园休闲",
+      "area": "包头"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c02",
+      "name": "包头非物质文化遗产展示馆",
+      "category": "历史人文",
+      "area": "包头"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c02",
+      "name": "包头历史文化街区",
+      "category": "古镇街区",
+      "area": "包头"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c03",
+      "name": "乌海博物馆",
+      "category": "博物馆",
+      "area": "乌海"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c03",
+      "name": "乌海人民公园",
+      "category": "公园休闲",
+      "area": "乌海"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c03",
+      "name": "乌海文化馆",
+      "category": "历史人文",
+      "area": "乌海"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c03",
+      "name": "乌海图书馆",
+      "category": "历史人文",
+      "area": "乌海"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c03",
+      "name": "乌海美术馆",
+      "category": "博物馆",
+      "area": "乌海"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c03",
+      "name": "乌海科技馆",
+      "category": "博物馆",
+      "area": "乌海"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c03",
+      "name": "乌海城市规划展览馆",
+      "category": "博物馆",
+      "area": "乌海"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c03",
+      "name": "乌海体育公园",
+      "category": "公园休闲",
+      "area": "乌海"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c03",
+      "name": "乌海非物质文化遗产展示馆",
+      "category": "历史人文",
+      "area": "乌海"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c03",
+      "name": "乌海历史文化街区",
+      "category": "古镇街区",
+      "area": "乌海"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c04",
+      "name": "赤峰博物馆",
+      "category": "博物馆",
+      "area": "赤峰"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c04",
+      "name": "赤峰人民公园",
+      "category": "公园休闲",
+      "area": "赤峰"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c04",
+      "name": "赤峰文化馆",
+      "category": "历史人文",
+      "area": "赤峰"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c04",
+      "name": "赤峰图书馆",
+      "category": "历史人文",
+      "area": "赤峰"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c04",
+      "name": "赤峰美术馆",
+      "category": "博物馆",
+      "area": "赤峰"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c04",
+      "name": "赤峰科技馆",
+      "category": "博物馆",
+      "area": "赤峰"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c04",
+      "name": "赤峰城市规划展览馆",
+      "category": "博物馆",
+      "area": "赤峰"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c04",
+      "name": "赤峰体育公园",
+      "category": "公园休闲",
+      "area": "赤峰"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c04",
+      "name": "赤峰非物质文化遗产展示馆",
+      "category": "历史人文",
+      "area": "赤峰"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c04",
+      "name": "赤峰历史文化街区",
+      "category": "古镇街区",
+      "area": "赤峰"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c05",
+      "name": "通辽博物馆",
+      "category": "博物馆",
+      "area": "通辽"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c05",
+      "name": "通辽人民公园",
+      "category": "公园休闲",
+      "area": "通辽"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c05",
+      "name": "通辽文化馆",
+      "category": "历史人文",
+      "area": "通辽"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c05",
+      "name": "通辽图书馆",
+      "category": "历史人文",
+      "area": "通辽"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c05",
+      "name": "通辽美术馆",
+      "category": "博物馆",
+      "area": "通辽"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c05",
+      "name": "通辽科技馆",
+      "category": "博物馆",
+      "area": "通辽"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c05",
+      "name": "通辽城市规划展览馆",
+      "category": "博物馆",
+      "area": "通辽"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c05",
+      "name": "通辽体育公园",
+      "category": "公园休闲",
+      "area": "通辽"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c05",
+      "name": "通辽非物质文化遗产展示馆",
+      "category": "历史人文",
+      "area": "通辽"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c05",
+      "name": "通辽历史文化街区",
+      "category": "古镇街区",
+      "area": "通辽"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c06",
+      "name": "鄂尔多斯博物馆",
+      "category": "博物馆",
+      "area": "鄂尔多斯"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c06",
+      "name": "鄂尔多斯人民公园",
+      "category": "公园休闲",
+      "area": "鄂尔多斯"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c06",
+      "name": "鄂尔多斯文化馆",
+      "category": "历史人文",
+      "area": "鄂尔多斯"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c06",
+      "name": "鄂尔多斯图书馆",
+      "category": "历史人文",
+      "area": "鄂尔多斯"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c06",
+      "name": "鄂尔多斯美术馆",
+      "category": "博物馆",
+      "area": "鄂尔多斯"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c06",
+      "name": "鄂尔多斯科技馆",
+      "category": "博物馆",
+      "area": "鄂尔多斯"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c06",
+      "name": "鄂尔多斯城市规划展览馆",
+      "category": "博物馆",
+      "area": "鄂尔多斯"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c06",
+      "name": "鄂尔多斯体育公园",
+      "category": "公园休闲",
+      "area": "鄂尔多斯"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c06",
+      "name": "鄂尔多斯非物质文化遗产展示馆",
+      "category": "历史人文",
+      "area": "鄂尔多斯"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c06",
+      "name": "鄂尔多斯历史文化街区",
+      "category": "古镇街区",
+      "area": "鄂尔多斯"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c07",
+      "name": "呼伦贝尔博物馆",
+      "category": "博物馆",
+      "area": "呼伦贝尔"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c07",
+      "name": "呼伦贝尔人民公园",
+      "category": "公园休闲",
+      "area": "呼伦贝尔"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c07",
+      "name": "呼伦贝尔文化馆",
+      "category": "历史人文",
+      "area": "呼伦贝尔"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c07",
+      "name": "呼伦贝尔图书馆",
+      "category": "历史人文",
+      "area": "呼伦贝尔"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c07",
+      "name": "呼伦贝尔美术馆",
+      "category": "博物馆",
+      "area": "呼伦贝尔"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c07",
+      "name": "呼伦贝尔科技馆",
+      "category": "博物馆",
+      "area": "呼伦贝尔"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c07",
+      "name": "呼伦贝尔城市规划展览馆",
+      "category": "博物馆",
+      "area": "呼伦贝尔"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c07",
+      "name": "呼伦贝尔体育公园",
+      "category": "公园休闲",
+      "area": "呼伦贝尔"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c07",
+      "name": "呼伦贝尔非物质文化遗产展示馆",
+      "category": "历史人文",
+      "area": "呼伦贝尔"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c07",
+      "name": "呼伦贝尔历史文化街区",
+      "category": "古镇街区",
+      "area": "呼伦贝尔"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c08",
+      "name": "巴彦淖尔博物馆",
+      "category": "博物馆",
+      "area": "巴彦淖尔"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c08",
+      "name": "巴彦淖尔人民公园",
+      "category": "公园休闲",
+      "area": "巴彦淖尔"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c08",
+      "name": "巴彦淖尔文化馆",
+      "category": "历史人文",
+      "area": "巴彦淖尔"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c08",
+      "name": "巴彦淖尔图书馆",
+      "category": "历史人文",
+      "area": "巴彦淖尔"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c08",
+      "name": "巴彦淖尔美术馆",
+      "category": "博物馆",
+      "area": "巴彦淖尔"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c08",
+      "name": "巴彦淖尔科技馆",
+      "category": "博物馆",
+      "area": "巴彦淖尔"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c08",
+      "name": "巴彦淖尔城市规划展览馆",
+      "category": "博物馆",
+      "area": "巴彦淖尔"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c08",
+      "name": "巴彦淖尔体育公园",
+      "category": "公园休闲",
+      "area": "巴彦淖尔"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c08",
+      "name": "巴彦淖尔非物质文化遗产展示馆",
+      "category": "历史人文",
+      "area": "巴彦淖尔"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c08",
+      "name": "巴彦淖尔历史文化街区",
+      "category": "古镇街区",
+      "area": "巴彦淖尔"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c09",
+      "name": "乌兰察布博物馆",
+      "category": "博物馆",
+      "area": "乌兰察布"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c09",
+      "name": "乌兰察布人民公园",
+      "category": "公园休闲",
+      "area": "乌兰察布"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c09",
+      "name": "乌兰察布文化馆",
+      "category": "历史人文",
+      "area": "乌兰察布"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c09",
+      "name": "乌兰察布图书馆",
+      "category": "历史人文",
+      "area": "乌兰察布"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c09",
+      "name": "乌兰察布美术馆",
+      "category": "博物馆",
+      "area": "乌兰察布"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c09",
+      "name": "乌兰察布科技馆",
+      "category": "博物馆",
+      "area": "乌兰察布"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c09",
+      "name": "乌兰察布城市规划展览馆",
+      "category": "博物馆",
+      "area": "乌兰察布"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c09",
+      "name": "乌兰察布体育公园",
+      "category": "公园休闲",
+      "area": "乌兰察布"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c09",
+      "name": "乌兰察布非物质文化遗产展示馆",
+      "category": "历史人文",
+      "area": "乌兰察布"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c09",
+      "name": "乌兰察布历史文化街区",
+      "category": "古镇街区",
+      "area": "乌兰察布"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c10",
+      "name": "兴安盟博物馆",
+      "category": "博物馆",
+      "area": "兴安盟"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c10",
+      "name": "兴安盟人民公园",
+      "category": "公园休闲",
+      "area": "兴安盟"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c10",
+      "name": "兴安盟文化馆",
+      "category": "历史人文",
+      "area": "兴安盟"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c10",
+      "name": "兴安盟图书馆",
+      "category": "历史人文",
+      "area": "兴安盟"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c10",
+      "name": "兴安盟美术馆",
+      "category": "博物馆",
+      "area": "兴安盟"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c10",
+      "name": "兴安盟科技馆",
+      "category": "博物馆",
+      "area": "兴安盟"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c10",
+      "name": "兴安盟城市规划展览馆",
+      "category": "博物馆",
+      "area": "兴安盟"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c10",
+      "name": "兴安盟体育公园",
+      "category": "公园休闲",
+      "area": "兴安盟"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c10",
+      "name": "兴安盟非物质文化遗产展示馆",
+      "category": "历史人文",
+      "area": "兴安盟"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c10",
+      "name": "兴安盟历史文化街区",
+      "category": "古镇街区",
+      "area": "兴安盟"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c11",
+      "name": "锡林郭勒盟博物馆",
+      "category": "博物馆",
+      "area": "锡林郭勒盟"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c11",
+      "name": "锡林郭勒盟人民公园",
+      "category": "公园休闲",
+      "area": "锡林郭勒盟"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c11",
+      "name": "锡林郭勒盟文化馆",
+      "category": "历史人文",
+      "area": "锡林郭勒盟"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c11",
+      "name": "锡林郭勒盟图书馆",
+      "category": "历史人文",
+      "area": "锡林郭勒盟"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c11",
+      "name": "锡林郭勒盟美术馆",
+      "category": "博物馆",
+      "area": "锡林郭勒盟"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c11",
+      "name": "锡林郭勒盟科技馆",
+      "category": "博物馆",
+      "area": "锡林郭勒盟"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c11",
+      "name": "锡林郭勒盟城市规划展览馆",
+      "category": "博物馆",
+      "area": "锡林郭勒盟"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c11",
+      "name": "锡林郭勒盟体育公园",
+      "category": "公园休闲",
+      "area": "锡林郭勒盟"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c11",
+      "name": "锡林郭勒盟非物质文化遗产展示馆",
+      "category": "历史人文",
+      "area": "锡林郭勒盟"
+    },
+    {
+      "provinceId": "neimenggu",
+      "cityId": "neimenggu-c11",
+      "name": "锡林郭勒盟历史文化街区",
+      "category": "古镇街区",
+      "area": "锡林郭勒盟"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c01",
+      "name": "乌鲁木齐博物馆",
+      "category": "博物馆",
+      "area": "乌鲁木齐"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c01",
+      "name": "乌鲁木齐人民公园",
+      "category": "公园休闲",
+      "area": "乌鲁木齐"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c01",
+      "name": "乌鲁木齐文化馆",
+      "category": "历史人文",
+      "area": "乌鲁木齐"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c01",
+      "name": "乌鲁木齐图书馆",
+      "category": "历史人文",
+      "area": "乌鲁木齐"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c01",
+      "name": "乌鲁木齐美术馆",
+      "category": "博物馆",
+      "area": "乌鲁木齐"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c01",
+      "name": "乌鲁木齐科技馆",
+      "category": "博物馆",
+      "area": "乌鲁木齐"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c01",
+      "name": "乌鲁木齐城市规划展览馆",
+      "category": "博物馆",
+      "area": "乌鲁木齐"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c01",
+      "name": "乌鲁木齐体育公园",
+      "category": "公园休闲",
+      "area": "乌鲁木齐"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c01",
+      "name": "乌鲁木齐非物质文化遗产展示馆",
+      "category": "历史人文",
+      "area": "乌鲁木齐"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c01",
+      "name": "乌鲁木齐历史文化街区",
+      "category": "古镇街区",
+      "area": "乌鲁木齐"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c02",
+      "name": "克拉玛依博物馆",
+      "category": "博物馆",
+      "area": "克拉玛依"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c02",
+      "name": "克拉玛依人民公园",
+      "category": "公园休闲",
+      "area": "克拉玛依"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c02",
+      "name": "克拉玛依文化馆",
+      "category": "历史人文",
+      "area": "克拉玛依"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c02",
+      "name": "克拉玛依图书馆",
+      "category": "历史人文",
+      "area": "克拉玛依"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c02",
+      "name": "克拉玛依美术馆",
+      "category": "博物馆",
+      "area": "克拉玛依"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c02",
+      "name": "克拉玛依科技馆",
+      "category": "博物馆",
+      "area": "克拉玛依"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c02",
+      "name": "克拉玛依城市规划展览馆",
+      "category": "博物馆",
+      "area": "克拉玛依"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c02",
+      "name": "克拉玛依体育公园",
+      "category": "公园休闲",
+      "area": "克拉玛依"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c02",
+      "name": "克拉玛依非物质文化遗产展示馆",
+      "category": "历史人文",
+      "area": "克拉玛依"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c02",
+      "name": "克拉玛依历史文化街区",
+      "category": "古镇街区",
+      "area": "克拉玛依"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c03",
+      "name": "吐鲁番博物馆",
+      "category": "博物馆",
+      "area": "吐鲁番"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c03",
+      "name": "吐鲁番人民公园",
+      "category": "公园休闲",
+      "area": "吐鲁番"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c03",
+      "name": "吐鲁番文化馆",
+      "category": "历史人文",
+      "area": "吐鲁番"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c03",
+      "name": "吐鲁番图书馆",
+      "category": "历史人文",
+      "area": "吐鲁番"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c03",
+      "name": "吐鲁番美术馆",
+      "category": "博物馆",
+      "area": "吐鲁番"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c03",
+      "name": "吐鲁番科技馆",
+      "category": "博物馆",
+      "area": "吐鲁番"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c03",
+      "name": "吐鲁番城市规划展览馆",
+      "category": "博物馆",
+      "area": "吐鲁番"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c03",
+      "name": "吐鲁番体育公园",
+      "category": "公园休闲",
+      "area": "吐鲁番"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c03",
+      "name": "吐鲁番非物质文化遗产展示馆",
+      "category": "历史人文",
+      "area": "吐鲁番"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c03",
+      "name": "吐鲁番历史文化街区",
+      "category": "古镇街区",
+      "area": "吐鲁番"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c04",
+      "name": "哈密博物馆",
+      "category": "博物馆",
+      "area": "哈密"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c04",
+      "name": "哈密人民公园",
+      "category": "公园休闲",
+      "area": "哈密"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c04",
+      "name": "哈密文化馆",
+      "category": "历史人文",
+      "area": "哈密"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c04",
+      "name": "哈密图书馆",
+      "category": "历史人文",
+      "area": "哈密"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c04",
+      "name": "哈密美术馆",
+      "category": "博物馆",
+      "area": "哈密"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c04",
+      "name": "哈密科技馆",
+      "category": "博物馆",
+      "area": "哈密"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c04",
+      "name": "哈密城市规划展览馆",
+      "category": "博物馆",
+      "area": "哈密"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c04",
+      "name": "哈密体育公园",
+      "category": "公园休闲",
+      "area": "哈密"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c04",
+      "name": "哈密非物质文化遗产展示馆",
+      "category": "历史人文",
+      "area": "哈密"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c04",
+      "name": "哈密历史文化街区",
+      "category": "古镇街区",
+      "area": "哈密"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c05",
+      "name": "昌吉博物馆",
+      "category": "博物馆",
+      "area": "昌吉"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c05",
+      "name": "昌吉人民公园",
+      "category": "公园休闲",
+      "area": "昌吉"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c05",
+      "name": "昌吉文化馆",
+      "category": "历史人文",
+      "area": "昌吉"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c05",
+      "name": "昌吉图书馆",
+      "category": "历史人文",
+      "area": "昌吉"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c05",
+      "name": "昌吉美术馆",
+      "category": "博物馆",
+      "area": "昌吉"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c05",
+      "name": "昌吉科技馆",
+      "category": "博物馆",
+      "area": "昌吉"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c05",
+      "name": "昌吉城市规划展览馆",
+      "category": "博物馆",
+      "area": "昌吉"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c05",
+      "name": "昌吉体育公园",
+      "category": "公园休闲",
+      "area": "昌吉"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c05",
+      "name": "昌吉非物质文化遗产展示馆",
+      "category": "历史人文",
+      "area": "昌吉"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c05",
+      "name": "昌吉历史文化街区",
+      "category": "古镇街区",
+      "area": "昌吉"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c06",
+      "name": "博乐博物馆",
+      "category": "博物馆",
+      "area": "博乐"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c06",
+      "name": "博乐人民公园",
+      "category": "公园休闲",
+      "area": "博乐"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c06",
+      "name": "博乐文化馆",
+      "category": "历史人文",
+      "area": "博乐"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c06",
+      "name": "博乐图书馆",
+      "category": "历史人文",
+      "area": "博乐"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c06",
+      "name": "博乐美术馆",
+      "category": "博物馆",
+      "area": "博乐"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c06",
+      "name": "博乐科技馆",
+      "category": "博物馆",
+      "area": "博乐"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c06",
+      "name": "博乐城市规划展览馆",
+      "category": "博物馆",
+      "area": "博乐"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c06",
+      "name": "博乐体育公园",
+      "category": "公园休闲",
+      "area": "博乐"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c06",
+      "name": "博乐非物质文化遗产展示馆",
+      "category": "历史人文",
+      "area": "博乐"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c06",
+      "name": "博乐历史文化街区",
+      "category": "古镇街区",
+      "area": "博乐"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c07",
+      "name": "伊宁博物馆",
+      "category": "博物馆",
+      "area": "伊宁"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c07",
+      "name": "伊宁人民公园",
+      "category": "公园休闲",
+      "area": "伊宁"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c07",
+      "name": "伊宁文化馆",
+      "category": "历史人文",
+      "area": "伊宁"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c07",
+      "name": "伊宁图书馆",
+      "category": "历史人文",
+      "area": "伊宁"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c07",
+      "name": "伊宁美术馆",
+      "category": "博物馆",
+      "area": "伊宁"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c07",
+      "name": "伊宁科技馆",
+      "category": "博物馆",
+      "area": "伊宁"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c07",
+      "name": "伊宁城市规划展览馆",
+      "category": "博物馆",
+      "area": "伊宁"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c07",
+      "name": "伊宁体育公园",
+      "category": "公园休闲",
+      "area": "伊宁"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c07",
+      "name": "伊宁非物质文化遗产展示馆",
+      "category": "历史人文",
+      "area": "伊宁"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c07",
+      "name": "伊宁历史文化街区",
+      "category": "古镇街区",
+      "area": "伊宁"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c08",
+      "name": "阿克苏博物馆",
+      "category": "博物馆",
+      "area": "阿克苏"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c08",
+      "name": "阿克苏人民公园",
+      "category": "公园休闲",
+      "area": "阿克苏"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c08",
+      "name": "阿克苏文化馆",
+      "category": "历史人文",
+      "area": "阿克苏"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c08",
+      "name": "阿克苏图书馆",
+      "category": "历史人文",
+      "area": "阿克苏"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c08",
+      "name": "阿克苏美术馆",
+      "category": "博物馆",
+      "area": "阿克苏"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c08",
+      "name": "阿克苏科技馆",
+      "category": "博物馆",
+      "area": "阿克苏"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c08",
+      "name": "阿克苏城市规划展览馆",
+      "category": "博物馆",
+      "area": "阿克苏"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c08",
+      "name": "阿克苏体育公园",
+      "category": "公园休闲",
+      "area": "阿克苏"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c08",
+      "name": "阿克苏非物质文化遗产展示馆",
+      "category": "历史人文",
+      "area": "阿克苏"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c08",
+      "name": "阿克苏历史文化街区",
+      "category": "古镇街区",
+      "area": "阿克苏"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c09",
+      "name": "喀什博物馆",
+      "category": "博物馆",
+      "area": "喀什"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c09",
+      "name": "喀什人民公园",
+      "category": "公园休闲",
+      "area": "喀什"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c09",
+      "name": "喀什文化馆",
+      "category": "历史人文",
+      "area": "喀什"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c09",
+      "name": "喀什图书馆",
+      "category": "历史人文",
+      "area": "喀什"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c09",
+      "name": "喀什美术馆",
+      "category": "博物馆",
+      "area": "喀什"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c09",
+      "name": "喀什科技馆",
+      "category": "博物馆",
+      "area": "喀什"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c09",
+      "name": "喀什城市规划展览馆",
+      "category": "博物馆",
+      "area": "喀什"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c09",
+      "name": "喀什体育公园",
+      "category": "公园休闲",
+      "area": "喀什"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c09",
+      "name": "喀什非物质文化遗产展示馆",
+      "category": "历史人文",
+      "area": "喀什"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c09",
+      "name": "喀什历史文化街区",
+      "category": "古镇街区",
+      "area": "喀什"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c10",
+      "name": "和田博物馆",
+      "category": "博物馆",
+      "area": "和田"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c10",
+      "name": "和田人民公园",
+      "category": "公园休闲",
+      "area": "和田"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c10",
+      "name": "和田文化馆",
+      "category": "历史人文",
+      "area": "和田"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c10",
+      "name": "和田图书馆",
+      "category": "历史人文",
+      "area": "和田"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c10",
+      "name": "和田美术馆",
+      "category": "博物馆",
+      "area": "和田"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c10",
+      "name": "和田科技馆",
+      "category": "博物馆",
+      "area": "和田"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c10",
+      "name": "和田城市规划展览馆",
+      "category": "博物馆",
+      "area": "和田"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c10",
+      "name": "和田体育公园",
+      "category": "公园休闲",
+      "area": "和田"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c10",
+      "name": "和田非物质文化遗产展示馆",
+      "category": "历史人文",
+      "area": "和田"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c10",
+      "name": "和田历史文化街区",
+      "category": "古镇街区",
+      "area": "和田"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c11",
+      "name": "库尔勒博物馆",
+      "category": "博物馆",
+      "area": "库尔勒"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c11",
+      "name": "库尔勒人民公园",
+      "category": "公园休闲",
+      "area": "库尔勒"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c11",
+      "name": "库尔勒文化馆",
+      "category": "历史人文",
+      "area": "库尔勒"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c11",
+      "name": "库尔勒图书馆",
+      "category": "历史人文",
+      "area": "库尔勒"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c11",
+      "name": "库尔勒美术馆",
+      "category": "博物馆",
+      "area": "库尔勒"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c11",
+      "name": "库尔勒科技馆",
+      "category": "博物馆",
+      "area": "库尔勒"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c11",
+      "name": "库尔勒城市规划展览馆",
+      "category": "博物馆",
+      "area": "库尔勒"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c11",
+      "name": "库尔勒体育公园",
+      "category": "公园休闲",
+      "area": "库尔勒"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c11",
+      "name": "库尔勒非物质文化遗产展示馆",
+      "category": "历史人文",
+      "area": "库尔勒"
+    },
+    {
+      "provinceId": "xinjiang",
+      "cityId": "xinjiang-c11",
+      "name": "库尔勒历史文化街区",
+      "category": "古镇街区",
+      "area": "库尔勒"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c01",
+      "name": "拉萨博物馆",
+      "category": "博物馆",
+      "area": "拉萨"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c01",
+      "name": "拉萨人民公园",
+      "category": "公园休闲",
+      "area": "拉萨"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c01",
+      "name": "拉萨文化馆",
+      "category": "历史人文",
+      "area": "拉萨"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c01",
+      "name": "拉萨图书馆",
+      "category": "历史人文",
+      "area": "拉萨"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c01",
+      "name": "拉萨美术馆",
+      "category": "博物馆",
+      "area": "拉萨"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c01",
+      "name": "拉萨科技馆",
+      "category": "博物馆",
+      "area": "拉萨"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c01",
+      "name": "拉萨城市规划展览馆",
+      "category": "博物馆",
+      "area": "拉萨"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c01",
+      "name": "拉萨体育公园",
+      "category": "公园休闲",
+      "area": "拉萨"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c01",
+      "name": "拉萨非物质文化遗产展示馆",
+      "category": "历史人文",
+      "area": "拉萨"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c01",
+      "name": "拉萨历史文化街区",
+      "category": "古镇街区",
+      "area": "拉萨"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c02",
+      "name": "日喀则博物馆",
+      "category": "博物馆",
+      "area": "日喀则"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c02",
+      "name": "日喀则人民公园",
+      "category": "公园休闲",
+      "area": "日喀则"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c02",
+      "name": "日喀则文化馆",
+      "category": "历史人文",
+      "area": "日喀则"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c02",
+      "name": "日喀则图书馆",
+      "category": "历史人文",
+      "area": "日喀则"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c02",
+      "name": "日喀则美术馆",
+      "category": "博物馆",
+      "area": "日喀则"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c02",
+      "name": "日喀则科技馆",
+      "category": "博物馆",
+      "area": "日喀则"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c02",
+      "name": "日喀则城市规划展览馆",
+      "category": "博物馆",
+      "area": "日喀则"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c02",
+      "name": "日喀则体育公园",
+      "category": "公园休闲",
+      "area": "日喀则"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c02",
+      "name": "日喀则非物质文化遗产展示馆",
+      "category": "历史人文",
+      "area": "日喀则"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c02",
+      "name": "日喀则历史文化街区",
+      "category": "古镇街区",
+      "area": "日喀则"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c03",
+      "name": "昌都博物馆",
+      "category": "博物馆",
+      "area": "昌都"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c03",
+      "name": "昌都人民公园",
+      "category": "公园休闲",
+      "area": "昌都"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c03",
+      "name": "昌都文化馆",
+      "category": "历史人文",
+      "area": "昌都"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c03",
+      "name": "昌都图书馆",
+      "category": "历史人文",
+      "area": "昌都"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c03",
+      "name": "昌都美术馆",
+      "category": "博物馆",
+      "area": "昌都"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c03",
+      "name": "昌都科技馆",
+      "category": "博物馆",
+      "area": "昌都"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c03",
+      "name": "昌都城市规划展览馆",
+      "category": "博物馆",
+      "area": "昌都"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c03",
+      "name": "昌都体育公园",
+      "category": "公园休闲",
+      "area": "昌都"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c03",
+      "name": "昌都非物质文化遗产展示馆",
+      "category": "历史人文",
+      "area": "昌都"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c03",
+      "name": "昌都历史文化街区",
+      "category": "古镇街区",
+      "area": "昌都"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c04",
+      "name": "林芝博物馆",
+      "category": "博物馆",
+      "area": "林芝"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c04",
+      "name": "林芝人民公园",
+      "category": "公园休闲",
+      "area": "林芝"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c04",
+      "name": "林芝文化馆",
+      "category": "历史人文",
+      "area": "林芝"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c04",
+      "name": "林芝图书馆",
+      "category": "历史人文",
+      "area": "林芝"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c04",
+      "name": "林芝美术馆",
+      "category": "博物馆",
+      "area": "林芝"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c04",
+      "name": "林芝科技馆",
+      "category": "博物馆",
+      "area": "林芝"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c04",
+      "name": "林芝城市规划展览馆",
+      "category": "博物馆",
+      "area": "林芝"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c04",
+      "name": "林芝体育公园",
+      "category": "公园休闲",
+      "area": "林芝"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c04",
+      "name": "林芝非物质文化遗产展示馆",
+      "category": "历史人文",
+      "area": "林芝"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c04",
+      "name": "林芝历史文化街区",
+      "category": "古镇街区",
+      "area": "林芝"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c05",
+      "name": "山南博物馆",
+      "category": "博物馆",
+      "area": "山南"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c05",
+      "name": "山南人民公园",
+      "category": "公园休闲",
+      "area": "山南"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c05",
+      "name": "山南文化馆",
+      "category": "历史人文",
+      "area": "山南"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c05",
+      "name": "山南图书馆",
+      "category": "历史人文",
+      "area": "山南"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c05",
+      "name": "山南美术馆",
+      "category": "博物馆",
+      "area": "山南"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c05",
+      "name": "山南科技馆",
+      "category": "博物馆",
+      "area": "山南"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c05",
+      "name": "山南城市规划展览馆",
+      "category": "博物馆",
+      "area": "山南"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c05",
+      "name": "山南体育公园",
+      "category": "公园休闲",
+      "area": "山南"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c05",
+      "name": "山南非物质文化遗产展示馆",
+      "category": "历史人文",
+      "area": "山南"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c05",
+      "name": "山南历史文化街区",
+      "category": "古镇街区",
+      "area": "山南"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c06",
+      "name": "那曲博物馆",
+      "category": "博物馆",
+      "area": "那曲"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c06",
+      "name": "那曲人民公园",
+      "category": "公园休闲",
+      "area": "那曲"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c06",
+      "name": "那曲文化馆",
+      "category": "历史人文",
+      "area": "那曲"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c06",
+      "name": "那曲图书馆",
+      "category": "历史人文",
+      "area": "那曲"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c06",
+      "name": "那曲美术馆",
+      "category": "博物馆",
+      "area": "那曲"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c06",
+      "name": "那曲科技馆",
+      "category": "博物馆",
+      "area": "那曲"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c06",
+      "name": "那曲城市规划展览馆",
+      "category": "博物馆",
+      "area": "那曲"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c06",
+      "name": "那曲体育公园",
+      "category": "公园休闲",
+      "area": "那曲"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c06",
+      "name": "那曲非物质文化遗产展示馆",
+      "category": "历史人文",
+      "area": "那曲"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c06",
+      "name": "那曲历史文化街区",
+      "category": "古镇街区",
+      "area": "那曲"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c07",
+      "name": "噶尔博物馆",
+      "category": "博物馆",
+      "area": "噶尔"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c07",
+      "name": "噶尔人民公园",
+      "category": "公园休闲",
+      "area": "噶尔"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c07",
+      "name": "噶尔文化馆",
+      "category": "历史人文",
+      "area": "噶尔"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c07",
+      "name": "噶尔图书馆",
+      "category": "历史人文",
+      "area": "噶尔"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c07",
+      "name": "噶尔美术馆",
+      "category": "博物馆",
+      "area": "噶尔"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c07",
+      "name": "噶尔科技馆",
+      "category": "博物馆",
+      "area": "噶尔"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c07",
+      "name": "噶尔城市规划展览馆",
+      "category": "博物馆",
+      "area": "噶尔"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c07",
+      "name": "噶尔体育公园",
+      "category": "公园休闲",
+      "area": "噶尔"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c07",
+      "name": "噶尔非物质文化遗产展示馆",
+      "category": "历史人文",
+      "area": "噶尔"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c07",
+      "name": "噶尔历史文化街区",
+      "category": "古镇街区",
+      "area": "噶尔"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c08",
+      "name": "江孜博物馆",
+      "category": "博物馆",
+      "area": "江孜"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c08",
+      "name": "江孜人民公园",
+      "category": "公园休闲",
+      "area": "江孜"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c08",
+      "name": "江孜文化馆",
+      "category": "历史人文",
+      "area": "江孜"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c08",
+      "name": "江孜图书馆",
+      "category": "历史人文",
+      "area": "江孜"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c08",
+      "name": "江孜美术馆",
+      "category": "博物馆",
+      "area": "江孜"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c08",
+      "name": "江孜科技馆",
+      "category": "博物馆",
+      "area": "江孜"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c08",
+      "name": "江孜城市规划展览馆",
+      "category": "博物馆",
+      "area": "江孜"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c08",
+      "name": "江孜体育公园",
+      "category": "公园休闲",
+      "area": "江孜"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c08",
+      "name": "江孜非物质文化遗产展示馆",
+      "category": "历史人文",
+      "area": "江孜"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c08",
+      "name": "江孜历史文化街区",
+      "category": "古镇街区",
+      "area": "江孜"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c09",
+      "name": "波密博物馆",
+      "category": "博物馆",
+      "area": "波密"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c09",
+      "name": "波密人民公园",
+      "category": "公园休闲",
+      "area": "波密"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c09",
+      "name": "波密文化馆",
+      "category": "历史人文",
+      "area": "波密"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c09",
+      "name": "波密图书馆",
+      "category": "历史人文",
+      "area": "波密"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c09",
+      "name": "波密美术馆",
+      "category": "博物馆",
+      "area": "波密"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c09",
+      "name": "波密科技馆",
+      "category": "博物馆",
+      "area": "波密"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c09",
+      "name": "波密城市规划展览馆",
+      "category": "博物馆",
+      "area": "波密"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c09",
+      "name": "波密体育公园",
+      "category": "公园休闲",
+      "area": "波密"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c09",
+      "name": "波密非物质文化遗产展示馆",
+      "category": "历史人文",
+      "area": "波密"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c09",
+      "name": "波密历史文化街区",
+      "category": "古镇街区",
+      "area": "波密"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c10",
+      "name": "墨脱博物馆",
+      "category": "博物馆",
+      "area": "墨脱"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c10",
+      "name": "墨脱人民公园",
+      "category": "公园休闲",
+      "area": "墨脱"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c10",
+      "name": "墨脱文化馆",
+      "category": "历史人文",
+      "area": "墨脱"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c10",
+      "name": "墨脱图书馆",
+      "category": "历史人文",
+      "area": "墨脱"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c10",
+      "name": "墨脱美术馆",
+      "category": "博物馆",
+      "area": "墨脱"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c10",
+      "name": "墨脱科技馆",
+      "category": "博物馆",
+      "area": "墨脱"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c10",
+      "name": "墨脱城市规划展览馆",
+      "category": "博物馆",
+      "area": "墨脱"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c10",
+      "name": "墨脱体育公园",
+      "category": "公园休闲",
+      "area": "墨脱"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c10",
+      "name": "墨脱非物质文化遗产展示馆",
+      "category": "历史人文",
+      "area": "墨脱"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c10",
+      "name": "墨脱历史文化街区",
+      "category": "古镇街区",
+      "area": "墨脱"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c11",
+      "name": "扎达博物馆",
+      "category": "博物馆",
+      "area": "扎达"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c11",
+      "name": "扎达人民公园",
+      "category": "公园休闲",
+      "area": "扎达"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c11",
+      "name": "扎达文化馆",
+      "category": "历史人文",
+      "area": "扎达"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c11",
+      "name": "扎达图书馆",
+      "category": "历史人文",
+      "area": "扎达"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c11",
+      "name": "扎达美术馆",
+      "category": "博物馆",
+      "area": "扎达"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c11",
+      "name": "扎达科技馆",
+      "category": "博物馆",
+      "area": "扎达"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c11",
+      "name": "扎达城市规划展览馆",
+      "category": "博物馆",
+      "area": "扎达"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c11",
+      "name": "扎达体育公园",
+      "category": "公园休闲",
+      "area": "扎达"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c11",
+      "name": "扎达非物质文化遗产展示馆",
+      "category": "历史人文",
+      "area": "扎达"
+    },
+    {
+      "provinceId": "xizang",
+      "cityId": "xizang-c11",
+      "name": "扎达历史文化街区",
+      "category": "古镇街区",
+      "area": "扎达"
+    }
+  ]
+}

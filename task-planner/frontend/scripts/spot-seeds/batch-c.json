@@ -1,0 +1,6342 @@
+{
+  "cities": {
+    "shanxi": [
+      {
+        "id": "datong",
+        "name": "大同"
+      },
+      {
+        "id": "taiyuan",
+        "name": "太原"
+      },
+      {
+        "id": "pingyao",
+        "name": "平遥"
+      },
+      {
+        "id": "xinzhou",
+        "name": "忻州"
+      },
+      {
+        "id": "jinzhong",
+        "name": "晋中"
+      }
+    ],
+    "liaoning": [
+      {
+        "id": "shenyang",
+        "name": "沈阳"
+      },
+      {
+        "id": "dalian",
+        "name": "大连"
+      },
+      {
+        "id": "dandong",
+        "name": "丹东"
+      },
+      {
+        "id": "anshan",
+        "name": "鞍山"
+      },
+      {
+        "id": "benxi",
+        "name": "本溪"
+      }
+    ],
+    "jilin": [
+      {
+        "id": "changchun",
+        "name": "长春"
+      },
+      {
+        "id": "jilin-city",
+        "name": "吉林市"
+      },
+      {
+        "id": "changbaishan",
+        "name": "长白山"
+      },
+      {
+        "id": "yanbian",
+        "name": "延边"
+      },
+      {
+        "id": "tonghua",
+        "name": "通化"
+      }
+    ],
+    "heilongjiang": [
+      {
+        "id": "harbin",
+        "name": "哈尔滨"
+      },
+      {
+        "id": "mudanjiang",
+        "name": "牡丹江"
+      },
+      {
+        "id": "mohe",
+        "name": "漠河"
+      },
+      {
+        "id": "yichun",
+        "name": "伊春"
+      },
+      {
+        "id": "qiqihaer",
+        "name": "齐齐哈尔"
+      }
+    ],
+    "chongqing": [
+      {
+        "id": "chongqing",
+        "name": "重庆主城"
+      },
+      {
+        "id": "wulong",
+        "name": "武隆"
+      },
+      {
+        "id": "dazu",
+        "name": "大足"
+      },
+      {
+        "id": "fengjie",
+        "name": "奉节"
+      },
+      {
+        "id": "youyang",
+        "name": "酉阳"
+      }
+    ],
+    "sichuan": [
+      {
+        "id": "chengdu",
+        "name": "成都"
+      },
+      {
+        "id": "leshan",
+        "name": "乐山"
+      },
+      {
+        "id": "aba",
+        "name": "阿坝"
+      },
+      {
+        "id": "garze",
+        "name": "甘孜"
+      },
+      {
+        "id": "mianyang",
+        "name": "绵阳"
+      }
+    ],
+    "guizhou": [
+      {
+        "id": "guiyang",
+        "name": "贵阳"
+      },
+      {
+        "id": "anshun",
+        "name": "安顺"
+      },
+      {
+        "id": "qiandongnan",
+        "name": "黔东南"
+      },
+      {
+        "id": "tongren",
+        "name": "铜仁"
+      },
+      {
+        "id": "qianxinan",
+        "name": "黔西南"
+      }
+    ],
+    "yunnan": [
+      {
+        "id": "kunming",
+        "name": "昆明"
+      },
+      {
+        "id": "dali",
+        "name": "大理"
+      },
+      {
+        "id": "lijiang",
+        "name": "丽江"
+      },
+      {
+        "id": "shangri-la",
+        "name": "香格里拉"
+      },
+      {
+        "id": "baoshan",
+        "name": "保山"
+      }
+    ]
+  },
+  "spots": [
+    {
+      "provinceId": "shanxi",
+      "cityId": "datong",
+      "name": "云冈石窟",
+      "category": "宗教寺庙",
+      "area": "大同"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "datong",
+      "name": "华严寺",
+      "category": "宗教寺庙",
+      "area": "大同"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "datong",
+      "name": "善化寺",
+      "category": "宗教寺庙",
+      "area": "大同"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "datong",
+      "name": "大同古城墙",
+      "category": "古镇街区",
+      "area": "大同"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "datong",
+      "name": "九龙壁",
+      "category": "历史人文",
+      "area": "大同"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "datong",
+      "name": "悬空寺",
+      "category": "宗教寺庙",
+      "area": "大同"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "datong",
+      "name": "恒山",
+      "category": "自然风光",
+      "area": "大同"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "datong",
+      "name": "应县木塔",
+      "category": "宗教寺庙",
+      "area": "大同"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "datong",
+      "name": "晋华宫国家矿山公园",
+      "category": "自然风光",
+      "area": "大同"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "datong",
+      "name": "大同博物馆",
+      "category": "博物馆",
+      "area": "大同"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "datong",
+      "name": "代王府",
+      "category": "历史人文",
+      "area": "大同"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "datong",
+      "name": "鼓楼",
+      "category": "历史人文",
+      "area": "大同"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "datong",
+      "name": "法华寺",
+      "category": "宗教寺庙",
+      "area": "大同"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "datong",
+      "name": "纯阳宫",
+      "category": "宗教寺庙",
+      "area": "大同"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "datong",
+      "name": "大同土林",
+      "category": "自然风光",
+      "area": "大同"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "datong",
+      "name": "方特欢乐世界",
+      "category": "主题乐园",
+      "area": "大同"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "datong",
+      "name": "大同火山群",
+      "category": "自然风光",
+      "area": "大同"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "datong",
+      "name": "广灵剪纸艺术博物馆",
+      "category": "博物馆",
+      "area": "大同"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "datong",
+      "name": "觉山寺",
+      "category": "自然风光",
+      "area": "大同"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "datong",
+      "name": "水神堂",
+      "category": "历史人文",
+      "area": "大同"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "datong",
+      "name": "边塞长城",
+      "category": "古镇街区",
+      "area": "大同"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "datong",
+      "name": "得胜堡",
+      "category": "历史人文",
+      "area": "大同"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "taiyuan",
+      "name": "晋祠",
+      "category": "宗教寺庙",
+      "area": "太原"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "taiyuan",
+      "name": "天龙山石窟",
+      "category": "自然风光",
+      "area": "太原"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "taiyuan",
+      "name": "蒙山大佛",
+      "category": "自然风光",
+      "area": "太原"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "taiyuan",
+      "name": "山西博物院",
+      "category": "自然风光",
+      "area": "太原"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "taiyuan",
+      "name": "双塔寺",
+      "category": "宗教寺庙",
+      "area": "太原"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "taiyuan",
+      "name": "崇善寺",
+      "category": "宗教寺庙",
+      "area": "太原"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "taiyuan",
+      "name": "太原纯阳宫",
+      "category": "宗教寺庙",
+      "area": "太原"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "taiyuan",
+      "name": "太原古县城",
+      "category": "古镇街区",
+      "area": "太原"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "taiyuan",
+      "name": "汾河公园",
+      "category": "自然风光",
+      "area": "太原"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "taiyuan",
+      "name": "晋阳湖公园",
+      "category": "自然风光",
+      "area": "太原"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "taiyuan",
+      "name": "太原植物园",
+      "category": "公园休闲",
+      "area": "太原"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "taiyuan",
+      "name": "中国煤炭博物馆",
+      "category": "博物馆",
+      "area": "太原"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "taiyuan",
+      "name": "东湖醋园",
+      "category": "自然风光",
+      "area": "太原"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "taiyuan",
+      "name": "柳巷",
+      "category": "古镇街区",
+      "area": "太原"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "taiyuan",
+      "name": "迎泽公园",
+      "category": "公园休闲",
+      "area": "太原"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "taiyuan",
+      "name": "碑林公园",
+      "category": "自然风光",
+      "area": "太原"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "taiyuan",
+      "name": "窦大夫祠",
+      "category": "宗教寺庙",
+      "area": "太原"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "taiyuan",
+      "name": "多福寺",
+      "category": "宗教寺庙",
+      "area": "太原"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "taiyuan",
+      "name": "龙山石窟",
+      "category": "自然风光",
+      "area": "太原"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "taiyuan",
+      "name": "太山",
+      "category": "自然风光",
+      "area": "太原"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "taiyuan",
+      "name": "青龙古镇",
+      "category": "古镇街区",
+      "area": "太原"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "taiyuan",
+      "name": "太原动物园",
+      "category": "公园休闲",
+      "area": "太原"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "pingyao",
+      "name": "平遥古城",
+      "category": "古镇街区",
+      "area": "平遥"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "pingyao",
+      "name": "日升昌票号",
+      "category": "古镇街区",
+      "area": "平遥"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "pingyao",
+      "name": "平遥县衙",
+      "category": "历史人文",
+      "area": "平遥"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "pingyao",
+      "name": "明清一条街",
+      "category": "古镇街区",
+      "area": "平遥"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "pingyao",
+      "name": "镇国寺",
+      "category": "宗教寺庙",
+      "area": "平遥"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "pingyao",
+      "name": "双林寺",
+      "category": "自然风光",
+      "area": "平遥"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "pingyao",
+      "name": "文庙学宫",
+      "category": "宗教寺庙",
+      "area": "平遥"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "pingyao",
+      "name": "城隍庙",
+      "category": "宗教寺庙",
+      "area": "平遥"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "pingyao",
+      "name": "协同庆钱庄博物馆",
+      "category": "博物馆",
+      "area": "平遥"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "pingyao",
+      "name": "中国镖局博物馆",
+      "category": "博物馆",
+      "area": "平遥"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "pingyao",
+      "name": "马家大院",
+      "category": "古镇街区",
+      "area": "平遥"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "pingyao",
+      "name": "雷履泰故居",
+      "category": "古镇街区",
+      "area": "平遥"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "pingyao",
+      "name": "又见平遥",
+      "category": "历史人文",
+      "area": "平遥"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "pingyao",
+      "name": "平遥古城墙",
+      "category": "古镇街区",
+      "area": "平遥"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "pingyao",
+      "name": "南大街",
+      "category": "古镇街区",
+      "area": "平遥"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "pingyao",
+      "name": "清虚观",
+      "category": "宗教寺庙",
+      "area": "平遥"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "pingyao",
+      "name": "蔚泰厚票号",
+      "category": "古镇街区",
+      "area": "平遥"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "pingyao",
+      "name": "永隆号推光漆器博物馆",
+      "category": "博物馆",
+      "area": "平遥"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "pingyao",
+      "name": "汇武林武术陈列馆",
+      "category": "自然风光",
+      "area": "平遥"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "pingyao",
+      "name": "华北第一镖局",
+      "category": "历史人文",
+      "area": "平遥"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "pingyao",
+      "name": "平遥牛肉博物馆",
+      "category": "博物馆",
+      "area": "平遥"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "pingyao",
+      "name": "惠济桥",
+      "category": "历史人文",
+      "area": "平遥"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "xinzhou",
+      "name": "五台山",
+      "category": "自然风光",
+      "area": "忻州"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "xinzhou",
+      "name": "显通寺",
+      "category": "宗教寺庙",
+      "area": "忻州"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "xinzhou",
+      "name": "塔院寺",
+      "category": "宗教寺庙",
+      "area": "忻州"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "xinzhou",
+      "name": "菩萨顶",
+      "category": "历史人文",
+      "area": "忻州"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "xinzhou",
+      "name": "殊像寺",
+      "category": "宗教寺庙",
+      "area": "忻州"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "xinzhou",
+      "name": "黛螺顶",
+      "category": "历史人文",
+      "area": "忻州"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "xinzhou",
+      "name": "南禅寺",
+      "category": "宗教寺庙",
+      "area": "忻州"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "xinzhou",
+      "name": "佛光寺",
+      "category": "宗教寺庙",
+      "area": "忻州"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "xinzhou",
+      "name": "雁门关",
+      "category": "历史人文",
+      "area": "忻州"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "xinzhou",
+      "name": "芦芽山",
+      "category": "自然风光",
+      "area": "忻州"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "xinzhou",
+      "name": "万年冰洞",
+      "category": "自然风光",
+      "area": "忻州"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "xinzhou",
+      "name": "悬棺",
+      "category": "历史人文",
+      "area": "忻州"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "xinzhou",
+      "name": "忻州古城",
+      "category": "古镇街区",
+      "area": "忻州"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "xinzhou",
+      "name": "貂蝉故里",
+      "category": "历史人文",
+      "area": "忻州"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "xinzhou",
+      "name": "河边民俗博物馆",
+      "category": "自然风光",
+      "area": "忻州"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "xinzhou",
+      "name": "老牛湾",
+      "category": "自然风光",
+      "area": "忻州"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "xinzhou",
+      "name": "偏关长城",
+      "category": "古镇街区",
+      "area": "忻州"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "xinzhou",
+      "name": "禹王洞",
+      "category": "自然风光",
+      "area": "忻州"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "xinzhou",
+      "name": "宁武关",
+      "category": "历史人文",
+      "area": "忻州"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "xinzhou",
+      "name": "管涔山",
+      "category": "自然风光",
+      "area": "忻州"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "xinzhou",
+      "name": "天涯山",
+      "category": "自然风光",
+      "area": "忻州"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "xinzhou",
+      "name": "代县文庙",
+      "category": "宗教寺庙",
+      "area": "忻州"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "jinzhong",
+      "name": "乔家大院",
+      "category": "古镇街区",
+      "area": "晋中"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "jinzhong",
+      "name": "王家大院",
+      "category": "古镇街区",
+      "area": "晋中"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "jinzhong",
+      "name": "常家庄园",
+      "category": "历史人文",
+      "area": "晋中"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "jinzhong",
+      "name": "张壁古堡",
+      "category": "历史人文",
+      "area": "晋中"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "jinzhong",
+      "name": "榆次老城",
+      "category": "古镇街区",
+      "area": "晋中"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "jinzhong",
+      "name": "后沟古村",
+      "category": "古镇街区",
+      "area": "晋中"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "jinzhong",
+      "name": "绵山",
+      "category": "自然风光",
+      "area": "晋中"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "jinzhong",
+      "name": "介休张壁古堡",
+      "category": "历史人文",
+      "area": "晋中"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "jinzhong",
+      "name": "灵石王家大院",
+      "category": "古镇街区",
+      "area": "晋中"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "jinzhong",
+      "name": "平遥国际摄影大展",
+      "category": "历史人文",
+      "area": "晋中"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "jinzhong",
+      "name": "祁县渠家大院",
+      "category": "古镇街区",
+      "area": "晋中"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "jinzhong",
+      "name": "祁县昭馀古城",
+      "category": "古镇街区",
+      "area": "晋中"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "jinzhong",
+      "name": "太谷曹家大院",
+      "category": "古镇街区",
+      "area": "晋中"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "jinzhong",
+      "name": "孔祥熙宅园",
+      "category": "历史人文",
+      "area": "晋中"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "jinzhong",
+      "name": "榆社云竹湖",
+      "category": "自然风光",
+      "area": "晋中"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "jinzhong",
+      "name": "榆次常家庄园",
+      "category": "历史人文",
+      "area": "晋中"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "jinzhong",
+      "name": "左权麻田八路军总部旧址",
+      "category": "古镇街区",
+      "area": "晋中"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "jinzhong",
+      "name": "昔阳大寨",
+      "category": "古镇街区",
+      "area": "晋中"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "jinzhong",
+      "name": "寿阳祁寯藻故里",
+      "category": "历史人文",
+      "area": "晋中"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "jinzhong",
+      "name": "和顺石拐会议旧址",
+      "category": "古镇街区",
+      "area": "晋中"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "jinzhong",
+      "name": "介休祆神楼",
+      "category": "历史人文",
+      "area": "晋中"
+    },
+    {
+      "provinceId": "shanxi",
+      "cityId": "jinzhong",
+      "name": "灵石资寿寺",
+      "category": "宗教寺庙",
+      "area": "晋中"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "shenyang",
+      "name": "沈阳故宫",
+      "category": "宗教寺庙",
+      "area": "沈阳"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "shenyang",
+      "name": "张学良旧居",
+      "category": "历史人文",
+      "area": "沈阳"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "shenyang",
+      "name": "辽宁省博物馆",
+      "category": "博物馆",
+      "area": "沈阳"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "shenyang",
+      "name": "九一八历史博物馆",
+      "category": "博物馆",
+      "area": "沈阳"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "shenyang",
+      "name": "北陵公园",
+      "category": "古镇街区",
+      "area": "沈阳"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "shenyang",
+      "name": "东陵公园",
+      "category": "古镇街区",
+      "area": "沈阳"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "shenyang",
+      "name": "中街",
+      "category": "古镇街区",
+      "area": "沈阳"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "shenyang",
+      "name": "清昭陵",
+      "category": "古镇街区",
+      "area": "沈阳"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "shenyang",
+      "name": "沈阳博物馆",
+      "category": "博物馆",
+      "area": "沈阳"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "shenyang",
+      "name": "中国工业博物馆",
+      "category": "博物馆",
+      "area": "沈阳"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "shenyang",
+      "name": "辽宁工业展览馆",
+      "category": "历史人文",
+      "area": "沈阳"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "shenyang",
+      "name": "沈阳铁路陈列馆",
+      "category": "博物馆",
+      "area": "沈阳"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "shenyang",
+      "name": "棋盘山",
+      "category": "自然风光",
+      "area": "沈阳"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "shenyang",
+      "name": "世博园",
+      "category": "历史人文",
+      "area": "沈阳"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "shenyang",
+      "name": "方特欢乐世界",
+      "category": "主题乐园",
+      "area": "沈阳"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "shenyang",
+      "name": "怪坡",
+      "category": "历史人文",
+      "area": "沈阳"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "shenyang",
+      "name": "南关天主教堂",
+      "category": "宗教寺庙",
+      "area": "沈阳"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "shenyang",
+      "name": "西塔街",
+      "category": "宗教寺庙",
+      "area": "沈阳"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "shenyang",
+      "name": "彩电塔夜市",
+      "category": "宗教寺庙",
+      "area": "沈阳"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "shenyang",
+      "name": "沈阳科学宫",
+      "category": "宗教寺庙",
+      "area": "沈阳"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "shenyang",
+      "name": "皇寺广场",
+      "category": "宗教寺庙",
+      "area": "沈阳"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "shenyang",
+      "name": "奉天邮便局旧址",
+      "category": "古镇街区",
+      "area": "沈阳"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "dalian",
+      "name": "星海广场",
+      "category": "自然风光",
+      "area": "大连"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "dalian",
+      "name": "滨海路",
+      "category": "自然风光",
+      "area": "大连"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "dalian",
+      "name": "老虎滩海洋公园",
+      "category": "自然风光",
+      "area": "大连"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "dalian",
+      "name": "棒棰岛",
+      "category": "历史人文",
+      "area": "大连"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "dalian",
+      "name": "金石滩",
+      "category": "历史人文",
+      "area": "大连"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "dalian",
+      "name": "大连森林动物园",
+      "category": "自然风光",
+      "area": "大连"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "dalian",
+      "name": "东港音乐喷泉",
+      "category": "历史人文",
+      "area": "大连"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "dalian",
+      "name": "俄罗斯风情街",
+      "category": "古镇街区",
+      "area": "大连"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "dalian",
+      "name": "旅顺口风景区",
+      "category": "历史人文",
+      "area": "大连"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "dalian",
+      "name": "白玉山",
+      "category": "自然风光",
+      "area": "大连"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "dalian",
+      "name": "旅顺博物馆",
+      "category": "博物馆",
+      "area": "大连"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "dalian",
+      "name": "日俄监狱旧址博物馆",
+      "category": "古镇街区",
+      "area": "大连"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "dalian",
+      "name": "金石滩国家旅游度假区",
+      "category": "历史人文",
+      "area": "大连"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "dalian",
+      "name": "发现王国",
+      "category": "历史人文",
+      "area": "大连"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "dalian",
+      "name": "圣亚海洋世界",
+      "category": "自然风光",
+      "area": "大连"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "dalian",
+      "name": "莲花山观景台",
+      "category": "自然风光",
+      "area": "大连"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "dalian",
+      "name": "渔人码头",
+      "category": "历史人文",
+      "area": "大连"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "dalian",
+      "name": "中山广场",
+      "category": "自然风光",
+      "area": "大连"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "dalian",
+      "name": "东关街历史文化街区",
+      "category": "古镇街区",
+      "area": "大连"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "dalian",
+      "name": "大黑山",
+      "category": "自然风光",
+      "area": "大连"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "dalian",
+      "name": "冰峪沟",
+      "category": "历史人文",
+      "area": "大连"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "dalian",
+      "name": "排石景观",
+      "category": "宗教寺庙",
+      "area": "大连"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "dandong",
+      "name": "鸭绿江断桥",
+      "category": "自然风光",
+      "area": "丹东"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "dandong",
+      "name": "抗美援朝纪念馆",
+      "category": "博物馆",
+      "area": "丹东"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "dandong",
+      "name": "虎山长城",
+      "category": "自然风光",
+      "area": "丹东"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "dandong",
+      "name": "凤凰山",
+      "category": "自然风光",
+      "area": "丹东"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "dandong",
+      "name": "青山沟",
+      "category": "自然风光",
+      "area": "丹东"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "dandong",
+      "name": "大鹿岛",
+      "category": "历史人文",
+      "area": "丹东"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "dandong",
+      "name": "天桥沟",
+      "category": "历史人文",
+      "area": "丹东"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "dandong",
+      "name": "五龙山",
+      "category": "自然风光",
+      "area": "丹东"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "dandong",
+      "name": "锦江山公园",
+      "category": "自然风光",
+      "area": "丹东"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "dandong",
+      "name": "安东老街",
+      "category": "古镇街区",
+      "area": "丹东"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "dandong",
+      "name": "河口景区",
+      "category": "自然风光",
+      "area": "丹东"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "dandong",
+      "name": "鸭绿江公园",
+      "category": "自然风光",
+      "area": "丹东"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "dandong",
+      "name": "宗裕金汤水世界",
+      "category": "主题乐园",
+      "area": "丹东"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "dandong",
+      "name": "宽甸天华山",
+      "category": "自然风光",
+      "area": "丹东"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "dandong",
+      "name": "蒲石河森林公园",
+      "category": "自然风光",
+      "area": "丹东"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "dandong",
+      "name": "黄椅山火山森林公园",
+      "category": "自然风光",
+      "area": "丹东"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "dandong",
+      "name": "凤城凤凰山",
+      "category": "自然风光",
+      "area": "丹东"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "dandong",
+      "name": "抗美援朝纪念塔",
+      "category": "宗教寺庙",
+      "area": "丹东"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "dandong",
+      "name": "鸭绿江中朝界河游船",
+      "category": "自然风光",
+      "area": "丹东"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "dandong",
+      "name": "獐岛",
+      "category": "历史人文",
+      "area": "丹东"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "dandong",
+      "name": "凤城大梨树生态旅游区",
+      "category": "古镇街区",
+      "area": "丹东"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "dandong",
+      "name": "丹东博物馆",
+      "category": "博物馆",
+      "area": "丹东"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "anshan",
+      "name": "千山",
+      "category": "自然风光",
+      "area": "鞍山"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "anshan",
+      "name": "玉佛苑",
+      "category": "宗教寺庙",
+      "area": "鞍山"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "anshan",
+      "name": "汤岗子温泉",
+      "category": "自然风光",
+      "area": "鞍山"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "anshan",
+      "name": "鞍山博物馆",
+      "category": "自然风光",
+      "area": "鞍山"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "anshan",
+      "name": "二一九公园",
+      "category": "公园休闲",
+      "area": "鞍山"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "anshan",
+      "name": "白云山",
+      "category": "自然风光",
+      "area": "鞍山"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "anshan",
+      "name": "海城白云山",
+      "category": "自然风光",
+      "area": "鞍山"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "anshan",
+      "name": "岫岩药山",
+      "category": "自然风光",
+      "area": "鞍山"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "anshan",
+      "name": "岫岩清凉山",
+      "category": "自然风光",
+      "area": "鞍山"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "anshan",
+      "name": "岫岩玉石王",
+      "category": "历史人文",
+      "area": "鞍山"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "anshan",
+      "name": "汤岗子温泉旅游度假区",
+      "category": "自然风光",
+      "area": "鞍山"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "anshan",
+      "name": "鞍钢博物馆",
+      "category": "博物馆",
+      "area": "鞍山"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "anshan",
+      "name": "千山大佛",
+      "category": "自然风光",
+      "area": "鞍山"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "anshan",
+      "name": "祖越寺",
+      "category": "宗教寺庙",
+      "area": "鞍山"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "anshan",
+      "name": "龙泉湖风景区",
+      "category": "自然风光",
+      "area": "鞍山"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "anshan",
+      "name": "析木城石棚",
+      "category": "古镇街区",
+      "area": "鞍山"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "anshan",
+      "name": "海城牛庄古镇",
+      "category": "自然风光",
+      "area": "鞍山"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "anshan",
+      "name": "西柳市场",
+      "category": "历史人文",
+      "area": "鞍山"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "anshan",
+      "name": "腾鳌温泉",
+      "category": "自然风光",
+      "area": "鞍山"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "anshan",
+      "name": "台安张学良出生地纪念馆",
+      "category": "博物馆",
+      "area": "鞍山"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "anshan",
+      "name": "岫岩龙潭湾",
+      "category": "自然风光",
+      "area": "鞍山"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "anshan",
+      "name": "千山无量观",
+      "category": "自然风光",
+      "area": "鞍山"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "benxi",
+      "name": "本溪水洞",
+      "category": "自然风光",
+      "area": "本溪"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "benxi",
+      "name": "关门山",
+      "category": "自然风光",
+      "area": "本溪"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "benxi",
+      "name": "五女山",
+      "category": "自然风光",
+      "area": "本溪"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "benxi",
+      "name": "铁刹山",
+      "category": "自然风光",
+      "area": "本溪"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "benxi",
+      "name": "大石湖",
+      "category": "自然风光",
+      "area": "本溪"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "benxi",
+      "name": "老边沟",
+      "category": "历史人文",
+      "area": "本溪"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "benxi",
+      "name": "枫林谷",
+      "category": "自然风光",
+      "area": "本溪"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "benxi",
+      "name": "绿石谷",
+      "category": "历史人文",
+      "area": "本溪"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "benxi",
+      "name": "桓仁枫林谷",
+      "category": "自然风光",
+      "area": "本溪"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "benxi",
+      "name": "桓龙湖",
+      "category": "自然风光",
+      "area": "本溪"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "benxi",
+      "name": "望天洞",
+      "category": "自然风光",
+      "area": "本溪"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "benxi",
+      "name": "本溪湖",
+      "category": "自然风光",
+      "area": "本溪"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "benxi",
+      "name": "平顶山森林公园",
+      "category": "自然风光",
+      "area": "本溪"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "benxi",
+      "name": "本溪博物馆",
+      "category": "博物馆",
+      "area": "本溪"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "benxi",
+      "name": "辽东第一泉",
+      "category": "历史人文",
+      "area": "本溪"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "benxi",
+      "name": "东风湖",
+      "category": "自然风光",
+      "area": "本溪"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "benxi",
+      "name": "洋湖沟",
+      "category": "自然风光",
+      "area": "本溪"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "benxi",
+      "name": "中华枫叶之路",
+      "category": "历史人文",
+      "area": "本溪"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "benxi",
+      "name": "关山湖",
+      "category": "自然风光",
+      "area": "本溪"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "benxi",
+      "name": "佛顶山",
+      "category": "自然风光",
+      "area": "本溪"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "benxi",
+      "name": "桓仁民族广场",
+      "category": "公园休闲",
+      "area": "本溪"
+    },
+    {
+      "provinceId": "liaoning",
+      "cityId": "benxi",
+      "name": "抗联遗址",
+      "category": "古镇街区",
+      "area": "本溪"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "changchun",
+      "name": "伪满皇宫博物院",
+      "category": "宗教寺庙",
+      "area": "长春"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "changchun",
+      "name": "长春电影制片厂旧址博物馆",
+      "category": "古镇街区",
+      "area": "长春"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "changchun",
+      "name": "长影世纪城",
+      "category": "古镇街区",
+      "area": "长春"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "changchun",
+      "name": "净月潭",
+      "category": "历史人文",
+      "area": "长春"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "changchun",
+      "name": "南湖公园",
+      "category": "自然风光",
+      "area": "长春"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "changchun",
+      "name": "吉林省博物院",
+      "category": "自然风光",
+      "area": "长春"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "changchun",
+      "name": "长春世界雕塑园",
+      "category": "主题乐园",
+      "area": "长春"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "changchun",
+      "name": "这有山",
+      "category": "自然风光",
+      "area": "长春"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "changchun",
+      "name": "八大部",
+      "category": "历史人文",
+      "area": "长春"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "changchun",
+      "name": "文化广场",
+      "category": "公园休闲",
+      "area": "长春"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "changchun",
+      "name": "莲花岛影视休闲文化园",
+      "category": "主题乐园",
+      "area": "长春"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "changchun",
+      "name": "长春动植物公园",
+      "category": "公园休闲",
+      "area": "长春"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "changchun",
+      "name": "长春水文化生态园",
+      "category": "历史人文",
+      "area": "长春"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "changchun",
+      "name": "般若寺",
+      "category": "宗教寺庙",
+      "area": "长春"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "changchun",
+      "name": "南溪湿地公园",
+      "category": "自然风光",
+      "area": "长春"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "changchun",
+      "name": "东北民族民俗馆",
+      "category": "历史人文",
+      "area": "长春"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "changchun",
+      "name": "吉林大学地质博物馆",
+      "category": "自然风光",
+      "area": "长春"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "changchun",
+      "name": "长春市博物馆",
+      "category": "博物馆",
+      "area": "长春"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "changchun",
+      "name": "御龙温泉",
+      "category": "自然风光",
+      "area": "长春"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "changchun",
+      "name": "关东文化园",
+      "category": "历史人文",
+      "area": "长春"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "changchun",
+      "name": "农安辽塔",
+      "category": "宗教寺庙",
+      "area": "长春"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "changchun",
+      "name": "长春北湖湿地公园",
+      "category": "自然风光",
+      "area": "长春"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "jilin-city",
+      "name": "松花湖",
+      "category": "自然风光",
+      "area": "吉林市"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "jilin-city",
+      "name": "北山公园",
+      "category": "自然风光",
+      "area": "吉林市"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "jilin-city",
+      "name": "雾凇岛",
+      "category": "历史人文",
+      "area": "吉林市"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "jilin-city",
+      "name": "朱雀山",
+      "category": "自然风光",
+      "area": "吉林市"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "jilin-city",
+      "name": "龙潭山",
+      "category": "自然风光",
+      "area": "吉林市"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "jilin-city",
+      "name": "吉林文庙",
+      "category": "自然风光",
+      "area": "吉林市"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "jilin-city",
+      "name": "吉林市博物馆",
+      "category": "自然风光",
+      "area": "吉林市"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "jilin-city",
+      "name": "世纪广场",
+      "category": "公园休闲",
+      "area": "吉林市"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "jilin-city",
+      "name": "北大湖滑雪度假区",
+      "category": "自然风光",
+      "area": "吉林市"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "jilin-city",
+      "name": "拉法山",
+      "category": "自然风光",
+      "area": "吉林市"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "jilin-city",
+      "name": "红石国家森林公园",
+      "category": "自然风光",
+      "area": "吉林市"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "jilin-city",
+      "name": "松花江",
+      "category": "自然风光",
+      "area": "吉林市"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "jilin-city",
+      "name": "阿什哈达摩崖碑",
+      "category": "历史人文",
+      "area": "吉林市"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "jilin-city",
+      "name": "圣鑫葡萄酒庄园",
+      "category": "历史人文",
+      "area": "吉林市"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "jilin-city",
+      "name": "万科松花湖度假区",
+      "category": "自然风光",
+      "area": "吉林市"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "jilin-city",
+      "name": "北山古庙群",
+      "category": "自然风光",
+      "area": "吉林市"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "jilin-city",
+      "name": "吉林陨石博物馆",
+      "category": "自然风光",
+      "area": "吉林市"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "jilin-city",
+      "name": "满族博物馆",
+      "category": "博物馆",
+      "area": "吉林市"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "jilin-city",
+      "name": "乌拉街满族镇",
+      "category": "古镇街区",
+      "area": "吉林市"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "jilin-city",
+      "name": "官马溶洞",
+      "category": "自然风光",
+      "area": "吉林市"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "jilin-city",
+      "name": "黄河水库",
+      "category": "自然风光",
+      "area": "吉林市"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "jilin-city",
+      "name": "松花江百里生态长廊",
+      "category": "自然风光",
+      "area": "吉林市"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "changbaishan",
+      "name": "长白山天池",
+      "category": "自然风光",
+      "area": "长白山"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "changbaishan",
+      "name": "长白瀑布",
+      "category": "自然风光",
+      "area": "长白山"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "changbaishan",
+      "name": "绿渊潭",
+      "category": "历史人文",
+      "area": "长白山"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "changbaishan",
+      "name": "地下森林",
+      "category": "自然风光",
+      "area": "长白山"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "changbaishan",
+      "name": "聚龙温泉群",
+      "category": "自然风光",
+      "area": "长白山"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "changbaishan",
+      "name": "长白山北坡",
+      "category": "自然风光",
+      "area": "长白山"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "changbaishan",
+      "name": "长白山西坡",
+      "category": "自然风光",
+      "area": "长白山"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "changbaishan",
+      "name": "长白山南坡",
+      "category": "自然风光",
+      "area": "长白山"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "changbaishan",
+      "name": "魔界风景区",
+      "category": "历史人文",
+      "area": "长白山"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "changbaishan",
+      "name": "长白山万达国际度假区",
+      "category": "自然风光",
+      "area": "长白山"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "changbaishan",
+      "name": "二道白河镇",
+      "category": "自然风光",
+      "area": "长白山"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "changbaishan",
+      "name": "美人松空中廊桥公园",
+      "category": "公园休闲",
+      "area": "长白山"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "changbaishan",
+      "name": "长白山鲁能胜地",
+      "category": "自然风光",
+      "area": "长白山"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "changbaishan",
+      "name": "露水河国家森林公园",
+      "category": "自然风光",
+      "area": "长白山"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "changbaishan",
+      "name": "讷殷古城",
+      "category": "古镇街区",
+      "area": "长白山"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "changbaishan",
+      "name": "长白山自然博物馆",
+      "category": "自然风光",
+      "area": "长白山"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "changbaishan",
+      "name": "长白山大戏台河风景区",
+      "category": "自然风光",
+      "area": "长白山"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "changbaishan",
+      "name": "岳桦双瀑",
+      "category": "自然风光",
+      "area": "长白山"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "changbaishan",
+      "name": "长白山国际狩猎场",
+      "category": "自然风光",
+      "area": "长白山"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "changbaishan",
+      "name": "奶头山女真文化风景区",
+      "category": "自然风光",
+      "area": "长白山"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "changbaishan",
+      "name": "锦江大峡谷",
+      "category": "自然风光",
+      "area": "长白山"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "changbaishan",
+      "name": "长白山温泉",
+      "category": "自然风光",
+      "area": "长白山"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "yanbian",
+      "name": "延吉中国朝鲜族民俗园",
+      "category": "历史人文",
+      "area": "延边"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "yanbian",
+      "name": "延边博物馆",
+      "category": "博物馆",
+      "area": "延边"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "yanbian",
+      "name": "帽儿山国家森林公园",
+      "category": "自然风光",
+      "area": "延边"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "yanbian",
+      "name": "图们江广场",
+      "category": "自然风光",
+      "area": "延边"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "yanbian",
+      "name": "防川风景区",
+      "category": "历史人文",
+      "area": "延边"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "yanbian",
+      "name": "珲春敬信湿地",
+      "category": "自然风光",
+      "area": "延边"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "yanbian",
+      "name": "六鼎山文化旅游区",
+      "category": "自然风光",
+      "area": "延边"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "yanbian",
+      "name": "敦化大佛",
+      "category": "宗教寺庙",
+      "area": "延边"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "yanbian",
+      "name": "长白山历史文化园",
+      "category": "自然风光",
+      "area": "延边"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "yanbian",
+      "name": "明月山",
+      "category": "自然风光",
+      "area": "延边"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "yanbian",
+      "name": "仙峰国家森林公园",
+      "category": "自然风光",
+      "area": "延边"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "yanbian",
+      "name": "和龙仙景台",
+      "category": "历史人文",
+      "area": "延边"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "yanbian",
+      "name": "龙井尹东柱故居",
+      "category": "古镇街区",
+      "area": "延边"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "yanbian",
+      "name": "琵岩山文化旅游风景区",
+      "category": "自然风光",
+      "area": "延边"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "yanbian",
+      "name": "图们口岸",
+      "category": "历史人文",
+      "area": "延边"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "yanbian",
+      "name": "珲春东北虎豹国家公园",
+      "category": "公园休闲",
+      "area": "延边"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "yanbian",
+      "name": "珲春沙丘公园",
+      "category": "公园休闲",
+      "area": "延边"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "yanbian",
+      "name": "安图峡谷浮石林",
+      "category": "自然风光",
+      "area": "延边"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "yanbian",
+      "name": "朝鲜族民俗村",
+      "category": "古镇街区",
+      "area": "延边"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "yanbian",
+      "name": "百年部落",
+      "category": "历史人文",
+      "area": "延边"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "yanbian",
+      "name": "梦都美民俗旅游度假村",
+      "category": "古镇街区",
+      "area": "延边"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "yanbian",
+      "name": "延吉恐龙博物馆",
+      "category": "博物馆",
+      "area": "延边"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "tonghua",
+      "name": "高句丽文物古迹景区",
+      "category": "历史人文",
+      "area": "通化"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "tonghua",
+      "name": "集安高句丽王城",
+      "category": "古镇街区",
+      "area": "通化"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "tonghua",
+      "name": "好太王碑",
+      "category": "历史人文",
+      "area": "通化"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "tonghua",
+      "name": "将军坟",
+      "category": "历史人文",
+      "area": "通化"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "tonghua",
+      "name": "五女峰国家森林公园",
+      "category": "自然风光",
+      "area": "通化"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "tonghua",
+      "name": "云峰湖",
+      "category": "自然风光",
+      "area": "通化"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "tonghua",
+      "name": "杨靖宇烈士陵园",
+      "category": "古镇街区",
+      "area": "通化"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "tonghua",
+      "name": "葡萄酒文化博物馆",
+      "category": "博物馆",
+      "area": "通化"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "tonghua",
+      "name": "集安鸭绿江国境旅游区",
+      "category": "自然风光",
+      "area": "通化"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "tonghua",
+      "name": "桃源村",
+      "category": "古镇街区",
+      "area": "通化"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "tonghua",
+      "name": "龙湾群国家森林公园",
+      "category": "自然风光",
+      "area": "通化"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "tonghua",
+      "name": "三角龙湾",
+      "category": "自然风光",
+      "area": "通化"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "tonghua",
+      "name": "吊水壶瀑布",
+      "category": "自然风光",
+      "area": "通化"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "tonghua",
+      "name": "辉南龙湾",
+      "category": "自然风光",
+      "area": "通化"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "tonghua",
+      "name": "通化市博物馆",
+      "category": "博物馆",
+      "area": "通化"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "tonghua",
+      "name": "玉皇山公园",
+      "category": "自然风光",
+      "area": "通化"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "tonghua",
+      "name": "集安博物馆",
+      "category": "博物馆",
+      "area": "通化"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "tonghua",
+      "name": "丸都山城",
+      "category": "自然风光",
+      "area": "通化"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "tonghua",
+      "name": "国内城",
+      "category": "古镇街区",
+      "area": "通化"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "tonghua",
+      "name": "霸王朝山城",
+      "category": "自然风光",
+      "area": "通化"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "tonghua",
+      "name": "集安五女峰",
+      "category": "自然风光",
+      "area": "通化"
+    },
+    {
+      "provinceId": "jilin",
+      "cityId": "tonghua",
+      "name": "千叶湖",
+      "category": "自然风光",
+      "area": "通化"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "harbin",
+      "name": "中央大街",
+      "category": "古镇街区",
+      "area": "哈尔滨"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "harbin",
+      "name": "圣索菲亚教堂",
+      "category": "宗教寺庙",
+      "area": "哈尔滨"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "harbin",
+      "name": "太阳岛",
+      "category": "历史人文",
+      "area": "哈尔滨"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "harbin",
+      "name": "哈尔滨冰雪大世界",
+      "category": "自然风光",
+      "area": "哈尔滨"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "harbin",
+      "name": "东北虎林园",
+      "category": "自然风光",
+      "area": "哈尔滨"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "harbin",
+      "name": "伏尔加庄园",
+      "category": "历史人文",
+      "area": "哈尔滨"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "harbin",
+      "name": "龙塔",
+      "category": "宗教寺庙",
+      "area": "哈尔滨"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "harbin",
+      "name": "黑龙江省博物馆",
+      "category": "自然风光",
+      "area": "哈尔滨"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "harbin",
+      "name": "极乐寺",
+      "category": "宗教寺庙",
+      "area": "哈尔滨"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "harbin",
+      "name": "防洪纪念塔",
+      "category": "宗教寺庙",
+      "area": "哈尔滨"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "harbin",
+      "name": "斯大林公园",
+      "category": "自然风光",
+      "area": "哈尔滨"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "harbin",
+      "name": "中华巴洛克历史文化街区",
+      "category": "古镇街区",
+      "area": "哈尔滨"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "harbin",
+      "name": "松花江观光索道",
+      "category": "自然风光",
+      "area": "哈尔滨"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "harbin",
+      "name": "哈尔滨大剧院",
+      "category": "历史人文",
+      "area": "哈尔滨"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "harbin",
+      "name": "音乐公园",
+      "category": "公园休闲",
+      "area": "哈尔滨"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "harbin",
+      "name": "哈尔滨北方森林动物园",
+      "category": "自然风光",
+      "area": "哈尔滨"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "harbin",
+      "name": "侵华日军第七三一部队罪证陈列馆",
+      "category": "博物馆",
+      "area": "哈尔滨"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "harbin",
+      "name": "金河湾湿地植物园",
+      "category": "自然风光",
+      "area": "哈尔滨"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "harbin",
+      "name": "关东古巷",
+      "category": "古镇街区",
+      "area": "哈尔滨"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "harbin",
+      "name": "果戈里大街",
+      "category": "古镇街区",
+      "area": "哈尔滨"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "harbin",
+      "name": "阿勒锦岛湿地公园",
+      "category": "自然风光",
+      "area": "哈尔滨"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "harbin",
+      "name": "金上京历史博物馆",
+      "category": "博物馆",
+      "area": "哈尔滨"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "mudanjiang",
+      "name": "镜泊湖",
+      "category": "自然风光",
+      "area": "牡丹江"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "mudanjiang",
+      "name": "吊水楼瀑布",
+      "category": "自然风光",
+      "area": "牡丹江"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "mudanjiang",
+      "name": "火山口国家森林公园",
+      "category": "自然风光",
+      "area": "牡丹江"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "mudanjiang",
+      "name": "地下森林",
+      "category": "自然风光",
+      "area": "牡丹江"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "mudanjiang",
+      "name": "雪乡",
+      "category": "自然风光",
+      "area": "牡丹江"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "mudanjiang",
+      "name": "横道河子俄罗斯风情小镇",
+      "category": "自然风光",
+      "area": "牡丹江"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "mudanjiang",
+      "name": "威虎山影视城",
+      "category": "自然风光",
+      "area": "牡丹江"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "mudanjiang",
+      "name": "牡丹江雪堡",
+      "category": "自然风光",
+      "area": "牡丹江"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "mudanjiang",
+      "name": "渤海国上京龙泉府遗址",
+      "category": "自然风光",
+      "area": "牡丹江"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "mudanjiang",
+      "name": "兴隆寺",
+      "category": "宗教寺庙",
+      "area": "牡丹江"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "mudanjiang",
+      "name": "三道关国家森林公园",
+      "category": "自然风光",
+      "area": "牡丹江"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "mudanjiang",
+      "name": "牡丹峰",
+      "category": "自然风光",
+      "area": "牡丹江"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "mudanjiang",
+      "name": "莲花湖",
+      "category": "自然风光",
+      "area": "牡丹江"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "mudanjiang",
+      "name": "海林杨子荣烈士陵园",
+      "category": "自然风光",
+      "area": "牡丹江"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "mudanjiang",
+      "name": "绥芬河国门景区",
+      "category": "自然风光",
+      "area": "牡丹江"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "mudanjiang",
+      "name": "东宁要塞",
+      "category": "历史人文",
+      "area": "牡丹江"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "mudanjiang",
+      "name": "大海林林业局",
+      "category": "自然风光",
+      "area": "牡丹江"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "mudanjiang",
+      "name": "中国雪乡国家森林公园",
+      "category": "自然风光",
+      "area": "牡丹江"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "mudanjiang",
+      "name": "镜泊峡谷",
+      "category": "自然风光",
+      "area": "牡丹江"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "mudanjiang",
+      "name": "紫菱湖",
+      "category": "自然风光",
+      "area": "牡丹江"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "mudanjiang",
+      "name": "八女投江纪念馆",
+      "category": "自然风光",
+      "area": "牡丹江"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "mudanjiang",
+      "name": "宁安东京城遗址",
+      "category": "古镇街区",
+      "area": "牡丹江"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "mohe",
+      "name": "北极村",
+      "category": "古镇街区",
+      "area": "漠河"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "mohe",
+      "name": "北红村",
+      "category": "古镇街区",
+      "area": "漠河"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "mohe",
+      "name": "漠河北极星广场",
+      "category": "自然风光",
+      "area": "漠河"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "mohe",
+      "name": "中国最北点",
+      "category": "历史人文",
+      "area": "漠河"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "mohe",
+      "name": "北陲哨所",
+      "category": "历史人文",
+      "area": "漠河"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "mohe",
+      "name": "胭脂沟",
+      "category": "历史人文",
+      "area": "漠河"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "mohe",
+      "name": "观音山",
+      "category": "自然风光",
+      "area": "漠河"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "mohe",
+      "name": "李金镛祠堂",
+      "category": "宗教寺庙",
+      "area": "漠河"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "mohe",
+      "name": "九曲十八弯",
+      "category": "历史人文",
+      "area": "漠河"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "mohe",
+      "name": "龙江第一湾",
+      "category": "自然风光",
+      "area": "漠河"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "mohe",
+      "name": "乌苏里浅滩",
+      "category": "历史人文",
+      "area": "漠河"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "mohe",
+      "name": "松苑原始森林公园",
+      "category": "自然风光",
+      "area": "漠河"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "mohe",
+      "name": "漠河舞厅",
+      "category": "自然风光",
+      "area": "漠河"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "mohe",
+      "name": "北极圣诞村",
+      "category": "古镇街区",
+      "area": "漠河"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "mohe",
+      "name": "白桦林",
+      "category": "自然风光",
+      "area": "漠河"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "mohe",
+      "name": "图强林业博物馆",
+      "category": "自然风光",
+      "area": "漠河"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "mohe",
+      "name": "洛古河村",
+      "category": "自然风光",
+      "area": "漠河"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "mohe",
+      "name": "额木尔河",
+      "category": "自然风光",
+      "area": "漠河"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "mohe",
+      "name": "漠河国家地质公园",
+      "category": "自然风光",
+      "area": "漠河"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "mohe",
+      "name": "黑龙江源头",
+      "category": "自然风光",
+      "area": "漠河"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "mohe",
+      "name": "金鸡之冠",
+      "category": "历史人文",
+      "area": "漠河"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "mohe",
+      "name": "五六火灾纪念馆",
+      "category": "博物馆",
+      "area": "漠河"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "yichun",
+      "name": "汤旺河林海奇石景区",
+      "category": "自然风光",
+      "area": "伊春"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "yichun",
+      "name": "五营国家森林公园",
+      "category": "自然风光",
+      "area": "伊春"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "yichun",
+      "name": "茅兰沟国家森林公园",
+      "category": "自然风光",
+      "area": "伊春"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "yichun",
+      "name": "上甘岭溪水国家森林公园",
+      "category": "自然风光",
+      "area": "伊春"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "yichun",
+      "name": "金山鹿苑",
+      "category": "自然风光",
+      "area": "伊春"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "yichun",
+      "name": "带岭凉水自然保护区",
+      "category": "历史人文",
+      "area": "伊春"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "yichun",
+      "name": "嘉荫恐龙国家地质公园",
+      "category": "公园休闲",
+      "area": "伊春"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "yichun",
+      "name": "小兴安岭植物园",
+      "category": "公园休闲",
+      "area": "伊春"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "yichun",
+      "name": "伊春兴安森林公园",
+      "category": "自然风光",
+      "area": "伊春"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "yichun",
+      "name": "新青湿地水公园",
+      "category": "自然风光",
+      "area": "伊春"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "yichun",
+      "name": "桃山悬羊峰",
+      "category": "自然风光",
+      "area": "伊春"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "yichun",
+      "name": "南岔仙翁山",
+      "category": "自然风光",
+      "area": "伊春"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "yichun",
+      "name": "铁力日月峡",
+      "category": "自然风光",
+      "area": "伊春"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "yichun",
+      "name": "红星火山地质公园",
+      "category": "自然风光",
+      "area": "伊春"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "yichun",
+      "name": "库尔滨雾凇",
+      "category": "历史人文",
+      "area": "伊春"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "yichun",
+      "name": "乌伊岭湿地",
+      "category": "自然风光",
+      "area": "伊春"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "yichun",
+      "name": "九峰山养心谷",
+      "category": "自然风光",
+      "area": "伊春"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "yichun",
+      "name": "朗乡花海",
+      "category": "自然风光",
+      "area": "伊春"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "yichun",
+      "name": "伊春市博物馆",
+      "category": "博物馆",
+      "area": "伊春"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "yichun",
+      "name": "大箐山",
+      "category": "自然风光",
+      "area": "伊春"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "yichun",
+      "name": "溪水国家森林公园",
+      "category": "自然风光",
+      "area": "伊春"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "yichun",
+      "name": "汤旺河石林",
+      "category": "自然风光",
+      "area": "伊春"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "qiqihaer",
+      "name": "扎龙生态旅游区",
+      "category": "历史人文",
+      "area": "齐齐哈尔"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "qiqihaer",
+      "name": "龙沙公园",
+      "category": "公园休闲",
+      "area": "齐齐哈尔"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "qiqihaer",
+      "name": "明月岛",
+      "category": "历史人文",
+      "area": "齐齐哈尔"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "qiqihaer",
+      "name": "齐齐哈尔博物馆",
+      "category": "博物馆",
+      "area": "齐齐哈尔"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "qiqihaer",
+      "name": "鹤城公园",
+      "category": "古镇街区",
+      "area": "齐齐哈尔"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "qiqihaer",
+      "name": "江桥抗战纪念地",
+      "category": "自然风光",
+      "area": "齐齐哈尔"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "qiqihaer",
+      "name": "昂昂溪遗址",
+      "category": "古镇街区",
+      "area": "齐齐哈尔"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "qiqihaer",
+      "name": "华安军工文化园",
+      "category": "历史人文",
+      "area": "齐齐哈尔"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "qiqihaer",
+      "name": "水师森林温泉度假区",
+      "category": "自然风光",
+      "area": "齐齐哈尔"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "qiqihaer",
+      "name": "碾子山华安工业遗址博物馆",
+      "category": "自然风光",
+      "area": "齐齐哈尔"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "qiqihaer",
+      "name": "龙沙动植物园",
+      "category": "公园休闲",
+      "area": "齐齐哈尔"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "qiqihaer",
+      "name": "梅里斯达斡尔族风情园",
+      "category": "历史人文",
+      "area": "齐齐哈尔"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "qiqihaer",
+      "name": "大乘寺",
+      "category": "宗教寺庙",
+      "area": "齐齐哈尔"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "qiqihaer",
+      "name": "劳动湖",
+      "category": "自然风光",
+      "area": "齐齐哈尔"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "qiqihaer",
+      "name": "齐齐哈尔国家森林公园",
+      "category": "自然风光",
+      "area": "齐齐哈尔"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "qiqihaer",
+      "name": "富裕正洁寺",
+      "category": "宗教寺庙",
+      "area": "齐齐哈尔"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "qiqihaer",
+      "name": "泰来江桥",
+      "category": "自然风光",
+      "area": "齐齐哈尔"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "qiqihaer",
+      "name": "查罕诺村",
+      "category": "古镇街区",
+      "area": "齐齐哈尔"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "qiqihaer",
+      "name": "音河水库",
+      "category": "自然风光",
+      "area": "齐齐哈尔"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "qiqihaer",
+      "name": "碾子山蛇洞山",
+      "category": "自然风光",
+      "area": "齐齐哈尔"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "qiqihaer",
+      "name": "扎龙自然保护区",
+      "category": "历史人文",
+      "area": "齐齐哈尔"
+    },
+    {
+      "provinceId": "heilongjiang",
+      "cityId": "qiqihaer",
+      "name": "齐齐哈尔督军署旧址",
+      "category": "古镇街区",
+      "area": "齐齐哈尔"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "chongqing",
+      "name": "洪崖洞",
+      "category": "自然风光",
+      "area": "重庆主城"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "chongqing",
+      "name": "解放碑",
+      "category": "历史人文",
+      "area": "重庆主城"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "chongqing",
+      "name": "磁器口古镇",
+      "category": "古镇街区",
+      "area": "重庆主城"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "chongqing",
+      "name": "长江索道",
+      "category": "自然风光",
+      "area": "重庆主城"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "chongqing",
+      "name": "重庆中国三峡博物馆",
+      "category": "自然风光",
+      "area": "重庆主城"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "chongqing",
+      "name": "人民大礼堂",
+      "category": "历史人文",
+      "area": "重庆主城"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "chongqing",
+      "name": "李子坝轻轨站",
+      "category": "历史人文",
+      "area": "重庆主城"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "chongqing",
+      "name": "湖广会馆",
+      "category": "自然风光",
+      "area": "重庆主城"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "chongqing",
+      "name": "十八梯传统风貌区",
+      "category": "历史人文",
+      "area": "重庆主城"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "chongqing",
+      "name": "山城步道",
+      "category": "自然风光",
+      "area": "重庆主城"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "chongqing",
+      "name": "鹅岭二厂",
+      "category": "历史人文",
+      "area": "重庆主城"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "chongqing",
+      "name": "罗中立美术馆",
+      "category": "博物馆",
+      "area": "重庆主城"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "chongqing",
+      "name": "重庆科技馆",
+      "category": "历史人文",
+      "area": "重庆主城"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "chongqing",
+      "name": "南山一棵树观景台",
+      "category": "自然风光",
+      "area": "重庆主城"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "chongqing",
+      "name": "白公馆",
+      "category": "历史人文",
+      "area": "重庆主城"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "chongqing",
+      "name": "渣滓洞",
+      "category": "自然风光",
+      "area": "重庆主城"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "chongqing",
+      "name": "红岩革命纪念馆",
+      "category": "博物馆",
+      "area": "重庆主城"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "chongqing",
+      "name": "金刀峡",
+      "category": "自然风光",
+      "area": "重庆主城"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "chongqing",
+      "name": "黑山谷",
+      "category": "自然风光",
+      "area": "重庆主城"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "chongqing",
+      "name": "南温泉",
+      "category": "自然风光",
+      "area": "重庆主城"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "chongqing",
+      "name": "重庆动物园",
+      "category": "公园休闲",
+      "area": "重庆主城"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "chongqing",
+      "name": "观音桥步行街",
+      "category": "宗教寺庙",
+      "area": "重庆主城"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "wulong",
+      "name": "天生三桥",
+      "category": "历史人文",
+      "area": "武隆"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "wulong",
+      "name": "仙女山国家森林公园",
+      "category": "自然风光",
+      "area": "武隆"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "wulong",
+      "name": "芙蓉洞",
+      "category": "自然风光",
+      "area": "武隆"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "wulong",
+      "name": "龙水峡地缝",
+      "category": "自然风光",
+      "area": "武隆"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "wulong",
+      "name": "武隆喀斯特旅游区",
+      "category": "历史人文",
+      "area": "武隆"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "wulong",
+      "name": "天坑寨子",
+      "category": "自然风光",
+      "area": "武隆"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "wulong",
+      "name": "白马山天尺情缘",
+      "category": "自然风光",
+      "area": "武隆"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "wulong",
+      "name": "归原小镇",
+      "category": "历史人文",
+      "area": "武隆"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "wulong",
+      "name": "后坪天坑群",
+      "category": "自然风光",
+      "area": "武隆"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "wulong",
+      "name": "羊角古镇",
+      "category": "古镇街区",
+      "area": "武隆"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "wulong",
+      "name": "仙女山草原",
+      "category": "自然风光",
+      "area": "武隆"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "wulong",
+      "name": "芙蓉江",
+      "category": "自然风光",
+      "area": "武隆"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "wulong",
+      "name": "懒坝国际禅境艺术度假区",
+      "category": "历史人文",
+      "area": "武隆"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "wulong",
+      "name": "武隆博象馆",
+      "category": "历史人文",
+      "area": "武隆"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "wulong",
+      "name": "白马山观景台",
+      "category": "自然风光",
+      "area": "武隆"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "wulong",
+      "name": "石桥湖",
+      "category": "自然风光",
+      "area": "武隆"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "wulong",
+      "name": "梦幻奥陶纪",
+      "category": "历史人文",
+      "area": "武隆"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "wulong",
+      "name": "天生三桥玻璃眺台",
+      "category": "历史人文",
+      "area": "武隆"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "wulong",
+      "name": "仙女峡漂流",
+      "category": "自然风光",
+      "area": "武隆"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "wulong",
+      "name": "犀牛古寨",
+      "category": "古镇街区",
+      "area": "武隆"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "wulong",
+      "name": "龙门峡",
+      "category": "自然风光",
+      "area": "武隆"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "wulong",
+      "name": "武隆区博物馆",
+      "category": "博物馆",
+      "area": "武隆"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "dazu",
+      "name": "大足石刻",
+      "category": "宗教寺庙",
+      "area": "大足"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "dazu",
+      "name": "宝顶山石刻",
+      "category": "自然风光",
+      "area": "大足"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "dazu",
+      "name": "北山石刻",
+      "category": "自然风光",
+      "area": "大足"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "dazu",
+      "name": "南山石刻",
+      "category": "自然风光",
+      "area": "大足"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "dazu",
+      "name": "石门山石刻",
+      "category": "自然风光",
+      "area": "大足"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "dazu",
+      "name": "玉滩水库",
+      "category": "历史人文",
+      "area": "大足"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "dazu",
+      "name": "昌州古城",
+      "category": "古镇街区",
+      "area": "大足"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "dazu",
+      "name": "龙水湖",
+      "category": "自然风光",
+      "area": "大足"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "dazu",
+      "name": "五金博物馆",
+      "category": "博物馆",
+      "area": "大足"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "dazu",
+      "name": "大足博物馆",
+      "category": "博物馆",
+      "area": "大足"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "dazu",
+      "name": "圣寿寺",
+      "category": "宗教寺庙",
+      "area": "大足"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "dazu",
+      "name": "宝顶山摩崖造像",
+      "category": "自然风光",
+      "area": "大足"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "dazu",
+      "name": "北山摩崖造像",
+      "category": "自然风光",
+      "area": "大足"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "dazu",
+      "name": "雍溪古镇",
+      "category": "古镇街区",
+      "area": "大足"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "dazu",
+      "name": "高升镇遗址",
+      "category": "古镇街区",
+      "area": "大足"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "dazu",
+      "name": "棠香人家",
+      "category": "历史人文",
+      "area": "大足"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "dazu",
+      "name": "海棠香国历史文化风情城",
+      "category": "自然风光",
+      "area": "大足"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "dazu",
+      "name": "化龙水库",
+      "category": "历史人文",
+      "area": "大足"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "dazu",
+      "name": "龙岗山",
+      "category": "自然风光",
+      "area": "大足"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "dazu",
+      "name": "大足荷花山庄",
+      "category": "自然风光",
+      "area": "大足"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "dazu",
+      "name": "宝顶山广场",
+      "category": "自然风光",
+      "area": "大足"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "dazu",
+      "name": "大足石雕",
+      "category": "历史人文",
+      "area": "大足"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "fengjie",
+      "name": "白帝城",
+      "category": "古镇街区",
+      "area": "奉节"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "fengjie",
+      "name": "夔州博物馆",
+      "category": "博物馆",
+      "area": "奉节"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "fengjie",
+      "name": "瞿塘峡",
+      "category": "自然风光",
+      "area": "奉节"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "fengjie",
+      "name": "小寨天坑",
+      "category": "自然风光",
+      "area": "奉节"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "fengjie",
+      "name": "天井峡地缝",
+      "category": "自然风光",
+      "area": "奉节"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "fengjie",
+      "name": "三峡之巅",
+      "category": "自然风光",
+      "area": "奉节"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "fengjie",
+      "name": "夔门",
+      "category": "历史人文",
+      "area": "奉节"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "fengjie",
+      "name": "兴隆历史自然保护区",
+      "category": "历史人文",
+      "area": "奉节"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "fengjie",
+      "name": "龙桥土家族乡",
+      "category": "历史人文",
+      "area": "奉节"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "fengjie",
+      "name": "草堂河",
+      "category": "自然风光",
+      "area": "奉节"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "fengjie",
+      "name": "夔州古城",
+      "category": "古镇街区",
+      "area": "奉节"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "fengjie",
+      "name": "奉节县城墙遗址",
+      "category": "古镇街区",
+      "area": "奉节"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "fengjie",
+      "name": "赤甲山",
+      "category": "自然风光",
+      "area": "奉节"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "fengjie",
+      "name": "白帝城考古遗址公园",
+      "category": "古镇街区",
+      "area": "奉节"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "fengjie",
+      "name": "大树镇上磨村",
+      "category": "古镇街区",
+      "area": "奉节"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "fengjie",
+      "name": "羊市古镇",
+      "category": "古镇街区",
+      "area": "奉节"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "fengjie",
+      "name": "平安乡九盘河",
+      "category": "自然风光",
+      "area": "奉节"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "fengjie",
+      "name": "青龙镇",
+      "category": "历史人文",
+      "area": "奉节"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "fengjie",
+      "name": "朱衣环湖",
+      "category": "自然风光",
+      "area": "奉节"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "fengjie",
+      "name": "夔州大桥",
+      "category": "历史人文",
+      "area": "奉节"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "fengjie",
+      "name": "夔门广场",
+      "category": "公园休闲",
+      "area": "奉节"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "fengjie",
+      "name": "诗城博物馆",
+      "category": "古镇街区",
+      "area": "奉节"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "youyang",
+      "name": "酉阳桃花源",
+      "category": "历史人文",
+      "area": "酉阳"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "youyang",
+      "name": "龚滩古镇",
+      "category": "古镇街区",
+      "area": "酉阳"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "youyang",
+      "name": "乌江画廊",
+      "category": "自然风光",
+      "area": "酉阳"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "youyang",
+      "name": "叠石花谷",
+      "category": "历史人文",
+      "area": "酉阳"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "youyang",
+      "name": "阿蓬江大峡谷",
+      "category": "自然风光",
+      "area": "酉阳"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "youyang",
+      "name": "酉水河",
+      "category": "自然风光",
+      "area": "酉阳"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "youyang",
+      "name": "龙潭古镇",
+      "category": "古镇街区",
+      "area": "酉阳"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "youyang",
+      "name": "赵世炎故居",
+      "category": "古镇街区",
+      "area": "酉阳"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "youyang",
+      "name": "桃花源广场",
+      "category": "公园休闲",
+      "area": "酉阳"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "youyang",
+      "name": "龚滩古镇川主庙",
+      "category": "宗教寺庙",
+      "area": "酉阳"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "youyang",
+      "name": "酉阳博物馆",
+      "category": "博物馆",
+      "area": "酉阳"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "youyang",
+      "name": "大板营原始森林",
+      "category": "自然风光",
+      "area": "酉阳"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "youyang",
+      "name": "苍岭大峡谷",
+      "category": "自然风光",
+      "area": "酉阳"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "youyang",
+      "name": "毛坝群贤居",
+      "category": "历史人文",
+      "area": "酉阳"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "youyang",
+      "name": "宜居乡牛角滩",
+      "category": "历史人文",
+      "area": "酉阳"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "youyang",
+      "name": "酉阳古城",
+      "category": "古镇街区",
+      "area": "酉阳"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "youyang",
+      "name": "伏羲洞",
+      "category": "自然风光",
+      "area": "酉阳"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "youyang",
+      "name": "龙潭万寿宫",
+      "category": "宗教寺庙",
+      "area": "酉阳"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "youyang",
+      "name": "河湾山寨",
+      "category": "自然风光",
+      "area": "酉阳"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "youyang",
+      "name": "酉州古城",
+      "category": "古镇街区",
+      "area": "酉阳"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "youyang",
+      "name": "龚滩乌江渡口",
+      "category": "自然风光",
+      "area": "酉阳"
+    },
+    {
+      "provinceId": "chongqing",
+      "cityId": "youyang",
+      "name": "酉阳土家族苗族风情",
+      "category": "历史人文",
+      "area": "酉阳"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "chengdu",
+      "name": "成都大熊猫繁育研究基地",
+      "category": "历史人文",
+      "area": "成都"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "chengdu",
+      "name": "武侯祠",
+      "category": "宗教寺庙",
+      "area": "成都"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "chengdu",
+      "name": "杜甫草堂",
+      "category": "历史人文",
+      "area": "成都"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "chengdu",
+      "name": "宽窄巷子",
+      "category": "古镇街区",
+      "area": "成都"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "chengdu",
+      "name": "锦里",
+      "category": "历史人文",
+      "area": "成都"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "chengdu",
+      "name": "金沙遗址博物馆",
+      "category": "古镇街区",
+      "area": "成都"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "chengdu",
+      "name": "四川博物院",
+      "category": "历史人文",
+      "area": "成都"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "chengdu",
+      "name": "青城山",
+      "category": "自然风光",
+      "area": "成都"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "chengdu",
+      "name": "都江堰",
+      "category": "自然风光",
+      "area": "成都"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "chengdu",
+      "name": "青羊宫",
+      "category": "宗教寺庙",
+      "area": "成都"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "chengdu",
+      "name": "文殊院",
+      "category": "历史人文",
+      "area": "成都"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "chengdu",
+      "name": "人民公园",
+      "category": "公园休闲",
+      "area": "成都"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "chengdu",
+      "name": "望江楼公园",
+      "category": "自然风光",
+      "area": "成都"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "chengdu",
+      "name": "东郊记忆",
+      "category": "历史人文",
+      "area": "成都"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "chengdu",
+      "name": "洛带古镇",
+      "category": "古镇街区",
+      "area": "成都"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "chengdu",
+      "name": "黄龙溪古镇",
+      "category": "古镇街区",
+      "area": "成都"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "chengdu",
+      "name": "安仁古镇",
+      "category": "古镇街区",
+      "area": "成都"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "chengdu",
+      "name": "建川博物馆",
+      "category": "博物馆",
+      "area": "成都"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "chengdu",
+      "name": "成都博物馆",
+      "category": "博物馆",
+      "area": "成都"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "chengdu",
+      "name": "天府广场",
+      "category": "公园休闲",
+      "area": "成都"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "chengdu",
+      "name": "永陵博物馆",
+      "category": "古镇街区",
+      "area": "成都"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "chengdu",
+      "name": "西岭雪山",
+      "category": "自然风光",
+      "area": "成都"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "leshan",
+      "name": "乐山大佛",
+      "category": "自然风光",
+      "area": "乐山"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "leshan",
+      "name": "峨眉山",
+      "category": "自然风光",
+      "area": "乐山"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "leshan",
+      "name": "报国寺",
+      "category": "宗教寺庙",
+      "area": "乐山"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "leshan",
+      "name": "万年寺",
+      "category": "宗教寺庙",
+      "area": "乐山"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "leshan",
+      "name": "金顶",
+      "category": "历史人文",
+      "area": "乐山"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "leshan",
+      "name": "凌云寺",
+      "category": "宗教寺庙",
+      "area": "乐山"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "leshan",
+      "name": "乌尤寺",
+      "category": "宗教寺庙",
+      "area": "乐山"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "leshan",
+      "name": "嘉阳小火车",
+      "category": "历史人文",
+      "area": "乐山"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "leshan",
+      "name": "罗城古镇",
+      "category": "古镇街区",
+      "area": "乐山"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "leshan",
+      "name": "黑竹沟",
+      "category": "历史人文",
+      "area": "乐山"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "leshan",
+      "name": "大佛禅院",
+      "category": "宗教寺庙",
+      "area": "乐山"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "leshan",
+      "name": "东方佛都",
+      "category": "宗教寺庙",
+      "area": "乐山"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "leshan",
+      "name": "夹江千佛岩",
+      "category": "自然风光",
+      "area": "乐山"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "leshan",
+      "name": "犍为文庙",
+      "category": "宗教寺庙",
+      "area": "乐山"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "leshan",
+      "name": "沐川竹海",
+      "category": "自然风光",
+      "area": "乐山"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "leshan",
+      "name": "峨眉山博物馆",
+      "category": "自然风光",
+      "area": "乐山"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "leshan",
+      "name": "峨眉山伏虎寺",
+      "category": "自然风光",
+      "area": "乐山"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "leshan",
+      "name": "苏稽古镇",
+      "category": "古镇街区",
+      "area": "乐山"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "leshan",
+      "name": "嘉定坊",
+      "category": "历史人文",
+      "area": "乐山"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "leshan",
+      "name": "峨眉山雷洞坪",
+      "category": "自然风光",
+      "area": "乐山"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "leshan",
+      "name": "大瓦山",
+      "category": "自然风光",
+      "area": "乐山"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "leshan",
+      "name": "乐山文庙",
+      "category": "自然风光",
+      "area": "乐山"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "aba",
+      "name": "九寨沟",
+      "category": "古镇街区",
+      "area": "阿坝"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "aba",
+      "name": "黄龙风景区",
+      "category": "历史人文",
+      "area": "阿坝"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "aba",
+      "name": "四姑娘山",
+      "category": "自然风光",
+      "area": "阿坝"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "aba",
+      "name": "毕棚沟",
+      "category": "历史人文",
+      "area": "阿坝"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "aba",
+      "name": "达古冰川",
+      "category": "自然风光",
+      "area": "阿坝"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "aba",
+      "name": "若尔盖草原",
+      "category": "自然风光",
+      "area": "阿坝"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "aba",
+      "name": "花湖",
+      "category": "自然风光",
+      "area": "阿坝"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "aba",
+      "name": "松潘古城",
+      "category": "古镇街区",
+      "area": "阿坝"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "aba",
+      "name": "叠溪海子",
+      "category": "自然风光",
+      "area": "阿坝"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "aba",
+      "name": "桃坪羌寨",
+      "category": "古镇街区",
+      "area": "阿坝"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "aba",
+      "name": "甘堡藏寨",
+      "category": "古镇街区",
+      "area": "阿坝"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "aba",
+      "name": "米亚罗",
+      "category": "历史人文",
+      "area": "阿坝"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "aba",
+      "name": "鹧鸪山",
+      "category": "自然风光",
+      "area": "阿坝"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "aba",
+      "name": "理县毕棚沟",
+      "category": "历史人文",
+      "area": "阿坝"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "aba",
+      "name": "红原月亮湾",
+      "category": "自然风光",
+      "area": "阿坝"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "aba",
+      "name": "莲宝叶则",
+      "category": "历史人文",
+      "area": "阿坝"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "aba",
+      "name": "卓克基土司官寨",
+      "category": "古镇街区",
+      "area": "阿坝"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "aba",
+      "name": "黄河九曲第一湾",
+      "category": "自然风光",
+      "area": "阿坝"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "aba",
+      "name": "九寨沟五花海",
+      "category": "自然风光",
+      "area": "阿坝"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "aba",
+      "name": "诺日朗瀑布",
+      "category": "自然风光",
+      "area": "阿坝"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "aba",
+      "name": "牟尼沟",
+      "category": "历史人文",
+      "area": "阿坝"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "aba",
+      "name": "九寨沟长海",
+      "category": "自然风光",
+      "area": "阿坝"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "garze",
+      "name": "稻城亚丁",
+      "category": "古镇街区",
+      "area": "甘孜"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "garze",
+      "name": "海螺沟",
+      "category": "自然风光",
+      "area": "甘孜"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "garze",
+      "name": "木格措",
+      "category": "历史人文",
+      "area": "甘孜"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "garze",
+      "name": "新都桥",
+      "category": "历史人文",
+      "area": "甘孜"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "garze",
+      "name": "塔公草原",
+      "category": "自然风光",
+      "area": "甘孜"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "garze",
+      "name": "墨石公园",
+      "category": "公园休闲",
+      "area": "甘孜"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "garze",
+      "name": "康定情歌风景区",
+      "category": "历史人文",
+      "area": "甘孜"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "garze",
+      "name": "燕子沟",
+      "category": "历史人文",
+      "area": "甘孜"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "garze",
+      "name": "贡嘎山",
+      "category": "自然风光",
+      "area": "甘孜"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "garze",
+      "name": "丹巴甲居藏寨",
+      "category": "古镇街区",
+      "area": "甘孜"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "garze",
+      "name": "党岭",
+      "category": "历史人文",
+      "area": "甘孜"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "garze",
+      "name": "措普沟",
+      "category": "历史人文",
+      "area": "甘孜"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "garze",
+      "name": "格聂神山",
+      "category": "自然风光",
+      "area": "甘孜"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "garze",
+      "name": "理塘草原",
+      "category": "自然风光",
+      "area": "甘孜"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "garze",
+      "name": "毛垭大草原",
+      "category": "自然风光",
+      "area": "甘孜"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "garze",
+      "name": "雅拉雪山",
+      "category": "自然风光",
+      "area": "甘孜"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "garze",
+      "name": "折多山",
+      "category": "自然风光",
+      "area": "甘孜"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "garze",
+      "name": "木雅圣地",
+      "category": "历史人文",
+      "area": "甘孜"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "garze",
+      "name": "泸定桥",
+      "category": "历史人文",
+      "area": "甘孜"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "garze",
+      "name": "色达五明佛学院",
+      "category": "宗教寺庙",
+      "area": "甘孜"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "garze",
+      "name": "伍须海",
+      "category": "自然风光",
+      "area": "甘孜"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "garze",
+      "name": "海螺沟冰川",
+      "category": "自然风光",
+      "area": "甘孜"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "mianyang",
+      "name": "北川羌城旅游区",
+      "category": "古镇街区",
+      "area": "绵阳"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "mianyang",
+      "name": "李白故里",
+      "category": "历史人文",
+      "area": "绵阳"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "mianyang",
+      "name": "九皇山",
+      "category": "自然风光",
+      "area": "绵阳"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "mianyang",
+      "name": "窦圌山",
+      "category": "自然风光",
+      "area": "绵阳"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "mianyang",
+      "name": "罗浮山温泉",
+      "category": "自然风光",
+      "area": "绵阳"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "mianyang",
+      "name": "仙海水利风景区",
+      "category": "自然风光",
+      "area": "绵阳"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "mianyang",
+      "name": "越王楼",
+      "category": "历史人文",
+      "area": "绵阳"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "mianyang",
+      "name": "富乐山",
+      "category": "自然风光",
+      "area": "绵阳"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "mianyang",
+      "name": "七曲山大庙",
+      "category": "自然风光",
+      "area": "绵阳"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "mianyang",
+      "name": "梓潼两弹城",
+      "category": "古镇街区",
+      "area": "绵阳"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "mianyang",
+      "name": "白水湖",
+      "category": "自然风光",
+      "area": "绵阳"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "mianyang",
+      "name": "药王谷",
+      "category": "历史人文",
+      "area": "绵阳"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "mianyang",
+      "name": "寻龙山",
+      "category": "自然风光",
+      "area": "绵阳"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "mianyang",
+      "name": "中华洞天",
+      "category": "自然风光",
+      "area": "绵阳"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "mianyang",
+      "name": "平武报恩寺",
+      "category": "宗教寺庙",
+      "area": "绵阳"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "mianyang",
+      "name": "老君山",
+      "category": "自然风光",
+      "area": "绵阳"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "mianyang",
+      "name": "翠云廊",
+      "category": "历史人文",
+      "area": "绵阳"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "mianyang",
+      "name": "绵阳博物馆",
+      "category": "博物馆",
+      "area": "绵阳"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "mianyang",
+      "name": "北川地震遗址",
+      "category": "古镇街区",
+      "area": "绵阳"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "mianyang",
+      "name": "江油猿王洞",
+      "category": "自然风光",
+      "area": "绵阳"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "mianyang",
+      "name": "鲁班湖",
+      "category": "自然风光",
+      "area": "绵阳"
+    },
+    {
+      "provinceId": "sichuan",
+      "cityId": "mianyang",
+      "name": "中华科技城",
+      "category": "古镇街区",
+      "area": "绵阳"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "guiyang",
+      "name": "甲秀楼",
+      "category": "历史人文",
+      "area": "贵阳"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "guiyang",
+      "name": "青岩古镇",
+      "category": "古镇街区",
+      "area": "贵阳"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "guiyang",
+      "name": "黔灵山公园",
+      "category": "自然风光",
+      "area": "贵阳"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "guiyang",
+      "name": "贵州省博物馆",
+      "category": "博物馆",
+      "area": "贵阳"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "guiyang",
+      "name": "天河潭",
+      "category": "自然风光",
+      "area": "贵阳"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "guiyang",
+      "name": "花溪公园",
+      "category": "公园休闲",
+      "area": "贵阳"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "guiyang",
+      "name": "高坡苗乡",
+      "category": "历史人文",
+      "area": "贵阳"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "guiyang",
+      "name": "阿哈湖国家湿地公园",
+      "category": "自然风光",
+      "area": "贵阳"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "guiyang",
+      "name": "贵州地质博物馆",
+      "category": "博物馆",
+      "area": "贵阳"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "guiyang",
+      "name": "阳明祠",
+      "category": "宗教寺庙",
+      "area": "贵阳"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "guiyang",
+      "name": "文昌阁",
+      "category": "历史人文",
+      "area": "贵阳"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "guiyang",
+      "name": "河滨公园",
+      "category": "自然风光",
+      "area": "贵阳"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "guiyang",
+      "name": "观山湖公园",
+      "category": "自然风光",
+      "area": "贵阳"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "guiyang",
+      "name": "青云市集",
+      "category": "历史人文",
+      "area": "贵阳"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "guiyang",
+      "name": "白云蓬莱仙界",
+      "category": "历史人文",
+      "area": "贵阳"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "guiyang",
+      "name": "多彩贵州城",
+      "category": "古镇街区",
+      "area": "贵阳"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "guiyang",
+      "name": "红枫湖",
+      "category": "自然风光",
+      "area": "贵阳"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "guiyang",
+      "name": "时光贵州小镇",
+      "category": "历史人文",
+      "area": "贵阳"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "guiyang",
+      "name": "贵阳森林公园",
+      "category": "自然风光",
+      "area": "贵阳"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "guiyang",
+      "name": "永乐桃源",
+      "category": "历史人文",
+      "area": "贵阳"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "guiyang",
+      "name": "香纸沟",
+      "category": "历史人文",
+      "area": "贵阳"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "guiyang",
+      "name": "息烽集中营革命历史纪念馆",
+      "category": "博物馆",
+      "area": "贵阳"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "anshun",
+      "name": "黄果树瀑布",
+      "category": "自然风光",
+      "area": "安顺"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "anshun",
+      "name": "陡坡塘瀑布",
+      "category": "自然风光",
+      "area": "安顺"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "anshun",
+      "name": "天星桥",
+      "category": "历史人文",
+      "area": "安顺"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "anshun",
+      "name": "龙宫",
+      "category": "宗教寺庙",
+      "area": "安顺"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "anshun",
+      "name": "格凸河",
+      "category": "自然风光",
+      "area": "安顺"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "anshun",
+      "name": "云峰八寨",
+      "category": "自然风光",
+      "area": "安顺"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "anshun",
+      "name": "旧州古镇",
+      "category": "古镇街区",
+      "area": "安顺"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "anshun",
+      "name": "夜郎洞",
+      "category": "自然风光",
+      "area": "安顺"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "anshun",
+      "name": "关岭化石群国家地质公园",
+      "category": "公园休闲",
+      "area": "安顺"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "anshun",
+      "name": "坝陵河大桥",
+      "category": "自然风光",
+      "area": "安顺"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "anshun",
+      "name": "安顺文庙",
+      "category": "宗教寺庙",
+      "area": "安顺"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "anshun",
+      "name": "虹山湖",
+      "category": "自然风光",
+      "area": "安顺"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "anshun",
+      "name": "紫云格凸河",
+      "category": "自然风光",
+      "area": "安顺"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "anshun",
+      "name": "天龙屯堡",
+      "category": "历史人文",
+      "area": "安顺"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "anshun",
+      "name": "黄果树大瀑布",
+      "category": "自然风光",
+      "area": "安顺"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "anshun",
+      "name": "滴水滩瀑布",
+      "category": "自然风光",
+      "area": "安顺"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "anshun",
+      "name": "神龙洞",
+      "category": "自然风光",
+      "area": "安顺"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "anshun",
+      "name": "石头寨",
+      "category": "古镇街区",
+      "area": "安顺"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "anshun",
+      "name": "高荡千年布依古寨",
+      "category": "古镇街区",
+      "area": "安顺"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "anshun",
+      "name": "安顺武庙",
+      "category": "宗教寺庙",
+      "area": "安顺"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "anshun",
+      "name": "苗岭屯堡",
+      "category": "历史人文",
+      "area": "安顺"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "anshun",
+      "name": "普定穿洞",
+      "category": "自然风光",
+      "area": "安顺"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "qiandongnan",
+      "name": "西江千户苗寨",
+      "category": "自然风光",
+      "area": "黔东南"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "qiandongnan",
+      "name": "镇远古城",
+      "category": "古镇街区",
+      "area": "黔东南"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "qiandongnan",
+      "name": "肇兴侗寨",
+      "category": "古镇街区",
+      "area": "黔东南"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "qiandongnan",
+      "name": "加榜梯田",
+      "category": "自然风光",
+      "area": "黔东南"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "qiandongnan",
+      "name": "朗德苗寨",
+      "category": "古镇街区",
+      "area": "黔东南"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "qiandongnan",
+      "name": "舞阳河",
+      "category": "自然风光",
+      "area": "黔东南"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "qiandongnan",
+      "name": "施秉云台山",
+      "category": "自然风光",
+      "area": "黔东南"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "qiandongnan",
+      "name": "杉木河",
+      "category": "自然风光",
+      "area": "黔东南"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "qiandongnan",
+      "name": "岜沙苗寨",
+      "category": "古镇街区",
+      "area": "黔东南"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "qiandongnan",
+      "name": "榕江大利侗寨",
+      "category": "自然风光",
+      "area": "黔东南"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "qiandongnan",
+      "name": "堂安侗寨",
+      "category": "古镇街区",
+      "area": "黔东南"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "qiandongnan",
+      "name": "黎平翘街",
+      "category": "古镇街区",
+      "area": "黔东南"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "qiandongnan",
+      "name": "从江增冲鼓楼",
+      "category": "自然风光",
+      "area": "黔东南"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "qiandongnan",
+      "name": "台江苗族姊妹节",
+      "category": "自然风光",
+      "area": "黔东南"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "qiandongnan",
+      "name": "剑河温泉",
+      "category": "自然风光",
+      "area": "黔东南"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "qiandongnan",
+      "name": "雷公山",
+      "category": "自然风光",
+      "area": "黔东南"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "qiandongnan",
+      "name": "丹寨万达小镇",
+      "category": "古镇街区",
+      "area": "黔东南"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "qiandongnan",
+      "name": "凯里民族文化宫",
+      "category": "宗教寺庙",
+      "area": "黔东南"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "qiandongnan",
+      "name": "下司古镇",
+      "category": "古镇街区",
+      "area": "黔东南"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "qiandongnan",
+      "name": "榕江村超足球场",
+      "category": "自然风光",
+      "area": "黔东南"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "qiandongnan",
+      "name": "黄平飞云大峡谷",
+      "category": "自然风光",
+      "area": "黔东南"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "qiandongnan",
+      "name": "三穗颇洞古村",
+      "category": "自然风光",
+      "area": "黔东南"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "tongren",
+      "name": "梵净山",
+      "category": "自然风光",
+      "area": "铜仁"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "tongren",
+      "name": "大明边城",
+      "category": "古镇街区",
+      "area": "铜仁"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "tongren",
+      "name": "朱砂古镇",
+      "category": "古镇街区",
+      "area": "铜仁"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "tongren",
+      "name": "亚木沟",
+      "category": "历史人文",
+      "area": "铜仁"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "tongren",
+      "name": "云舍村",
+      "category": "古镇街区",
+      "area": "铜仁"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "tongren",
+      "name": "石阡温泉",
+      "category": "自然风光",
+      "area": "铜仁"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "tongren",
+      "name": "九龙洞",
+      "category": "自然风光",
+      "area": "铜仁"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "tongren",
+      "name": "中南门历史文化旅游区",
+      "category": "历史人文",
+      "area": "铜仁"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "tongren",
+      "name": "铜仁大峡谷",
+      "category": "自然风光",
+      "area": "铜仁"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "tongren",
+      "name": "寨沙侗寨",
+      "category": "古镇街区",
+      "area": "铜仁"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "tongren",
+      "name": "佛顶山",
+      "category": "自然风光",
+      "area": "铜仁"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "tongren",
+      "name": "万山矿山公园",
+      "category": "自然风光",
+      "area": "铜仁"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "tongren",
+      "name": "思南温泉石林",
+      "category": "自然风光",
+      "area": "铜仁"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "tongren",
+      "name": "印江团龙",
+      "category": "自然风光",
+      "area": "铜仁"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "tongren",
+      "name": "江口寨沙",
+      "category": "自然风光",
+      "area": "铜仁"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "tongren",
+      "name": "沿河乌江山峡",
+      "category": "自然风光",
+      "area": "铜仁"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "tongren",
+      "name": "德江傩堂戏",
+      "category": "自然风光",
+      "area": "铜仁"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "tongren",
+      "name": "玉屏侗乡风情园",
+      "category": "历史人文",
+      "area": "铜仁"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "tongren",
+      "name": "松桃苗王城",
+      "category": "古镇街区",
+      "area": "铜仁"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "tongren",
+      "name": "碧江风雨桥",
+      "category": "自然风光",
+      "area": "铜仁"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "tongren",
+      "name": "麻阳河国家级自然保护区",
+      "category": "自然风光",
+      "area": "铜仁"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "tongren",
+      "name": "石阡古温泉",
+      "category": "自然风光",
+      "area": "铜仁"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "qianxinan",
+      "name": "万峰林",
+      "category": "自然风光",
+      "area": "黔西南"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "qianxinan",
+      "name": "马岭河峡谷",
+      "category": "自然风光",
+      "area": "黔西南"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "qianxinan",
+      "name": "兴义万峰湖",
+      "category": "自然风光",
+      "area": "黔西南"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "qianxinan",
+      "name": "贵州醇景区",
+      "category": "历史人文",
+      "area": "黔西南"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "qianxinan",
+      "name": "二十四道拐",
+      "category": "历史人文",
+      "area": "黔西南"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "qianxinan",
+      "name": "双乳峰",
+      "category": "自然风光",
+      "area": "黔西南"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "qianxinan",
+      "name": "晴隆古城",
+      "category": "古镇街区",
+      "area": "黔西南"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "qianxinan",
+      "name": "贞丰古城",
+      "category": "古镇街区",
+      "area": "黔西南"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "qianxinan",
+      "name": "北盘江大峡谷",
+      "category": "自然风光",
+      "area": "黔西南"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "qianxinan",
+      "name": "安龙招堤",
+      "category": "历史人文",
+      "area": "黔西南"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "qianxinan",
+      "name": "何应钦故居",
+      "category": "古镇街区",
+      "area": "黔西南"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "qianxinan",
+      "name": "放马坪",
+      "category": "历史人文",
+      "area": "黔西南"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "qianxinan",
+      "name": "泥凼石林",
+      "category": "自然风光",
+      "area": "黔西南"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "qianxinan",
+      "name": "南龙布依古寨",
+      "category": "古镇街区",
+      "area": "黔西南"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "qianxinan",
+      "name": "兴义刘氏庄园",
+      "category": "历史人文",
+      "area": "黔西南"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "qianxinan",
+      "name": "义龙山地旅游运动休闲博览园",
+      "category": "自然风光",
+      "area": "黔西南"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "qianxinan",
+      "name": "鲁布革深谷湖",
+      "category": "自然风光",
+      "area": "黔西南"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "qianxinan",
+      "name": "兴仁放马坪",
+      "category": "历史人文",
+      "area": "黔西南"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "qianxinan",
+      "name": "万峰林纳灰村",
+      "category": "自然风光",
+      "area": "黔西南"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "qianxinan",
+      "name": "马岭河天星画廊",
+      "category": "自然风光",
+      "area": "黔西南"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "qianxinan",
+      "name": "兴义国家地质公园",
+      "category": "公园休闲",
+      "area": "黔西南"
+    },
+    {
+      "provinceId": "guizhou",
+      "cityId": "qianxinan",
+      "name": "晴隆抗战文化广场",
+      "category": "公园休闲",
+      "area": "黔西南"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "kunming",
+      "name": "滇池",
+      "category": "历史人文",
+      "area": "昆明"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "kunming",
+      "name": "西山",
+      "category": "自然风光",
+      "area": "昆明"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "kunming",
+      "name": "石林",
+      "category": "自然风光",
+      "area": "昆明"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "kunming",
+      "name": "翠湖公园",
+      "category": "自然风光",
+      "area": "昆明"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "kunming",
+      "name": "云南民族村",
+      "category": "古镇街区",
+      "area": "昆明"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "kunming",
+      "name": "金马碧鸡坊",
+      "category": "历史人文",
+      "area": "昆明"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "kunming",
+      "name": "大观公园",
+      "category": "宗教寺庙",
+      "area": "昆明"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "kunming",
+      "name": "云南省博物馆",
+      "category": "博物馆",
+      "area": "昆明"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "kunming",
+      "name": "官渡古镇",
+      "category": "古镇街区",
+      "area": "昆明"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "kunming",
+      "name": "东川红土地",
+      "category": "自然风光",
+      "area": "昆明"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "kunming",
+      "name": "九乡风景区",
+      "category": "历史人文",
+      "area": "昆明"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "kunming",
+      "name": "轿子雪山",
+      "category": "自然风光",
+      "area": "昆明"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "kunming",
+      "name": "昆明黑龙潭公园",
+      "category": "公园休闲",
+      "area": "昆明"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "kunming",
+      "name": "金殿风景区",
+      "category": "历史人文",
+      "area": "昆明"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "kunming",
+      "name": "昆明植物园",
+      "category": "公园休闲",
+      "area": "昆明"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "kunming",
+      "name": "海埂大坝",
+      "category": "自然风光",
+      "area": "昆明"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "kunming",
+      "name": "斗南花市",
+      "category": "历史人文",
+      "area": "昆明"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "kunming",
+      "name": "世界园艺博览园",
+      "category": "公园休闲",
+      "area": "昆明"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "kunming",
+      "name": "圆通山",
+      "category": "自然风光",
+      "area": "昆明"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "kunming",
+      "name": "陆军讲武堂",
+      "category": "历史人文",
+      "area": "昆明"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "kunming",
+      "name": "安宁温泉",
+      "category": "自然风光",
+      "area": "昆明"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "kunming",
+      "name": "阳宗海",
+      "category": "自然风光",
+      "area": "昆明"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "dali",
+      "name": "大理古城",
+      "category": "古镇街区",
+      "area": "大理"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "dali",
+      "name": "洱海",
+      "category": "自然风光",
+      "area": "大理"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "dali",
+      "name": "崇圣寺三塔",
+      "category": "宗教寺庙",
+      "area": "大理"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "dali",
+      "name": "苍山",
+      "category": "自然风光",
+      "area": "大理"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "dali",
+      "name": "喜洲古镇",
+      "category": "古镇街区",
+      "area": "大理"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "dali",
+      "name": "双廊古镇",
+      "category": "古镇街区",
+      "area": "大理"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "dali",
+      "name": "沙溪古镇",
+      "category": "古镇街区",
+      "area": "大理"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "dali",
+      "name": "鸡足山",
+      "category": "自然风光",
+      "area": "大理"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "dali",
+      "name": "石宝山",
+      "category": "自然风光",
+      "area": "大理"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "dali",
+      "name": "巍山古城",
+      "category": "自然风光",
+      "area": "大理"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "dali",
+      "name": "诺邓古村",
+      "category": "古镇街区",
+      "area": "大理"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "dali",
+      "name": "南诏风情岛",
+      "category": "历史人文",
+      "area": "大理"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "dali",
+      "name": "海舌生态公园",
+      "category": "自然风光",
+      "area": "大理"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "dali",
+      "name": "周城扎染",
+      "category": "古镇街区",
+      "area": "大理"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "dali",
+      "name": "蝴蝶泉",
+      "category": "历史人文",
+      "area": "大理"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "dali",
+      "name": "大理州博物馆",
+      "category": "博物馆",
+      "area": "大理"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "dali",
+      "name": "剑川木雕村",
+      "category": "古镇街区",
+      "area": "大理"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "dali",
+      "name": "茈碧湖",
+      "category": "自然风光",
+      "area": "大理"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "dali",
+      "name": "天龙八部影视城",
+      "category": "古镇街区",
+      "area": "大理"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "dali",
+      "name": "寂照庵",
+      "category": "历史人文",
+      "area": "大理"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "dali",
+      "name": "无为寺",
+      "category": "宗教寺庙",
+      "area": "大理"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "dali",
+      "name": "巍宝山",
+      "category": "自然风光",
+      "area": "大理"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "lijiang",
+      "name": "丽江古城",
+      "category": "自然风光",
+      "area": "丽江"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "lijiang",
+      "name": "玉龙雪山",
+      "category": "自然风光",
+      "area": "丽江"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "lijiang",
+      "name": "泸沽湖",
+      "category": "自然风光",
+      "area": "丽江"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "lijiang",
+      "name": "束河古镇",
+      "category": "自然风光",
+      "area": "丽江"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "lijiang",
+      "name": "白沙古镇",
+      "category": "古镇街区",
+      "area": "丽江"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "lijiang",
+      "name": "虎跳峡",
+      "category": "自然风光",
+      "area": "丽江"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "lijiang",
+      "name": "蓝月谷",
+      "category": "历史人文",
+      "area": "丽江"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "lijiang",
+      "name": "拉市海",
+      "category": "自然风光",
+      "area": "丽江"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "lijiang",
+      "name": "丽江黑龙潭公园",
+      "category": "自然风光",
+      "area": "丽江"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "lijiang",
+      "name": "木府",
+      "category": "历史人文",
+      "area": "丽江"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "lijiang",
+      "name": "东巴文化博物馆",
+      "category": "博物馆",
+      "area": "丽江"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "lijiang",
+      "name": "玉水寨",
+      "category": "古镇街区",
+      "area": "丽江"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "lijiang",
+      "name": "观音峡",
+      "category": "自然风光",
+      "area": "丽江"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "lijiang",
+      "name": "老君山黎明景区",
+      "category": "自然风光",
+      "area": "丽江"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "lijiang",
+      "name": "文海",
+      "category": "自然风光",
+      "area": "丽江"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "lijiang",
+      "name": "宝山石头城",
+      "category": "自然风光",
+      "area": "丽江"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "lijiang",
+      "name": "长江第一湾",
+      "category": "自然风光",
+      "area": "丽江"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "lijiang",
+      "name": "丽江千古情",
+      "category": "自然风光",
+      "area": "丽江"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "lijiang",
+      "name": "玉龙雪山冰川公园",
+      "category": "自然风光",
+      "area": "丽江"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "lijiang",
+      "name": "甘海子",
+      "category": "自然风光",
+      "area": "丽江"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "lijiang",
+      "name": "指云寺",
+      "category": "宗教寺庙",
+      "area": "丽江"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "lijiang",
+      "name": "玉峰寺",
+      "category": "自然风光",
+      "area": "丽江"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "shangri-la",
+      "name": "普达措国家公园",
+      "category": "公园休闲",
+      "area": "香格里拉"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "shangri-la",
+      "name": "松赞林寺",
+      "category": "自然风光",
+      "area": "香格里拉"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "shangri-la",
+      "name": "独克宗古城",
+      "category": "古镇街区",
+      "area": "香格里拉"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "shangri-la",
+      "name": "梅里雪山",
+      "category": "自然风光",
+      "area": "香格里拉"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "shangri-la",
+      "name": "雨崩村",
+      "category": "古镇街区",
+      "area": "香格里拉"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "shangri-la",
+      "name": "纳帕海",
+      "category": "自然风光",
+      "area": "香格里拉"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "shangri-la",
+      "name": "虎跳峡香格里拉段",
+      "category": "自然风光",
+      "area": "香格里拉"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "shangri-la",
+      "name": "巴拉格宗",
+      "category": "历史人文",
+      "area": "香格里拉"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "shangri-la",
+      "name": "白马雪山",
+      "category": "自然风光",
+      "area": "香格里拉"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "shangri-la",
+      "name": "香格里拉大峡谷",
+      "category": "自然风光",
+      "area": "香格里拉"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "shangri-la",
+      "name": "哈巴雪山",
+      "category": "自然风光",
+      "area": "香格里拉"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "shangri-la",
+      "name": "属都湖",
+      "category": "自然风光",
+      "area": "香格里拉"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "shangri-la",
+      "name": "碧塔海",
+      "category": "自然风光",
+      "area": "香格里拉"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "shangri-la",
+      "name": "伊拉草原",
+      "category": "自然风光",
+      "area": "香格里拉"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "shangri-la",
+      "name": "飞来寺",
+      "category": "宗教寺庙",
+      "area": "香格里拉"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "shangri-la",
+      "name": "明永冰川",
+      "category": "自然风光",
+      "area": "香格里拉"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "shangri-la",
+      "name": "东竹林寺",
+      "category": "自然风光",
+      "area": "香格里拉"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "shangri-la",
+      "name": "香格里拉虎跳峡",
+      "category": "自然风光",
+      "area": "香格里拉"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "shangri-la",
+      "name": "尼汝村",
+      "category": "古镇街区",
+      "area": "香格里拉"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "shangri-la",
+      "name": "月光广场",
+      "category": "公园休闲",
+      "area": "香格里拉"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "shangri-la",
+      "name": "龟山公园",
+      "category": "自然风光",
+      "area": "香格里拉"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "shangri-la",
+      "name": "石卡雪山",
+      "category": "自然风光",
+      "area": "香格里拉"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "baoshan",
+      "name": "腾冲热海",
+      "category": "自然风光",
+      "area": "保山"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "baoshan",
+      "name": "和顺古镇",
+      "category": "古镇街区",
+      "area": "保山"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "baoshan",
+      "name": "火山地热国家地质公园",
+      "category": "自然风光",
+      "area": "保山"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "baoshan",
+      "name": "北海湿地",
+      "category": "自然风光",
+      "area": "保山"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "baoshan",
+      "name": "银杏村",
+      "category": "古镇街区",
+      "area": "保山"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "baoshan",
+      "name": "高黎贡山",
+      "category": "自然风光",
+      "area": "保山"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "baoshan",
+      "name": "国殇墓园",
+      "category": "历史人文",
+      "area": "保山"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "baoshan",
+      "name": "叠水河瀑布",
+      "category": "自然风光",
+      "area": "保山"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "baoshan",
+      "name": "黑鱼河",
+      "category": "自然风光",
+      "area": "保山"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "baoshan",
+      "name": "柱状节理",
+      "category": "历史人文",
+      "area": "保山"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "baoshan",
+      "name": "来凤山国家森林公园",
+      "category": "自然风光",
+      "area": "保山"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "baoshan",
+      "name": "腾冲博物馆",
+      "category": "博物馆",
+      "area": "保山"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "baoshan",
+      "name": "龙江特大桥",
+      "category": "自然风光",
+      "area": "保山"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "baoshan",
+      "name": "松山战役旧址",
+      "category": "自然风光",
+      "area": "保山"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "baoshan",
+      "name": "滇西抗战纪念馆",
+      "category": "博物馆",
+      "area": "保山"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "baoshan",
+      "name": "荷花温泉",
+      "category": "自然风光",
+      "area": "保山"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "baoshan",
+      "name": "云峰山",
+      "category": "自然风光",
+      "area": "保山"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "baoshan",
+      "name": "界头手抄纸博物馆",
+      "category": "博物馆",
+      "area": "保山"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "baoshan",
+      "name": "樱花谷",
+      "category": "历史人文",
+      "area": "保山"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "baoshan",
+      "name": "玛御谷温泉小镇",
+      "category": "自然风光",
+      "area": "保山"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "baoshan",
+      "name": "保山青华海",
+      "category": "自然风光",
+      "area": "保山"
+    },
+    {
+      "provinceId": "yunnan",
+      "cityId": "baoshan",
+      "name": "昌宁鸡飞温泉",
+      "category": "自然风光",
+      "area": "保山"
+    }
+  ]
+}

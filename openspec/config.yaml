@@ -1,0 +1,51 @@
+schema: spec-driven
+
+# Shown to AI when creating OpenSpec artifacts (proposal / specs / design / tasks).
+context: |
+  ## Product
+  Personal-Assistant：个人助手仓库。主力应用在 `task-planner/`（任务计划 + 食谱/菜单 + 旅行 + 健身 + AI 助手）。
+
+  ## Stack
+  - Backend: Node.js (ESM), Express, better-sqlite3, JWT, Socket.IO
+    Path: `task-planner/backend/`
+  - Frontend: React 18, Vite 6, React Router 7
+    Path: `task-planner/frontend/`
+  - Deploy: build frontend → serve via backend; `npm run install:all && npm run build` under `task-planner/`
+
+  ## Key domains (use these OpenSpec domain folder names when relevant)
+  - `auth` — login / JWT / multi-user
+  - `tasks` — day schedule, task CRUD, sync
+  - `recipes` — recipes, menus, favorites, calories
+  - `travel` — spots catalog, national plans, favorites, photo map
+  - `fitness` — equipment / sports catalog & favorites
+  - `assistant` — catalog search tools, chat tools
+  - `ops` — seed scripts, sync (e.g. gnomd), deploy docs
+
+  ## Conventions
+  - Prefer Chinese UI copy; keep code identifiers in English
+  - Do not invent fake travel spot photos; only real downloaded maps or placeholders
+  - Frontend design: follow existing CSS tokens in `frontend/src/styles/theme.css`; avoid generic purple/AI-slop looks
+  - Commits: only when the user asks; never force-push main
+  - Brownfield rule: write specs only for the slice being changed; do not back-fill the whole app
+
+  ## OpenSpec workflow (Cursor)
+  1. Optional: `/opsx:explore` to map code before committing
+  2. `/opsx:propose <change-name>` → review proposal/design/specs/tasks
+  3. `/opsx:apply` → implement tasks
+  4. `/opsx:archive` → merge deltas into `openspec/specs/`
+
+rules:
+  proposal:
+    - Keep proposals under ~500 words
+    - Always include Non-goals
+    - Call out affected paths under task-planner/backend or frontend
+  specs:
+    - Use SHALL/MUST requirements with concrete Scenario (WHEN/THEN)
+    - Prefer domain folders listed in context (travel, recipes, tasks, …)
+    - Spec only the behavior this change touches
+  design:
+    - Prefer extending existing modules over new parallel systems
+    - Note data volume / performance when touching travel catalogs (~4k spots, ~15k plans)
+  tasks:
+    - Break into checkbox items small enough to verify independently
+    - Include a final verification task (manual or automated)

@@ -1,0 +1,15 @@
+{
+  "fetchedAt": "2026-07-23T04:20:30.504Z",
+  "spots": [
+    {
+      "cityId": "zhangzhou",
+      "cityName": "漳州",
+      "name": "神話般的山",
+      "category": "山地峡谷",
+      "area": "漳州",
+      "location": "福建省漳州",
+      "source": "bing",
+      "provinceId": "fujian"
+    }
+  ]
+}

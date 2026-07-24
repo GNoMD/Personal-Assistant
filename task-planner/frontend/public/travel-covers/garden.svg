@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="640" viewBox="0 0 960 640">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="hsl(120 42% 42%)"/>
+      <stop offset="55%" stop-color="hsl(148 38% 28%)"/>
+      <stop offset="100%" stop-color="hsl(170 30% 16%)"/>
+    </linearGradient>
+  </defs>
+  <rect width="960" height="640" fill="url(#g)"/>
+  <circle cx="760" cy="120" r="160" fill="rgba(255,255,255,0.08)"/>
+  <circle cx="120" cy="520" r="200" fill="rgba(0,0,0,0.12)"/>
+  <text x="64" y="520" fill="rgba(255,255,255,0.92)" font-size="52" font-family="Segoe UI, PingFang SC, Microsoft YaHei, sans-serif" font-weight="600">公园休闲</text>
+  <text x="64" y="568" fill="rgba(255,255,255,0.65)" font-size="24" font-family="Segoe UI, PingFang SC, Microsoft YaHei, sans-serif">Travel Spot Cover</text>
+</svg>

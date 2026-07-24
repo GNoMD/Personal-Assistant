@@ -1,59 +1,75 @@
 /**
- * 景点目录：福建从行程抽取 + 外省全国主线精选
+ * 景点目录：全国详述景点库
+ * 配图仅使用网上按景点名检索下载的实拍（travelSpotPhotoMap），无图则占位，绝不串图
  */
 
 import { CITY_TRAVEL_PLANS } from './travel.js';
 import { FUJIAN_PLAN_CITY_PROVINCE, TRAVEL_PROVINCES, getCityInProvince, getProvinceById } from './travelGeo.js';
-import { CURATED_TRAVEL_SPOTS } from './travelSpotsCurated.js';
+import rich from './travelSpotsRich.js';
+import photoMap from './travelSpotPhotoMap.js';
+import addressMap from './travelSpotAddressMap.js';
+import hoursMap from './travelSpotHoursMap.js';
+import parkingMap from './travelSpotParkingMap.js';
+import planIndex from './travelSpotPlanIndex.js';
 
-/** @typedef {{ id: string, name: string, provinceId: string, cityId: string, area?: string, duration?: string, tip?: string, highlights?: string[], sourcePlanIds?: string[] }} CatalogSpot */
+/** @typedef {{
+ *  id: string,
+ *  name: string,
+ *  provinceId: string,
+ *  cityId: string,
+ *  area?: string,
+ *  location?: string,
+ *  address?: string,
+ *  mapQuery?: string,
+ *  lat?: number,
+ *  lng?: number,
+ *  openHours?: string,
+ *  openHoursNote?: string,
+ *  parking?: {
+ *    name?: string,
+ *    hint?: string,
+ *    distanceText?: string,
+ *    walkNote?: string,
+ *    mapQuery?: string,
+ *    lat?: number,
+ *    lng?: number,
+ *    distanceMeters?: number,
+ *    source?: string
+ *  },
+ *  duration?: string,
+ *  category?: string,
+ *  summary?: string,
+ *  tip?: string,
+ *  intro?: string,
+ *  tips?: string[],
+ *  highlights?: string[],
+ *  coverImage?: string,
+ *  images?: string[],
+ *  fallbackCover?: string,
+ *  imageNote?: string,
+ *  bestSeason?: string,
+ *  ticketHint?: string,
+ *  sourcePlanIds?: string[]
+ * }} CatalogSpot */
 
-/** 纯 ASCII 短哈希，避免中文 id 导致路由打不开 */
-function shortHash(text) {
-  let h = 2166136261;
-  const str = String(text || '');
-  for (let i = 0; i < str.length; i += 1) {
-    h ^= str.charCodeAt(i);
-    h = Math.imul(h, 16777619);
-  }
-  return (h >>> 0).toString(36);
-}
+const NO_PHOTO = '/travel-covers/no-photo.svg';
 
-function mergeHighlights(...lists) {
-  const out = [];
-  const seen = new Set();
-  for (const list of lists) {
-    for (const item of list || []) {
-      if (!item || seen.has(item)) continue;
-      seen.add(item);
-      out.push(item);
-    }
-  }
-  return out;
-}
+/** @type {CatalogSpot[]} */
+const RICH_SPOTS = Array.isArray(rich.spots) ? rich.spots : [];
+const PHOTO_MAP = photoMap && typeof photoMap === 'object' ? photoMap : {};
+const ADDRESS_MAP = addressMap && typeof addressMap === 'object' ? addressMap : {};
+const HOURS_MAP = hoursMap && typeof hoursMap === 'object' ? hoursMap : {};
+const PARKING_MAP = parkingMap && typeof parkingMap === 'object' ? parkingMap : {};
+const PLAN_INDEX_BY_SPOT =
+  planIndex && typeof planIndex === 'object' && planIndex.bySpotId && typeof planIndex.bySpotId === 'object'
+    ? planIndex.bySpotId
+    : {};
 
-/** 从福建行程抽取景点 */
-function extractFujianSpots() {
-  /** @type {Map<string, CatalogSpot>} */
+function collectFujianPlanLinks() {
+  /** @type {Map<string, string[]>} */
   const map = new Map();
-  const usedIds = new Set();
-
-  function uniqueId(cityId, name) {
-    const base = `fj-${cityId}-${shortHash(name)}`;
-    if (!usedIds.has(base)) {
-      usedIds.add(base);
-      return base;
-    }
-    let n = 2;
-    while (usedIds.has(`${base}-${n}`)) n += 1;
-    const id = `${base}-${n}`;
-    usedIds.add(id);
-    return id;
-  }
-
   for (const [cityId, byDuration] of Object.entries(CITY_TRAVEL_PLANS)) {
     if (!getCityInProvince(FUJIAN_PLAN_CITY_PROVINCE, cityId)) continue;
-
     for (const plans of Object.values(byDuration)) {
       for (const plan of plans || []) {
         const nested = [
@@ -63,40 +79,131 @@ function extractFujianSpots() {
         for (const spot of nested) {
           if (!spot?.name) continue;
           const key = `${cityId}::${spot.name}`;
-          const existing = map.get(key);
-          if (existing) {
-            existing.sourcePlanIds = [...new Set([...(existing.sourcePlanIds || []), plan.id])];
-            if (!existing.tip && spot.tip) existing.tip = spot.tip;
-            if (!existing.area && spot.area) existing.area = spot.area;
-            if (!existing.duration && spot.duration) existing.duration = spot.duration;
-            existing.highlights = mergeHighlights(existing.highlights, spot.highlights);
-          } else {
-            map.set(key, {
-              id: uniqueId(cityId, spot.name),
-              name: spot.name,
-              provinceId: FUJIAN_PLAN_CITY_PROVINCE,
-              cityId,
-              area: spot.area,
-              duration: spot.duration,
-              tip: spot.tip,
-              highlights: [...(spot.highlights || [])],
-              sourcePlanIds: [plan.id],
-            });
-          }
+          const list = map.get(key) || [];
+          if (!list.includes(plan.id)) list.push(plan.id);
+          map.set(key, list);
         }
       }
     }
   }
-
-  return [...map.values()];
+  return map;
 }
 
-const FUJIAN_SPOTS = extractFujianSpots();
+function attachRealPhoto(spot) {
+  const entry = PHOTO_MAP[spot.id];
+  const paths = [];
+  if (Array.isArray(entry?.localPaths)) {
+    for (const p of entry.localPaths) {
+      if (p && !paths.includes(p)) paths.push(p);
+    }
+  }
+  if (entry?.localPath && !paths.includes(entry.localPath)) {
+    paths.unshift(entry.localPath);
+  }
+
+  if (paths.length > 0) {
+    const images = [...paths];
+    while (images.length < 3) images.push(NO_PHOTO);
+    return {
+      ...spot,
+      coverImage: paths[0],
+      images: images.slice(0, 3),
+      fallbackCover: NO_PHOTO,
+      imageNote: paths.length >= 3
+        ? '配图为按景点名网上检索下载的相关实拍图（3 张）'
+        : `配图为按景点名网上检索下载的相关实拍图（已有 ${paths.length}/3，补齐中）`,
+    };
+  }
+  return {
+    ...spot,
+    coverImage: NO_PHOTO,
+    images: [NO_PHOTO, NO_PHOTO, NO_PHOTO],
+    fallbackCover: NO_PHOTO,
+    imageNote: '暂未检索到可下载的景点实拍图（下载任务进行中）',
+  };
+}
+
+function attachAddress(spot) {
+  const entry = ADDRESS_MAP[spot.id] || {};
+  const address = entry.address || spot.address || spot.location || '';
+  const mapQuery = entry.mapQuery || [spot.location || '', spot.name].filter(Boolean).join('');
+  const lat = typeof entry.lat === 'number' ? entry.lat : spot.lat;
+  const lng = typeof entry.lng === 'number' ? entry.lng : spot.lng;
+  return {
+    ...spot,
+    address,
+    mapQuery,
+    ...(typeof lat === 'number' ? { lat } : {}),
+    ...(typeof lng === 'number' ? { lng } : {}),
+  };
+}
+
+function attachHours(spot) {
+  const entry = HOURS_MAP[spot.id] || {};
+  return {
+    ...spot,
+    openHours: entry.openHours || spot.openHours || '',
+    openHoursNote: entry.note || spot.openHoursNote || '具体以景区/场馆官方当日公告为准。',
+  };
+}
+
+function attachParking(spot) {
+  const entry = PARKING_MAP[spot.id] || {};
+  if (!entry.parkingName && !entry.mapQuery) {
+    const mapQuery = [spot.location || spot.address || '', spot.name, '停车场'].filter(Boolean).join('');
+    return {
+      ...spot,
+      parking: {
+        name: `${spot.name} · 附近停车场`,
+        hint: '请用高德/百度搜索「景点名 + 停车场」，选步行距离最短的。',
+        distanceText: '打开地图搜索最近停车场',
+        mapQuery,
+        source: 'fallback',
+      },
+    };
+  }
+  return {
+    ...spot,
+    parking: {
+      name: entry.parkingName,
+      hint: entry.hint || '',
+      distanceText: entry.distanceText || '',
+      walkNote: entry.walkNote || '',
+      mapQuery: entry.mapQuery || '',
+      source: entry.source || '',
+      ...(typeof entry.lat === 'number' ? { lat: entry.lat } : {}),
+      ...(typeof entry.lng === 'number' ? { lng: entry.lng } : {}),
+      ...(typeof entry.distanceMeters === 'number' ? { distanceMeters: entry.distanceMeters } : {}),
+    },
+  };
+}
+
+function attachRelatedPlans(spot) {
+  const fromIndex = PLAN_INDEX_BY_SPOT[spot.id] || [];
+  const fujianIds = FUJIAN_LINKS.get(`${spot.cityId}::${spot.name}`) || [];
+  /** @type {string[]} */
+  const mergedIds = [];
+  for (const planId of [...fromIndex, ...fujianIds]) {
+    if (!planId || mergedIds.includes(planId)) continue;
+    mergedIds.push(planId);
+  }
+  return {
+    ...spot,
+    sourcePlanIds: mergedIds,
+  };
+}
+
+const FUJIAN_LINKS = collectFujianPlanLinks();
 
 /** @type {CatalogSpot[]} */
-export const ALL_TRAVEL_SPOTS = [...FUJIAN_SPOTS, ...CURATED_TRAVEL_SPOTS];
+export const ALL_TRAVEL_SPOTS = RICH_SPOTS.map((spot) =>
+  attachRelatedPlans(attachParking(attachHours(attachAddress(attachRealPhoto(spot)))))
+);
 
 const SPOT_BY_ID = new Map(ALL_TRAVEL_SPOTS.map((s) => [s.id, s]));
+const SPOT_BY_CITY_NAME = new Map(
+  ALL_TRAVEL_SPOTS.map((s) => [`${s.provinceId}::${s.cityId}::${s.name}`, s])
+);
 
 export function getSpotById(spotId) {
   if (!spotId) return null;
@@ -106,9 +213,14 @@ export function getSpotById(spotId) {
     const decoded = decodeURIComponent(raw);
     if (decoded !== raw && SPOT_BY_ID.has(decoded)) return SPOT_BY_ID.get(decoded);
   } catch {
-    /* ignore malformed encoding */
+    /* ignore */
   }
   return null;
+}
+
+export function getSpotByCityAndName(provinceId, cityId, name) {
+  if (!provinceId || !cityId || !name) return null;
+  return SPOT_BY_CITY_NAME.get(`${provinceId}::${cityId}::${name}`) || null;
 }
 
 export function getSpotsByCity(provinceId, cityId) {
@@ -123,7 +235,6 @@ export function getSpotCountByProvince(provinceId) {
   return ALL_TRAVEL_SPOTS.filter((s) => s.provinceId === provinceId).length;
 }
 
-/** 有景点的省（按 TRAVEL_PROVINCES 顺序） */
 export function getProvincesWithSpots() {
   return TRAVEL_PROVINCES
     .map((p) => ({
@@ -133,7 +244,6 @@ export function getProvincesWithSpots() {
     .filter((p) => p.spotCount > 0);
 }
 
-/** 某省下有景点的市 */
 export function getCitiesWithSpots(provinceId) {
   const province = getProvinceById(provinceId);
   if (!province) return [];
@@ -148,9 +258,83 @@ export function getCitiesWithSpots(provinceId) {
 }
 
 export function getSpotLocationLabel(spot) {
+  if (spot?.address) return spot.address;
+  if (spot?.location) return spot.location;
   const province = getProvinceById(spot.provinceId);
   const city = getCityInProvince(spot.provinceId, spot.cityId);
-  return [province?.name, city?.name].filter(Boolean).join(' · ');
+  return [province?.name, city?.name, spot?.area].filter(Boolean).join(' · ');
 }
 
-export { FUJIAN_SPOTS };
+export function getSpotCover(spot) {
+  return spot?.coverImage || spot?.images?.[0] || NO_PHOTO;
+}
+
+export function getSpotPhotoStats() {
+  const total = ALL_TRAVEL_SPOTS.length;
+  const withPhoto = ALL_TRAVEL_SPOTS.filter((s) => s.coverImage && s.coverImage !== NO_PHOTO).length;
+  const withThree = ALL_TRAVEL_SPOTS.filter(
+    (s) => (s.images || []).filter((img) => img && img !== NO_PHOTO).length >= 3
+  ).length;
+  return { total, withPhoto, withThree, missing: total - withPhoto };
+}
+
+function scoreMatch(text, query) {
+  const t = String(text || '').toLowerCase();
+  const q = String(query || '').trim().toLowerCase();
+  if (!q || !t) return 0;
+  if (t === q) return 100;
+  if (t.startsWith(q)) return 80;
+  if (t.includes(q)) return 50;
+  return 0;
+}
+
+/**
+ * 景点 Tab 全局搜索：省 / 市 / 景点
+ * @returns {{ provinces: any[], cities: any[], spots: any[] }}
+ */
+export function searchTravelSpotsCatalog(query, { limit = 8 } = {}) {
+  const q = String(query || '').trim().toLowerCase();
+  if (!q) return { provinces: [], cities: [], spots: [] };
+
+  const provinces = getProvincesWithSpots()
+    .map((p) => ({
+      item: p,
+      score: Math.max(scoreMatch(p.name, q), scoreMatch(p.id, q), scoreMatch(p.shortName, q)),
+    }))
+    .filter((row) => row.score > 0)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, limit)
+    .map((row) => row.item);
+
+  const cities = [];
+  for (const province of getProvincesWithSpots()) {
+    for (const city of getCitiesWithSpots(province.id)) {
+      const cityScore = Math.max(scoreMatch(city.name, q), scoreMatch(city.id, q));
+      if (cityScore <= 0) continue;
+      cities.push({
+        ...city,
+        provinceId: province.id,
+        provinceName: province.name,
+        _score: cityScore,
+      });
+    }
+  }
+  cities.sort((a, b) => b._score - a._score);
+  const cityHits = cities.slice(0, limit).map(({ _score, ...rest }) => rest);
+
+  const spots = ALL_TRAVEL_SPOTS
+    .map((spot) => ({
+      spot,
+      score: Math.max(
+        scoreMatch(spot.name, q),
+        scoreMatch(spot.category, q),
+        ...(spot.highlights || []).map((h) => scoreMatch(h, q))
+      ),
+    }))
+    .filter((row) => row.score > 0)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, limit)
+    .map((row) => row.spot);
+
+  return { provinces, cities: cityHits, spots };
+}

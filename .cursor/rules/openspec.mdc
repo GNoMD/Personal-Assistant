@@ -1,0 +1,16 @@
+---
+description: Prefer OpenSpec for non-trivial Personal-Assistant changes
+globs:
+alwaysApply: true
+---
+
+# OpenSpec
+
+For non-trivial features or behavior changes in this repo:
+
+1. Use OpenSpec slash commands (`/opsx:explore`, `/opsx:propose`, `/opsx:apply`, `/opsx:archive`) or the matching `.cursor/skills/openspec-*` skills.
+2. Read `openspec/config.yaml` for stack, domains, and artifact rules.
+3. Do not invent a full-system spec dump — only delta the slice being changed.
+4. Tiny one-line fixes may skip OpenSpec unless the user asks for a change proposal.
+
+See `AGENTS.md` and `openspec/README.md`.

@@ -1,0 +1,45 @@
+{
+  "fetchedAt": "2026-07-23T04:20:14.089Z",
+  "spots": [
+    {
+      "cityId": "fuzhou",
+      "cityName": "福州",
+      "name": "是一座山",
+      "category": "山地峡谷",
+      "area": "福州",
+      "location": "福建省福州",
+      "source": "bing",
+      "provinceId": "fujian"
+    },
+    {
+      "cityId": "fuzhou",
+      "cityName": "福州",
+      "name": "闽江公园",
+      "category": "海滨湖泊",
+      "area": "福州",
+      "location": "福建省福州",
+      "source": "bing",
+      "provinceId": "fujian"
+    },
+    {
+      "cityId": "fuzhou",
+      "cityName": "福州",
+      "name": "上午湄洲岛",
+      "category": "海滨湖泊",
+      "area": "福州",
+      "location": "福建省福州",
+      "source": "bing",
+      "provinceId": "fujian"
+    },
+    {
+      "cityId": "fuzhou",
+      "cityName": "福州",
+      "name": "海外交通史博物馆",
+      "category": "博物馆",
+      "area": "福州",
+      "location": "福建省福州",
+      "source": "bing",
+      "provinceId": "fujian"
+    }
+  ]
+}

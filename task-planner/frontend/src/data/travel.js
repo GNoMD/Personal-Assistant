@@ -10,6 +10,8 @@ import { MORE_CITY_TRAVEL_PLANS_REST } from './travelMorePlansRest.js';
 import { LONG_CITY_TRAVEL_PLANS } from './travelLongPlans.js';
 import { LONG_CITY_TRAVEL_PLANS_REST } from './travelLongPlansRest.js';
 import { DRIVE_CITY_TRAVEL_PLANS } from './travelDrivePlans.js';
+import travelPlansGenerated from './travelPlansGenerated.js';
+import { FUJIAN_PLAN_CITY_PROVINCE, TRAVEL_PROVINCES, getAllCities, getCityInProvince, getProvinceById } from './travelGeo.js';
 
 export const FUJIAN_CITIES = [
   { id: 'xiamen', name: '厦门', pinyin: 'Xiamen' },
@@ -343,6 +345,7 @@ const CITY_TRAVEL_PLANS_BASE = {
   ...OTHER_CITY_PLANS,
 };
 
+/** 福建手写行程（按 cityId）；供景点关联与任务目录继续使用 */
 /** @type {Record<string, Record<string, Plan[]>>} */
 export const CITY_TRAVEL_PLANS = mergeCityPlans(
   CITY_TRAVEL_PLANS_BASE,
@@ -353,38 +356,216 @@ export const CITY_TRAVEL_PLANS = mergeCityPlans(
   DRIVE_CITY_TRAVEL_PLANS,
 );
 
-export function getCityById(cityId) {
-  return FUJIAN_CITIES.find((c) => c.id === cityId) || null;
+/**
+ * 全国行程：provinceId → cityId → durationId → Plan[]
+ * 手写福建覆盖同省同市同天数生成结果
+ * @type {Record<string, Record<string, Record<string, Plan[]>>>}
+ */
+export const NATIONAL_TRAVEL_PLANS = (() => {
+  /** @type {Record<string, Record<string, Record<string, Plan[]>>>} */
+  const out = {};
+  const generated = travelPlansGenerated?.plans || {};
+
+  for (const [provinceId, cities] of Object.entries(generated)) {
+    out[provinceId] = {};
+    for (const [cityId, byDuration] of Object.entries(cities || {})) {
+      out[provinceId][cityId] = {};
+      for (const [durationId, plans] of Object.entries(byDuration || {})) {
+        out[provinceId][cityId][durationId] = [...(plans || [])];
+      }
+    }
+  }
+
+  // 手写福建优先：整段替换对应天数列表
+  if (!out[FUJIAN_PLAN_CITY_PROVINCE]) out[FUJIAN_PLAN_CITY_PROVINCE] = {};
+  for (const [cityId, byDuration] of Object.entries(CITY_TRAVEL_PLANS)) {
+    if (!out[FUJIAN_PLAN_CITY_PROVINCE][cityId]) out[FUJIAN_PLAN_CITY_PROVINCE][cityId] = {};
+    for (const [durationId, plans] of Object.entries(byDuration || {})) {
+      if (plans?.length) {
+        out[FUJIAN_PLAN_CITY_PROVINCE][cityId][durationId] = plans;
+      }
+    }
+  }
+
+  return out;
+})();
+
+export function getCityById(cityId, provinceId) {
+  if (provinceId) {
+    const city = getCityInProvince(provinceId, cityId);
+    return city ? { ...city, provinceId } : null;
+  }
+  const fujian = FUJIAN_CITIES.find((c) => c.id === cityId);
+  if (fujian) return { ...fujian, provinceId: FUJIAN_PLAN_CITY_PROVINCE };
+  return getAllCities().find((c) => c.id === cityId) || null;
 }
 
 export function getDurationById(durationId) {
   return TRAVEL_DURATIONS.find((d) => d.id === durationId) || null;
 }
 
-export function getTravelPlans(cityId, durationId) {
-  return CITY_TRAVEL_PLANS[cityId]?.[durationId] || [];
+export function getTravelPlans(provinceId, cityId, durationId) {
+  // 兼容旧调用 getTravelPlans(cityId, durationId)（仅福建）
+  if (durationId === undefined) {
+    const legacyCityId = provinceId;
+    const legacyDurationId = cityId;
+    return CITY_TRAVEL_PLANS[legacyCityId]?.[legacyDurationId] || [];
+  }
+  return NATIONAL_TRAVEL_PLANS[provinceId]?.[cityId]?.[durationId] || [];
 }
 
 export function getTravelPlanById(planId) {
-  for (const [cityId, byDuration] of Object.entries(CITY_TRAVEL_PLANS)) {
-    for (const [durationId, plans] of Object.entries(byDuration)) {
-      const plan = plans.find((item) => item.id === planId);
-      if (plan) {
-        return {
-          plan,
-          cityId,
-          durationId,
-          city: getCityById(cityId),
-          duration: getDurationById(durationId),
-        };
+  for (const [provinceId, cities] of Object.entries(NATIONAL_TRAVEL_PLANS)) {
+    for (const [cityId, byDuration] of Object.entries(cities || {})) {
+      for (const [durationId, plans] of Object.entries(byDuration || {})) {
+        const plan = (plans || []).find((item) => item.id === planId);
+        if (plan) {
+          return {
+            plan,
+            provinceId,
+            cityId,
+            durationId,
+            city: getCityById(cityId, provinceId),
+            province: getProvinceById(provinceId),
+            duration: getDurationById(durationId),
+          };
+        }
       }
     }
   }
   return null;
 }
 
-export function cityHasAnyPlan(cityId) {
-  const plans = CITY_TRAVEL_PLANS[cityId];
-  if (!plans) return false;
-  return Object.values(plans).some((list) => list.length > 0);
+export function cityHasAnyPlan(provinceId, cityId) {
+  // 兼容旧调用 cityHasAnyPlan(cityId)
+  if (cityId === undefined) {
+    const legacyCityId = provinceId;
+    const plans = CITY_TRAVEL_PLANS[legacyCityId];
+    if (!plans) return false;
+    return Object.values(plans).some((list) => list.length > 0);
+  }
+  const byDuration = NATIONAL_TRAVEL_PLANS[provinceId]?.[cityId];
+  if (!byDuration) return false;
+  return Object.values(byDuration).some((list) => list.length > 0);
+}
+
+export function getProvincesWithPlans() {
+  return TRAVEL_PROVINCES.map((province) => {
+    const cities = getCitiesWithPlans(province.id);
+    const planCount = cities.reduce((sum, city) => sum + city.planCount, 0);
+    return {
+      ...province,
+      cityCount: cities.length,
+      planCount,
+    };
+  }).filter((p) => p.cityCount > 0);
+}
+
+export function getCitiesWithPlans(provinceId) {
+  const province = getProvinceById(provinceId);
+  if (!province) return [];
+  return province.cities
+    .map((city) => {
+      const byDuration = NATIONAL_TRAVEL_PLANS[provinceId]?.[city.id] || {};
+      const planCount = Object.values(byDuration).reduce((n, list) => n + (list?.length || 0), 0);
+      return {
+        ...city,
+        provinceId,
+        planCount,
+      };
+    })
+    .filter((c) => c.planCount > 0);
+}
+
+export function countNationalTravelPlans() {
+  if (countNationalTravelPlans._cached != null) return countNationalTravelPlans._cached;
+  let n = 0;
+  for (const cities of Object.values(NATIONAL_TRAVEL_PLANS)) {
+    for (const byDuration of Object.values(cities || {})) {
+      for (const plans of Object.values(byDuration || {})) {
+        n += plans?.length || 0;
+      }
+    }
+  }
+  countNationalTravelPlans._cached = n;
+  return n;
+}
+
+function scoreMatch(text, query) {
+  const t = String(text || '').toLowerCase();
+  const q = String(query || '').trim().toLowerCase();
+  if (!q || !t) return 0;
+  if (t === q) return 100;
+  if (t.startsWith(q)) return 80;
+  if (t.includes(q)) return 50;
+  return 0;
+}
+
+/**
+ * 全国行程关键词搜索（省/市/行程标题等）
+ * @returns {{ provinces: any[], cities: any[], plans: any[] }}
+ */
+export function searchTravelPlansCatalog(query, { limit = 8 } = {}) {
+  const q = String(query || '').trim().toLowerCase();
+  if (!q) return { provinces: [], cities: [], plans: [] };
+
+  const provinces = getProvincesWithPlans()
+    .map((p) => ({
+      item: p,
+      score: Math.max(scoreMatch(p.name, q), scoreMatch(p.id, q), scoreMatch(p.shortName, q)),
+    }))
+    .filter((row) => row.score > 0)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, limit)
+    .map((row) => row.item);
+
+  const cities = [];
+  for (const province of getProvincesWithPlans()) {
+    for (const city of getCitiesWithPlans(province.id)) {
+      const cityScore = Math.max(scoreMatch(city.name, q), scoreMatch(city.id, q));
+      if (cityScore <= 0) continue;
+      cities.push({
+        ...city,
+        provinceId: province.id,
+        provinceName: province.name,
+        _score: cityScore,
+      });
+    }
+  }
+  cities.sort((a, b) => b._score - a._score);
+  const cityHits = cities.slice(0, limit).map(({ _score, ...rest }) => rest);
+
+  const planHits = [];
+  outer: for (const [provinceId, cityMap] of Object.entries(NATIONAL_TRAVEL_PLANS)) {
+    const province = getProvinceById(provinceId);
+    for (const [cityId, byDuration] of Object.entries(cityMap || {})) {
+      const city = getCityInProvince(provinceId, cityId);
+      for (const [durationId, list] of Object.entries(byDuration || {})) {
+        for (const plan of list || []) {
+          const planScore = Math.max(
+            scoreMatch(plan.title, q),
+            scoreMatch(plan.theme, q),
+            scoreMatch(plan.summary, q),
+            scoreMatch(plan.bestFor, q),
+            scoreMatch(plan.route, q)
+          );
+          if (planScore <= 0) continue;
+          planHits.push({
+            plan,
+            provinceId,
+            cityId,
+            durationId,
+            provinceName: province?.name || '',
+            cityName: city?.name || '',
+            _score: planScore,
+          });
+          if (planHits.length >= limit * 4) break outer;
+        }
+      }
+    }
+  }
+  planHits.sort((a, b) => b._score - a._score);
+  const plans = planHits.slice(0, limit).map(({ _score, ...rest }) => rest);
+
+  return { provinces, cities: cityHits, plans };
 }

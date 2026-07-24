@@ -1,0 +1,235 @@
+{
+  "fetchedAt": "2026-07-23T04:04:47.101Z",
+  "spots": [
+    {
+      "cityId": "xiamen",
+      "cityName": "厦门",
+      "name": "别称鹭岛",
+      "category": "海滨湖泊",
+      "area": "经济特区",
+      "location": "福建省厦门市经济特区",
+      "source": "bing",
+      "score": 3
+    },
+    {
+      "cityId": "xiamen",
+      "cityName": "厦门",
+      "name": "地处厦门岛",
+      "category": "海滨湖泊",
+      "area": "经济特区",
+      "location": "福建省厦门市经济特区",
+      "source": "bing",
+      "score": 3
+    },
+    {
+      "cityId": "xiamen",
+      "cityName": "厦门",
+      "name": "东南与大小金门和大担岛",
+      "category": "海滨湖泊",
+      "area": "经济特区",
+      "location": "福建省厦门市经济特区",
+      "source": "bing",
+      "score": 3
+    },
+    {
+      "cityId": "xiamen",
+      "cityName": "厦门",
+      "name": "海上花园",
+      "category": "公园休闲",
+      "area": "经济特区",
+      "location": "福建省厦门市经济特区",
+      "source": "bing",
+      "score": 3
+    },
+    {
+      "cityId": "xiamen",
+      "cityName": "厦门",
+      "name": "是位于中国福建省厦门市的岛",
+      "category": "海滨湖泊",
+      "area": "经济特区",
+      "location": "福建省厦门市经济特区",
+      "source": "bing",
+      "score": 3
+    },
+    {
+      "cityId": "xiamen",
+      "cityName": "厦门",
+      "name": "我超爱这座文艺又浪漫的海岛",
+      "category": "海滨湖泊",
+      "area": "经济特区",
+      "location": "福建省厦门市经济特区",
+      "source": "bing",
+      "score": 3
+    },
+    {
+      "cityId": "xiamen",
+      "cityName": "厦门",
+      "name": "一座镶嵌于山",
+      "category": "山地峡谷",
+      "area": "经济特区",
+      "location": "福建省厦门市经济特区",
+      "source": "bing",
+      "score": 3
+    },
+    {
+      "cityId": "xiamen",
+      "cityName": "厦门",
+      "name": "但如何从鼓浪屿",
+      "category": "海滨湖泊",
+      "area": "经济特区",
+      "location": "福建省厦门市经济特区",
+      "source": "bing",
+      "score": 1
+    },
+    {
+      "cityId": "xiamen",
+      "cityName": "厦门",
+      "name": "命名厦门岛",
+      "category": "海滨湖泊",
+      "area": "经济特区",
+      "location": "福建省厦门市经济特区",
+      "source": "bing",
+      "score": 1
+    },
+    {
+      "cityId": "xiamen",
+      "cityName": "厦门",
+      "name": "位于厦门岛",
+      "category": "海滨湖泊",
+      "area": "经济特区",
+      "location": "福建省厦门市经济特区",
+      "source": "bing",
+      "score": 1
+    },
+    {
+      "cityId": "xiamen",
+      "cityName": "厦门",
+      "name": "沿厦门湾的大陆地区和厦门岛",
+      "category": "海滨湖泊",
+      "area": "经济特区",
+      "location": "福建省厦门市经济特区",
+      "source": "bing",
+      "score": 1
+    },
+    {
+      "cityId": "xiamen",
+      "cityName": "厦门",
+      "name": "与金门岛",
+      "category": "海滨湖泊",
+      "area": "经济特区",
+      "location": "福建省厦门市经济特区",
+      "source": "bing",
+      "score": 1
+    },
+    {
+      "cityId": "xiamen",
+      "cityName": "厦门",
+      "name": "原名嘉禾屿",
+      "category": "海滨湖泊",
+      "area": "经济特区",
+      "location": "福建省厦门市经济特区",
+      "source": "bing",
+      "score": 1
+    },
+    {
+      "cityId": "xiamen",
+      "cityName": "厦门",
+      "name": "占厦门岛",
+      "category": "海滨湖泊",
+      "area": "经济特区",
+      "location": "福建省厦门市经济特区",
+      "source": "bing",
+      "score": 1
+    },
+    {
+      "cityId": "xiamen",
+      "cityName": "厦门",
+      "name": "综合指标排名最高景区",
+      "category": "历史人文",
+      "area": "经济特区",
+      "location": "福建省厦门市经济特区",
+      "source": "bing",
+      "score": 1
+    },
+    {
+      "cityId": "xiamen",
+      "cityName": "厦门",
+      "name": "热门景区",
+      "category": "历史人文",
+      "area": "经济特区",
+      "location": "福建省厦门市经济特区",
+      "source": "bing",
+      "score": 1
+    },
+    {
+      "cityId": "xiamen",
+      "cityName": "厦门",
+      "name": "充满浪漫与历史韵味的鼓浪屿",
+      "category": "海滨湖泊",
+      "area": "经济特区",
+      "location": "福建省厦门市经济特区",
+      "source": "bing",
+      "score": 1
+    },
+    {
+      "cityId": "xiamen",
+      "cityName": "厦门",
+      "name": "东山岛",
+      "category": "海滨湖泊",
+      "area": "经济特区",
+      "location": "福建省厦门市经济特区",
+      "source": "bing",
+      "score": 1
+    },
+    {
+      "cityId": "xiamen",
+      "cityName": "厦门",
+      "name": "建旅游必去十大景点有鼓浪屿",
+      "category": "海滨湖泊",
+      "area": "经济特区",
+      "location": "福建省厦门市经济特区",
+      "source": "bing",
+      "score": 1
+    },
+    {
+      "cityId": "xiamen",
+      "cityName": "厦门",
+      "name": "湄洲岛",
+      "category": "海滨湖泊",
+      "area": "经济特区",
+      "location": "福建省厦门市经济特区",
+      "source": "bing",
+      "score": 1
+    },
+    {
+      "cityId": "xiamen",
+      "cityName": "厦门",
+      "name": "太姥山",
+      "category": "山地峡谷",
+      "area": "经济特区",
+      "location": "福建省厦门市经济特区",
+      "source": "bing",
+      "score": 1
+    },
+    {
+      "cityId": "xiamen",
+      "cityName": "厦门",
+      "name": "泰宁大金湖",
+      "category": "海滨湖泊",
+      "area": "经济特区",
+      "location": "福建省厦门市经济特区",
+      "source": "bing",
+      "score": 1
+    },
+    {
+      "cityId": "xiamen",
+      "cityName": "厦门",
+      "name": "武夷山",
+      "category": "山地峡谷",
+      "area": "经济特区",
+      "location": "福建省厦门市经济特区",
+      "source": "bing",
+      "score": 1
+    }
+  ]
+}

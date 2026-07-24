@@ -1,0 +1,25 @@
+{
+  "fetchedAt": "2026-07-23T04:20:21.825Z",
+  "spots": [
+    {
+      "cityId": "nanping",
+      "cityName": "南平",
+      "name": "武夷山的奇山",
+      "category": "山地峡谷",
+      "area": "南平",
+      "location": "福建省南平市",
+      "source": "bing",
+      "provinceId": "fujian"
+    },
+    {
+      "cityId": "nanping",
+      "cityName": "南平",
+      "name": "浦城等地山",
+      "category": "山地峡谷",
+      "area": "南平",
+      "location": "福建省南平市",
+      "source": "bing",
+      "provinceId": "fujian"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "fetchedAt": "2026-07-23T04:25:30.235Z",
+  "spots": [
+    {
+      "cityId": "xiamen",
+      "cityName": "厦门",
+      "name": "闽南古镇",
+      "category": "古镇街区",
+      "area": "厦门",
+      "location": "福建省厦门市",
+      "source": "bing-suggest"
+    },
+    {
+      "cityId": "xiamen",
+      "cityName": "厦门",
+      "name": "沧江古镇",
+      "category": "古镇街区",
+      "area": "厦门",
+      "location": "福建省厦门市",
+      "source": "bing-suggest"
+    },
+    {
+      "cityId": "xiamen",
+      "cityName": "厦门",
+      "name": "普陀寺",
+      "category": "宗教寺庙",
+      "area": "厦门",
+      "location": "福建省厦门市",
+      "source": "bing-suggest"
+    },
+    {
+      "cityId": "xiamen",
+      "cityName": "厦门",
+      "name": "南普陀寺",
+      "category": "宗教寺庙",
+      "area": "厦门",
+      "location": "福建省厦门市",
+      "source": "bing-suggest"
+    }
+  ]
+}

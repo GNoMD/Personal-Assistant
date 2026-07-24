@@ -4,9 +4,25 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "prebuild": "node ./scripts/clean-dist.mjs",
     "build": "vite build",
     "preview": "vite preview",
-    "test": "vitest run"
+    "test": "vitest run",
+    "photos:download": "node ./scripts/download-spot-photos.mjs --per=3",
+    "photos:download:incomplete": "node ./scripts/download-spot-photos.mjs --incomplete --per=3",
+    "photos:download:fujian": "node ./scripts/download-spot-photos.mjs --province=fujian --per=3",
+    "spots:rich": "node ./scripts/build-travel-spots-rich.mjs",
+    "spots:fetch": "node ./scripts/spot-seeds/fetch-real-landmarks.mjs --skip-bing",
+    "spots:fetch:5a": "node ./scripts/spot-seeds/fetch-real-landmarks.mjs --skip-bing",
+    "spots:addresses": "node ./scripts/enrich-spot-addresses.mjs",
+    "spots:addresses:bing": "node ./scripts/enrich-spot-addresses.mjs --bing",
+    "spots:hours": "node ./scripts/enrich-spot-hours.mjs",
+    "spots:hours:bing": "node ./scripts/enrich-spot-hours.mjs --bing",
+    "spots:parking": "node ./scripts/enrich-spot-parking.mjs",
+    "spots:parking:osm": "node ./scripts/enrich-spot-parking.mjs --osm",
+    "spots:plan-index": "node ./scripts/build-spot-plan-index.mjs",
+    "plans:generate": "node ./scripts/generate-national-travel-plans.mjs",
+    "plans:index": "node ./scripts/build-travel-index.mjs"
   },
   "dependencies": {
     "react": "^18.3.1",

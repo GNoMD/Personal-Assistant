@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import AppShell from '../components/AppShell';
+import Pagination, { paginateItems } from '../components/Pagination';
 import { useAuth } from '../context/AuthContext';
 import { useTheme } from '../hooks/useTheme';
 import { api } from '../api/client';
@@ -13,12 +14,29 @@ import {
   getFitnessKindLabel,
 } from '../data/equipment';
 
+const PAGE_SIZE = 6;
+
 const FILTERS = [
   { id: 'all', label: '全部' },
   { id: 'equipment', label: '健身器械' },
   { id: 'sport', label: '运动' },
   { id: 'favorites', label: '我的收藏' },
 ];
+
+function matchesFitnessQuery(item, query) {
+  const q = String(query || '').trim().toLowerCase();
+  if (!q) return true;
+  const fields = [
+    item.name,
+    item.englishName,
+    item.summary,
+    item.level,
+    FITNESS_KIND_LABELS[item.kind],
+    ...(item.muscles || []),
+    ...(item.tips || []),
+  ];
+  return fields.some((field) => String(field || '').toLowerCase().includes(q));
+}
 
 function EquipmentChrome({ title, subtitle, children }) {
   const { user } = useAuth();
@@ -78,6 +96,8 @@ function FavoriteButton({ active, onToggle, label }) {
 
 export default function EquipmentPage() {
   const [filter, setFilter] = useState('all');
+  const [query, setQuery] = useState('');
+  const [page, setPage] = useState(1);
   const [favoriteIds, setFavoriteIds] = useState(() => new Set());
   const [favError, setFavError] = useState('');
 
@@ -94,6 +114,10 @@ export default function EquipmentPage() {
   useEffect(() => {
     loadFavorites();
   }, [loadFavorites]);
+
+  useEffect(() => {
+    setPage(1);
+  }, [filter, query]);
 
   const toggleFavorite = async (event, item) => {
     event.preventDefault();
@@ -127,8 +151,13 @@ export default function EquipmentPage() {
     else if (filter === 'favorites') {
       items = FITNESS_LIST.filter((item) => favoriteIds.has(item.id));
     }
-    return items;
-  }, [filter, favoriteIds]);
+    return items.filter((item) => matchesFitnessQuery(item, query));
+  }, [filter, favoriteIds, query]);
+
+  const paged = useMemo(
+    () => paginateItems(list, page, PAGE_SIZE),
+    [list, page]
+  );
 
   const favoriteCount = favoriteIds.size;
 
@@ -150,11 +179,21 @@ export default function EquipmentPage() {
           </div>
           <div className="recipes-hero-stat">
             <strong>{list.length}</strong>
-            <span>{filter === 'favorites' ? '项收藏' : '项展示'}</span>
+            <span>{filter === 'favorites' ? '项收藏' : query.trim() ? '项匹配' : '项展示'}</span>
           </div>
         </section>
 
-        <section className="series-filter-bar fitness-filter-bar" aria-label="健身运动筛选">
+        <section className="recipes-toolbar fitness-filter-bar" aria-label="健身运动筛选">
+          <div className="recipe-search">
+            <span aria-hidden="true">⌕</span>
+            <input
+              type="search"
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+              placeholder="搜索名称、部位、英文名或简介"
+              aria-label="搜索健身运动"
+            />
+          </div>
           <div className="meal-filter" role="group" aria-label="类别">
             {FILTERS.map((item) => (
               <button
@@ -179,54 +218,68 @@ export default function EquipmentPage() {
 
         {list.length === 0 ? (
           <section className="recipe-empty">
-            <h3>{filter === 'favorites' ? '还没有收藏' : '没有匹配项目'}</h3>
+            <h3>
+              {filter === 'favorites' && !query.trim()
+                ? '还没有收藏'
+                : '没有匹配项目'}
+            </h3>
             <p>
-              {filter === 'favorites'
+              {filter === 'favorites' && !query.trim()
                 ? '在器材或运动卡片上点☆，会出现在这里。'
-                : '换个筛选条件看看。'}
+                : '换个关键词或筛选条件看看。'}
             </p>
-            {filter === 'favorites' && (
+            {filter === 'favorites' && !query.trim() && (
               <button type="button" className="btn btn-primary" onClick={() => setFilter('all')}>
                 浏览全部
               </button>
             )}
           </section>
         ) : (
-          <section className="equipment-grid" aria-label="健身运动列表">
-            {list.map((item) => {
-              const isFavorite = favoriteIds.has(item.id);
-              return (
-                <article key={item.id} className="equipment-card-wrap">
-                  <Link to={`/equipment/${item.id}`} className="equipment-card">
-                    <div className="equipment-card-media" data-kind={item.kind}>
-                      <span className="equipment-kind-badge" data-kind={item.kind}>
-                        {FITNESS_KIND_LABELS[item.kind]}
-                      </span>
-                      <FavoriteButton
-                        active={isFavorite}
-                        onToggle={(event) => toggleFavorite(event, item)}
-                        label={isFavorite ? '取消收藏' : '收藏'}
-                      />
-                      <FitnessCover item={item} />
-                    </div>
-                    <div className="equipment-card-body">
-                      <p className="equipment-card-en">{item.englishName}</p>
-                      <h3>{item.name}</h3>
-                      <p>{item.summary}</p>
-                      <div className="equipment-tags">
-                        {(item.muscles || []).slice(0, 3).map((muscle) => (
-                          <span key={muscle}>{muscle}</span>
-                        ))}
+          <>
+            <section className="equipment-grid" aria-label="健身运动列表">
+              {paged.items.map((item) => {
+                const isFavorite = favoriteIds.has(item.id);
+                return (
+                  <article key={item.id} className="equipment-card-wrap">
+                    <Link to={`/equipment/${item.id}`} className="equipment-card">
+                      <div className="equipment-card-media" data-kind={item.kind}>
+                        <span className="equipment-kind-badge" data-kind={item.kind}>
+                          {FITNESS_KIND_LABELS[item.kind]}
+                        </span>
+                        <FavoriteButton
+                          active={isFavorite}
+                          onToggle={(event) => toggleFavorite(event, item)}
+                          label={isFavorite ? '取消收藏' : '收藏'}
+                        />
+                        <FitnessCover item={item} />
                       </div>
-                      <span className="recipe-view-link">
-                        查看介绍与视频 <span aria-hidden="true">→</span>
-                      </span>
-                    </div>
-                  </Link>
-                </article>
-              );
-            })}
-          </section>
+                      <div className="equipment-card-body">
+                        <p className="equipment-card-en">{item.englishName}</p>
+                        <h3>{item.name}</h3>
+                        <p>{item.summary}</p>
+                        <div className="equipment-tags">
+                          {(item.muscles || []).slice(0, 3).map((muscle) => (
+                            <span key={muscle}>{muscle}</span>
+                          ))}
+                        </div>
+                        <span className="recipe-view-link">
+                          查看介绍与视频 <span aria-hidden="true">→</span>
+                        </span>
+                      </div>
+                    </Link>
+                  </article>
+                );
+              })}
+            </section>
+            <Pagination
+              page={paged.page}
+              totalPages={paged.totalPages}
+              totalItems={paged.totalItems}
+              pageSize={PAGE_SIZE}
+              onPageChange={setPage}
+              label="项"
+            />
+          </>
         )}
       </main>
     </EquipmentChrome>

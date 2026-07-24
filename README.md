@@ -4,6 +4,14 @@
 
 详见：[task-planner/README.md](./task-planner/README.md)
 
+## 规范驱动开发（OpenSpec）
+
+本仓库已配置 [OpenSpec](https://github.com/Fission-AI/OpenSpec)，用于后续功能的「先对齐规格再写代码」。
+
+- 说明：[`openspec/README.md`](./openspec/README.md)
+- 项目上下文：[`openspec/config.yaml`](./openspec/config.yaml)
+- Cursor 中常用：`/opsx:explore` → `/opsx:propose` → `/opsx:apply` → `/opsx:archive`
+
 **服务器用 Git 源码直接部署（摘要）：**
 
 ```bash
